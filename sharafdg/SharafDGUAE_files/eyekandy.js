@@ -1,0 +1,6 @@
+jQuery(document).ready(function(){function eyekandyScriptLoad(){destoryEyekandy();if(!document.getElementById("eyekandy-script-tags-thin")){let ekyThin=document.createElement("script");ekyThin.async=true;ekyThin.id="eyekandy-script-tags-thin";ekyThin.type='text/javascript';ekyThin.src="https://media.pointandplace.com/js/pointandplace.js";ekyThin.dataset.ekyDistributor=typeof eyekandy_uuid!='undefined'?eyekandy_uuid:'';ekyThin.dataset.ekyLanguage=typeof eyekandy_language!='undefined'?eyekandy_language:'';if(typeof eyekandy_uuid!='undefined'&&typeof eyekandy_language!='undefined'){document.body.appendChild(ekyThin);}}}
+$(document).on("populateResult",function(e,content){eyekandyScriptLoad();})
+if(document.getElementById("eyekandy-script-tags-thin")){document.getElementById("eyekandy-script-tags-thin").remove();}})
+function destoryEyekandy(){if($('#eyekandy-script-tags-thin').length>0){$('#eyekandy-script-tags-thin').remove();}
+const customTag=document.querySelector('eyekandy-badge-button');if(customTag){const parent=customTag.parentNode;parent.removeChild(customTag);}}
+jQuery(document).on('pjax:start',function(){destoryEyekandy();});jQuery(document).on('pjax:complete',function(){destoryEyekandy();});
