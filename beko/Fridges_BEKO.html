@@ -358,10 +358,21 @@
       src="./Fridges_BEKO_files/util.js"
     ></script>
 
-    <script
-      async
-      src="https://platform.poltio.com/stage/74/beko-test.js"
-    ></script>
+    <script id="poltio" async></script>
+    <script>
+      const qs = window.location.search.substring(1);
+      const searchParams = new URLSearchParams(window.location.search);
+      const url = 'https://platform.poltio.com';
+      if (qs === 'test') {
+        document.getElementById('poltio').src = `${url}/beko-${qs}.js`;
+      } else if (searchParams.has('version')) {
+        document.getElementById(
+          'poltio'
+        ).src = `${url}/stage/${searchParams.get('version')}/beko-test.js`;
+      } else {
+        document.getElementById('poltio').src = `${url}/beko.js`;
+      }
+    </script>
   </head>
   <body
     data-aos-easing="null"
