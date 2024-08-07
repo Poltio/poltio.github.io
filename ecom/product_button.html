@@ -5,10 +5,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
-    <script
-      async
-      src="https://platform.poltio.com/poltio-test.js?hash=asdadasdaasd"
-    ></script>
+    <script id="poltio" defer></script>
+    <script>
+      const qs = window.location.search.substring(1);
+      const searchParams = new URLSearchParams(window.location.search);
+      const url = 'https://platform.poltio.com';
+      if (qs === 'test') {
+        document.getElementById('poltio').src = `${url}/poltio-${qs}.js`;
+      } else if (searchParams.has('version')) {
+        document.getElementById(
+          'poltio'
+        ).src = `${url}/stage/${searchParams.get('version')}/poltio-test.js`;
+      } else {
+        document.getElementById('poltio').src = `${url}/poltio.js`;
+      }
+    </script>
   </head>
   <body>
     <div
