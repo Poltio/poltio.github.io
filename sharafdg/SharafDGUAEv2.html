@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html
   lang="en-US"
   class="js_active vc_desktop vc_transform vc_transform vc_transform"
@@ -265,11 +265,11 @@
                         d(t)
                           ? (e.mask_selector = ''.concat(t, ',').concat(h))
                           : '' === t || null === t
-                            ? (e.mask_selector = h)
-                            : (0, f.R)(
-                                "An invalid session_replay.mask_selector was provided. '*' will be used.",
-                                t
-                              );
+                          ? (e.mask_selector = h)
+                          : (0, f.R)(
+                              "An invalid session_replay.mask_selector was provided. '*' will be used.",
+                              t
+                            );
                       },
                       get block_class() {
                         return 'nr-block';
@@ -459,8 +459,8 @@
                         Array.isArray(e[a]) && Array.isArray(t[a])
                           ? (r[a] = Array.from(new Set([...e[a], ...t[a]])))
                           : 'object' == typeof e[a] && 'object' == typeof t[a]
-                            ? (r[a] = i(e[a], t[a]))
-                            : (r[a] = e[a]);
+                          ? (r[a] = i(e[a], t[a]))
+                          : (r[a] = e[a]);
                       } catch (e) {
                         (0, n.R)(
                           'An error occurred while setting a property of a Configurable',
@@ -759,8 +759,8 @@
                     backlog: l
                       ? {}
                       : t && 'object' == typeof t.backlog
-                        ? t.backlog
-                        : {},
+                      ? t.backlog
+                      : {},
                     isolatedBacklog: l,
                   };
                   return (
@@ -776,8 +776,8 @@
                     return e && e instanceof a.y
                       ? e
                       : e
-                        ? (0, i.I)(e, c, () => new a.y(c))
-                        : new a.y(c);
+                      ? (0, i.I)(e, c, () => new a.y(c))
+                      : new a.y(c);
                   }
                   function g(e, t) {
                     n[e] = p(e).concat(t);
@@ -894,8 +894,8 @@
                       'x' === e
                         ? o(t, r++).toString(16)
                         : 'y' === e
-                          ? ((3 & o()) | 8).toString(16)
-                          : e
+                        ? ((3 & o()) | 8).toString(16)
+                        : e
                     )
                     .join('')
                 );
@@ -1686,8 +1686,8 @@
                             (v
                               ? v.then(w)
                               : d
-                                ? d(w)
-                                : ((b = -b), (y.data = b)));
+                              ? d(w)
+                              : ((b = -b), (y.data = b)));
                       })(t);
                   }),
                   r.on('open-xhr-start', m),
@@ -2613,7 +2613,7 @@
               212: 'nr-spa-compressor',
               249: 'nr-spa-recorder',
               478: 'nr-spa',
-            })[e] + '-1.262.0.min.js'),
+            }[e] + '-1.262.0.min.js')),
           (i.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t)),
           (e = {}),
           (t = 'NRBA-1.262.0.PROD:'),
@@ -3033,14 +3033,14 @@
                     return e;
                   })(t)
                 : t
-                  ? (t.c || (t = E(t.t)),
-                    (t.c += 1),
-                    (t.t += e),
-                    (t.sos += e * e),
-                    e > t.max && (t.max = e),
-                    e < t.min && (t.min = e),
-                    t)
-                  : { t: e };
+                ? (t.c || (t = E(t.t)),
+                  (t.c += 1),
+                  (t.t += e),
+                  (t.sos += e * e),
+                  e > t.max && (t.max = e),
+                  e < t.min && (t.min = e),
+                  t)
+                : { t: e };
             }
             function E(e) {
               return { t: e, min: e, max: e, sos: e * e, c: 1 };
@@ -3222,10 +3222,10 @@
               return !e || ('object' !== t && 'function' !== t)
                 ? -1
                 : e === g.gm
-                  ? 0
-                  : (0, G.I)(e, z, function () {
-                      return V++;
-                    });
+                ? 0
+                : (0, G.I)(e, z, function () {
+                    return V++;
+                  });
             }
             function q(e) {
               if ('string' == typeof e && e.length) return e.length;
@@ -3540,11 +3540,11 @@
                             g.RI &&
                             (t = '' + g.gm.location.href)
                           : e[0] && e[0].url
-                            ? (t = e[0].url)
-                            : g.gm?.URL && e[0] && e[0] instanceof URL
-                              ? (t = e[0].href)
-                              : 'function' == typeof e[0].toString &&
-                                (t = e[0].toString()),
+                          ? (t = e[0].url)
+                          : g.gm?.URL && e[0] && e[0] instanceof URL
+                          ? (t = e[0].href)
+                          : 'function' == typeof e[0].toString &&
+                            (t = e[0].toString()),
                         'string' == typeof t && 0 !== t.length)
                       ) {
                         t &&
@@ -3592,11 +3592,11 @@
                       'string' == typeof i
                         ? (r = i)
                         : 'object' == typeof i && i instanceof re
-                          ? (r = i.url)
-                          : g.gm?.URL &&
-                            'object' == typeof i &&
-                            i instanceof URL &&
-                            (r = i.href),
+                        ? (r = i.url)
+                        : g.gm?.URL &&
+                          'object' == typeof i &&
+                          i instanceof URL &&
+                          (r = i.href),
                         oe(this, r);
                       var o = (
                         '' +
@@ -3661,10 +3661,10 @@
                         return 'json' === r && null !== t
                           ? t
                           : 'arraybuffer' === r || 'blob' === r || 'json' === r
-                            ? q(e.response)
-                            : 'text' === r || '' === r || void 0 === r
-                              ? q(e.responseText)
-                              : void 0;
+                          ? q(e.response)
+                          : 'text' === r || '' === r || void 0 === r
+                          ? q(e.responseText)
+                          : void 0;
                       })(r, e.lastSize);
                       if ((n && (e.metrics.rxSize = n), e.sameOrigin)) {
                         var i = r.getResponseHeader('X-NewRelic-App-Data');
@@ -4043,30 +4043,16 @@
                         this.bstStart = (0, C.t)();
                       }),
                       this.eventsEE.on(fe, function (e, t) {
-                        (0, O.p)(
-                          'bst',
-                          [e[0], t, this.bstStart, (0, C.t)()],
-                          void 0,
-                          a.K.sessionTrace,
-                          r
-                        );
+                        (0,
+                        O.p)('bst', [e[0], t, this.bstStart, (0, C.t)()], void 0, a.K.sessionTrace, r);
                       }),
                       r.on(ge + ue, function (e) {
                         (this.time = (0, C.t)()),
                           (this.startPath = location.pathname + location.hash);
                       }),
                       r.on(ge + de, function (e) {
-                        (0, O.p)(
-                          'bstHist',
-                          [
-                            location.pathname + location.hash,
-                            this.startPath,
-                            this.time,
-                          ],
-                          void 0,
-                          a.K.sessionTrace,
-                          r
-                        );
+                        (0,
+                        O.p)('bstHist', [location.pathname + location.hash, this.startPath, this.time], void 0, a.K.sessionTrace, r);
                       });
                     try {
                       (n = new PerformanceObserver((e) => {
@@ -4659,9 +4645,9 @@
             'undefined' !== typeof MIXPANEL_CUSTOM_LIB_URL
               ? MIXPANEL_CUSTOM_LIB_URL
               : 'file:' === f.location.protocol &&
-                  '//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js'.match(/^\/\//)
-                ? 'https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js'
-                : '//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js';
+                '//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js'.match(/^\/\//)
+              ? 'https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js'
+              : '//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js';
           g = f.getElementsByTagName('script')[0];
           g.parentNode.insertBefore(e, g);
         }
@@ -9098,23 +9084,37 @@
             </div>
             <div class="woocommerce"></div>
           </div>
-          <script
-            defer
-            src="https://platform.poltio.com/widget-test.js"
-          ></script>
+          <script id="poltio" defer></script>
+          <script>
+            const qs = window.location.search.substring(1);
+            const searchParams = new URLSearchParams(window.location.search);
+            const url = 'https://platform.poltio.com';
+            if (qs === 'test') {
+              document.getElementById('poltio').src = `${url}/poltio-${qs}.js`;
+            } else if (searchParams.has('version')) {
+              document.getElementById(
+                'poltio'
+              ).src = `${url}/stage/${searchParams.get(
+                'version'
+              )}/poltio-test.js`;
+            } else {
+              document.getElementById('poltio').src = `${url}/poltio.js`;
+            }
+          </script>
           <div
-            class="poltio-widget-floating"
-            data-poltio-widget-content="9e848c5c-a6b4-4f49-8dc2-7aae94de9831"
+            class="poltio-widget-flying"
+            data-poltio-widget-content="d627477e-2dda-40ed-90e5-5259803d5c96"
             data-poltio-widget-uuid="ecom-sf-test"
             data-poltio-widget-loc="en"
             data-poltio-widget-disclaimer="off"
             data-poltio-widget-resultfit="vf"
             data-poltio-floating-bgcolor="rgba(2, 121, 193, 1)"
+            data-poltio-floating-title="Let's choose together"
+            data-poltio-floating-desc="Not sure yet? Don’t worry! With a few simple questions we will guide you through the selection"
+            data-poltio-floating-buttontext="Start Now"
             data-poltio-floating-textcolor="white"
-            data-poltio-floating-text="Choose Together"
-            data-poltio-floating-position="center-left"
-            data-poltio-slideover-position="right"
             data-poltio-slideover-bgcolor="rgb(252, 175, 24)"
+            data-poltio-floating-hide="true"
           ></div>
 
           <script>
@@ -20404,8 +20404,7 @@
               >
                 <p class="copy-right m0">
                   <strong
-                    >COPYRIGHT © 2024 SHARAF DG LLC. ALL RIGHTS
-                    RESERVED</strong
+                    >COPYRIGHT © 2024 SHARAF DG LLC. ALL RIGHTS RESERVED</strong
                   >
                 </p>
               </div>

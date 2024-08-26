@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Poltio SDK Ecommerce Demo Page</title>
@@ -6,22 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/public/favicon.ico" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
-    <script async src="https://platform.poltio.com/widget-test.js"></script>
+    <script id="poltio" defer></script>
+    <script>
+      const qs = window.location.search.substring(1);
+      const searchParams = new URLSearchParams(window.location.search);
+      const url = 'https://platform.poltio.com';
+      if (qs === 'test') {
+        document.getElementById('poltio').src = `${url}/poltio-${qs}.js`;
+      } else if (searchParams.has('version')) {
+        document.getElementById(
+          'poltio'
+        ).src = `${url}/stage/${searchParams.get('version')}/poltio-test.js`;
+      } else {
+        document.getElementById('poltio').src = `${url}/poltio.js`;
+      }
+    </script>
   </head>
   <body>
     <div
-      class="poltio-widget-floating"
+      class="poltio-widget-flying"
       data-poltio-widget-pid="41100"
       data-poltio-widget-uuid="ecom-sf-test"
-      data-poltio-widget-loc="tr"
+      data-poltio-widget-loc="en"
       data-poltio-widget-disclaimer="off"
       data-poltio-widget-resultfit="vf"
-      data-poltio-floating-bgcolor="rgba(0, 158, 235, 1)"
-      data-poltio-floating-textcolor="white"
-      data-poltio-floating-text="Choose Together"
-      data-poltio-floating-position="center-left"
-      data-poltio-slideover-position="right"
-      data-poltio-slideover-bgcolor="rgb(243, 244, 246)"
+      data-poltio-widget-bgcolor="white"
+      data-poltio-floating-title="Let's choose together"
+      data-poltio-floating-desc="Not sure yet? Don’t worry! With a few simple questions we will guide you through the selection"
+      data-poltio-floating-buttontext="Start Now"
+      data-poltio-floating-hide="true"
     ></div>
 
     <div class="bg-white">
