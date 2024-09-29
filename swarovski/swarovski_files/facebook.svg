@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 70 70">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <g id="Icon_Player_Play-Kreis-Black" data-name="Icon Player Play-Kreis-Black">
+    <g id="SO-Iconset-SVGs_Black---Play-Kreis" data-name="SO-Iconset-SVGs Black---Play-Kreis">
+      <circle id="Oval" class="cls-1" cx="35" cy="35" r="22.7"/>
+    </g>
+  </g>
+  <g>
+    <path class="cls-2" d="M33.8,46.8v-19.5c0-2.2,2-3.9,4.1-3.5.6.1,1.1.4,1.5.6"/>
+    <line class="cls-2" x1="30.2" y1="32.9" x2="39" y2="32.9"/>
+  </g>
+</svg>
