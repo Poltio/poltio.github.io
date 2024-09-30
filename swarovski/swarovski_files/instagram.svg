@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 70 70">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect class="cls-2" x="23.1" y="23.1" width="23.8" height="23.8" rx="6.7" ry="6.7"/>
+    <circle class="cls-2" cx="35" cy="35" r="5.5"/>
+    <circle class="cls-3" cx="42" cy="28.1" r="1.1"/>
+  </g>
+  <g id="Icon_Player_Play-Kreis-Black" data-name="Icon Player Play-Kreis-Black">
+    <g id="SO-Iconset-SVGs_Black---Play-Kreis" data-name="SO-Iconset-SVGs Black---Play-Kreis">
+      <circle id="Oval" class="cls-1" cx="35" cy="35" r="22.7"/>
+    </g>
+  </g>
+</svg>
