@@ -3442,7 +3442,7 @@ body.cigars .items-stacked a.item img {
 
 a.logo {
   display: block;
-  background: url("/images/site/logo.png") no-repeat;
+  background: url("https://montanaeagle.com/wp-content/uploads/home-brands-davidoff.png") no-repeat;
   width: 60%;
   margin: 10px auto 0 auto;
   height: 54px;
@@ -3459,14 +3459,14 @@ a.logo {
     a.logo {
       margin-top: 30px;
       width: 100%;
-      height: 75px;
+      height: 150px;
       background-size: auto 100%;
       background-position: center center; } }
   @media only screen and (min-width: 1150px) {
     a.logo {
       margin-top: 30px;
       width: 100%;
-      height: 75px;
+      height: 150px;
       background-size: auto 100%;
       background-position: center center; } }
 
