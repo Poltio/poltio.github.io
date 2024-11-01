@@ -1,0 +1,32 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.bugaboo.com	TRUE	/	FALSE	1999999999	sid	Hku7-dRh4rlAU5al9z-4XQNy1sqpMUKz1ec
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_7f6dba61ec29a49d2dd047d16362b727	abh5c1hLW3UggQnYl3ndq2uE57
+www.bugaboo.com	TRUE	/	FALSE	1999999999	sfClientID	Mozilla/4.5 (compatible
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwsid	t_ou3vGQ7z35axFis9OHhKrDQ-2MwE83bN9jnIRDQAzXMQRoGm0pUQUnxR_8Mzf8WSpLHsUzLAV9RTeTzec0Fw==
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_c604a95cf1cb1b2c9033ac97398be3eb	adLPmvrgpbI6khvaIy16vLkA6v
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_45eb6dec90e29b394cfb8726d05948ee	abwmttcnNiwAYyfWaiBYMTXnWQ
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_561e78d4b33f4a4948e22a898b730dfb	bc4ehdFyC2kyYnP0L1MnaGiqTG
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwac_9ac4a7720976be50057766974a	Hku7-dRh4rlAU5al9z-4XQNy1sqpMUKz1ec%3D|dw-only|||EUR|false|Europe%2FParis|true
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_b97628f8111ff43907b1792778c6b4cf	ad1PaZM1ezlluHGfYb18V6dLjS
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwac_d4cc7357c4ccbce03872627fa1	Hku7-dRh4rlAU5al9z-4XQNy1sqpMUKz1ec%3D|dw-only|||EUR|false|Europe%2FDublin|true
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_7671611b5e967ddc44d98520667cd8bb	acgaxIDJ86VELrWyPFz4QqvmBq
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_b13c595eea8a47372f2f03195028aab9	bcjrBaHdVbeSV12pvBsnKCy3cC
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwac_fd1cb5b90630f0627e7589bfd0	Hku7-dRh4rlAU5al9z-4XQNy1sqpMUKz1ec%3D|dw-only|||EUR|false|Europe%2FMadrid|true
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_3c2d88e6a65adb112543973933867fc8	abhpyz45w0i1cvDpcg9IQdkXi5
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_60c2650adf887d96b217798477c416fa	abdl72cnDtQ5swpTVgbN13epTd
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_df830726c3821e47fb647366f4c765b0	ac3mB2wP09aB4aTUhMciqR0YaD
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwac_6dd4ef10483bbcef4c8b3e5eb0	Hku7-dRh4rlAU5al9z-4XQNy1sqpMUKz1ec%3D|dw-only|||GBP|false|Europe%2FLondon|true
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_2fb146bd55d9299cc995f5fa29256fcf	ce0vNcbjtcRnIb200daaq7CkxI
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwac_f893edc5c1ef4f4dfbd12ece01	Hku7-dRh4rlAU5al9z-4XQNy1sqpMUKz1ec%3D|dw-only|||USD|false|US%2FEastern|true
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_29a343d7f2f5daf308858037b30febbd	abeaVHddwdCPBRpzIAWoz3BRJr
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_84e606306eb5bdc937446d826bdb1ed8	abfHxo8nv9AFporbwqOP7Ii4Ai
+www.bugaboo.com	TRUE	/	FALSE	1999999999	personalisedPage	false
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwac_0db8703775b3c2f390483b71dd	Hku7-dRh4rlAU5al9z-4XQNy1sqpMUKz1ec%3D|dw-only|||EUR|false|Europe%2FAmsterdam|true
+www.bugaboo.com	TRUE	/	FALSE	1999999999	cqcid	abjH6JkYR9JKezkfDUiIQsDhG7
+www.bugaboo.com	TRUE	/	FALSE	1999999999	cquid	||
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dwanonymous_8fbb40c55a9a07627c261a5a6dc9a39f	abjH6JkYR9JKezkfDUiIQsDhG7
+www.bugaboo.com	TRUE	/	FALSE	1999999999	__cq_dnt	0
+www.bugaboo.com	TRUE	/	FALSE	1999999999	dw_dnt	0
+www.bugaboo.com	TRUE	/	FALSE	1999999999	SameSite	None
+
