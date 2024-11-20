@@ -1,0 +1,144 @@
+.fitguide-link {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500; }
+
+.fitguide-sidebar-header {
+  padding-left: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc; }
+
+.fitguide-sidebar {
+  padding-left: 10px; }
+
+.fitguide-list {
+  padding: 5px 0; }
+
+.make-select-wrapper,
+.model-select-wrapper,
+.year-select-wrapper {
+  padding-bottom: 10px; }
+
+.header-fitguide {
+  font-size: 16px;
+  color: white; }
+
+.fitguide-plp-dropdowns {
+  margin: 0 auto;
+  background: #6f6f6f url("../images/Harman_CarFit_Category_BG.jpg") repeat 0 0; }
+
+.fitguide-row {
+  margin: 10px auto;
+  display: flex;
+  width: calc(100% - 45px); }
+  @media (min-width: 768px) {
+    .fitguide-row {
+      width: calc(95% - 40px); } }
+  .fitguide-row .header-fitguide-container {
+    flex-grow: 1; }
+  .fitguide-row .dropdown-fitguide-container {
+    width: 50%; }
+    @media (min-width: 768px) {
+      .fitguide-row .dropdown-fitguide-container {
+        width: calc(25% - 25px); } }
+
+.merge-dropdowns {
+  display: block;
+  background: url(../../images/cross_fitguide.png) no-repeat 95% 50% white;
+  text-align: center;
+  border-radius: 0;
+  padding: 5px;
+  font-size: 14px;
+  min-width: 250px;
+  max-width: 350px;
+  overflow: hidden;
+  border: 2px solid black;
+  color: black;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 10px; }
+  .merge-dropdowns .close-selection {
+    display: block; }
+
+.category-landing-banner.vehicle-selected {
+  background: #6f6f6f url("../images/Harman_CarFit_LandingPage_BG.jpg") repeat 0 0;
+  margin-bottom: 20px;
+  padding: 20px 0; }
+  .category-landing-banner.vehicle-selected .fitguide-content {
+    text-align: center;
+    color: white;
+    padding: 0 10px 10px 10px; }
+    .category-landing-banner.vehicle-selected .fitguide-content span {
+      display: block; }
+    .category-landing-banner.vehicle-selected .fitguide-content .dropdowns {
+      width: 350px;
+      margin: auto;
+      display: none; }
+      .category-landing-banner.vehicle-selected .fitguide-content .dropdowns button {
+        color: white;
+        margin: 0 20px; }
+    .category-landing-banner.vehicle-selected .fitguide-content .fitguide-header {
+      font-size: 34px;
+      padding: 0; }
+    .category-landing-banner.vehicle-selected .fitguide-content .fitguide-textinfo {
+      margin-bottom: 10px; }
+
+.no-results-text {
+  text-align: center;
+  padding: 10px; }
+  .no-results-text .no-items-match {
+    background: url(../../images/warn-icon.png) no-repeat 0 0%;
+    filter: invert(1);
+    width: 44px;
+    height: 29px;
+    background-size: 30px;
+    display: inline-block !important; }
+    @media screen and (max-width: 600px) {
+      .no-results-text .no-items-match {
+        background-size: 25px;
+        width: 45px; } }
+    .no-results-text .no-items-match .no-display-class {
+      visibility: hidden; }
+  .no-results-text .no-items-match-message {
+    font-size: 24px;
+    display: flex;
+    justify-content: center; }
+    @media screen and (max-width: 600px) {
+      .no-results-text .no-items-match-message {
+        font-size: 20px; } }
+
+.pdp-fitGuide-container {
+  background: white url("../../images/Harman_CarFit_PDP_BG.jpg") repeat 0 0;
+  padding: 20px 15px 10px 15px;
+  margin: 20px 0;
+  width: 100%; }
+  .pdp-fitGuide-container .color-white {
+    color: white; }
+  .pdp-fitGuide-container .product-fitguide .header-fitguide {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px; }
+  .pdp-fitGuide-container .header-fitguide {
+    font-size: 28px; }
+  .pdp-fitGuide-container .fitguide_dropdown {
+    font-size: 14px;
+    height: 36px;
+    margin-left: 0;
+    padding-right: 40px;
+    max-width: 100%; }
+  .pdp-fitGuide-container .merge-dropdowns {
+    min-width: 250px;
+    margin-left: 0;
+    cursor: pointer; }
+  .pdp-fitGuide-container .fit-info {
+    background: url(../../images/tickmark.jpg) no-repeat 0 50%;
+    padding-left: 30px;
+    font-size: 18px;
+    margin-bottom: 5px; }
+  .pdp-fitGuide-container .not-fit-info {
+    background: url(../../images/warning.jpg) no-repeat 0 50%;
+    padding-left: 30px;
+    font-size: 18px;
+    margin-bottom: 5px; }
+  .pdp-fitGuide-container .not-fit-msg {
+    padding-left: 30px; }
