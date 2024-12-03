@@ -9,13 +9,10 @@
     <script>
       const qs = window.location.search.substring(1);
       const searchParams = new URLSearchParams(window.location.search);
-      const url = 'https://platform.poltio.com';
+      const url = 'https://sdk.poltio.com';
+      const sUrl = 'https://sdk-stage.poltio.com';
       if (qs === 'test') {
-        document.getElementById('poltio').src = `${url}/poltio-${qs}.js`;
-      } else if (searchParams.has('version')) {
-        document.getElementById(
-          'poltio'
-        ).src = `${url}/stage/${searchParams.get('version')}/poltio-test.js`;
+        document.getElementById('poltio').src = `${sUrl}/poltio.js`;
       } else {
         document.getElementById('poltio').src = `${url}/poltio.js`;
       }
