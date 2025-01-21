@@ -20,12 +20,10 @@
       })(window, document, 'script', 'dataLayer', 'GTM-MK84D863');
     </script>
 
-    <script id="poltiosdk" src="https://platform.poltio.com/poltio.js" defer>
-    </script>
-    <script id="poltiosdk" src="https://platform.poltio.com/poltio.js" defer>
-    </script>
+    <!-- <script id="poltiosdk" src="https://platform.poltio.com/poltio-test.js" defer>
+    </script> -->
 
-<script id="poltio" async></script>
+<script id="poltio" ></script>
 
 <script>
   const qs = window.location.search.substring(1);
@@ -42,14 +40,14 @@
   }
 </script>
 
-<script id="poltio1" async></script>
+<script id="poltio1" ></script>
 
     <script>
       if (qs === 'test') {
-        document.getElementById('poltio').src = `${url}/poltio-${qs}.js`;
+        document.getElementById('poltio1').src = `${url}/poltio-${qs}.js`;
       } else if (searchParams.has('version')) {
         document.getElementById(
-          'poltio'
+          'poltio1'
         ).src = `${url}/stage/${searchParams.get('version')}/poltio-test.js`;
       } else {
         document.getElementById('poltio1').src = `${url}/poltio.js`;
