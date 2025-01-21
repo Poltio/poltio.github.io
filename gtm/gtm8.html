@@ -19,7 +19,21 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-MK84D863');
     </script>
-    <script id="poltiosdk" src="https://platform.poltio.com/poltio.js" defer>
+    <script id="poltio" async></script>
+
+    <script>
+      const qs = window.location.search.substring(1);
+      const searchParams = new URLSearchParams(window.location.search);
+      const url = 'https://platform.poltio.com';
+      if (qs === 'test') {
+        document.getElementById('poltio').src = `${url}/poltio-${qs}.js`;
+      } else if (searchParams.has('version')) {
+        document.getElementById(
+          'poltio'
+        ).src = `${url}/stage/${searchParams.get('version')}/poltio-test.js`;
+      } else {
+        document.getElementById('poltio').src = `${url}/poltio.js`;
+      }
     </script>
 
     <!-- End Google Tag Manager -->
