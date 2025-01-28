@@ -1,0 +1,62 @@
+body {
+  width: auto!important;
+  margin: auto!important;
+  font-size: 12px !important;
+  background-color: #fff!important;
+}
+
+.print {
+  display: block; /* affichage des éléments de classe print */
+}
+p, blockquote {
+  orphans: 3; /* pas de ligne seule en bas */
+  widows: 3; /* pas de ligne seule en haut */
+}
+blockquote, ul, ol {
+  page-break-inside: avoid; /* pas de coupure dans ces élements */
+}
+h1 {
+  page-break-before: always; /* chaque titre commence sur une nouvelle page */
+}
+h1, h2, h3, caption {
+  page-break-after: avoid; /* pas de saut après ces éléments */
+}
+
+.bem-header {
+  padding-bottom: 0 !important;
+}
+.commercebar,
+.countryselector,
+.bem-header__menu,
+.product-detail__socialsharing,
+.show-for-small-only,
+.bem-footer__legal,
+.bem-footer-navigation-wrapper,
+.bem-footer__bar-wrapper,
+.product-detail__inner-row-bottom--buttons,
+.bem-product-specification__button,
+a.product-detail__reinsurance-item,
+.bem-header__skipcontent,
+.product-detail__favorite,
+.product-detail__download,
+.bem-anchorlink__cta--scroll {
+  display:none !important;
+}
+
+.bem-product-specification__content {
+  display:block !important;
+  opacity:1;
+}
+
+#bem-app,
+.bg-dark,
+.bg-white,
+.bg-grey,
+.product-detail {
+  background: none !important;
+  background-color: #fff!important;
+}
+
+.product-detail__col.product-detail__col-8 {
+  border-right:1px solid #ebebeb;
+}

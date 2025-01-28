@@ -1,0 +1,2 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+13:45:11	233372/233372	U-----	200	untouched ('OK')	text/html	etag:%223837b-62c6fe71c2a82-gzip%22	https://www.baume-et-mercier.com/en/home.html	www.baume-et-mercier.com/en/home.html	(from )

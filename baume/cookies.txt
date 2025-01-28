@@ -1,0 +1,8 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+baume-et-mercier.cn	TRUE	/	FALSE	1999999999	AKA_A2	A
+www.baume-et-mercier.com	TRUE	/	FALSE	1999999999	AWSALB	cvR9+gEb7NyyigtIRDaN10Ssptv2PwnGbljJnGHbTfxt3xz/szsiVZb1D6qJTILrKN04MjRWIn0/E1GbClJIMfjAo69fzwRU//pb6U2NLH7+yvDuSLXGWxE8KIM7
+www.baume-et-mercier.com	TRUE	/	FALSE	1999999999	AWSALBCORS	cvR9+gEb7NyyigtIRDaN10Ssptv2PwnGbljJnGHbTfxt3xz/szsiVZb1D6qJTILrKN04MjRWIn0/E1GbClJIMfjAo69fzwRU//pb6U2NLH7+yvDuSLXGWxE8KIM7
+www.baume-et-mercier.com	TRUE	/	FALSE	1999999999	TS01848d25	018f67933577b2dbe0676296705ab0e33665780c7cb672f2b629e792b38c8a09f0b7a722610d1770a9835aaf848e4c0fc07adddce4
+www.baume-et-mercier.com	TRUE	/	FALSE	1999999999	SameSite	none
+

@@ -1,0 +1,7 @@
+Mirror in progress since Mon, 27 Jan 2025 13:45:09 .. please wait!
+httrack https://www.baume-et-mercier.com/en/home.html -v -s0 -r1 -n 
+To pause the engine: create an empty file named 'hts-stop.lock'
+PID=53897
+UID=501
+GID=501
+START=1737974709
