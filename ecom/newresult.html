@@ -9,41 +9,66 @@
     <script id="poltio" defer></script>
     <script>
       const qs = window.location.search.substring(1);
-      const searchParams = new URLSearchParams(window.location.search);
+      // const searchParams = new URLSearchParams(window.location.search);
       const url = 'https://sdk.poltio.com';
       const sUrl = 'https://sdk-stage.poltio.com';
       if (qs === 'test') {
         document.getElementById('poltio').src = `${sUrl}/poltio.js`;
       } else {
-        document.getElementById('poltio').src = `${url}/poltio.js`;
+        document.getElementById('poltio').src = `${sUrl}/poltio.js`;
       }
+    </script>
+    <script>
+      function setContent() {
+        const parsedUrl = new URL(window.location);
+        const content = parsedUrl.searchParams.get('content');
+        const poltioDiv = document.getElementById('poltioDiv');
+        let contentId = 'a6a2b06d-0f19-4e40-bcbc-c5d461cd1830';
+        if (content) {
+          content === 'yves'
+            ? (contentId = '080905a5-7fc6-4174-b613-dd0a5c67438b')
+            : content === 'beko'
+            ? (contentId = '4de5a255-ae2c-4f7b-b817-edebfdd404ce')
+            : content === 'diverge'
+            ? (contentId = '249a0e2d-b6fc-47d7-b493-77dc895b28aa')
+            : content === 'reis'
+            ? (contentId = 'afae8e56-f28c-4b7f-a321-f10c9579e596')
+            : content === 'teknosa'
+            ? (contentId = '8b5f662f-0aae-424f-b45b-c0723d639350')
+            : content === 'mavi'
+            ? (contentId = 'bdc6be76-1e99-4800-bba6-c6da7d913926')
+            : (contentId = 'a6a2b06d-0f19-4e40-bcbc-c5d461cd1830');
+        }
+
+        poltioDiv.setAttribute('data-poltio-widget-content', contentId);
+      }
+      setTimeout(setContent);
     </script>
   </head>
   <body>
     <div
-    class="poltio-widget-flying"
-    data-poltio-widget-content="a6a2b06d-0f19-4e40-bcbc-c5d461cd1830"
-    data-poltio-widget-pid="1"
-    data-poltio-widget-puid="poltiotest"
-    data-poltio-widget-url="https://feature-result-cards---poltio-widget-remix-734jdjokhq-ew.a.run.app"
-    data-poltio-widget-loc="tr"
-    data-poltio-widget-disclaimer="off"
-    data-poltio-widget-resultfit="vf"
-    data-poltio-widget-bgcolor="#f0f8ff"
-    data-poltio-floating-bgcolor="#009eec"
-    data-poltio-floating-textcolor="white"
-    data-poltio-floating-title="Let's choose together"
-    data-poltio-floating-desc="Not sure yet? Don’t worry! With a few simple questions we will guide you through the selection"
-    data-poltio-floating-buttontext="Start Now"
-    data-poltio-floating-zindex="100"
-    data-poltio-floating-hide-button="false"
-    data-poltio-floating-position="bottom-right"
-    data-poltio-floating-icon-color="#1E3D54"
-    data-poltio-floating-widget-icon-color="#1E3D54"
-    data-poltio-floating-initial-position="collapsed"
-    data-poltio-floating-scroll-threshold="300"
-    data-poltio-floating-datalayer="dataLayer"
-  ></div>
+      id="poltioDiv"
+      class="poltio-widget-flying"
+      data-poltio-widget-puid="poltiotest"
+      data-poltio-widget-url="https://feature-result-cards---poltio-widget-remix-734jdjokhq-ew.a.run.app"
+      data-poltio-widget-loc="tr"
+      data-poltio-widget-disclaimer="off"
+      data-poltio-widget-resultfit="vf"
+      data-poltio-widget-bgcolor="#f0f8ff"
+      data-poltio-floating-bgcolor="#009eec"
+      data-poltio-floating-textcolor="white"
+      data-poltio-floating-title="Let's choose together"
+      data-poltio-floating-desc="Not sure yet? Don’t worry! With a few simple questions we will guide you through the selection"
+      data-poltio-floating-buttontext="Start Now"
+      data-poltio-floating-zindex="100"
+      data-poltio-floating-hide-button="false"
+      data-poltio-floating-position="bottom-right"
+      data-poltio-floating-icon-color="#1E3D54"
+      data-poltio-floating-widget-icon-color="#1E3D54"
+      data-poltio-floating-initial-position="collapsed"
+      data-poltio-floating-scroll-threshold="300"
+      data-poltio-floating-datalayer="dataLayer"
+    ></div>
 
     <div class="bg-white">
       <!-- Hero section -->
