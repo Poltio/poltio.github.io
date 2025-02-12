@@ -8,22 +8,23 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
     <script id="poltio" defer></script>
     <script>
-      const qs = window.location.search.substring(1);
-      // const searchParams = new URLSearchParams(window.location.search);
-      const url = 'https://sdk.poltio.com';
-      const sUrl = 'https://sdk-stage.poltio.com';
-      if (qs === 'test') {
-        document.getElementById('poltio').src = `${sUrl}/poltio.js`;
-      } else {
-        document.getElementById('poltio').src = `${url}/poltio.js`;
-      }
+      window.dataLayer=[]
+      // const qs = window.location.search.substring(1);
+      // // const searchParams = new URLSearchParams(window.location.search);
+      // const url = 'https://sdk.poltio.com';
+      // const sUrl = 'https://sdk-stage.poltio.com';
+      // if (qs === 'test') {
+      //   document.getElementById('poltio').src = `${sUrl}/widget.js`;
+      // } else {
+      //   document.getElementById('poltio').src = `${url}/widget.js`;
+      // }
     </script>
   </head>
   <body>
-    <div
+    <!-- <div
       class="poltio-widget-flying"
       data-poltio-widget-puid="poltiotest"
-      data-poltio-widget-url="https://feature-result-cards---poltio-widget-remix-734jdjokhq-ew.a.run.app"
+      data-poltio-widget-url="https://feature-session-sour---poltio-widget-remix-734jdjokhq-ew.a.run.app"
       data-poltio-widget-bgcolor="rgb(240, 248, 255)"
       data-poltio-widget-resultfit="vf"
       data-poltio-floating-textcolor="white"
@@ -34,7 +35,7 @@
       data-poltio-floating-title="Let us help you find the perfect match"
       data-poltio-floating-buttontext="Start"
       data-poltio-floating-zindex="1000000"
-    ></div>
+    ></div> -->
 
     <div class="bg-white">
       <!-- Hero section -->
@@ -293,7 +294,8 @@
           </div>
 
           <div class="mt-4 flow-root">
-            <div class="-my-2">
+            <iframe id="poltio-embed-aa2f73f6-bf2c-449f-8528-739b9882a058" class="poltio-embed" src="https://feature-session-sour---poltio-widget-remix-734jdjokhq-ew.a.run.app/widget/aa2f73f6-bf2c-449f-8528-739b9882a058?disclaimer=on" loading="lazy" width="100%" height="800" frameBorder="0" allowFullScreen="allowfullscreen" scrolling="yes" title="Personal Shopping Guide: Which PC is best for your needs?  (Copy)" allow="clipboard-write"></iframe><script src="https://sdk.poltio.com/widget.js" defer></script>
+            <!-- <div class="-my-2">
               <div
                 class="relative box-content h-80 overflow-x-auto py-2 xl:overflow-visible"
               >
@@ -402,7 +404,7 @@
                   </a>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <div class="mt-6 px-4 sm:hidden">
