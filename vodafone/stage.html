@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>Vodafone - Poltio Quiz Portal</title>
@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/public/favicon.ico" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
+    <script src="https://vodafone-preview.poltio.com/sdk.js" defer></script>
   </head>
   <body>
     <div class="bg-white">
@@ -38,34 +39,56 @@
                     <span class="mx-3 text-xs font-medium">Bireysel</span>
                   </button>
                   <button class="h-full">
-                    <span class="mx-3 text-xs font-medium text-white">Kurumsal</span>
+                    <span class="mx-3 text-xs font-medium text-white"
+                      >Kurumsal</span
+                    >
                   </button>
                 </div>
 
-                <div class="flex items-center gap-x-6 divide-x-2 divide-gray-600">
-                    <div class="flex"><img aria-hidden="true" class="mr-2 ls-is-cached lazyloaded" width="16" height="16" src="https://cms.vodafone.com.tr/static/img/content/23-01/31/dealer-desktop-1675177755.svg" data-src="https://cms.vodafone.com.tr/static/img/content/23-01/31/dealer-desktop-1675177755.svg" alt="En Yakın Mağaza" data-sec-uuid-js:web.vodafone.tr="502d6c951cdb">
-                        <a
-                        href="#"
-                        class="text-xs font-medium text-white hover:text-gray-100"
-                        >En Yakın Mağaza</a
-                      ></div>
-                  
-                  <div class="flex pl-6"><img aria-hidden="true" class="mr-2 lazyloaded" width="16" height="16" src="https://cms.vodafone.com.tr/static/img/content/23-01/31/visit-desktop.svg" data-src="https://cms.vodafone.com.tr/static/img/content/23-01/31/visit-desktop.svg" alt="Visiting Turkey" data-sec-uuid-js:web.vodafone.tr="279d7127e289">
+                <div
+                  class="flex items-center gap-x-6 divide-x-2 divide-gray-600"
+                >
+                  <div class="flex">
+                    <img
+                      aria-hidden="true"
+                      class="mr-2 ls-is-cached lazyloaded"
+                      width="16"
+                      height="16"
+                      src="https://cms.vodafone.com.tr/static/img/content/23-01/31/dealer-desktop-1675177755.svg"
+                      data-src="https://cms.vodafone.com.tr/static/img/content/23-01/31/dealer-desktop-1675177755.svg"
+                      alt="En Yakın Mağaza"
+                      data-sec-uuid-js:web.vodafone.tr="502d6c951cdb"
+                    />
                     <a
-                    href="#"
-                    class=" text-xs font-medium text-white hover:text-gray-100"
-                    >Visiting Turkey</a
-                  >
-                </div>
-                  
+                      href="#"
+                      class="text-xs font-medium text-white hover:text-gray-100"
+                      >En Yakın Mağaza</a
+                    >
+                  </div>
+
+                  <div class="flex pl-6">
+                    <img
+                      aria-hidden="true"
+                      class="mr-2 lazyloaded"
+                      width="16"
+                      height="16"
+                      src="https://cms.vodafone.com.tr/static/img/content/23-01/31/visit-desktop.svg"
+                      data-src="https://cms.vodafone.com.tr/static/img/content/23-01/31/visit-desktop.svg"
+                      alt="Visiting Turkey"
+                      data-sec-uuid-js:web.vodafone.tr="279d7127e289"
+                    />
+                    <a
+                      href="#"
+                      class="text-xs font-medium text-white hover:text-gray-100"
+                      >Visiting Turkey</a
+                    >
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- Secondary navigation -->
-            <div
-              class="bg-white"
-            >
+            <div class="bg-white">
               <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div>
                   <div class="flex h-16 items-center justify-between">
@@ -73,7 +96,14 @@
                     <div class="hidden lg:flex lg:flex-1 lg:items-center">
                       <a href="#">
                         <span class="sr-only">Your Company</span>
-                        <img class=" lazyloaded" aria-hidden="true" width="100" height="100" alt="Vodafone" src="https://cms.vodafone.com.tr/static/img/content/23-02/08/logo-desktop.png" />
+                        <img
+                          class="lazyloaded"
+                          aria-hidden="true"
+                          width="100"
+                          height="100"
+                          alt="Vodafone"
+                          src="https://cms.vodafone.com.tr/static/img/content/23-02/08/logo-desktop.png"
+                        />
                       </a>
                     </div>
 
@@ -121,7 +151,14 @@
                     <!-- Logo (lg-) -->
                     <a href="#" class="lg:hidden">
                       <span class="sr-only">Your Company</span>
-                      <img class=" lazyloaded" aria-hidden="true" width="24" height="24" alt="Vodafone" src="https://cms.vodafone.com.tr/static/img/content/23-01/31/logo.svg">
+                      <img
+                        class="lazyloaded"
+                        aria-hidden="true"
+                        width="24"
+                        height="24"
+                        alt="Vodafone"
+                        src="https://cms.vodafone.com.tr/static/img/content/23-01/31/logo.svg"
+                      />
                     </a>
 
                     <div class="flex flex-1 items-center justify-end">
@@ -195,8 +232,8 @@
           width="100%"
           height="3700"
           src="https://vodafone-preview.poltio.com"
-          allowFullScreen="allowfullscreen"
-          frameBorder="0"
+          allowfullscreen="allowfullscreen"
+          frameborder="0"
           loading="lazy"
         ></iframe>
       </main>
