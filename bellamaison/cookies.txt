@@ -1,0 +1,6 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.bellamaison.com	TRUE	/	FALSE	1999999999	sessionid	9d7sn9w6hbnqo8g4nx04pfsll5ixrs2w
+www.bellamaison.com	TRUE	/	FALSE	1999999999	csrftoken	lbxRNNRNj9O9beIBjOKKHus1auXwsvZ6OzTX2F970fXYJGL5XtjCuLZCBvZgDC0k
+www.bellamaison.com	TRUE	/	FALSE	1999999999	SameSite	Lax
+
