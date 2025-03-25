@@ -8350,6 +8350,9 @@
       data-poltio-widget-resultfit="vf"
       data-poltio-floating-hide-button="true"
       data-poltio-floating-zindex="99999"
+      data-poltio-widget-bgcolor="rgb(0,0,0)"
+      data-poltio-floating-bgcolor="rgb(0,0,0)"
+      data-poltio-floating-widget-icon-color="rgb(255,255,255)"
     ></div>
     <input
       type="hidden"
@@ -18609,31 +18612,26 @@
                 </div>
               </div>
             </div>
-            <div
-              class="sticky bottom-0 z-[9999] max-w-5xl w-full mx-auto h-[100px]"
-            >
+            <div class="sticky bottom-5 mr-3 w-full z-[9999] grid">
               <div
-                class="bg-white rounded-t-md grid grid-cols-3 w-full h-[100px]"
+                class="bg-black rounded-full w-[50px] h-[50px] relative grid items-center justify-center justify-self-end"
               >
-                <div class="ml-12 my-auto col-span-2 flex flex-col">
-                  <p class="text-2xl">Can we help you with your search?</p>
-                  <p class="text-base">
-                    Let us guide you by providing tailored answers to your
-                    needs.
-                  </p>
-                </div>
-                <div class="col-span-1 my-auto">
-                  <div
-                    class="mx-auto flex bg-[#242222] rounded-md p-2 w-3/4 text-white"
+                <a href="javascript:window.poltio.toggleFlyingWidget()">
+                  <span class="absolute text-white top-0 left-4">?</span>
+                  <svg
+                    width="24"
+                    height="27"
+                    viewBox="0 0 24 27"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <a
-                      href="javascript:window.poltio.toggleFlyingWidget()"
-                      class="text-white self-center mx-auto"
-                    >
-                      Start Guide</a
-                    >
-                  </div>
-                </div>
+                    <path
+                      id="Vector"
+                      d="M15.6038 22.9638C17.3528 21.8646 18.871 20.3729 19.918 18.3413C23.5017 11.3881 23.1202 3.17532 23.0577 2.16572C23.0546 2.11524 23.011 2.07712 22.9602 2.0809L22.2971 2.12932L22.5536 0.898226C22.5639 0.84912 22.5323 0.801044 22.4832 0.790742L18.6962 0.00194791C18.6471 -0.00835414 18.599 0.0232388 18.5887 0.0723452L15.7316 13.7912C15.7213 13.8403 15.6732 13.8719 15.6241 13.8616L1.90519 11.0045C1.85609 10.9942 1.80801 11.0258 1.79771 11.0749L1.00891 14.8616C0.998612 14.9107 1.0302 14.9588 1.07931 14.9691L2.32174 15.228C2.37084 15.2383 2.40244 15.2864 2.39214 15.3355L2.28774 15.8431C2.27778 15.8915 2.30629 15.9372 2.35436 15.9481C4.96593 16.5433 10.5411 20.3784 12.3467 21.8268C12.8367 22.2197 13.3233 22.5803 13.8099 22.9141C9.67946 24.9336 3.38045 25.1074 0.0885974 25.1104C0.0384608 25.1104 0 25.151 0 25.2011V25.9288C0 25.9789 0.0388041 26.0198 0.0892842 26.0198C3.74376 26.0167 10.3158 25.8233 14.699 23.4889C17.5331 25.2269 20.4142 26.0057 23.9073 26.0191C23.9581 26.0194 24 25.9779 24 25.9271V25.1997C24 25.1499 23.9605 25.1094 23.9107 25.1094C21.5491 25.1022 18.7882 24.7904 15.6038 22.9638ZM22.1704 2.73783C22.2315 4.81713 22.1872 11.9527 19.1093 17.9248C19.0581 18.0244 19.0008 18.1174 18.9468 18.2139L22.1704 2.73783ZM12.9157 21.117C11.3079 19.8276 7.06789 16.8863 4.09232 15.5968L18.702 18.6397C17.6852 20.2846 16.2996 21.5123 14.7264 22.4278C14.1368 22.0459 13.5335 21.6126 12.9157 21.117Z"
+                      fill="#EEEBE3"
+                    />
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
