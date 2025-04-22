@@ -1,0 +1,16 @@
+(async function () {
+
+
+var rangeObj = document.createRange(); var documentFragment = rangeObj.createContextualFragment ('<!-- Code for Pixel:  2.13.25 - Marcus Thomas LLC - Dewalt - Zeta Universal Landing Pixel-->\n<!-- Begin DMP Conversion Action Tracking Code Version 9 -->\n<script type=\'text/javascript\'>\n(function() {\n	var w = window, d = document;\n	var s = d.createElement(\'script\');\n	s.setAttribute(\'async\', \'true\');\n	s.setAttribute(\'type\', \'text/javascript\');\n	s.setAttribute(\'src\', \'//c1.rfihub.net/js/tc.min.js\');\n	var f = d.getElementsByTagName(\'script\')[0];\n	f.parentNode.insertBefore(s, f);\n	if (typeof w[\'_rfi\'] !== \'function\') {\n		w[\'_rfi\']=function() {\n			w[\'_rfi\'].commands = w[\'_rfi\'].commands || [];\n			w[\'_rfi\'].commands.push(arguments);\n		};\n	}\n	_rfi(\'setArgs\', \'ver\', \'9\');\n	_rfi(\'setArgs\', \'rb\', \'55056\');\n	_rfi(\'setArgs\', \'ca\', \'20867325\');\n	_rfi(\'setArgs\', \'_o\', \'55056\');\n	_rfi(\'setArgs\', \'_t\', \'20867325\');\n	_rfi(\'track\');\n})();\n</script>\n<noscript>\n<iframe src=\'//20867325p.rfihub.com/ca.html?rb=55056&ca=20867325&_o=55056&_t=20867325&ra=undefined\' style=\'display:none;padding:0;margin:0\' width=\'0\' height=\'0\'>\n</iframe>\n</noscript>\n<!-- End DMP Conversion Action Tracking Code Version 9 -->'); document.body.appendChild(documentFragment);
+
+
+
+var s = document.createElement('script'); s.text = '(function() { var SITEID=\'stanley-black-decker-dewalt\';\n(function(b, t, r, a, i, n) {\n    b[\'bt\']=b[\'bt\'] || function() {\n        (b[\'_bt\']=b[\'_bt\']||[]).push(arguments);\n    },\n    i = t.createElement(r),\n    n = t.getElementsByTagName(r)[0];\n    i.async = 1;\n    i.src = a;\n    n.parentNode.insertBefore(i, n);\n})(\n    window,\n    document,\n    \'script\',\n 	\'https://cdn.boomtrain.com/p13n/\'+SITEID+\'/p13n.min.js\'\n);\nbt(\'initialize\', SITEID, {externalIds: {zync: \'ca757bbd-5196-4365-ba89-bd00a0dc3353:1745342794.3989463\'}}); })();'; document.body.appendChild(s);
+
+
+
+
+
+
+
+})();

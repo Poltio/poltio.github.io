@@ -1,0 +1,116 @@
+.webform-submission-form div.js-password-confirm-message {
+    display: none;
+}
+
+.webform-submission-form #edit-newpassword-pass1-custom-error,
+.webform-submission-form #edit-newpassword-pass2-custom-error {
+    display: block;
+}
+
+/* The message box is shown when the user clicks on the password field */
+.password-strength {
+    display:none;
+}
+.password-strength__text {
+    display:none;
+}
+
+.form-item-newpassword-pass1 #message {
+    display:none;
+    color: #000;
+    position: relative;
+    padding-bottom: .25rem;
+    padding-top: .75rem;
+}
+
+.form-item-newpassword-pass1 #message p {
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: .5rem;
+}
+
+.form-item-newpassword-pass1 #message p:first-child {
+  font-weight: 700;
+  font-size: 1rem;
+}
+/* Add a green text color and a checkmark when the requirements are right */
+
+
+.form-item-newpassword-pass1 #message .valid:before {
+    position: relative;
+    content: "task_alt";
+    font-size: 1rem;
+    font-weight: 200;
+    margin-right: .25rem;
+    vertical-align: -3px;
+    color: green;
+    font-family: 'Material Icons Sharp';
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.form-item-newpassword-pass1 #message .invalid {
+  font-weight: 400;
+  color: black;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-bottom: 0;
+  margin-top: .5rem;
+}
+
+.form-item-newpassword-pass1 #message .valid {
+  font-weight: 400;
+  color: black;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-bottom: 0;
+  margin-top: .5rem;
+}
+
+.form-item-newpassword-pass1 #message .invalid:before {
+    position: relative;
+    content: "cancel";
+    color: #960019;
+    font-size: 1rem;
+    font-weight: 200;
+    margin-right: .25rem;
+    vertical-align: -3px;
+    font-family: 'Material Icons Sharp';
+}
+.is-weak{
+  background-color: #960019!important;
+}
+.is-strong{
+  background-color: green!important;
+}
+.is-fair{
+  background-color: green!important;
+}
+.is-good{
+  background-color: green!important;
+}
+.password-strength__title{
+ font-weight: 700;
+ font-size: 1rem;
+ font-family: Helvetica, Arial, sans-serif;
+}
+.password-strength__meter {
+  margin-bottom: .75rem;
+}
+
+.admin-list li.duplo-config-page .description a{
+background: none;
+padding-left: 8px;
+display: inline-block;
+}
+
+.csv-feed .feed-icon{
+background-image: none !important;
+}
+
+.views-data-export-feed .feed-icon {
+  width: auto !important;
+  height: auto !important;
+  display: flex !important;
+  text-indent: initial !important;
+  line-height: 1.25em !important;
+  color: #333 !important;
+}

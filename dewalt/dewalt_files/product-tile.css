@@ -1,0 +1,22 @@
+.view-products .views-col .views-field-views-conditional-field img,
+.view-products .views-col .views-field-views-conditional-field-1 img {
+  width: auto!important;
+  height: 240px;
+  border: 1px solid #ffffff;
+}
+
+.view-products .views-col:hover .views-field-views-conditional-field img,
+.view-products .views-col:hover .views-field-views-conditional-field-1 img,
+.view-products .views-col:focus .views-field-views-conditional-field img,
+.view-products .views-col:focus .views-field-views-conditional-field-1 img {
+  border: 1px solid #1170a9;
+}
+
+.webform-submission-product-registration-form label[for="edit-proof-of-purchase-upload"] {
+  cursor: default;
+  pointer-events: none;
+}
+
+#product-tile-wrapper .views-col.col-1 {
+  width: 33.33%;
+}
