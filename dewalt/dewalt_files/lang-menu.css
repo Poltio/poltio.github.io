@@ -1,0 +1,33 @@
+#lnav {
+  display: block;
+}
+
+.lang-nav{
+  display: inline-block;
+  border-radius:6px;
+}
+.lang-nav li {
+  position: relative;
+}
+
+.lang-nav > li:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.lang-nav > li:first-child > a {
+  border-radius: 4px 0 0 0;
+}
+.lang-nav > li:last-child {
+  border-radius: 0 0 4px 0;
+}
+.lang-nav > li:last-child > a {
+  border-radius: 0 4px 0 0;
+}
+
+/* submenu positioning*/
+.lang-nav ul {
+  position: absolute;
+  white-space: nowrap;
+  /* border-bottom: 5px solid  orange; */
+  z-index: 1;
+  /* visibility: hidden; */
+}

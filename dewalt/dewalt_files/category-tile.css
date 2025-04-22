@@ -1,0 +1,14 @@
+.view-categories .views-col {
+  border: 1px solid #ffffff;
+  width: 24.3333%!important;
+}
+
+.view-categories .views-col img.bynder-image {
+  width: 222px;
+  height: 222px;
+}
+
+.view-categories .views-col:hover,
+.view-categories .views-col:focus {
+  border: 1px solid #1170a9;
+}

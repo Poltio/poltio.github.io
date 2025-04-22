@@ -1,0 +1,160 @@
+/*! Tablesaw - v3.1.2 - 2019-03-19
+* https://github.com/filamentgroup/tablesaw
+* Copyright (c) 2019 Filament Group; Licensed MIT */
+/*! Tablesaw - v3.1.2 - 2019-03-19
+* https://github.com/filamentgroup/tablesaw
+* Copyright (c) 2019 Filament Group; Licensed MIT */
+.tablesaw {
+  width: 100%;
+  max-width: 100%;
+  empty-cells: show;
+  border-collapse: collapse;
+  border: 0;
+  padding: 0;
+}
+
+.tablesaw * {
+  box-sizing: border-box;
+}
+
+.tablesaw-stack td .tablesaw-cell-label,
+.tablesaw-stack th .tablesaw-cell-label {
+  display: none;
+}
+
+/* Mobile first styles: Begin with the stacked presentation at narrow widths */
+/* Support note IE9+: @media only all */
+@media only all {
+  /* Show the table cells as a block level element */
+  .tablesaw-stack {
+    clear: both;
+  }
+
+  .tablesaw-stack td,
+.tablesaw-stack th {
+    text-align: left;
+    display: block;
+  }
+
+  .tablesaw-stack tr {
+    clear: both;
+    display: table-row;
+  }
+
+  /* Make the label elements a percentage width */
+  .tablesaw-stack td .tablesaw-cell-label,
+.tablesaw-stack th .tablesaw-cell-label {
+    display: inline-block;
+    padding: 0 0.6em 0 0;
+    width: 30%;
+  }
+
+  /* For grouped headers, have a different style to visually separate the levels by classing the first label in each col group */
+  .tablesaw-stack th .tablesaw-cell-label-top,
+.tablesaw-stack td .tablesaw-cell-label-top {
+    display: block;
+    padding: 0.4em 0;
+    margin: 0.4em 0;
+  }
+
+  .tablesaw-cell-label {
+    display: block;
+  }
+
+  /* Avoid double strokes when stacked */
+  .tablesaw-stack tbody th.group {
+    margin-top: -1px;
+  }
+
+  /* Avoid double strokes when stacked */
+  .tablesaw-stack th.group b.tablesaw-cell-label {
+    display: none !important;
+  }
+}
+@media (max-width: 47.9375em) {
+  .tablesaw-wrapper {
+    /* Table rows have a gray bottom stroke by default */
+  }
+  .tablesaw-wrapper .tablesaw-stack tbody tr {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #dfdfdf;
+  }
+  .tablesaw-wrapper .tablesaw-stack thead td,
+.tablesaw-wrapper .tablesaw-stack thead th {
+    display: none;
+  }
+  .tablesaw-wrapper .tablesaw-stack tbody td,
+.tablesaw-wrapper .tablesaw-stack tbody th {
+    display: block;
+    float: left;
+    clear: left;
+    width: 100%;
+  }
+  .tablesaw-wrapper .tablesaw-cell-label {
+    vertical-align: top;
+  }
+  .tablesaw-wrapper .tablesaw-cell-content {
+    max-width: 67%;
+    display: inline-block;
+  }
+  .tablesaw-wrapper .tablesaw-stack td:empty,
+.tablesaw-wrapper .tablesaw-stack th:empty {
+    display: none;
+  }
+}
+.site-studio-export table,
+.site-studio-export tr, .site-studio-export td {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+}
+.site-studio-export tbody {
+  display: table;
+  width: 100%;
+}
+.site-studio-accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.site-studio-accordion .active,
+.site-studio-accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+@media (min-width: 48em) {
+  .tablesaw-wrapper {
+    /* Show the table header rows */
+    /* Hide the labels in each cell */
+  }
+  .tablesaw-wrapper .tablesaw-stack tr {
+    display: table-row;
+  }
+  .tablesaw-wrapper .tablesaw-stack td,
+.tablesaw-wrapper .tablesaw-stack th,
+.tablesaw-wrapper .tablesaw-stack thead td,
+.tablesaw-wrapper .tablesaw-stack thead th {
+    display: table-cell;
+    margin: 0;
+  }
+  .tablesaw-wrapper .tablesaw-stack td .tablesaw-cell-label,
+.tablesaw-wrapper .tablesaw-stack th .tablesaw-cell-label {
+    display: none !important;
+  }
+}

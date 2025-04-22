@@ -1,0 +1,51 @@
+#unav {
+  display: block;
+}
+
+.aic-user-nav{
+  display: inline-block;
+  border-radius:6px;
+}
+.aic-user-nav li {
+  position: relative;
+}
+
+.aic-user-nav > li:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.aic-user-nav > li:first-child > a {
+  border-radius: 4px 0 0 0;
+}
+.aic-user-nav > li:last-child {
+  border-radius: 0 0 4px 0;
+}
+.aic-user-nav > li:last-child > a {
+  border-radius: 0 4px 0 0;
+}
+
+/* submenu positioning*/
+.aic-user-nav ul {
+  position: absolute;
+  white-space: nowrap;
+  /* border-bottom: 5px solid  orange; */
+  z-index: 1;
+  left: -99999em;
+}
+.aic-user-nav > li:hover > ul {
+  left: auto;
+  min-width: 100%;
+}
+
+/* for new aic user menu dropdown */
+.usr-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  display: none;
+}
