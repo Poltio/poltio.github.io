@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- saved from url=(0160)https://jaymart.pams.ai/script/xdomain_cookie.html#{%22window_origin%22:%22https://jaymartstore.com%22,%22iframe_origin%22:%22https://jaymart.pams.ai/script%22} -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <script>
+        // Passed in via urlencoded json object in url hash
+        // iFrame URLs Format : https://domain.ifrm/xdomain_cookie.html#{"window_origin":"https://www.domain.origin","iframe_origin":"https://domain.ifrm"}
+        var _hash_data = JSON.parse(decodeURIComponent(window.location.hash.substr(1))),
+            _window_origin = _hash_data.window_origin,
+            _iframe_origin = _hash_data.iframe_origin,
+            _debug = _hash_data.debug
+
+        function getLocalCookies() {
+            var cstring = document.cookie.split(';'),
+                cookies = {}
+            cstring.forEach(function(cs) {
+                var vals = cs.trim().split('=')
+                if (!vals[0]) return
+                cookies[vals[0]] = decodeURIComponent(vals[1])
+            })
+            return cookies
+        }
+
+        //listen for incoming postMessage requests
+        window.addEventListener('message', function(e) {
+            if (e.origin !== _window_origin) return
+            if (typeof e.data !== 'string') return
+            var data = null
+            try {
+                data = JSON.parse(e.data)
+            } catch (e) {}
+
+            if (typeof data !== 'object' || (data instanceof Array)) return
+            if (!('msg_type' in data) || data.msg_type !== 'xdomain_cookie_write') return
+
+            var cookies = data.cookies
+            for (var name in cookies) {
+                if (typeof cookies[name] !== 'function') {
+                    var date = new Date()
+                    date.setTime(+date + (1825 * 86400000)) // 24 * 60 * 60 * 1000
+                    document.cookie = name + '=' + cookies[name] + ';expires=' + date.toUTCString() + ';SameSite=None;Secure;path=/'
+                }
+            }
+            //ping down to page again to update values of xdomain cookie data
+            sendXdomainCookieDataToPage()
+        })
+
+        function sendXdomainCookieDataToPage() {
+            var msg = {
+                cookies: getLocalCookies(),
+                msg_type: 'xdomain_cookie_read'
+            }
+
+            //postmessage to parent window w/ data
+            window.parent.postMessage(JSON.stringify(msg), _window_origin)
+        }
+
+        //initialization - ping parent window w/ cookie payload right away so it an hit callbacks asap
+        sendXdomainCookieDataToPage()
+    </script>
+</head>
+
+<body></body></html>
