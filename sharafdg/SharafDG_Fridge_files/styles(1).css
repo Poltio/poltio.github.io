@@ -1,0 +1,57 @@
+.banner-slider.fullwidth .sh-arrow.left {
+    left: 20px !important;
+}
+
+.sdg-shadow {
+    box-shadow: 0 0 0px !important;
+    border: 1px solid #c4c4c4 !important;
+}
+
+.sdg-shadow:hover {
+    box-shadow: 0 0 0px !important;
+}
+
+.sdgusp-container {
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    padding: 15px !important;
+    background-color: #ffffff !important;
+}
+
+.sdgusp-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 15px !important;
+}
+
+.sdgusp-item {
+    background-color: #ffffff !important;
+    padding: 15px 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    border: 1px solid #0079c130 !important;
+    border-radius: 6px !important;
+}
+
+.sdgusp-item:hover {
+    background: linear-gradient(135deg, rgb(24 144 227 / 10%) 0%, rgba(227, 24, 55, 0) 100%) !important;
+}
+
+.sdgusp-item i {
+    font-size: 20px !important;
+    color: #0079c1 !important;
+    /* Sharaf DG's red color */
+    min-width: 24px !important;
+    text-align: center !important;
+}
+
+.sdgusp-text {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #333333 !important;
+    letter-spacing: 0.2px !important;
+}

@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50" height="50">
+	<title>social-Twitter_0-svg</title>
+	<defs>
+		<image width="1669" height="1222" id="img1" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNy41LjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0ic3ZnNSIgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyINCgkgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAxNjY4LjU2IDEyMjEuMTkiDQoJIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDE2NjguNTYgMTIyMS4xOTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGcgaWQ9ImxheWVyMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTIuMzkwMDg4LC0yNS4wNTg1OTcpIj4NCgk8cGF0aCBpZD0icGF0aDEwMDkiIGQ9Ik0yODMuOTQsMTY3LjMxbDM4Ni4zOSw1MTYuNjRMMjgxLjUsMTEwNGg4Ny41MWwzNDAuNDItMzY3Ljc2TDk4NC40OCwxMTA0aDI5Ny44TDg3NC4xNSw1NTguM2wzNjEuOTItMzkwLjk5DQoJCWgtODcuNTFsLTMxMy41MSwzMzguN2wtMjUzLjMxLTMzOC43SDI4My45NHogTTQxMi42MywyMzEuNzdoMTM2LjgxbDYwNC4xMyw4MDcuNzZoLTEzNi44MUw0MTIuNjMsMjMxLjc3eiIvPg0KPC9nPg0KPC9zdmc+DQo="/>
+	</defs>
+	<style>
+	</style>
+	<g id="social-Twitter">
+		<use id="Twitter X" href="#img1" transform="matrix(.03,0,0,.03,0,7)"/>
+	</g>
+</svg>
