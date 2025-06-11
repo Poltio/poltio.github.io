@@ -9,7 +9,8 @@
     <script>
       const fullURL = encodeURIComponent(window.location.href);
       const s = document.createElement('script');
-      s.src = 'https://sdk-stage.poltio.com/poltio.js?referer=' + fullURL;
+      s.src =
+        'https://sdk-stage.poltio.com/poltio.js?referer=' + fullURL + '&pid=1';
       document.head.appendChild(s);
       console.log('poltio script injected', s.src);
     </script>
