@@ -6,41 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/public/favicon.ico" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
-    <script id="poltio" defer></script>
-    <script>
-      const qs = window.location.search.substring(1);
-      const searchParams = new URLSearchParams(window.location.search);
-      const url = 'https://sdk.poltio.com';
-      const sUrl = 'https://sdk-stage.poltio.com';
-      if (qs === 'test') {
-        document.getElementById('poltio').src = `${sUrl}/poltio.js`;
-      } else {
-        document.getElementById('poltio').src = `${url}/poltio.js`;
-      }
-    </script>
     <script>
       const fullURL = encodeURIComponent(window.location.href);
       const s = document.createElement('script');
-      s.src = 'https://sdk-stage.poltio.com/poltio.js?referrer=' + fullURL;
+      s.src = 'https://sdk-stage.poltio.com/poltio.js?referer=' + fullURL;
       document.head.appendChild(s);
       console.log('poltio script injected', s.src);
     </script>
   </head>
   <body>
-    <div
-      class="poltio-widget-flying"
-      data-poltio-widget-pid="41100"
-      data-poltio-widget-uuid="ecom-sf-test"
-      data-poltio-widget-loc="en"
-      data-poltio-widget-disclaimer="off"
-      data-poltio-widget-resultfit="vf"
-      data-poltio-widget-bgcolor="white"
-      data-poltio-floating-title="Let's choose together"
-      data-poltio-floating-desc="Not sure yet? Don’t worry! With a few simple questions we will guide you through the selection"
-      data-poltio-floating-buttontext="Start Now"
-      data-poltio-floating-hide="true"
-    ></div>
-
     <div class="bg-white">
       <!-- Hero section -->
       <div class="relative bg-gray-900">
