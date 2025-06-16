@@ -157,32 +157,27 @@
       </div>
     </main>
     <script>
-      var waitForGlobal = function (key, callback) {
-        if (window[key]) {
+      var waitForPoltio = function (callback) {
+        if (window.poltio && window.poltio.push) {
           callback();
         } else {
           setTimeout(function () {
-            waitForGlobal(key, callback);
-          }, 100);
+            waitForPoltio(callback);
+          }, 500);
         }
       };
 
-      waitForGlobal('poltio', function () {
-        window.poltio.push(
-          'track',
-          'Purchase',
-          {
-            value: 4.99,
-            poltio_account_id: 22999276,
-            contents: [
-              { id: 'testProduct1', quantity: 1, value: 2.99 },
-              { id: 'testProduct2', quantity: 2, value: 1.0 },
-            ],
-            currency: 'USD',
-            order_id: 'testOrder1',
-          },
-          window.poltio.domain
-        );
+      waitForPoltio(function () {
+        window.poltio.push('track', 'Purchase', {
+          value: 4.99,
+          poltio_account_id: 22999276,
+          contents: [
+            { id: 'testProduct1', quantity: 1, value: 2.99 },
+            { id: 'testProduct2', quantity: 2, value: 1.0 },
+          ],
+          currency: 'USD',
+          order_id: 'testOrder1',
+        });
       });
     </script>
   </body>
