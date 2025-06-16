@@ -7,11 +7,22 @@
     <link rel="shortcut icon" href="/public/favicon.ico" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
 
-    <script
-      async
-      id="poltiosdk"
-      src="https://sdk-stage.poltio.com/poltio.js"
-    ></script>
+    <script>
+      !(function (w, d, s, u) {
+        if (w.poltio && w.poltio.push) return;
+        w.poltio = {
+          queue: [],
+          push: function (event, eventName, obj) {
+            w.poltio.queue.push([event, eventName, obj]);
+          },
+        };
+        var t = d.createElement(s);
+        t.async = true;
+        t.src = u;
+        var f = d.getElementsByTagName(s)[0];
+        f.parentNode.insertBefore(t, f);
+      })(window, document, 'script', 'https://sdk-stage.poltio.com/poltio.js');
+    </script>
   </head>
   <body>
     <!--
