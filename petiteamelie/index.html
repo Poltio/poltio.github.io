@@ -537,7 +537,7 @@ console.log('No Meta pixel is configured, please log in as a admin and then visi
 
 <body id="html-body"
  class="cms-homepage-com-hyva store-petite_amelie_com website-petite_amelie_com action-cms_index_index cms-index-index page-layout-1column webp"
- style="min-height: auto; overflow:scroll;">
+:class="{&#39;overflow-y-hidden&#39;: Alpine.store(&#39;config&#39;).bodyOverflow}" style="min-height: auto;">
 <!-- <div id="adwise-cb" lang="en" dir="ltr" ng-non-bindable="" 
 name="adwise-cb" style="display: none;"><div class="c-adwise-cb" id="adwise-cb-content">
     <p class="c-header">This website uses cookies</p> 
@@ -3871,7 +3871,7 @@ This form is protected by reCAPTCHA - the <a class="underline" href="https://pol
 <section id="messages" class="px-4" x-data="initMessages()" @messages-loaded.window="addMessages(event.detail.messages, event.detail.hideAfter)" @private-content-loaded.window="getData(event.detail.data)">
     <template x-if="!isEmpty()"></template>
 </section>
-</div><div class="columns"><div class="column main">
+</div><div class="columns overflow-hidden"><div class="column main">
 
     <style>
     @keyframes newspaperAnimation {
@@ -5060,6 +5060,9 @@ This form is protected by reCAPTCHA - the <a class="underline" href="https://pol
         }
     </script>
     <style>
+        .homeSliderNew.glide__load:not(.glide--slider) .glide__slides {
+            overflow: hidden;
+        }
         .homeSliderNew.glide__load:not(.glide--slider) .glide__slides > * {
             min-width: 25%;
             margin-right: 1%;
@@ -7204,9 +7207,12 @@ This form is protected by reCAPTCHA - the <a class="underline" href="https://pol
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
+            overflow: hidden;
             text-overflow: ellipsis;
         }
-       
+        .blogPostSlider.glide__load:not(.glide--slider) .glide__slides {
+            overflow: hidden;
+        }
         .blogPostSlider.glide__load:not(.glide--slider) .glide__slides > * {
             min-width: 32%;
             margin-right: 1%;
@@ -7483,12 +7489,12 @@ This form is protected by reCAPTCHA - the <a class="underline" href="https://pol
 
 </div>
     <!-- Begin eTrusted bootstrap tag -->
-    <!-- <script src="./petiteamelie_files/v2" defer="" async=""></script> -->
+    <script src="./petiteamelie_files/v2" defer="" async=""></script>
     <!-- End eTrusted bootstrap tag -->
     <!-- Begin eTrusted widget tag -->
-    <!-- <div class="w-full mb-12">
+    <div class="w-full mb-12">
         <etrusted-widget data-etrusted-widget-id="wdg-be564351-0a24-4f24-846c-ca14ee99f38a"><template shadowrootmode="closed"><etrusted-review-carousel-service-widget data-etrusted-widget-id="wdg-be564351-0a24-4f24-846c-ca14ee99f38a"><template shadowrootmode="open"><style type="text/css">@import "https://integrations.etrusted.com/applications/review-carousel-service-widget/1.19.3/index.css"</style><div class="etrusted-review-carousel-service-widget"></div></template><script type="text/props">{"manifest":{"id":"wdg-be564351-0a24-4f24-846c-ca14ee99f38a","account":{"id":"acc-3c2961ac-b38b-4089-b62e-826afb2e4f9d"},"reference":{"type":"channel","id":"chl-6c140626-f64f-40df-a143-481ecc04a1d1"},"touchpoint":"all","application":{"type":"review_carousel_service","url":"https://integrations.etrusted.com/applications/review-carousel-service-widget/v1"},"configuration":{"url":"https://integrations.etrusted.com/configurations/v1/wdg-be564351-0a24-4f24-846c-ca14ee99f38a.json"},"feeds":{"grades":{"url":"https://integrations.etrusted.com/feeds/grades/v1/channels/chl-6c140626-f64f-40df-a143-481ecc04a1d1/touchpoints/all/feed.json"},"channels":{"url":"https://integrations.etrusted.com/feeds/channels/v1/chl-6c140626-f64f-40df-a143-481ecc04a1d1/feed.json"},"review_carousel_service":{"url":"https://integrations.etrusted.com/feeds/review-carousel-service/v1/widgets/wdg-be564351-0a24-4f24-846c-ca14ee99f38a/feed.json"}}}}</script><style type="text/css">etrusted-widget {display: block;}</style></etrusted-review-carousel-service-widget></template></etrusted-widget>
-    </div> -->
+    </div>
     <!-- End eTrusted widget tag -->
 
 </div><script>
@@ -9858,6 +9864,7 @@ This form is protected by reCAPTCHA - the <a class="underline" href="https://pol
     </script>
 
 
+<div id="trustbadge-container-98e3dadd90eb493088abdc5597a70810" style="z-index: 1000; position: fixed;"><div class="_uuhri8"><div class="_k96lck"><button id="minimized-trustbadge-98e3dadd90eb493088abdc5597a70810" data-testid="minimized-trustbadge-floating" class="_121679p"><div data-testid="trustbadge-floating-reviews-container" class="_1m0buze"><div id="ratingStarsContainer-98e3dadd90eb493088abdc5597a70810" data-testid="rating-stars-container" class="_ao6ubx"><div class="_1ysk310"><img alt="" width="34" height="32" src="./petiteamelie_files/sprite.030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" data-testid="rating-star-gray" class="_hcl4tg"><img alt="" width="34" height="32" src="./petiteamelie_files/sprite.030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" data-testid="rating-star-gray" class="_hcl4tg"><img alt="" width="34" height="32" src="./petiteamelie_files/sprite.030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" data-testid="rating-star-gray" class="_hcl4tg"><img alt="" width="34" height="32" src="./petiteamelie_files/sprite.030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" data-testid="rating-star-gray" class="_hcl4tg"><img alt="" width="34" height="32" src="./petiteamelie_files/sprite.030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" data-testid="rating-star-gray" class="_p2i32t"></div><div class="_1jb76vf"><img alt="" width="34" height="32" src="./petiteamelie_files/sprite(1).030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" data-testid="rating-star-yellow" class="_hcl4tg"><img alt="" width="34" height="32" src="./petiteamelie_files/sprite(1).030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" data-testid="rating-star-yellow" class="_hcl4tg"><img alt="" width="34" height="32" src="./petiteamelie_files/sprite(1).030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" data-testid="rating-star-yellow" class="_hcl4tg"><img alt="" width="34" height="32" src="./petiteamelie_files/sprite(1).030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" data-testid="rating-star-yellow" class="_hcl4tg"><img alt="" width="34" height="32" src="./petiteamelie_files/sprite(1).030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" data-testid="rating-star-yellow" class="_p2i32t"></div></div><p class="_124tn09"><span class="_zdslfp">5.00</span></p><p class="_157605h">Excellent</p><img alt="Trusted Shops Trustmark" width="30" height="30" src="./petiteamelie_files/sprite(2).030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" class="_1kh8suf"></div></button><button id="trustbadge-minimized-menu-button-98e3dadd90eb493088abdc5597a70810" data-testid="trustbadge-minimized-menu-button" aria-label="Menu" class="_13b9aot"><img alt="" width="10" height="3" src="./petiteamelie_files/sprite(3).030a4fe8ca68c2b8b844085bd06d1dfe00f57e39.svg" class="_ne054x"></button></div></div></div><script type="text/javascript" id="" charset="">(function(a,e,b,f,g,c,d){a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)};c=e.createElement(f);c.async=1;c.src="https://www.clarity.ms/tag/"+g;d=e.getElementsByTagName(f)[0];d.parentNode.insertBefore(c,d)})(window,document,"clarity","script","i47w76hada");</script><script type="text/javascript" id="" charset="">(function(a,e,f,g,b,c,d){a.VoyadoAnalyticsObject=b;a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)};a[b].l=1*new Date;c=e.createElement(f);d=e.getElementsByTagName(f)[0];c.async=1;c.src=g;d.parentNode.insertBefore(c,d)})(window,document,"script","https://assets.voyado.com/jsfiles/analytics_0.1.7.min.js","va");va("setTenant","petiteamelie");</script>
 <div
       class="poltio-widget-flying"
       data-poltio-widget-content="37489c18-87f7-4aac-b692-abaabf73ff7a"
@@ -9867,8 +9874,10 @@ This form is protected by reCAPTCHA - the <a class="underline" href="https://pol
       data-poltio-floating-desc="Answer a few quick questions and unlock a little surprise."
       data-poltio-widget-resultfit="fit"
       poltio-widget-disclaimer="off"
-      data-poltio-floating-position="center-right"
+      data-poltio-floating-position="center-left"
       data-poltio-floating-zindex="2147483647"
+      data-poltio-floating-bgcolor="rgba(53, 49, 49, 1)"
+      data-poltio-floating-icon-color="rgba(255, 255, 255, 1)"
     ></div>
     <script
       id="poltiosdk"
