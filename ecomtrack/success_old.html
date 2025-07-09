@@ -156,15 +156,17 @@
       </div>
     </main>
     <script>
-      window.poltio.push('track', 'Purchase', {
-        value: 4.99,
-        poltio_account_id: 22999276,
-        contents: [
-          { id: 'testProduct1', quantity: 1, value: 2.99 },
-          { id: 'testProduct2', quantity: 2, value: 1.0 },
-        ],
-        currency: 'USD',
-        order_id: 'testOrder1',
+      document.addEventListener('DOMContentLoaded', (event) => {
+        window.poltio.push('track', 'Purchase', {
+          value: 4.99,
+          poltio_account_id: 22999276,
+          contents: [
+            { id: 'testProduct1', quantity: 1, value: 2.99 },
+            { id: 'testProduct2', quantity: 2, value: 1.0 },
+          ],
+          currency: 'USD',
+          order_id: 'testOrder1',
+        });
       });
     </script>
   </body>
