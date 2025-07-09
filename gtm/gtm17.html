@@ -22,42 +22,11 @@
 
     <!-- <script id="poltiosdk" src="https://platform.poltio.com/poltio-test.js" defer>
     </script> -->
-
-<script id="poltio" ></script>
-
-<script>
-  const qs = window.location.search.substring(1);
-  const searchParams = new URLSearchParams(window.location.search);
-  const url = 'https://platform.poltio.com';
-  if (qs === 'test') {
-    document.getElementById('poltio').src = `${url}/poltio-${qs}.js?1`;
-  } else if (searchParams.has('version')) {
-    document.getElementById(
-      'poltio'
-    ).src = `${url}/stage/${searchParams.get('version')}/poltio-test.js?1`;
-  } else {
-    document.getElementById('poltio').src = `${url}/poltio.js?1`;
-  }
-</script>
  
 </script>
     <!-- End Google Tag Manager -->
   </head>
   <body>
-
-    <div
-      class="poltio-widget-flying"
-      data-poltio-widget-content="d627477e-2dda-40ed-90e5-5259803d5c96"
-      data-poltio-widget-uuid="ecom-sf-test"
-      data-poltio-widget-loc="en"
-      data-poltio-widget-disclaimer="off"
-      data-poltio-widget-resultfit="vf"
-      data-poltio-widget-bgcolor="white"
-      data-poltio-floating-title="Let's choose together"
-      data-poltio-floating-desc="Not sure yet? Don’t worry! With a few simple questions we will guide you through the selection"
-      data-poltio-floating-buttontext="Start Now"
-      data-poltio-floating-hide="true"
-    ></div>
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
