@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /frames/
+Disallow: /secure/
+Disallow: /search-all/
+Disallow: /offers
+Disallow: /site-search
+Disallow: *?q=*
+
+User-agent: adsbot-google
+Disallow: /secure/
