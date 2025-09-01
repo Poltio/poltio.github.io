@@ -1,0 +1,32 @@
+#                                                                    
+#     =%@@@%= .%%%%%#=  %%%%%%- #%+  #%+ *%%%##+  *%%%%%* *%%%%#+.
+#    :@@= *@@:.@@*:+@@= @@%::-. -@@:*@%. %@%.=@@+ %@%:::: #@@:-@@%   
+#    -@@- .:: .@@#:*@@. @@%+++:  =@@@@.  %@% :@@* %@@+++: #@@--@@+   
+#    -@@--@@@-.@@%#@@#. @@%+++:   #@@:   %@% :@@* %@@+++- #@@#%@%=   
+#    :@@- =@@-.@@+ -@@- @@#       *@@    %@% -@@* %@%     #@@  @@#   
+#     %@@#@%@-.@@+ :@@+ @@@@@@*   *@@    %@@@@@@: %@@@@@% #@@  %@@   
+#      :--..:  ::.  ::. ::::::.   .::    .::::.   .:::::. .::  .::   
+#                                                                    
+#  
+User-agent: *
+Disallow: /*badge:
+Disallow: /*size:
+Disallow: /*season:
+Disallow: /*promotionBadge:
+Disallow: /*price:
+Disallow: /search/
+Disallow: /*register*
+Disallow: /*login*
+Disallow: /*cart*
+Disallow: /*tyingStyle:
+Disallow: /*heelSize:
+Disallow: /*hasVideo:
+Disallow: /*pattern:
+Disallow: /*sizePattern:
+Disallow: /*ageGroup:
+Disallow: /*hasComment:
+Disallow: /*search?q=
+Disallow: /my-account/
+Disallow: /checkout/
+Sitemap:https://www.greyder.com.tr/sitemap.xml                                                              
+  
