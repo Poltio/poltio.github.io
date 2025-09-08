@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 3384.54 3384.5399"
+   xml:space="preserve"
+   sodipodi:docname="visa.svg"
+   width="3384.54"
+   height="3384.54"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs9" /><sodipodi:namedview
+   id="namedview7"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false"
+   showguides="true"
+   inkscape:zoom="0.15395044"
+   inkscape:cx="1328.3495"
+   inkscape:cy="3702.4901"
+   inkscape:window-width="1720"
+   inkscape:window-height="1377"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="Layer_1"><sodipodi:guide
+     position="1688.8551,2747.9714"
+     orientation="1,0"
+     id="guide270"
+     inkscape:locked="false" /><sodipodi:guide
+     position="-1039.2955,1689.1892"
+     orientation="0,-1"
+     id="guide272"
+     inkscape:locked="false" /></sodipodi:namedview>
+    <style
+   type="text/css"
+   id="style2">
+	.st0{fill:#1434CB;}
+</style>
+    <path
+   class="st0"
+   d="m 1293.0609,1186.5393 -427.329,1019.558 h -278.8 l -210.29,-813.654 c -12.767,-50.116 -23.868,-68.476 -62.696,-89.59 -63.393,-34.391 -168.079,-66.657 -260.184997,-86.683 l 6.256,-29.631 H 508.7999 c 57.205,0 108.63,38.08 121.618,103.955 l 111.061,589.968 274.482,-693.94 h 277.1 z m 1092.386,686.681 c 1.122,-269.093 -372.096,-283.917 -369.529,-404.124 0.799,-36.584 35.632,-75.48 111.877,-85.408 37.791,-4.947 141.916,-8.721 260.015,45.628 l 46.325,-216.206 c -63.461,-23.035 -145.112,-45.203 -246.704,-45.203 -260.695,0 -444.159,138.584 -445.706,337.025 -1.683,146.778 130.951,228.684 230.877,277.457 102.799,49.946 137.292,82.042 136.901,126.718 -0.731,68.391 -81.991,98.583 -157.93,99.773 -132.566,2.04 -209.491,-35.87 -270.81,-64.379 l -47.804,223.363 c 61.625,28.271 175.372,52.938 293.301,54.179 277.083,0 458.337,-136.867 459.187,-348.823 m 688.398,332.877 h 243.933 l -212.925,-1019.558 h -225.148 c -50.626,0 -93.33,29.478 -112.234,74.8 l -395.777,944.758 h 276.947 l 54.978,-152.286 h 338.385 z m -294.287,-361.25 138.822,-382.806 79.9,382.806 z m -1109.658,-658.308 -218.093,1019.558 h -263.738 l 218.178,-1019.558 z"
+   id="path4"
+   style="stroke-width:1.7" />
+</svg>
