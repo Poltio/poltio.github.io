@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" viewBox="0 0 35 20">
+    <g>
+        <g>
+            <path fill="none" stroke="#ffffff" stroke-miterlimit="50" d="M34 10H0"/>
+        </g>
+        <g>
+            <path fill="none" stroke="#ffffff" stroke-miterlimit="50" d="M34 10L24 20"/>
+        </g>
+        <g>
+            <path fill="none" stroke="#ffffff" stroke-miterlimit="50" d="M34 10L24 0"/>
+        </g>
+    </g>
+</svg>

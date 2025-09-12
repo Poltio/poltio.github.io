@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+    <script type="text/javascript" src="webfiles/1756843965928/libs/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="webfiles/1756843965928/libs/jquery/jquery.easing.min.js"></script>
+
+
+    <script
+      id="poltiosdk"
+      defer
+      src="https://sdk.poltio.com/poltio.js"
+    ></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="hidden" id="popupBtnProceed"  value="Visit"/>
+
+<div id="countryModal" class="modal fade eforms-modal white text-center" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="logo">
+                        <img src="webfiles/1756843965928/images/smeg_logo_black.svg" class="img-fluid" title="Smeg logo" alt="logo"/>
+                    </div>
+
+                    <h3 class="titolo">Visit the official Galileo website for your country</h3>
+                    <p class="description">We have found a Galileo website for your region. Do you want to update your location?</p>
+                    <a id="btnGoTo" class="button-primary"></a>
+                    <a id="btnCancel" data-dismiss="modal"><span>Cancel</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        $( document ).ready(function() {
+            function makeRedirect(isRedirectEnabled, isDebugActive, countryForDebug) {
+                let galileo_channels =  [
+                    {
+                        country: "IT",
+                        url : "https://galileo.smeg.it/",
+                        name: "Galileo.it"
+                    },
+                    {
+                        country: "FR",
+                        url : "https://galileo.smeg.fr/",
+                        name: "Galileo.fr"
+                    },
+                    {
+                        country: "BE",
+                        url : "https://galileo.smeg.be/nl/",
+                        name: "Galileo.be"
+                    },
+                    {
+                        country: "FI",
+                        url : "https://galileo.smeg.fi/",
+                        name: "Galileo.fi"
+                    },
+                    {
+                        country: "GB",
+                        url : "https://galileo.smeguk.com/",
+                        name: "Galileo.uk"
+                    },
+                    {
+                        country: "DK",
+                        url : "https://galileo.smeg.dk/",
+                        name: "Galileo.dk"
+                    },
+                    {
+                        country: "ES",
+                        url : "https://galileo.smeg.es/",
+                        name: "Galileo.es"
+                    },
+                    {
+                        country: "NO",
+                        url : "https://galileo.smeg.no/",
+                        name: "Galileo.no"
+                    },
+                    {
+                        country: "SE",
+                        url : "https://galileo.smeg.se/",
+                        name: "Galileo.se"
+                    }
+                ];
+                let isCookieActive = getCookie("galileo-country-redirect");
+                if(!isCookieActive && isRedirectEnabled){
+                    let currentLocation = window.location.href;
+                    let serviceUrl = "/restservices/v1/geolocation/check-country";
+                    let serviceHostUrl = "https://www.smeg.com";
+                    let url = serviceHostUrl + serviceUrl;
+
+                    let textProceed = $("#popupBtnProceed").val();
+                    $.ajax({
+                        url: url,
+                        data: {
+                            "isDebugActive": isDebugActive,
+                            "countryForDebug": countryForDebug
+                        },
+                        dataType: 'json',
+                        method: 'GET',
+                        success: function (object) {
+                            let country = object.map.country;
+
+                            //check su mappa
+                            let correctLocation = undefined
+                            let name = undefined
+                            galileo_channels.forEach((channel)=>{
+                                if(country === channel.country){
+                                    correctLocation = channel.url
+                                    name = channel.name
+                                }
+                            })
+
+                            if(correctLocation && currentLocation !== correctLocation) {
+                                $("#btnGoTo").attr("href", correctLocation);
+                                document.getElementById("btnGoTo").innerHTML = textProceed + " " + name;
+                                let waitForJQuery = setInterval(function () {
+                                    if (typeof $ != 'undefined') {
+                                        $('#countryModal').modal('show');
+                                        clearInterval(waitForJQuery);
+                                        setRedirectCookie("galileo-country-redirect", true, 30);
+                                    }
+                                }, 10);
+                            }else {
+                                setRedirectCookie("galileo-country-redirect", true, 30);
+                            }
+                        },
+                        error: function (xhr) {
+                            console.error("API redirect failed with status code: " + xhr.status);
+                        }
+                    });
+                }
+            }
+
+            function getCookie (cname){
+                let name = cname + "=";
+                let ca = document.cookie.split(';');
+                for(let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) === ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) === 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function setRedirectCookie(name, value, days) {
+                let date = new Date(), expires;
+                if (days) {
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                } else {
+                    expires = "";
+                }
+                document.cookie = name + "=" + value + expires + "; path=/";
+            }
+
+            //makeRedirect(true, false, "FR")
+        });
+    </script>
+    <meta charset="UTF-8">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="index.html"/>
+<title>Galileo Multicooking Technology | Smeg</title>
+<meta property="og:title" content="Galileo Multicooking Technology | Smeg"/>
+<meta name="description" content="The new generation of ovens that combine traditional cooking, steam and microwaves. For professional results with a time saving up to 70% compared to traditional cooking only"/>
+<meta property="og:description" content="The new generation of ovens that combine traditional cooking, steam and microwaves. For professional results with a time saving up to 70% compared to traditional cooking only"/>
+<meta property="og:url" content="https://galileo.smeg.com/"/>
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="og:image" content="https://galileo.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_1920x1080_2.jpg/galileo_omnichef_1920x1080_2.jpg/brx%3ApostcardDeskLarge"/>
+<meta property="og:image:alt" content=""/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/>
+<link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="DCTERMS.created" content="2022-02-10T15:18:34+01:00"/>
+<meta name="DCTERMS.modified" content="2022-02-04T17:08:35+01:00"/>
+    
+    <link rel="stylesheet" href="webfiles/1756843965928/libs/slick/slick.css">
+    <link rel="stylesheet" href="webfiles/1756843965928/libs/swiper/swiper.min.css">
+    <link rel="stylesheet" href="webfiles/1756843965928/libs/slick/slick-theme.css">
+    <link rel="stylesheet" href="webfiles/1756843965928/libs/plyr/plyr.css">
+    <link rel="stylesheet" href="webfiles/1756843965928/css/style-galileo.min.css">
+    <script type="text/javascript" src="webfiles/1756843965928/libs/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="webfiles/1756843965928/libs/jquery/jquery.easing.min.js"></script>
+
+    <!-- css configurator -->
+    <link rel="stylesheet" href="webfiles/1756843965928/galileo/build/static/css/bundle.min.css" type="text/css"/>
+    <!--<link rel="stylesheet" href="http://127.0.0.1:3000/static/css/bundle.min.css" type="text/css"/>-->
+
+
+
+            <!-- Google Consent Mode -->
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'analytics_storage': 'denied',
+                    'wait_for_update': 1500 //milliseconds
+                });
+                gtag('set', 'ads_data_redaction', true);
+            </script>
+            <!-- End Google Consent Mode -->
+
+        <!-- Google Tag Manager -->
+        <script>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+                {'gtm.start': new Date().getTime(),event:'gtm.js'}
+            );var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-KGV2HVV');
+        </script>
+        <!-- End Google Tag Manager -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body class="home">
+
+        <script type="text/javascript" src="https://consent.cookiefirst.com/sites/galileo.smeg.com-489f2911-806e-4a9c-84f3-2b9c60a652f8/consent.js"></script>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGV2HVV" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+    <nav role="navigation">
+        <a href="index.html" class="logo">
+            <img
+                    src="webfiles/1756843965928/images/galileo/Galileo-logo.svg"
+                    alt="Galileo home"
+                    height="60"
+                    width="60" />
+        </a>
+        <a href="index.html" class="logo-big">
+            <img
+                    src="webfiles/1756843965928/images/galileo/Galileo-logo-type.svg"
+                    alt="Galileo home"
+                    height="100"
+                    width="75" />
+        </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="menuToggle">
+    <input type="checkbox" />
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+
+        <ul id="menu">
+           
+                
+                <li class="menu-0">
+                    <a href="index.html"  title="Galileo Multicooking Technology">
+                        Galileo Multicooking Technology
+                    </a>
+                </li>
+                
+                <li class="menu-1">
+                    <a href="https://galileo.smeg.com/omnichef"  title="Omnichef">
+                        Omnichef
+                    </a>
+                </li>
+                
+                <li class="menu-2">
+                    <a href="https://galileo.smeg.com/speedwave"  title="Speedwavexl">
+                        Speedwavexl
+                    </a>
+                </li>
+                
+                <li class="menu-3">
+                    <a href="https://galileo.smeg.com/steam"  title="Steamgeneration">
+                        Steamgeneration
+                    </a>
+                </li>
+        </ul>
+</div>
+         <a href="index.html" class="logo-smeg">
+                <img itemprop="logo" src="webfiles/1756843965928/images/logo.png" class="header__mobileImg brand__img" title="SMEG logo" alt="SMEG logo" itemprop="logo"/>
+        </a>
+    </nav>
+</header>   
+
+    <div class="wrapper container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+
+    <div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <div class="box-video landing-component no-video">
+        
+
+
+
+
+        <div class="video js-player " >
+    </div>
+            <div class="video-overlay">
+            
+                <div class="overlay-text-wrap">
+                    <div class="video-pretitle caption txt-white txt-upper">SMEG OVENS WITH</div>
+                    <h2 class="txt-white txt-upper"><u>GALILEO</u> MULTICOOKING TECHNOLOGY</h2>
+                        <div class="video-subtitle txt-white">
+<p>The new generation of ovens that combine traditional cooking, steam and microwaves&nbsp;for professional results with a time saving up to 70% compared to traditional cooking only.</p>
+
+<p>&nbsp;</p>                        </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_1920x1080_2.jpg/galileo_omnichef_1920x1080_2.jpg/brx%3AportraitMobile"
+                        width="620"
+                        height="886"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_1920x1080_2.jpg"
+                        width="1920"
+                        height="1080"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_1920x1080_2.jpg"
+                        width="1920"
+                        height="1080"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_1920x1080_2.jpg"
+                        width="1920"
+                        height="1080"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_1920x1080_2.jpg"
+                        width="1920"
+                        height="1080"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+    </div>
+    
+
+
+                </div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="box-text landing-component">
+            
+            <h3 class="txt-white txt-upper"><u>1</u> NEW CAVITY <u><br />3</u> COOKING METHOD <br /><u>5</u> OVENS CATEGORIES</h3>
+                <div class="txt-white">
+<p>The new <u>technology</u><strong> </strong>that revolutionizes ovens from the inside thanks to <u>professional algorithms</u> that combine traditional, microwave and steam cooking.</p>                </div>
+        </div>
+ 
+ 
+
+                </div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <div class="box-video landing-component no-video">
+        
+
+
+
+
+        <div class="video js-player " >
+
+        <video poster="index.html" playsinline muted controls    data-show-progress=true preload="metadata" role="presentation" aria-hidden="true">
+            <source src="https://assets.4flow.cloud/galileo_video_technology_EN.mp4?pEFs=cVY2M1MyN1ZOMFFadEQ5ZlVOMzhVMG5aUm03MTR3MEp5UVlKWUxSTFFQY3dhMlE2RTFTNS8xLzg0RjJLY2V1MWlvU0wrOHora2ZlNE9tZ0hiNWdqTzRkc0Y0SGNxOXB6Y2xsRUZ5ZFVLdXg5TTZaWW5qeEdLWVowQkNWWjJOaHp4Nk1rMkMyUnl5VWN0UWtSNm1lODF3Rk8vUHp4bFNKY1MyMHVIUFdMejRBPQ" type="video/mp4"/>
+        </video>
+
+    </div>
+            <div class="rotate-icon"></div>
+            <div class="video-overlay">
+            
+                <div class="overlay-text-wrap">
+                    
+                    
+                        <div class="video-subtitle txt-white">
+                        </div>
+                </div>
+            </div>
+    </div>
+    
+
+
+                </div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="box-img-text landing-component">
+            <div class="image">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_960x800.jpg/galileo_omnichef_960x800.jpg/brx%3AsquareMobile"
+                        width="600"
+                        height="600"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_960x800.jpg"
+                        width="960"
+                        height="800"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_960x800.jpg"
+                        width="960"
+                        height="800"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_960x800.jpg"
+                        width="960"
+                        height="800"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_omnichef_960x800.jpg"
+                        width="960"
+                        height="800"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+            </div>
+        <div class="text">
+            <div class="text-wrap">
+                    <div class="image-dots">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/3-pallini.png"
+                        width="130"
+                        height="40"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/3-pallini.png"
+                        width="130"
+                        height="40"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/3-pallini.png"
+                        width="130"
+                        height="40"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/3-pallini.png"
+                        width="130"
+                        height="40"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/imported/3-pallini.png"
+                        width="130"
+                        height="40"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+                    </div>
+                <div class="caption txt-upper txt-white">TRADITIONAL| STEAM| MICROWAVE</div>
+                <h3 class="txt-upper txt-white"><u>Omni</u>chef</h3>
+                    <p class="txt-white"><p>The perfect combination of traditional cooking, steam and microwave.</p>
+
+<p>Available in: Dolce Stil Novo, Linea and Classica designs</p>
+
+<p>&nbsp;</p></p>
+                     <a href="https://galileo.smeg.com/omnichef" class="cta-btn cta-brown txt-upper">Find out more</a>
+            </div>
+        </div>
+        
+    </div>
+
+                </div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="box-img-text img-right landing-component">
+            <div class="image">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_speedwavexl_960x800.jpg/galileo_speedwavexl_960x800.jpg/brx%3AsquareMobile"
+                        width="600"
+                        height="600"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_speedwavexl_960x800.jpg"
+                        width="960"
+                        height="800"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_speedwavexl_960x800.jpg"
+                        width="960"
+                        height="800"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_speedwavexl_960x800.jpg"
+                        width="960"
+                        height="800"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_speedwavexl_960x800.jpg"
+                        width="960"
+                        height="800"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+            </div>
+        <div class="text">
+            <div class="text-wrap">
+                    <div class="image-dots">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/pallini-steam.png"
+                        width="130"
+                        height="40"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/pallini-steam.png"
+                        width="130"
+                        height="40"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/pallini-steam.png"
+                        width="130"
+                        height="40"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/pallini-steam.png"
+                        width="130"
+                        height="40"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/imported/pallini-steam.png"
+                        width="130"
+                        height="40"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+                    </div>
+                <div class="caption txt-upper txt-white">TRADIZIONAL | MICROWAVE</div>
+                 <h3 class="txt-upper txt-white">Speed<u>wave</u>xl</h3>
+                    <p class="txt-white"><p>Benefit from even browning results with traditional convection cooking, whilst benefiting from the added speed and convenience of a microwave, saving up to 40% on cooking time - never compromising on quality.</p>
+
+<p>Available in: Dolce Stil Novo, Linea and Classic design</p></p>
+                     <a href="https://galileo.smeg.com/speedwave" class="cta-btn cta-brown txt-upper">Find out more</a>
+            </div>
+        </div>
+        
+    </div>
+
+                </div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="box-img-text landing-component">
+            <div class="image">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_steam_960x800_np.jpg/galileo_steam_960x800_np.jpg/brx%3AsquareMobile"
+                        width="600"
+                        height="600"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_steam_960x800_np.jpg"
+                        width="960"
+                        height="800"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_steam_960x800_np.jpg"
+                        width="960"
+                        height="800"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_steam_960x800_np.jpg"
+                        width="960"
+                        height="800"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/banner/galileo_steam_960x800_np.jpg"
+                        width="960"
+                        height="800"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+            </div>
+        <div class="text">
+            <div class="text-wrap">
+                    <div class="image-dots">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/pallini-micro.png"
+                        width="130"
+                        height="40"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/pallini-micro.png"
+                        width="130"
+                        height="40"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/pallini-micro.png"
+                        width="130"
+                        height="40"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/imported/pallini-micro.png"
+                        width="130"
+                        height="40"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/imported/pallini-micro.png"
+                        width="130"
+                        height="40"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+                    </div>
+                <div class="caption txt-upper txt-white">TRADITIONAL | STEAM</div>
+                <h3 class="txt-upper txt-white"><u>Steam</u>Generation</h3>
+                    <p class="txt-white"><p>A traditional convection oven that allows you to lock in flavour and nutrients with the added benefits of steam cooking, for tastier and healthier results.</p>
+
+<p>Available in: Dolce Stil&nbsp;Novo, Linea, Classica and Selezione&nbsp;designs.</p></p>
+                     <a href="https://galileo.smeg.com/steam" class="cta-btn cta-brown txt-upper">Find out more</a>
+            </div>
+        </div>
+        
+    </div>
+
+                </div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="box-slider landing-component">
+    <div class="slider-img-text">
+        <div class="slide-wrap">
+            
+            <div class="image">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-2.png/slider-2.png/brx%3AsquareMobile"
+                        width="600"
+                        height="600"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-2.png/slider-2.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-2.png/slider-2.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-2.png/slider-2.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-2.png/slider-2.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+            </div>
+            <div class="text bg-white">
+                <div class="text-wrap">
+                    <div class="caption txt-upper txt-grey">THE GALILEO REVOLUTION</div>
+                    <h3 class="txt-upper txt-grey"><u>MULTICOOKING </u>TECHNOLOGY</h3>
+                    <p class="txt-grey"><p>Prepare your dishes faster and enhance each ingredient.</p>
+
+<p>Through the Multitech and Multistep functions you can combine up to three cooking methods and easily obtain exceptional results.</p></p>
+                </div>
+            </div>
+        </div>  
+         
+        <div class="slide-wrap">
+            
+            <div class="image">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/new_cavity_galileo.jpg/new_cavity_galileo.jpg/brx%3AsquareMobile"
+                        width="600"
+                        height="600"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/new_cavity_galileo.jpg/new_cavity_galileo.jpg/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/new_cavity_galileo.jpg/new_cavity_galileo.jpg/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/new_cavity_galileo.jpg/new_cavity_galileo.jpg/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/slider/new_cavity_galileo.jpg/new_cavity_galileo.jpg/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+            </div>
+            <div class="text bg-white">
+                <div class="text-wrap">
+                    <div class="caption txt-upper txt-grey">THE GALILEO REVOLUTION</div>
+                    <h3 class="txt-upper txt-grey">A <u>NEW CAVITY</u>, MANY INNOVATIONS</h3>
+                    <p class="txt-grey"><p>A completely redesigned internal cavity, LED lights and an innovative heat distribution system and to help you achieve professional results with a time saving of up to 70%.</p></p>
+                </div>
+            </div>
+        </div>  
+         
+        <div class="slide-wrap">
+            
+            <div class="image">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-4.png/slider-4.png/brx%3AsquareMobile"
+                        width="600"
+                        height="600"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-4.png/slider-4.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-4.png/slider-4.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-4.png/slider-4.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-4.png/slider-4.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+            </div>
+            <div class="text bg-white">
+                <div class="text-wrap">
+                    <div class="caption txt-upper txt-grey">THE GALILEO REVOLUTION</div>
+                    <h3 class="txt-upper txt-grey"><u>SUSTAINABILITY</u></h3>
+                    <p class="txt-grey"><p>A ++ efficiency, energy savings up to 10% compared to traditional models and reduced environmental impact.</p>
+
+<p>With Galileo, cooking becomes smarter and more sustainable.</p></p>
+                </div>
+            </div>
+        </div>  
+         
+        <div class="slide-wrap">
+            
+            <div class="image">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-1.png/slider-1.png/brx%3AsquareMobile"
+                        width="600"
+                        height="600"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-1.png/slider-1.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-1.png/slider-1.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-1.png/slider-1.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/slider/slider-1.png/slider-1.png/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+            </div>
+            <div class="text bg-white">
+                <div class="text-wrap">
+                    <div class="caption txt-upper txt-grey">THE GALILEO REVOLUTION</div>
+                    <h3 class="txt-upper txt-grey"><u>SMART</u> COOKING</h3>
+                    <p class="txt-grey"><p>Professional accessories and 150 automatic recipes to guide you in the creation of all your dishes.</p></p>
+                </div>
+            </div>
+        </div>  
+         
+        
+    </div>
+</div>
+
+                </div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+ 
+     var  jurl= "/webfiles/1756843965928/json/galileo/en.json";
+     var  imgPath= "/webfiles/1756843965928/images/galileo";
+    var  ctaMore=     " next"  ;
+    var  ctaFinish=     "???cta.label.finish??? " ;
+ </script>
+
+
+<section class="box-test landing-component">
+    <h2>Which oven is the best for you?</h2>
+    <p>Answer these simple questions to find the oven that perfectly meets your needs.</p>
+    <div style="margin-bottom: 20px;"></div>
+    <iframe
+                      id="poltio_xp_frame"
+                      class="poltio-embed"
+                      src="https://feature-smeg-xp---poltio-widget-remix-734jdjokhq-ew.a.run.app/xp/9fdadf81-ce38-401e-a6c8-9e1a32dd2e07?resultfit=vf&loc=en&disclaimer=off&puid=poltiotest&medianswercols=4"
+                      loading="lazy"
+                      width="100%"
+                      height="1000"
+                      frameborder="0"
+                      allowfullscreen="allowfullscreen"
+                      scrolling="yes"
+                      title="Testing Markdown"
+                      allow="clipboard-write"
+                    ></iframe>
+    
+</section>
+
+                </div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="box-img-text-shadow landing-component">
+            
+            <div class="image">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/web_pv675cnr_l01.jpg.jpg/web_pv675cnr_l01.jpg.jpg/brx%3AsquareMobile"
+                        width="600"
+                        height="600"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/web_pv675cnr_l01.jpg.jpg/web_pv675cnr_l01.jpg.jpg/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/web_pv675cnr_l01.jpg.jpg/web_pv675cnr_l01.jpg.jpg/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/galileo/web_pv675cnr_l01.jpg.jpg/web_pv675cnr_l01.jpg.jpg/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/galileo/web_pv675cnr_l01.jpg.jpg/web_pv675cnr_l01.jpg.jpg/brx%3AsquareDeskLarge"
+                        width="1024"
+                        height="1024"
+                    class=""
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+                <div class="shadow-overlay shadow-black-blue"></div>
+            </div>
+        <div class="text">
+            <div class="text-wrap">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <picture>
+            <source media="(max-width: 576px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/logo/logo_smeg_ita.png"
+                        width="1000"
+                        height="344"
+            >
+            <source media="(max-width: 1366px) and (orientation: portrait)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/logo/logo_smeg_ita.png"
+                        width="1000"
+                        height="344"
+            >
+            <source media="(max-width: 1366px) and (orientation: landscape)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/logo/logo_smeg_ita.png"
+                        width="1000"
+                        height="344"
+            >
+            <source media="(min-width: 1367px)"
+                        srcset="https://www.smeg.com/binaries/content/gallery/logo/logo_smeg_ita.png"
+                        width="1000"
+                        height="344"
+            >
+            <img
+                        src="https://www.smeg.com/binaries/content/gallery/logo/logo_smeg_ita.png"
+                        width="1000"
+                        height="344"
+                    class="logo-text"
+                    
+                    alt=""
+                    
+                    loading="lazy"
+                    fetchpriority="low"
+                    rel=""
+                    role="presentation"
+            />
+        </picture>
+       
+                    
+                
+                    <p class="txt-white"><p>With <strong>over 70 years of experience</strong> in the world of household appliances, Smeg looks to the future and continues to invest in technology, developing a new revolutionary project to produce <strong>completely Made in Italy ovens</strong>.</p>
+
+<p>Galileo perfectly embodies Italian excellence in innovation, design and creativity and a long culinary tradition.</p>
+
+<p>&nbsp;</p></p>
+                     <a href="https://www.smeg.com" class="cta-btn cta-brown txt-upper">Discover more</a>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+                </div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                <div>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div>
+            <style type="text/css">.modal-simply .modal-dialog .modal-content {
+
+        height: unset;
+
+        font-family: "muli";
+
+    }
+
+    .modal-simply .modal-dialog .modal-content .modal-wrap {
+
+        height: unset;
+
+    }
+
+    .color-default {
+
+        color: black;
+
+    }
+
+    .pb-1 {
+
+        padding-bottom: 15px;
+
+        display: inline-block;
+
+        width: 50%;
+
+
+
+    }
+
+    .pb-2 {
+
+        padding-bottom: 25px;
+
+    }
+
+    .redirectLink {
+
+        font-size: 16px;
+
+        font-family: "muli";
+
+    }
+
+    .vertialAlign {
+
+        display: flex;
+
+        align-items: center;
+
+    }
+
+    .title {
+
+        font-family: gothic,Century Gothic,CenturyGothic,AppleGothic,sans-serif!important;
+
+        font-size: 32px;
+
+        font-weight: bold;
+
+    }
+
+
+
+@media screen and (max-width: 992px) {
+
+    .pb-1 {
+
+       
+
+        
+
+        width: 100%;
+
+
+
+    }
+
+}
+</style>
+<div class="quiz-wrap" id="countryRedirect">
+<div aria-labelledby="popup-test" aria-modal="true" class="modal modal-simply fade" id="popup-step-0" role="dialog" style="display: block; padding-right: 0px;" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content bg-white">
+<div class="modal-wrap"><button aria-label="Close" class="close bg-brown txt-white" data-dismiss="modal" id="CloseCountryRedirect" style="align-items:inherit;" type="button"><span aria-hidden="true">×</span></button>
+<div class="modal-body">
+<h2 class="title color-default pb-1">Country select</h2>
+
+<div class="textBlock color-default pb-2">
+<p>Select your country to view the products available in your location or continue with the <a href="index.html#" onclick="modalEl.removeClass('show').css('display', 'none');" style="font-size:16px;"><u>international version</u></a>.</p>
+
+<p>Please note that product availability may differ depending on the country selected.</p>
+</div>
+
+<div class="row" id="countriesRedirect"></div>
+
+<div class="textBlock color-default pb-2"><br />
+Or continue at <a href="index.html#" onclick="modalEl.removeClass('show').css('display', 'none');" style="font-size:16px;"><u>galileo.smeg.com</u></a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+    const countryFlags =[
+
+   {
+
+    id: 1,
+
+    state: "Australia",
+
+    flag: "au",
+
+    url: "https://galileo.smeg.com/au",
+
+    
+
+  },
+
+ {
+
+    id: 2,
+
+    state: "Belgium",
+
+    flag: "be",
+
+    url: "https://galileo.smeg.com/be-nl",
+
+    
+
+  },
+
+  {
+
+    id: 3,
+
+    state: "Denmark",
+
+    flag: "dk",
+
+    url: "https://galileo.smeg.com/dk",
+
+    
+
+  },
+
+  {
+
+    id: 4,
+
+    state: "France",
+
+    flag: "fr",
+
+    url: "https://galileo.smeg.com/fr",
+
+    
+
+  },
+
+  {
+
+    id: 5,
+
+    state: "Finland",
+
+    flag: "fi",
+
+    url: "https://galileo.smeg.com/fi",
+
+    
+
+  },
+
+  {
+
+    id: 6,
+
+    state: "Germany",
+
+    flag: "de",
+
+    url: "https://galileo.smeg.com/de",
+
+    
+
+  },
+
+  {
+
+    id: 7,
+
+    state: "Greece",
+
+    flag: "gr",
+
+    url: "https://galileo.smeg.com/gr",
+
+    
+
+  },
+
+  {
+
+    id: 8,
+
+    state: "Ireland",
+
+    flag: "ie",
+
+    url: "https://galileo.smeg.com/ie",
+
+    
+
+  },
+
+  {
+
+    id: 9,
+
+    state: "Italy",
+
+    flag: "it",
+
+    url: "https://galileo.smeg.com/it",
+
+    
+
+  },
+
+  {
+
+    id: 10,
+
+    state: "Netherland",
+
+    flag: "nl",
+
+    url: "https://galileo.smeg.com/nl",
+
+    
+
+  },
+
+  {
+
+    id: 11,
+
+    state: "New zealand",
+
+    flag: "nz",
+
+    url: "https://galileo.smeg.com/nz",
+
+    
+
+  },
+
+  {
+
+    id: 12,
+
+    state: "Norway",
+
+    flag: "no",
+
+    url: "https://galileo.smeg.com/no",
+
+    
+
+  },
+
+ {
+
+    id: 13,
+
+    state: "Poland",
+
+    flag: "pl",
+
+    url: "https://galileo.smeg.com/pl",
+
+    
+
+  } ,
+
+  {
+
+    id: 14,
+
+    state: "Portugal",
+
+    flag: "pt",
+
+    url: "https://galileo.smeg.com/pt",
+
+    
+
+  },
+
+ {
+
+    id: 15,
+
+    state: "South Africa",
+
+    flag: "za",
+
+    url: "https://galileo.smeg.com/za",
+
+    
+
+  },
+
+  {
+
+    id: 16,
+
+    state: "Spain",
+
+    flag: "es",
+
+    url: "https://galileo.smeg.com/es",
+
+    
+
+  },
+
+  {
+
+    id: 17,
+
+    state: "Sweden",
+
+    flag: "se",
+
+    url: "https://galileo.smeg.com/se",
+
+    
+
+  },
+
+  {
+
+    id: 18,
+
+    state: "United Kingdom",
+
+    flag: "gb",
+
+    url: "https://galileo.smeguk.com",
+
+    
+
+  },
+
+  {
+
+    id: 19,
+
+    state: "Russia",
+
+    flag: "ru",
+
+    url: "https://galileo.smeg.com/ru",
+
+    
+
+  },
+
+  {
+
+    id: 20,
+
+    state: "Singapore",
+
+    flag: "sg",
+
+    url: "https://galileo.smeg.com/sg",
+
+    
+
+  } 
+
+];
+
+
+
+    const queryString = window.location.search;
+
+    const urlParams = new URLSearchParams(queryString);
+
+//    const popupRedirect = urlParams.get("popupRedirect");
+
+        let modalEl=null;
+
+    $(document).ready(function () {
+
+modalEl = $("#countryRedirect .modal");
+
+        let CloseModalEl = $("#CloseCountryRedirect span");
+
+
+
+        if (true) {
+
+            modalEl.addClass("show").css("display", "block");
+
+        }
+
+
+
+        CloseModalEl.click(function () {
+
+            modalEl.removeClass("show").css("display", "none");
+
+        });
+
+
+
+        const coutriesEl = $("#countriesRedirect");
+
+        countryFlags.map((f) => {
+
+            coutriesEl.append(
+
+                `<div class="col pb-1"><a href="https://galileo.smeg.com/${f.url}" alt="${f.state}" class="vertialAlign"><img src="https://galileo.smeg.com/binaries/content/gallery/channels/${f.flag}.png" alt="${f.state}" style="padding-right:15px;" /><span class="redirectLink color-default">${f.state}</span></a></div>`
+
+            );
+
+        });
+
+    });
+
+</script>
+    </div>
+
+
+
+                </div>
+    </div>
+</div>    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+    <div class="footer-col footer-first-col">
+            <img src="webfiles/1756843965928/images/logo.png" class="logo" title="Smeg logo" alt="logo"/>
+        <div class="footer-first-col-bot">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <ul class="social">
+
+
+                <li>
+                    <a class="" href="https://it-it.facebook.com/Smeg"  target="_blank">
+                            <img class="logo" src="webfiles/1756843965928/images/icons/social/facebook-white.svg" alt="facebook-white.svg">
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a class="" href="https://www.instagram.com/smegitalia/"  target="_blank">
+                            <img class="logo" src="webfiles/1756843965928/images/icons/social/instagram-white.svg" alt="instagram-white.svg">
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a class="" href="https://it.linkedin.com/company/smeg"  target="_blank">
+                            <img class="logo" src="webfiles/1756843965928/images/icons/social/linkedin-white.svg" alt="linkedin-white.svg">
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a class="" href="https://www.youtube.com/user/SmegSpA"  target="_blank">
+                            <img class="logo" src="webfiles/1756843965928/images/icons/social/youtube-white.svg" alt="youtube-white.svg">
+                    </a>
+                </li>
+
+        </ul>
+
+
+            <div class="text-mini">© 2022 SMEG S.p.A. PIva 01555030350</div>
+        </div>
+    </div>
+    <div class="footer-col">
+        <div class="footer-title">Sitemap</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <ul id="menuFooter">
+           
+
+                <li>
+                    <a href="index.html"  title="Galileo Multicooking Technology">
+                        Galileo Multicooking Technology
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://galileo.smeg.com/omnichef"  title="Omnichef">
+                        Omnichef
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://galileo.smeg.com/speedwave"  title="Speedwavexl">
+                        Speedwavexl
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://galileo.smeg.com/steam"  title="Steamgeneration">
+                        Steamgeneration
+                    </a>
+                </li>
+            <li>
+                <a href="https://galileo.smeg.com/cookie-policy" target="_blank" title="Cookie policy">
+                Cookie policy
+                </a>
+            </li>
+        </ul>
+         
+
+    </div>
+    <div class="footer-col mobile-last">
+        <div class="footer-title">Contacts</div>
+        <p> <b>Smeg Spa</b><br> Via Leonardo da Vinci 4<br> 42016 Guastalla (RE) <br> Email: <a href="https://galileo.smeg.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f586989092b586989092db9c81">[email&#160;protected]</a> <br> <b>www.smeg.com</b> </p>
+    </div>
+        <div class="footer-col">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="footer__newsletter d-print-none" data-target-url="/?_hn:type=resource&amp;_hn:ref=r19_r3_r3&amp;_hn:rid=subscription">
+            <div class="form-group row">
+                <div class="label-newsletter col-sm-4">
+                    <label for="subscribe">Subscribe to newsletter</label>
+                    <div class="label-newsletter-promo"><p style="font-size:14px">Subscribe to Smeg's Newsletter and stay up to date with all the latest news and events.</p></div>
+                </div>
+
+                <div class="input-group col-sm-8">
+                    <div class="newsletterSign">
+                            <div class="newsletter-input">
+                                <input type="text" name="nome" autocomplete="off" id="subscribe" class="form-control"
+                                       placeholder="Email Adress"
+                                       required>
+                                <input type="submit" name="invia" class="footer__submit"
+                                       value="Subscribe">
+                                <div class="submit-loader"></div>
+                            </div>
+                            <div class="form-group privacy-policy">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label class="form-check-label" for="gridCheck">
+                                        I accept the <a target="_blank" href="https://www.smeg.com/privacy-policy" title="privacy-policy" aria-label="link text - new window" style=" text-decoration: underline; ">privacy policy</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="feedback_form_validation">
+                                <span id="invalid-feedback-newsletter" class="invalid-feedback" role="alert"></span>
+                            </div>
+                            <div class="footer__newsletter__feedback">
+                                <span class="positive" role="alert">Thank you! Please check your email to complete your registration.</span>
+                                <span class="negative" role="alert">There was a problem subscribing to the newsletter.</span>
+                                <span class="subscriberExist" role="alert">user already registered</span>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</footer>
+    <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="webfiles/1756843965928/js/build/global/cookies.min.js"></script>
+        <script>
+            function callbackCookieFirst(e) {
+                var consent = e.detail || CookieFirst.consent;
+                if (consent && consent.advertising) {
+                    $('.link-video-cookie').hide();
+                    $('.js-player-off iframe').each(
+                        function (){
+                            $(this).attr('src', $(this).attr('data-cookie-src'))
+                        }
+                    );
+                    $('.js-player-off').addClass('js-player');
+                    initPlyrVideos();
+                }
+            }
+            window.addEventListener("cf_consent", callbackCookieFirst);
+            window.addEventListener("cf_init", callbackCookieFirst);
+        </script>
+
+
+    
+    <script type="text/javascript" src="webfiles/1756843965928/libs/bootstrap/popper.min.js"></script>
+    <script type="text/javascript" src="webfiles/1756843965928/libs/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="webfiles/1756843965928/libs/in-view/in-view.min.js"></script>
+    <script type="text/javascript" src="webfiles/1756843965928/libs/slick/slick.js"></script>
+    <script type="text/javascript" src="webfiles/1756843965928/libs/plyr/plyr.min.js"></script>
+    <script type="text/javascript" src="webfiles/1756843965928/libs/scrollify/jquery-scrollify.js"></script>
+    <script type="text/javascript" src="webfiles/1756843965928/js/build/galileo/main.min.js"></script>
+    <!-- js configurator -->
+    <script type="text/javascript" src="webfiles/1756843965928/galileo/build/static/js/bundle.min.js"></script>
+    <!--<script type="text/javascript" src="http://127.0.0.1:3000/static/js/bundle.min.js"></script>-->
+
+<script type="text/javascript">
+//<![CDATA[
+
+                    let privacyPolicyEmailMandatory = "No email address has been entered." ;
+                    let privacyPolicyMandatory = "Privacy consent is a mandatory field." ;
+                    let privacyPolicyEmailInvalid = "The email address entered is incorrect." ;
+                
+//]]>
+</script>
+<script src="webfiles/1756843965928/js/build/components/form-newsletter/form-newsletter.min.js" type="text/javascript"></script>
+<script src="webfiles/1756843965928/js/build/galileo/documents/test.min.js" type="text/javascript">
+//<![CDATA[
+
+        
+//]]>
+</script>
+<script src="webfiles/1756843965928/js/build/galileo/documents/simpleSlider.min.js" type="text/javascript">
+//<![CDATA[
+
+        
+//]]>
+</script>
+<script src="webfiles/1756843965928/js/build/galileo/documents/video.min.js" type="text/javascript">
+//<![CDATA[
+
+        
+//]]>
+</script>
+</body>
+</html>
