@@ -25,6 +25,20 @@
       src="https://sdk.poltio.com/poltio.js"
     ></script>
 
+  <script>
+  window.addEventListener('message', function (event) {
+
+    const data = event.data;
+
+    if (data && typeof data === 'object' && data.divId && data.height) {
+      const iframe = document.getElementById(data.divId);
+      if (iframe) {
+        iframe.style.height = `${data.height}px`;
+      }
+    }
+  });
+</script>
+
 
 
 
@@ -1271,10 +1285,10 @@
     var  ctaFinish=     "???cta.label.finish??? " ;
  </script>
 
-
 <section class="box-test landing-component">
     <h2>Which oven is the best for you?</h2>
     <p>Answer these simple questions to find the oven that perfectly meets your needs.</p>
+    
     <div style="margin-bottom: 20px;"></div>
     <iframe
                       id="poltio_xp_frame"
@@ -1282,7 +1296,7 @@
                       src="https://feature-smeg-xp---poltio-widget-remix-734jdjokhq-ew.a.run.app/xp/9fdadf81-ce38-401e-a6c8-9e1a32dd2e07?resultfit=vf&loc=en&disclaimer=off&puid=poltiotest&medianswercols=4"
                       loading="lazy"
                       width="100%"
-                      height="1000"
+                              style="width:100%; height:100vh; border:none; overflow:auto;"
                       frameborder="0"
                       allowfullscreen="allowfullscreen"
                       scrolling="yes"
