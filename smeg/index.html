@@ -19,11 +19,16 @@
     <script type="text/javascript" src="webfiles/1756843965928/libs/jquery/jquery.easing.min.js"></script>
 
 
-    <script
-      id="poltiosdk"
-      defer
-      src="https://sdk.poltio.com/poltio.js"
-    ></script>
+    <!-- Poltio Tag -->
+<script>
+  (function(t,e,p,i,n){if(!(t.poltio&&t.poltio.push))
+  {t.poltio={queue:[],push:function(s,r,u){t.poltio.queue.push([s,r,u])}};
+  var o=e.createElement("script");o.id="poltiosdk",
+  o.async=!0,o.src=p+"/"+i+"?p="+n+"&r="+encodeURIComponent(t.location.href),
+  e.head.appendChild(o)}})(window,document,
+  "https://sdk.poltio.com","poltio.js","7");
+</script>
+<!-- End Poltio Tag -->
 
   <script>
   window.addEventListener('message', function (event) {
@@ -1287,7 +1292,6 @@
 
 <section class="box-test landing-component">
     <h2>Which oven is the best for you?</h2>
-    <p>Answer these simple questions to find the oven that perfectly meets your needs.</p>
     
     <div style="margin-bottom: 20px;"></div>
     <iframe
