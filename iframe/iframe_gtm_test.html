@@ -6,39 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/public/favicon.ico" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
-
-    <!-- Poltio Tag -->
-    <script>
-      (function (t, e, p, i, n) {
-        if (!(t.poltio && t.poltio.push)) {
-          t.poltio = {
-            queue: [],
-            push: function (s, r, u) {
-              t.poltio.queue.push([s, r, u]);
-            },
-          };
-          var o = e.createElement('script');
-          (o.id = 'poltiosdk'),
-            (o.async = !0),
-            (o.src =
-              p +
-              '/' +
-              i +
-              '?p=' +
-              n +
-              '&r=' +
-              encodeURIComponent(t.location.href)),
-            e.head.appendChild(o);
-        }
-      })(
-        window,
-        document,
-        'https://sdk-stage.poltio.com',
-        'poltio.js',
-        '111111111'
-      );
-    </script>
-    <!-- End Poltio Tag -->
+    <script
+      async=""
+      src="https://www.googletagmanager.com/gtm.js?id=GTM-KZ6WMMKP"
+    ></script>
+    <script
+      id="poltiosdk"
+      defer
+      src="https://sdk-stage.poltio.com/poltio.js"
+    ></script>
   </head>
   <body>
     <!--
