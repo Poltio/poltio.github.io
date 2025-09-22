@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["web/vender-2"],{"../aosom-design/newUI/web/vender-2.scss":function(e,n,s){},"../common-use/layout/web/vender-2.js":function(e,n,s){"use strict";s.r(n);s("../aosom-design/newUI/web/vender-2.scss")}},[["../common-use/layout/web/vender-2.js","runtime-web"]]]);
