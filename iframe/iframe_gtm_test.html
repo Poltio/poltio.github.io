@@ -10,11 +10,30 @@
       async=""
       src="https://www.googletagmanager.com/gtm.js?id=GTM-KZ6WMMKP"
     ></script>
-    <script
-      id="poltiosdk"
-      defer
-      src="https://sdk-stage.poltio.com/poltio.js"
-    ></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          (o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o);
+        }
+      })(window, document, 'https://sdk-stage.poltio.com', 'poltio.js', '1');
+    </script>
   </head>
   <body>
     <!--
