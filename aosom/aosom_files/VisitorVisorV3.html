@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>        ModalVisitor    </title>
+        <meta name="description" content="Modal Visitor description">
+            <meta name="keywords" content="Moda Visitor keys">
+    <meta name="viewport" content="width=device-width">
+
+    
+    <link href="VisitorVisorV3_data/font-awesome.css" rel="stylesheet">
+
+    
+    <script>window.Promise || document.write('<script src="./api/source/js/ext/ie11-fixes.js"><\/script>');</script>
+
+
+        <script src="VisitorVisorV3_data/visitorJsDesktop.js"></script>
+<link href="VisitorVisorV3_data/visitorCss.css" rel="stylesheet">
+            <script src="VisitorVisorV3_data/rewriteJsDesktop.js"></script>
+
+
+            
+        <style data-test-id="corp-color-visitor" data-test-corp-color="#dc2f2f" type="text/css">
+       .TxtCorp{ color:#dc2f2f  !important}
+       .BkgCorp{ background-color:#dc2f2f   !important}
+       .BorderCorp{ border-color: #dc2f2f   !important}
+       .BorderUpCorp{  border-top-color: #dc2f2f   !important}
+       .BorderBottomCorp{  border-bottom-color: #dc2f2f   !important}
+        </style>
+
+    <style type="text/css">
+       .BackgroundColorLC {background-color:#dc2f2f  !important}
+       .TextColorLC { color:rgb(246, 246, 246)   !important}
+
+    </style>
+            <style type="text/css">
+          .ChatBkgTheme{ background-image:none; background-color:#ffffff}
+            </style>
+                <link id="custom-theme-tag" data-test-id="theme-visitor" data-test-theme="/api/source/css/themes/theme24.css" href="VisitorVisorV3_data/theme24.css" rel="stylesheet">
+
+    
+
+
+
+    
+
+        <script type="text/javascript" src="VisitorVisorV3_data/I18nCoviewer.js"></script>
+
+
+
+<link href="VisitorVisorV3_data/left-handed-v3.css" rel="stylesheet">
+
+
+
+</head>
+<body class="custom-body locale-it-IT">
+    <aside id="coviewer-wrapper" class="coviewer-wrapper custom-coviewer-wrapper CHBkg2">
+        
+<div id="sidebubble" class="sidebubble" aria-live="assertive" data-bind="visible: oct8ne.sideBubbles.currentBody()!=null" style="display: none;">
+    <div id="sidebubble-wrapper" class="sidebubble-wrapper">
+        <div id="sidebubble-content" class="sidebubble-content" style="justify-content:flex-start !important" data-bind="html:oct8ne.sideBubbles.currentBody; "></div>
+        <p class="sidebubble-close-button" aria-label="Riduci" tabindex="0" role="button" data-bind="event:{ click:function(){ oct8ne.sideBubbles.hide()}}">
+            Riduci
+        </p>
+    </div>
+</div>
+
+<div class="header-visor CHBkg1">
+    
+    <ul class="nodes-lists custom-coviewer-nodes-lists" role="menubar">
+        <li id="viewed-items" tabindex="0" role="button" class="custom-coviewer-viewed-items active CVBkg5 CVTxt4" aria-label="Visto" title="Visto" data-bind="click: function() { viewedVM.setActiveTab()},attr: { 'class':'custom-coviewer-viewed-items   ' }, css :{'active CVBkg5 CVTxt4': viewedVM.isActive() == true , 'ActiveFalse ':viewedVM.isActive() == false }">
+            <span data-bind="attr: {'class':'glyph icon-common-viewed-icon custom-coviewer-viewed-icon'}, css :{'CVTxt4 custom-coviewer-viewed-icon-active': viewedVM.isActive() == true ,'CVTxt2 custom-coviewer-viewed-icon-inactive ':viewedVM.isActive() == false }" class="glyph icon-common-viewed-icon custom-coviewer-viewed-icon CVTxt4 custom-coviewer-viewed-icon-active"></span>
+            <span class="inner-title">Visto &nbsp; </span>
+            <span role="status" data-bind="text:viewedVM.nodes().length">0</span>
+        </li>
+            <li id="my-list-items" tabindex="0" role="button" aria-label="MyList" title="MyList" data-bind="click: function() { mylistVM.setActiveTab()},attr: {'class':'custom-coviewer-mylist-items '}, css :{' active CVBkg5 CVTxt4 ': mylistVM.isActive() == true , 'ActiveFalse':mylistVM.isActive() == false }" class="custom-coviewer-mylist-items ActiveFalse">
+                <span data-bind="attr: {'class':' glyph icon-common-wishlist-icon custom-coviewer-mylist-icon'}, css :{'CVTxt4 custom-coviewer-mylist-icon-active': mylistVM.isActive() == true , 'CVTxt2 custom-coviewer-mylist-icon-inactive':mylistVM.isActive() == false }" class="glyph icon-common-wishlist-icon custom-coviewer-mylist-icon CVTxt2 custom-coviewer-mylist-icon-inactive"></span><span class="inner-title">MyList &nbsp; </span><span role="status" data-bind="text:mylistVM.nodes().length">0</span>
+            </li>
+                    <li id="my-shopping-items" tabindex="0" role="button" aria-label="Carrello" data-bind="click: function() { mycartVM.setActiveTab()},attr: { 'class':'custom-coviewer-mycart-items ' }, css :{' active CVBkg5 CVTxt4 ': mycartVM.isActive() == true , 'ActiveFalse':mycartVM.isActive() == false }" class="custom-coviewer-mycart-items ActiveFalse">
+                <span data-bind="attr: {'class':'glyph icon-common-mycart-icon  custom-coviewer-mycart-icon' }, css :{'CVTxt4 custom-coviewer-mycart-icon-active': mycartVM.isActive() == true , 'CVTxt2 custom-coviewer-mycart-icon-inactive':mycartVM.isActive() == false }" class="glyph icon-common-mycart-icon custom-coviewer-mycart-icon CVTxt2 custom-coviewer-mycart-icon-inactive"></span><span class="inner-title">Carrello &nbsp; </span><span role="status" data-bind="text:mycartVM.nodes().length">0</span>
+            </li>
+    </ul>
+
+</div>
+<div class="oct8ne-content custom-coviewer-content" id="oct8ne-content">
+
+    <div id="add-to-mycart-toast" role="status" class="add-to-mycart-toast BkgCorp CHTxt2 ">Articolo aggiunto al carrello<p class="BorderBottomCorp"></p></div>
+    <div class="oct8ne-nodes mCustomScrollbar _mCS_1 mCS-autoHide" id="oct8ne-nodes"><div id="mCSB_1" class="mCustomScrollBox mCS-dark-thin mCSB_horizontal mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: -100px; width: 100%;" dir="ltr">
+        <ul data-bind="style:{width: viewedVM.carouselsWidth}" style="width: 0px;">
+            <!-- ko if: viewedVM.isActive() == true -->
+            <!-- ko foreach:viewedVM.nodes --><!--/ko-->
+            <!--/ko-->
+            <!-- ko if: mylistVM.isActive() == true --><!--/ko-->
+            <!-- ko if: mycartVM.isActive() == true --><!--/ko-->
+        </ul>
+    </div><div id="mCSB_1_scrollbar_horizontal" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark-thin mCSB_scrollTools_horizontal" style="display: block;"><a href="#" class="mCSB_buttonLeft" style="display: block;"></a><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 30px; display: block; width: 0px; left: 0px;"><div class="mCSB_dragger_bar"></div></div><div class="mCSB_draggerRail"></div></div><a href="#" class="mCSB_buttonRight" style="display: block;"></a></div></div></div>
+</div>
+
+<div class="oct8ne-coviewer custom-coviewer-canva" id="oct8ne-coviewer">
+    <div class="item-title-price">
+        <p id="item-title-up" class="CVTxt3 custom-coviewer-title-product" title="Clicca per visualizzare la pagina del prodotto (la chat rimarrà aperta)" aria-label="Clicca per visualizzare la pagina del prodotto (la chat rimarrà aperta)"> </p>
+            <div id="add-to-mylist-tool-visitor" tabindex="0" role="button" title="Aggiungi l'articolo che stai visualizzando alla lista dei favoriti " aria-label="Aggiungi l'articolo che stai visualizzando alla lista dei favoriti " class="icon-common-wishlist-icon glyph CVTxt3 disabled" style="opacity: 0.3;">
+            </div>
+    </div>
+
+    <div class="loading-product  custom-coviewer-product-loading" id="loading-product" aria-live="assertive" aria-label="Cargando"> </div>
+    <div id="prev-image" class="change-image prev-image" tabindex="0" role="button" aria-label="Vedi immagine precedente"><div class="CVTxt1 custom-coviewer-prev-image icon-common-arrow-lateral-left icon-common-lateral-left"></div></div>
+    <div id="oct8ne-holder" class="oct8ne-holder">
+        <div id="video-wrapper" data-bind="with:youtube" style="width: 435px; height: 284px; background: #000; display: none">
+            <div id="youtubevideoplayer" style="z-index: 4; position: absolute; left: 0; top: 0; bottom: 0; right: 0;"></div>
+            <div id="youtubevideoplayer-controls" class="CVBkg1" style="z-index: 5; bottom: 0 !important;" data-bind="fadeVisible: videoPlayerIsReady">
+                <a href="#" tabindex="0" role="button" aria-label="Riproduci video" class="play icon-common-play-icon CVBkg2 CVTxt1" data-bind="disable: isPlaying, click: playClicked, css: { disabled: isPlaying }"></a>
+                <a href="#" tabindex="0" role="button" aria-label="Metti in pausa il video" class="pause icon-common-pause-icon CVBkg2 CVTxt1 disabled" data-bind="enable: isPlaying, click: pauseClicked, css: { disabled: !isPlaying() }"></a>
+                <span class="slider  CVTxt2 noUi-target noUi-ltr noUi-horizontal noUi-connect"><div class="noUi-base"><div class="noUi-origin noUi-background" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div></div></span>
+                <span class="timer   CVTxt2" data-bind="text: currentTimePositionFormatted">00:00:00</span>
+                <a href="#" tabindex="0" role="button" aria-label="Disattiva video" class="speaker CVTxt2 unmuted" data-bind="click: speakerClicked, css: { muted: isMuted, unmuted: !isMuted() }"></a>
+            </div>
+            <div id="video-loading" data-bind="fadeVisible: !videoPlayerIsReady(), fadeOutDuration: 2000" style="display: none; z-index: 6;">
+                <div data-bind="visible: !videoPlayerIsReady()" class="loading">
+                    <img alt="Loading video" src="VisitorVisorV3_data/loading.gif">
+                    Caricando video
+                    <p>Stiamo preparando l'inimmaginabile, attendi pochi secondi ..</p>
+                </div>
+                <div data-bind="visible: videoPlayerIsReady" class="ready" style="display: none;">
+                    Pronto!
+                </div>
+            </div>
+        </div>
+
+        <div id="oct8ne-helper" class="oct8ne-helper z1 ui-draggable ui-draggable-handle" aria-live="assertive">
+            <img src="VisitorVisorV3.html" alt="Immagine prodotto" style="display:none">
+            <canvas id="localCanvas" style="z-index: 100;"></canvas>
+            <canvas id="remoteCanvas" style="z-index: 90;"></canvas>
+        </div>
+
+    </div>
+    <div id="next-image" tabindex="0" role="button" class="change-image next-image" aria-label="Vedi immagine successiva"><div class="CVTxt1 custom-coviewer-next-image icon-common-arrow-lateral-right icon-common-lateral-right"></div></div>
+    <div class="other-cursor icon-common-arrow TxtCorp">
+        <p class="agent-avatar avatar-agent presentation" style="background: url(&quot;https://staticupload-eu.oct8ne.com/avatar/4067/36B990F93CBF39A88EF1940F302F40C0-2024-07-02-09-53-12-316197.png&quot;) center center / cover;"></p>
+    </div>
+    <div class="my-cursor"></div>
+    <div id="add-to-mylist" class="add-to-mylist custom-coviewer-add-to-my-list BkgCorp CVTxt2" style="display: none;" role="status">Articolo aggiunto a MyList <p class="BorderBottomCorp"></p></div>
+    <div class="product-tools">
+        <div id="images-dots-wrapper" class="images-dots-wrapper">
+            <ul id="items-order-list" class="images-dots" aria-label="Elenco delle immagini dei prodotti"></ul>
+        </div>
+        <p class="items-number-list custom-coviewer-items-number-list CVTxt3" id="items-number-list">Visto &nbsp;<span class="current-img"></span>&nbsp;di &nbsp;<span class="total-img"></span></p>
+            <div id="zoom-tool" tabindex="0" role="button" class="custom-coviewer-zoom-tool zoom-tool icon-common-zoomin-button CVTxt3" title="1° e 2° click per zummare sull'immagine, 3° click per tornare alle dimensioni originali" aria-label="1° e 2° click per zummare sull'immagine, 3° click per tornare alle dimensioni originali"></div>
+
+            <div id="draw-button" aria-hidden="true" class="icon-common-pen CVTxt3"></div>
+            <div id="color-picker" aria-hidden="true">
+                <ul>
+                    <li class="icon-common-pen pencil-red"></li>
+                    <li class="icon-common-pen pencil-blue"></li>
+                    <li class="icon-common-pen pencil-green"></li>
+                    <li class="icon-common-pen pencil-orange"></li>
+                </ul>
+            </div>
+    </div>
+    <div id="more-info-item" class="more-info-item">
+        <div id="info-icon-button" class="info-icon-button CVTxt3" aria-haspopup="true" aria-expanded="false" tabindex="0" role="button">
+            Descrizione completa
+            
+        </div>
+        <p id="item-description" class="item-description CVTxt3 custom-coviewer-description-text ">Non ci sono descrizioni per questo articolo.</p>
+    </div>
+</div>
+<div class="coviewer-tools custom-coviewer-tools">
+    <div id="price-wrapper" class="price-wrapper CVTxt1"><div id="normal-price"><div style="line-height:43px;font-size:2em"><span>[0]</span></div></div><div id="sale-price"><div class="offer-icon custom-coviewer-sale-icon"><div class="sale-text custom-coviewer-sale-text BkgCorp"><span>RID.</span></div><div class="BorderUpCorp"></div></div><div style="font-size:1.33em; text-decoration:line-through;"><span class="price-old">[0]</span></div><div style="font-size:1.33em ;line-height: 20px;"><span class="price-new">[1]</span></div></div></div>
+    <div id="price-wrapper-catalog" class="price-wrapper-catalog CVTxt1">
+        <span id="item-price-up" class="custom-coviewer-price price CVTxt1" aria-label="Product price"></span>
+    </div>
+
+        <div data-bind="css:{ checkoutActive: mycartVM.nodes().length &gt; 0 },click: function() {mycartVM.accessToCheckout()}" id="checkout-tool" class="custom-coviewer-add-mylist-tool checkout-tool CVBorder1 CVTxt1 button-alive-v4" title="Pronto per l'acquisto? Vai al carrello" aria-label="Pronto per l'acquisto? Vai al carrello" tabindex="0" role="button">
+            <span class="icon-common-cart-check"></span>
+            Check out
+        </div>
+                <!--DOMAIN ID 8730 = emagister quieren el color Corporativo en el boton de add to cart-->
+            <div id="add-to-cart-tool" class="custom-coviewer-add-cart-tool add-to-cart-tool button-alive-alt-v4 CVBorder1 CVTxt1 disabled" title="Aggiungi al carello l'articolo che appare nella finestra " tabindex="0" role="button" style="opacity: 0.3;">
+                <span class="icon-common-mycart-icon CVTxt4"></span>Aggiungi
+            </div>
+    <div id="view-catalog-page" class="add-to-cart-tool CVBorder1 button-alive-v4" title="Catalogo dei prodotti" aria-label="Catalogo dei prodotti" tabindex="0" role="button">
+        <a href="#" target="_blank" class="CVTxt1">
+            Vedi prodotto
+        </a>
+    </div>
+</div>
+
+<div id="tutorial-coviewer" class="tutorial-coviewer">
+    <div class="instructions-coviewer">
+        <div class="down-tutorial">
+            <span class="icon-common-arrow-tut-2"></span>
+            <p class="title">Benvenuto nella finestra interattiva</p>
+            <p>
+                Tu e un operatore potete vedere gli articoli simultaneamente.<br>
+                (L'agente può visualizzare esclusivamente la chat)
+            </p>
+            <div class="close-new-tutorial" tabindex="0" role="button" aria-label="Ho capito, grazie">Ho capito, grazie</div>
+            <span class="icon-common-arrow-tut-2 bottom"></span>
+        </div>
+
+    </div>
+    <div class="up-tutorial">
+
+        <div class="icon-common-open-visor v4-hide"></div>
+        <div class="icon-common-arrow-tut-left"></div>
+        <p>Puoi chiudere e aprire il visualizzatore qui</p>
+
+
+    </div>
+        <div id="instructions-upload" class="instructions-upload">
+            <p>Oppure puoi caricare una foto per mostrare all'esperto quello che stai cercando </p>
+            <div class="icon-common-clip-upload"></div>
+            <div class="icon-common-arrow-tut-right"></div>
+        </div>
+</div>
+
+
+    </aside>
+
+    <main id="chat-wrapper" class="chat-wrapper custom-chat-wrapper hidden CHBkg1" style="display: block;">
+        <a href="#mCSB_2" class="skip-link CHBkg2 CHTxt1">Vai alla conversazione</a>
+<div class="chat-header CHBkg1 custom-chat-header">
+    <!-- Mostramos el botón que abre/cierra el covisor en el visitante si el valor que nos llega por el controlador es "true" -->
+
+        <span id="show-coviewer-chat" aria-label="Attiva/disattiva il coviewer" aria-haspopup="true" aria-expanded="false" tabindex="0" role="button" class="show-coviewer icon-common-open-visor custom-chat-icon-openviewer CHTxt5"></span>
+        <span id="pending-products" aria-label="Prodotti inviati dall'agente che non sono ancora stati visualizzati" class="warning-visitor pending-products custom-minimized-pending-products">1</span>
+
+
+    <div class="connecting-agent CHBkg1 CHTxt5" style="display: none;">In collegamento con un agente...</div>
+    
+
+    <div class="agent-info custom-chat-agent-info">
+        <!--OJO ID=id="agent-info"-->
+        <div class="agent-avatar-image" role="img" aria-label="Avatar dell'agente" style="background: url(&quot;https://staticupload-eu.oct8ne.com/avatar/4067/36B990F93CBF39A88EF1940F302F40C0-2024-07-02-09-53-12-316197.png&quot;) center center / cover;"></div>
+
+        <div class="before-join-agent">
+            <div class="name-agent custom-chat-name-agent CHTxt5">Aosom Bot</div>
+            <div class="message-agent custom-chat-status-agent CHTxt5" title="È disponibile">
+                È disponibile
+            </div>
+        </div>
+
+        <div class="after-join-agent   ">
+            <div class="name-agent custom-chat-name-agent CHTxt5">Aosom Bot</div>
+            <div class="message-agent custom-chat-status-agent CHTxt5" title="Chattando">Chattando</div>
+        </div>
+        <div id="rating-stars" class="rating-stars HBkg2 CHTxt4" aria-label="Mostra il modulo di valutazione">
+            <div class="rating-area-menu-stars-title">Valuta l'attenzione dei nostri agenti</div>
+            <div id="rating-area-stars" class="rating-area-stars" aria-label="Valuta l'attenzione dei nostri agenti">
+                <input type="radio" id="star5" name="rate" value="5">
+                <label class="icon-common-star-regular" for="star5" tabindex="0" role="button" aria-label="Valuta questa conversazione con 5 stelle"></label>
+                <input type="radio" id="star4" name="rate" value="4">
+                <label class="icon-common-star-regular" for="star4" tabindex="0" role="button" aria-label="Valuta questa conversazione con 4 stelle"></label>
+                <input type="radio" id="star3" name="rate" value="3">
+                <label class="icon-common-star-regular" for="star3" tabindex="0" role="button" aria-label="Valuta questa conversazione con 3 stelle"></label>
+                <input type="radio" id="star2" name="rate" value="2">
+                <label class="icon-common-star-regular" for="star2" tabindex="0" role="button" aria-label="Valuta questa conversazione con 2 stelle"></label>
+                <input type="radio" id="star1" name="rate" value="1">
+                <label class="icon-common-star-regular" for="star1" tabindex="0" role="button" aria-label="Valuta questa conversazione con 1 stella"></label>
+            </div>
+            <textarea placeholder="Lasciaci un commento (facoltativo)..." title="Lasciaci un commento (facoltativo)..." aria-label="Lasciaci un commento (facoltativo)..." maxlength="250" class="CHTxt4"></textarea>
+            <span id="save-rating-stars" class="CHBkg1 CHTxt5 button-rate generic-button-v4" tabindex="0" role="button" aria-label="Invia">Invia</span><span id="skip-rating-stars" class="skip-button-v4 skip-button-rating-stars" tabindex="0" role="button" aria-label="Ignora">Ignora</span>
+        </div>
+        <div id="comment-agent" class="comment-agent  HBkg2 CHTxt4">
+            <textarea placeholder="Lasciaci un commento (facoltativo)..." aria-label="Lasciaci un commento (facoltativo)..." maxlength="250" class="CHTxt4"></textarea>
+            <span id="save-rating" aria-label="Invia" class="CHBkg1 CHTxt5 button-rate button-rate generic-button-v4">Invia</span>
+            <span id="skip-rating" class="skip-button-v4 skip-button-rating-stars" aria-label="Ignora">Ignora</span>
+        </div>
+    </div>
+    
+        <div class="chat-menu custom-chat-menu" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-label="Mostra le opzioni della chat">
+            <span class="icon-common-minimize-button CHTxt5"></span>
+            <span class="icon-common-minimize-button CHTxt5"></span>
+            <span class="icon-common-minimize-button CHTxt5"></span>
+        </div>
+
+</div>
+<!-- Estrechamos el menú del chat cliente si está desactivado el coviewer, ya que perdemos la opción "Get Summary" -->
+<div id="chat-menu-options-chat" class="chat-menu-options  custom-chat-menu-options CHBkg2">
+    <ul role="menu">
+            <li role="menuitem" class="custom-chat-menu-sound-option CHBkg2 v4-hide"><span id="sound-option" class="sound-option HTxt1">Audio<span class="icon-common-volume-on HTxt1"></span></span></li>
+            <li role="menuitem" class="custom-chat-menu-sound-option CHBkg2 v3-hide">
+                <span id="sound-option" class="sound-option HTxt1">
+                    Audio
+                    <div class="sound-switch">
+                        <span class="icon-common-volume-on HTxt1" role="switch" aria-checked="false" tabindex="0"><small></small><input type="checkbox" name="enabled" style="display:none"><span class="icon-common-volume-on HTxt1"> </span></span>
+                    </div>
+                </span>
+            </li>
+
+            <li role="menuitem" id="send-summary-menu-chat" class="custom-chat-menu-send-summary send-summary-menu CHBkg2">
+                <span class="HTxt1">Riepilogo</span>
+                <p class="summary-advice CHTxt3">Inserisci la tua e-mail per ricevere un riepilogo della sessione e dei prodotti visti.</p>
+                <input class="summary-input" autocomplete="email" type="email" placeholder="Email">
+                <div class="summary-button CHBkg3 generic-button-v4" tabindex="0" role="button">Inviare</div>
+            </li>
+
+        <li role="menuitem" id="minimize-chat-chat" class="custom-chat-menu-minimize minimize-chat CHBkg2" tabindex="0" aria-label="Riduci"><span class="HTxt1">Riduci</span></li>
+
+        
+    </ul>
+
+    <div class="send-summary-feedback">
+        <p>Un riepilogo di questa sessione e tutti i prodotti che hai visualizzato sono stati inviati</p>
+        <p class="feedback-ok CHBkg3" tabindex="0" aria-label="OK" role="button">OK</p>
+    </div>
+</div>
+
+<div class="chat-visitor custom-chat-visitor CHBkg1-99">
+
+    <div id="oct8ne-communications" class="oct8ne-communications CHBorder2">
+        <div class="real-background ChatBkgTheme"></div> <!-- Debera ser un Model.ChatBckgUrl-->
+        <div class="oct8ne-chat-room custom-chat-room  mCustomScrollbar _mCS_2 mCS-autoHide" id="oct8ne-chat-room" style="visibility: visible; opacity: 1;"><div id="mCSB_2" class="mCustomScrollBox mCS-dark-thin mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_2_container" class="mCSB_container" style="position: relative; top: -71px; left: 0px;" dir="ltr">
+            <ul style="" data-bind="visible: true" aria-label="Chat room di ottobre" aria-atomic="false" aria-live="assertive" aria-relevant="additions">
+
+                <!-- ko foreach: oct8ne.speak.messages -->
+                <!-- ko if: category == "CHAT" || category == "PRODUCT" || category == "MANY_PRODUCTS" || category == "FORM" || category == "RESPONSE" || category == "DOCS" || category == "CHOICE"  || category == "SIDEBUBBLELINK" || category == "CHOICERESPONSE" || category == "CUSTOM_FORM" --><!--/ko-->
+                <!-- ko if: category == "MESSAGERATING"--><!--/ko-->
+                <!-- ko if: category == "VALIDATION" --><!--/ko-->
+                <!-- ko if: category == "GDPR" --><!--/ko-->
+                <!-- ko if: category == "CANNED" -->
+                <!-- ko if: type == "WELCOME" || type == "VIPMESSAGE" || type == "TRANSFER" || type == "INACTIVITY1" || type == "INACTIVITY2" || type =="INACTIVITY3" || type == "SENDSESSION" || type == "AGENTSDISCONNECT" || type == "TRANSFERFROMLOGOUT" || type == "NOMOREAGENTS" || type == "AGENTSBUSY" || type == "OVERBOOKING" || type == "AGENTAVAILABLE" || type == "RECONNECTSESSION" || type == "ENDSESSIONBOT" || type == "INITSHARING" || type == "ENDFNAC" || type == "ENDTOYSRUS" || type == "ENDLOREAL" || type == "ENDLOREALOVERBOOKING" || type == "EXTENSIONADVICE" || type == "ENDRETAILERSLOREAL" || type == "ENDNYXCOSMETICS" || type == "ENDNOFORMTEMPLATE" || type == "ENDLEXUS"  --><!--/ko-->
+                <!-- ko if: type == "TRIGGER"-->
+                <li data-bind="css: { 'visitor': sentBy=='V','agent': sentBy=='A'}" role="alert" class="agent">
+                    <div data-bind="attr: { 'class':'custom-trigger-message'},css: { 'CHBkg1 custom-chat-message-visitor': sentBy=='V','CHBkg2  custom-chat-message-agent': sentBy=='A'}" class="custom-trigger-message CHBkg2 custom-chat-message-agent">
+                        <div class="holder trigger-message">
+                            <p class="message CHTxt4" data-bind="html: body,  css: { 'CHTxt5':sentBy=='V' , 'CHTxt4': sentBy=='A' }">Hai bisogno di aiuto? Clicca qui!</p>
+                        </div>
+                        <p><span class="message-time CHTxt4" data-bind="text: time, css: { 'CHTxt5': sentBy=='V','CHTxt4': sentBy=='A'}">10:25</span></p>
+                        <span class="pointer agent CHBorder2" data-bind="css: { 'visitor CHBorder1':sentBy=='V' , 'agent CHBorder2': sentBy=='A'}"></span>
+                    </div>
+                </li>
+                <!--/ko-->
+                <!--/ko-->
+                
+                <!-- ko if: category == "CHAT" || category == "PRODUCT" || category == "MANY_PRODUCTS" || category == "FORM" || category == "RESPONSE" || category == "DOCS" || category == "CHOICE"  || category == "SIDEBUBBLELINK" || category == "CHOICERESPONSE" || category == "CUSTOM_FORM" -->
+
+
+                <li data-bind="css: { 'visitor': sentBy == 'V', 'agent': sentBy == 'A' }, attr: { 'aria-label': sentBy == 'V' ? 'Messaggio inviato dal visitatore' : 'Messaggio inviato dall&amp;#39;agente' }" style="overflow:hidden" class="agent" aria-label="Messaggio inviato dall&amp;#39;agente">
+
+                    <div data-bind="attr: { 'class':'custom-chat-message'},css: { 'CHBkg1 custom-chat-message-visitor': sentBy=='V','CHBkg2  custom-chat-message-agent': sentBy=='A'}" class="custom-chat-message CHBkg2 custom-chat-message-agent">
+                        <!--   <p><span class="message-name" data-bind="text: name, css: { 'CHTxt5': sentBy=='V','CHTxt4': sentBy=='A'}"></span><span class="message-time" data-bind="text: time, css: { 'CHTxt5': sentBy=='V','CHTxt4': sentBy=='A'}"></span></p> -->
+
+                        <div class="holder" style="overflow:auto" role="alert">
+                            <!-- ko if: category == "CUSTOM_FORM"--><!--/ko-->
+                            <!-- ko if: category == "CHOICE"-->
+                            <p class="message CHTxt4 choice-message-title unresponsed" data-bind="css:{'unresponsed': !response()}">
+                                <label data-bind="html: body, css: {'CHTxt5':sentBy=='V','CHTxt4':sentBy=='A'}, attr:{'for':'choice_' + id}" class="CHTxt4" for="choice_EBDEC"><div>🔍 Cosa stai cercando?</div>Scegli una delle seguenti opzioni per iniziare:</label>
+                            </p>
+                            <!-- ko if: !response() || !hideOptions -->
+                            <!-- ko if: type == "ChoiceButtons" -->
+                            <div role="form">
+                                <!-- ko foreach: options -->
+                                <p class="choice-button  button_chat_room_v4 inline CHBkg1" tabindex="0" role="button" data-bind="click:function(){oct8ne.choiceResponses.clickResponseButton($parent.id, $data.id);}, attr:{'aria-label':caption }" aria-label="🛍️  Cerco un prodotto">
+                                    <!-- ko if:icon && icon!=null && icon!="" --><!--/ko-->
+                                    <span class="choice-button-text CHTxt5" data-bind="html: caption">🛍️  Cerco un prodotto</span>
+                                </p>
+                                
+                                <p class="choice-button  button_chat_room_v4 inline CHBkg1" tabindex="0" role="button" data-bind="click:function(){oct8ne.choiceResponses.clickResponseButton($parent.id, $data.id);}, attr:{'aria-label':caption }" aria-label="💳 Metodi di pagamento">
+                                    <!-- ko if:icon && icon!=null && icon!="" --><!--/ko-->
+                                    <span class="choice-button-text CHTxt5" data-bind="html: caption">💳 Metodi di pagamento</span>
+                                </p>
+                                
+                                <p class="choice-button  button_chat_room_v4 inline CHBkg1" tabindex="0" role="button" data-bind="click:function(){oct8ne.choiceResponses.clickResponseButton($parent.id, $data.id);}, attr:{'aria-label':caption }" aria-label="📦 Ordini">
+                                    <!-- ko if:icon && icon!=null && icon!="" --><!--/ko-->
+                                    <span class="choice-button-text CHTxt5" data-bind="html: caption">📦 Ordini</span>
+                                </p>
+                                
+                                <p class="choice-button  button_chat_room_v4 inline CHBkg1" tabindex="0" role="button" data-bind="click:function(){oct8ne.choiceResponses.clickResponseButton($parent.id, $data.id);}, attr:{'aria-label':caption }" aria-label="🚛 Tempi di spedizione">
+                                    <!-- ko if:icon && icon!=null && icon!="" --><!--/ko-->
+                                    <span class="choice-button-text CHTxt5" data-bind="html: caption">🚛 Tempi di spedizione</span>
+                                </p>
+                                
+                                <p class="choice-button  button_chat_room_v4 inline CHBkg1" tabindex="0" role="button" data-bind="click:function(){oct8ne.choiceResponses.clickResponseButton($parent.id, $data.id);}, attr:{'aria-label':caption }" aria-label="🔁 Resi e rimborsi">
+                                    <!-- ko if:icon && icon!=null && icon!="" --><!--/ko-->
+                                    <span class="choice-button-text CHTxt5" data-bind="html: caption">🔁 Resi e rimborsi</span>
+                                </p>
+                                
+                                <p class="choice-button  button_chat_room_v4 inline CHBkg1" tabindex="0" role="button" data-bind="click:function(){oct8ne.choiceResponses.clickResponseButton($parent.id, $data.id);}, attr:{'aria-label':caption }" aria-label="💼 Sono un professionista">
+                                    <!-- ko if:icon && icon!=null && icon!="" --><!--/ko-->
+                                    <span class="choice-button-text CHTxt5" data-bind="html: caption">💼 Sono un professionista</span>
+                                </p>
+                                
+                                <p class="choice-button  button_chat_room_v4 inline CHBkg1" tabindex="0" role="button" data-bind="click:function(){oct8ne.choiceResponses.clickResponseButton($parent.id, $data.id);}, attr:{'aria-label':caption }" aria-label="🗣️ Assistenza">
+                                    <!-- ko if:icon && icon!=null && icon!="" --><!--/ko-->
+                                    <span class="choice-button-text CHTxt5" data-bind="html: caption">🗣️ Assistenza</span>
+                                </p>
+                                <!--/ko-->
+                            </div>
+                            <!--/ko-->
+                            <!-- ko if: type == "ChoiceList" --><!--/ko-->
+                            <!-- ko if: footer --><!--/ko-->
+                            <!--/ko-->
+                            <!--/ko-->
+                            <!-- ko if: category == "CHOICERESPONSE"--><!--/ko-->
+                            <!-- ko if: category == "SIDEBUBBLELINK"--><!--/ko-->
+                            <!-- ko if: category == "CHAT"--><!--/ko-->
+                            <!-- ko if: category == "PRODUCT"--><!--/ko-->
+                            <!-- ko if: category == "MANY_PRODUCTS"--><!--/ko-->
+                            <!-- ko if: category == "FORM"--><!--/ko-->
+                            <!-- ko if: category == "DOCS"--><!--/ko-->
+                        </div>
+                        <!-- ko if: category !== "SIDEBUBBLELINK"-->
+                        <p><span class="message-time CHTxt4" data-bind="text: time, css: { 'CHTxt5': sentBy=='V','CHTxt4': sentBy=='A'}"></span></p>
+                        <!--/ko-->
+                        <span class="pointer agent CHBorder2" data-bind="css: { 'visitor CHBorder1':sentBy=='V' , 'agent CHBorder2': sentBy=='A'}"></span>
+
+                    </div>
+
+                    
+                </li>
+                <!--/ko-->
+                <!-- ko if: category == "MESSAGERATING"--><!--/ko-->
+                <!-- ko if: category == "VALIDATION" --><!--/ko-->
+                <!-- ko if: category == "GDPR" --><!--/ko-->
+                <!-- ko if: category == "CANNED" --><!--/ko-->
+                <!--/ko-->
+                <li>
+                    <div class="is-typing-layer typing-effect" aria-label="El agente está escribiendo" style="display: none;">
+                        <span class="CHTxt2"></span>
+                        <div class="CHTxt4 CHBkg2 is-typing" aria-label="L'agente sta digitando">
+                            <div class="is-typing-dot CHBkg1"></div>
+                            <div class="is-typing-dot CHBkg1"></div>
+                            <div class="is-typing-dot CHBkg1"></div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+
+            <div id="go-to-bottom" aria-label="Visualizza l'ultimo messaggio" tabindex="0" role="button" class="go-to-bottom CHBkg2 CHTxt3 icon-common-arrowdown"><div id="warning-chat" class="warning-chat" style="display: none;"></div></div>
+        </div><div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-dark-thin mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 58px; height: 310px; display: block; max-height: 358px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+        <div id="just-looking-option" class="just-looking-option">
+            <div class="just-looking-header">
+                <p>Semplicemente guardando</p>
+            </div>
+            <div class="just-looking-option-message">Continua a fare shopping en la web. Siamo a tua disposizione per qualsiasi necessità.</div>
+            <div class="just-looking-option-message2">Scrivi la tua domanda qui sotto</div>
+        </div>
+        <iframe id="skype-frame" style="display: none"></iframe>
+        <div id="preview-pasted" class="preview-pasted CVBorder5">
+            <div id="pasted-image" class="pasted-image"></div>
+            <div tabindex="0" role="button" title="Invia un'immagine allegata" id="send-pasted-image" class="send-pasted-image icon-common-send"></div>
+            <span tabindex="0" role="button" title="Rimuovi l'immagine allegata" id="close-preview-pasted" class="icon-common-close-filters"></span>
+        </div>
+    </div>
+
+        <p class="powered-by-oct8ne-new CHTxt3  custom-chat-powered-oct8ne" lang="en" tabindex="0" role="button" aria-title="WAIPoweredByOct8ne">
+            Realizzato da
+            <img alt="Powered by Oct8ne" src="VisitorVisorV3_data/oct8ne-simple.png">
+        </p>
+</div>
+<div id="chat-tool-box" class="chat-tool-box custom-chat-tool-box CHBkg2">
+
+    <textarea id="chat-input" aria-label="Scrivi qui..." class="CHTxt4 chat-input-emoji custom-chat-input " maxlength="10000" placeholder="Scrivi qui..." data-emojiable="converted" data-emoji-input="unicode" aria-title="Seleziona un emoji e aggiungilo al messaggio" style="display: none; width: 247px;" data-id="1cb19dce-b490-4d8a-ad3c-497e00860f12" data-type="original-input"></textarea><div class="emoji-wysiwyg-editor CHTxt4 chat-input-emoji custom-chat-input" maxlength="10000" style="height: 0px; display: none; width: 247px;" data-id="1cb19dce-b490-4d8a-ad3c-497e00860f12" data-type="input" placeholder="Scrivi qui..." contenteditable="true" readonly="readonly"></div><div class="emoji-menu" data-id="1cb19dce-b490-4d8a-ad3c-497e00860f12" data-type="menu" style="display: none;"><div class="emoji-items-wrap1"><table class="emoji-menu-tabs"><tbody><tr><td><a class="emoji-menu-tab icon-recent-selected"></a></td><td><a class="emoji-menu-tab icon-smile"></a></td><td><a class="emoji-menu-tab icon-flower"></a></td><td><a class="emoji-menu-tab icon-bell"></a></td><td><a class="emoji-menu-tab icon-car"></a></td><td><a class="emoji-menu-tab icon-grid"></a></td></tr></tbody></table><div class="emoji-items-wrap mobile_scrollable_wrap"><div class="emoji-items"><a href="javascript:void(0)" title=":joy:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -550px 0px no-repeat;background-size:675px 175px;" alt=":joy:"><span class="label">:joy:</span></a><a href="javascript:void(0)" title=":kissing_heart:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -175px 0px no-repeat;background-size:675px 175px;" alt=":kissing_heart:"><span class="label">:kissing_heart:</span></a><a href="javascript:void(0)" title=":heart:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -250px -150px no-repeat;background-size:675px 175px;" alt=":heart:"><span class="label">:heart:</span></a><a href="javascript:void(0)" title=":heart_eyes:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -150px 0px no-repeat;background-size:675px 175px;" alt=":heart_eyes:"><span class="label">:heart_eyes:</span></a><a href="javascript:void(0)" title=":blush:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -75px 0px no-repeat;background-size:675px 175px;" alt=":blush:"><span class="label">:blush:</span></a><a href="javascript:void(0)" title=":grin:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -375px 0px no-repeat;background-size:675px 175px;" alt=":grin:"><span class="label">:grin:</span></a><a href="javascript:void(0)" title=":+1:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -600px -75px no-repeat;background-size:675px 175px;" alt=":+1:"><span class="label">:+1:</span></a><a href="javascript:void(0)" title=":relaxed:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -100px 0px no-repeat;background-size:675px 175px;" alt=":relaxed:"><span class="label">:relaxed:</span></a><a href="javascript:void(0)" title=":pensive:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -400px 0px no-repeat;background-size:675px 175px;" alt=":pensive:"><span class="label">:pensive:</span></a><a href="javascript:void(0)" title=":smile:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') 0px 0px no-repeat;background-size:675px 175px;" alt=":smile:"><span class="label">:smile:</span></a><a href="javascript:void(0)" title=":sob:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -575px 0px no-repeat;background-size:675px 175px;" alt=":sob:"><span class="label">:sob:</span></a><a href="javascript:void(0)" title=":kiss:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -475px -150px no-repeat;background-size:675px 175px;" alt=":kiss:"><span class="label">:kiss:</span></a><a href="javascript:void(0)" title=":unamused:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -450px 0px no-repeat;background-size:675px 175px;" alt=":unamused:"><span class="label">:unamused:</span></a><a href="javascript:void(0)" title=":flushed:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -350px 0px no-repeat;background-size:675px 175px;" alt=":flushed:"><span class="label">:flushed:</span></a><a href="javascript:void(0)" title=":stuck_out_tongue_winking_eye:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -275px 0px no-repeat;background-size:675px 175px;" alt=":stuck_out_tongue_winking_eye:"><span class="label">:stuck_out_tongue_winking_eye:</span></a><a href="javascript:void(0)" title=":see_no_evil:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -75px -75px no-repeat;background-size:675px 175px;" alt=":see_no_evil:"><span class="label">:see_no_evil:</span></a><a href="javascript:void(0)" title=":wink:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -125px 0px no-repeat;background-size:675px 175px;" alt=":wink:"><span class="label">:wink:</span></a><a href="javascript:void(0)" title=":smiley:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -25px 0px no-repeat;background-size:675px 175px;" alt=":smiley:"><span class="label">:smiley:</span></a><a href="javascript:void(0)" title=":cry:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -525px 0px no-repeat;background-size:675px 175px;" alt=":cry:"><span class="label">:cry:</span></a><a href="javascript:void(0)" title=":stuck_out_tongue_closed_eyes:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -300px 0px no-repeat;background-size:675px 175px;" alt=":stuck_out_tongue_closed_eyes:"><span class="label">:stuck_out_tongue_closed_eyes:</span></a><a href="javascript:void(0)" title=":scream:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -125px -25px no-repeat;background-size:675px 175px;" alt=":scream:"><span class="label">:scream:</span></a><a href="javascript:void(0)" title=":rage:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -175px -25px no-repeat;background-size:675px 175px;" alt=":rage:"><span class="label">:rage:</span></a><a href="javascript:void(0)" title=":smirk:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -50px -50px no-repeat;background-size:675px 175px;" alt=":smirk:"><span class="label">:smirk:</span></a><a href="javascript:void(0)" title=":disappointed:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -475px 0px no-repeat;background-size:675px 175px;" alt=":disappointed:"><span class="label">:disappointed:</span></a><a href="javascript:void(0)" title=":sweat_smile:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') 0px -25px no-repeat;background-size:675px 175px;" alt=":sweat_smile:"><span class="label">:sweat_smile:</span></a><a href="javascript:void(0)" title=":kissing_closed_eyes:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -200px 0px no-repeat;background-size:675px 175px;" alt=":kissing_closed_eyes:"><span class="label">:kissing_closed_eyes:</span></a><a href="javascript:void(0)" title=":speak_no_evil:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -125px -75px no-repeat;background-size:675px 175px;" alt=":speak_no_evil:"><span class="label">:speak_no_evil:</span></a><a href="javascript:void(0)" title=":relieved:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -425px 0px no-repeat;background-size:675px 175px;" alt=":relieved:"><span class="label">:relieved:</span></a><a href="javascript:void(0)" title=":grinning:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -50px 0px no-repeat;background-size:675px 175px;" alt=":grinning:"><span class="label">:grinning:</span></a><a href="javascript:void(0)" title=":yum:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -275px -25px no-repeat;background-size:675px 175px;" alt=":yum:"><span class="label">:yum:</span></a><a href="javascript:void(0)" title=":ok_hand:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -650px -75px no-repeat;background-size:675px 175px;" alt=":ok_hand:"><span class="label">:ok_hand:</span></a><a href="javascript:void(0)" title=":neutral_face:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -600px -25px no-repeat;background-size:675px 175px;" alt=":neutral_face:"><span class="label">:neutral_face:</span></a><a href="javascript:void(0)" title=":confused:"><img src="VisitorVisorV3_data/blank.gif" class="img" style="display:inline-block;width:25px;height:25px;background:url('/api/img/plugins/emoji//emoji_spritesheet_0.png') -625px -25px no-repeat;background-size:675px 175px;" alt=":confused:"><span class="label">:confused:</span></a></div></div></div></div><i class="emoji-picker-icon emoji-picker fa fa-smile-o" data-id="1cb19dce-b490-4d8a-ad3c-497e00860f12" data-type="picker" tabindex="0" aria-label="Add an emoji" role="button" style="display: none;"></i>
+
+        <div id="upload-visitor-tool" class="upload-visitor-tool custom-chat-upload-tool icon-common-clip-upload CHTxt3" title="Carica una foto per mostrare all'operatore quello che stai cercando." style="display: none;">
+            <form id="upload-visitor-form" enctype="multipart/form-data" target="hidden_upload" method="post" action="https://upload-eu.oct8ne.com/Files/SaveVisitorImage">
+                <input id="upload-visitor-file-path" type="file" name="files" class="hidden">
+                <label id="visitor-upload-button" class="share-image" for="upload-visitor-file-path" aria-label="Carica un'immagine o un documento" tabindex="0" role="button"></label>
+                <input id="upload-token-visitor" aria-labelledby="visitor-upload-button" type="hidden" name="token">
+                <input id="upload-token-room" type="hidden" name="room">
+                <input type="hidden" value="Visitor" name="who">
+                <input type="hidden" value="Coviwer" name="type">
+                <iframe id="hidden_upload" name="hidden_upload" class="hidden" aria-hidden="true"></iframe>
+            </form>
+        </div>
+
+</div>
+
+
+        <div id="access-form-wrapper" class="access-form-wrapper custom-access-form-wrapper CHBkg2">
+            <div class="form-header custom-email-us-header CHBkg1 CHTxt5">
+    <div class="icon-common-minimize minimize-icon-wrapper CHTxt5" tabindex="0" role="button"></div>
+    <div class="chat-menu custom-email-us-menu" aria-haspopup="true" aria-expanded="false" aria-label="Mostra le opzioni della chat" tabindex="0" role="button">
+        <span class="icon-common-minimize-button CHTxt5"></span>
+        <span class="icon-common-minimize-button CHTxt5"></span>
+        <span class="icon-common-minimize-button CHTxt5"></span>
+    </div>
+</div>
+
+<div id="access-form-lay" class="access-form-lay">
+    <div id="info-wrapper" class="info-wrapper">
+        <p class="CHTxt4 canned-trigger">Chatta con noi</p>
+
+        <p class="CHTxt4 title-section">Informazioni di contatto</p>
+
+
+
+        <input type="text" placeholder="Nome" id="access-form-name" class="CHTxt1 custom-access-form-name">
+        <input type="text" placeholder="Email" id="access-form-email" class="CHTxt1 custom-access-form-email">
+
+
+
+        <p class="CHTxt4 title-section title-margin-top">Come possiamo aiutarti?</p>
+        <textarea placeholder="Scrivi qui la tua domanda" id="access-form-message" class="CHTxt1 custom-access-form-message"></textarea>
+    </div>
+
+    <div id="departments-wrapper" class="departments-wrapper">
+        <p class="CHTxt4 title-section">Hai una domanda? Abbiamo la risposta! Dicci con quale dipartimento vorresti parlare e ci occuperemo del resto</p>
+        <select id="select-department" class="CHTxt1" aria-label="Selezionare dipartimento">
+            <option value="null" selected="selected">Selezionare dipartimento</option>
+        </select>
+    </div>
+
+    <p class="enter-chat generic-button-v4 CHTxt5 CHBkg4" aria-label="Vai alla chat" tabindex="0" role="button" id="send-access-form-info">Vai alla chat</p>
+</div>
+        </div>
+    </main>
+
+    <aside id="email-us-form" class="email-us-form CHBkg2" style="display: none;">
+        
+
+
+<div class="form-header CHBkg1 CHTxt5 custom-email-us-header">
+    <!-- Mostramos el botón que abre/cierra el covisor en el visitante si el valor que nos llega por el controlador es "true" -->
+        <span id="show-coviewer" class="show-coviewer icon-common-open-visor custom-chat-icon-openviewer CHTxt5" aria-haspopup="true" aria-label="Attiva/disattiva il coviewer" aria-expanded="false" tabindex="0" role="button"></span>
+                <div class="chat-menu custom-email-us-menu" aria-haspopup="true" aria-expanded="false" tabindex="0" role="button" aria-label="Mostra le opzioni della chat">
+                <span class="icon-common-minimize-button CHTxt5"></span>
+                <span class="icon-common-minimize-button CHTxt5"></span>
+                <span class="icon-common-minimize-button CHTxt5"></span>
+            </div>
+    </div>
+
+<div id="chat-menu-options" class="chat-menu-options  custom-chat-menu-options  CHBkg2">
+    <ul role="menu">
+
+        <!-- Si la edición no es free y tenemos el coviewer activado, mostramos la opción del menú "Get Summary" -->
+            <li role="menuitem" id="send-summary-menu-form" class="custom-chat-menu-send-summary send-summary-menu CHBkg2">
+                <span class="HTxt1">Riepilogo</span>
+                <p class="summary-advice CHTxt3">Inserisci la tua e-mail per ricevere un riepilogo della sessione e dei prodotti visti.</p>
+                <input class="summary-input" autocomplete="email" type="email" placeholder="Email" aria-label="E-mail" title="E-mail">
+                <div class="summary-button CHBkg3 generic-button-v4" tabindex="0" role="button" aria-label="Inviare">Inviare</div>
+            </li>
+                    <li role="menuitem" class="CHBkg2 custom-chat-menu-close close-iframe-visitor-js" aria-label="Riduci" tabindex="0"><span class="HTxt1">Riduci</span></li>
+        </ul>
+    <div class="send-summary-feedback generic-button-v4" tabindex="0" role="button" aria-label="Inviare"><p>Un riepilogo di questa sessione e tutti i prodotti che hai visualizzato sono stati inviati</p><p class="feedback-ok CHBkg3">OK</p></div>
+</div>
+
+<div class="form-wrapper custom-email-us-form">
+    <!-- Estrechamos el menú del chat cliente si está desactivado el coviewer, ya que perdemos la opción "Get Summary" -->
+    <form class="form-contact">
+        <header>
+            <p class="CHTxt4 custom-email-us-text contact-form-header ">Gli
+ operatori non sono al momento disponibili. Vi preghiamo di lasciare un 
+messaggio. Risponderemo nel piú breve tempo possibile.</p>
+        </header>
+
+            <div class="contact-form-fields">
+                <input type="text" autocomplete="name" placeholder="Il tuo nome" id="email-us-name" class="CHTxt1 custom-email-us-name-input" aria-label="Nome" title="Nome">
+                <input type="text" autocomplete="email" placeholder="e-mail" id="email-us-email" class="CHTxt1 custom-email-us-mail-input" aria-label="E-mail" title="E-mail">
+
+                                                                <textarea required="" title="Inviaci i tuoi commenti" aria-label="Inviaci i tuoi commenti" id="email-us-comments" placeholder="Il tuo messaggio..." class="CHTxt1 custom-email-us-message-input   "></textarea>
+            </div>
+            <div class="contact-form-footer">
+                <div id="send-email-us" title="Pulsante Invia email" aria-label="Pulsante Invia email" tabindex="0" role="button" class="send-email-us icon-common-maill custom-email-us-send-button CHTxt5 CHBkg1 generic-button-v4">Invia</div>
+
+                <div id="email-us-form-loading" class="email-us-form-loading">
+                    <img alt="Loading icon" src="VisitorVisorV3_data/spinner.gif">
+                </div>
+                <div id="email-us-form-message" class="email-us-form-message"></div>
+                <div id="email-success" class="email-success">
+                    <p></p>
+                </div>
+            </div>
+    </form>
+
+
+</div>
+<div class="footer-email-us">
+        <p class="powered-by-oct8ne-new CHTxt3  custom-chat-powered-oct8ne" lang="en" tabindex="0" role="button" id="powered-by-oct8ne-new">
+            Realizzato da
+            <img alt="Powered by Oct8ne" src="VisitorVisorV3_data/oct8ne-simple.png">
+        </p>
+</div>
+
+
+    </aside>
+
+    <div id="summary-finalized-form" class="custom-summary-form summary-form" style="display: none;">
+<p class="CHTxt5 custom-summary-form-text">Ricevi un'e-mail di questa sessione e di tutti i prodotti visualizzati.</p>        <input type="text" placeholder="youremail@address.com" class="custom-summary-form-email  email-adress-summary CHTxt1">
+        <input type="button" class="custom-summary-form-send-button send-summary-button CHBkg3 CHTxt5" value="Invia email">
+        <input type="button" class="custom-summary-form-close-button close-summary-finalized-form CHBkg1 CHTxt5" value="Riduci">
+
+        <span id="back-to-oct8ne" class="back-to-oct8ne CHTxt5">❮ ❮ Indietro</span>
+    </div>
+
+    <div id="pincode-wrapper" class="CVBkg1" style="display: none;">
+        <p class="CVTxt2">Fornisci questo codice per vedere i prodotti insieme all'operatore</p>
+        <div class="CVTxt2" id="pin"></div>
+        <span class="CVTxt2" tabindex="0" role="button">Riduci</span>
+    </div>
+
+    <div class="block-modal modal-bkg-v4" id="block-modal" aria-modal="true">
+        <div class="oct8ne-version modal-content-v4" id="oct8ne-version">
+            <p class="title v3-hide "><span class="icon-common-close-filters icon-common-close-button CHTxt1 "></span></p>
+            <p class="CHTxt2">Tecnologia proprietaria di co-visualizzazione fornita da</p>
+            <img alt="Oct8ne logo" src="VisitorVisorV3_data/oct8ne-simple.png">
+            <p class="CHTxt2">Versione&nbsp;6.14.0&nbsp;· © 2025 Oct8ne inc.</p>
+
+            <p class="CHTxt2 v4-link-oct8ne"><span class="v4-hide">Scopri di più su Oct8ne a</span> <a tabindex="0" role="button" class="colored" href="http://www.oct8ne.com/?utm_medium=Web&amp;utm_source=Oct8ne&amp;utm_campaign=Poweredby" target="_blank">www.oct8ne.com</a></p>
+            <p><a class="version-privacy CHTxt2" tabindex="0" role="button" href="http://www.oct8ne.com/privacy-policy/?utm_medium=Web&amp;utm_source=Oct8ne&amp;utm_campaign=Poweredby" target="_blank">Privacy e Politica legale</a></p>
+            <div tabindex="0" role="button" id="close-legend-new" class="close-legend button-modal-v4 CHTxt5 CHBkg1 ">Riduci</div>
+        </div>
+    </div>
+
+    <div id="lay-AFK" class="lay-AFK  modal-bkg-v4" role="dialog">
+        <div class="modal-content-v4">
+            
+            <p class="afk-title-v4">Oh, siamo spiacenti!</p>
+            <p class="afk-content-advice"></p> 
+            <p>Clicca per collegarti di nuovo alla sessione.</p>
+            <div id="refresh-page-afk" tabindex="0" role="button" aria-label="RICONNETTI" class="refresh-page-afk  button-modal-v4 CHBkg3 CHTxt2">
+                RICONNETTI
+            </div>
+        </div>
+    </div>
+
+    <div id="error-bot-message" class="error-bot-message modal-bkg-v4" role="dialog">
+
+        <div class="modal-content-v4">
+            <p style="margin-top:50px">
+                Si è verificato un errore nella conversazione.
+                <br>
+                <br>
+                Premere il pulsante per avviarlo di nuovo.
+            </p>
+            <div id="refresh-page-error-bot" style="margin-top:25px;" class="refresh-page-error-bot refresh-page-afk button-modal-v4 CHBkg3  CHTxt2">   Riavviare</div>
+            <p class="error-bot-content" tabindex="0" role="button" style=" position:absolute; bottom:5px; font-style:italic; word-break: break-word" id="error-bot-content-message"></p>
+        </div>
+    </div>
+
+    <div id="bottom-menu" class="bottom-menu">
+        <ul role="menu" l="">
+            <li id="minimize-by-menu" class="icon-common-close-filters button-alive-v4 CHBkg1" attr-lay="close" tabindex="0" role="button" aria-label="Riduci la chat"></li>
+            
+        </ul>
+        
+        <div class="tool-tip close-advice">Riduci la chat</div>
+    </div>
+
+    <!--HIDDEN INPUTS-->
+    <div id="hiddens-model">
+        <input type="hidden" id="device" value="desktop">
+        <input type="hidden" id="my-token">
+        <input type="hidden" id="other-name" value="Operatore">
+        <input type="hidden" id="my-name" value="Cliente">
+        <input type="hidden" id="platform" value="MAGENTO">
+        <input type="hidden" id="my-shop-id" value="">
+        <input type="hidden" id="enter-type" value="REOPEN">
+        <input type="hidden" id="token-session">
+        <input type="hidden" id="base-url" value="//www.aosom.it/">
+        <input type="hidden" id="login-url">
+        <input type="hidden" id="api-version" value="2.3">
+        <input type="hidden" id="protocol-http" value="https:">
+        <input type="hidden" id="user-type" value="V">
+        <input type="hidden" id="internal-id" value="">
+        <input type="hidden" id="url-media" value="">
+        
+        <input type="hidden" id="currency-visitor" value="$">
+        <input type="hidden" id="locale" value="it-IT">
+        <input type="hidden" id="show-search" value="True">
+        <input type="hidden" id="domain-id" value="4067">
+        <input type="hidden" id="agents-connected" value="True">
+        <input type="hidden" id="edition" value="2">
+        <input type="hidden" id="is-typing-text" value="True">
+        <input type="hidden" id="cart-redirection-forced" value="False">
+        <input type="hidden" id="enabled-departments" value="False">
+        <input type="hidden" id="conference-provider">
+        <input type="hidden" id="client-utils">
+        <input type="hidden" id="cdn-url" value="//static-eu.oct8ne.com/">
+        <input type="hidden" id="invite-link-assigned-agent">
+        <input type="hidden" id="invite-link-exclusive-agent" value="False">
+        <input type="hidden" id="visitors-overflow" value="True">
+        <input type="hidden" id="session-summary-id" value="0">
+        <input type="hidden" id="visitor-protocol-page" value="https:">
+        <input type="hidden" id="iframe-status" value="MINIMIZED">
+        <input type="hidden" id="status-before-min" value="null">
+        <input type="hidden" id="upload-url" value="https://upload-eu.oct8ne.com/">
+        <input type="hidden" id="server-environment" value="https://backoffice-eu.oct8ne.com/">
+        <input type="hidden" id="token-room" value="TEMP264607831255-4067-82566161B0E39A965EAD07.2509">
+        <input type="hidden" id="environment" value="EU">
+        <input type="hidden" id="oct8ne-version-number" value="6.14.0">
+        <input type="hidden" id="origin" value="https://www.aosom.it">
+
+            <input type="hidden" id="chrome-ss-extension-id" value="ibbpfblmgkcdpdbfjgighokkjipbohbp">
+        <p style="display:none;" class="mailHeaderBkg"></p>
+        <p style="display:none;" class="mailTextColor"></p>
+        <p style="display:none;" class="mailImageLogoSrc" data-attr="https://static.oct8ne.com/api/img/backoffice/oct8ne-simple.png"></p>
+
+    </div>
+
+    <audio id="visitor-sound">
+
+        <source src="VisitorVisorV3_data/oct8ne-visitor-alert.mp3">
+        <source src="VisitorVisorV3_data/oct8ne-visitor-alert.ogg">
+    </audio>
+
+    <script>
+        $(function () {
+
+            $o.customTextsList = {
+                 RateCommentOpt: "Il commento è facoltativo",
+                 RateThanks: "Grazie per aver valutato il nostro servizio!",
+                 ProdMessLink: "Clicca sull'immagine per vederla in grande",
+                 NoAgentsConnected: "Non ci sono operatori connessi in questo momento. Per favore, contattaci durante l'orario di attenzione al cliente o mandaci un messaggio."
+            }
+
+            if (window.self == window.top) {
+                window.location.href = "https:" + "//www.aosom.it/";
+            }
+            else {
+                $("#results-search").show();
+                $("#visitor-protocol-page").val(window.location.protocol);
+
+
+
+                $o.settings = {
+                    inactivityVisitorMessages: ["Sei ancora lì?", "Non ti sento da un po'. Ci sei ancora?","La sessione è termata perchè inattiva troppo a lungo. Contattaci quando sei pronto!"],
+                    inactivityVisitorStages: [ "90000","90000", "90000"],
+                    license: "62498E7CC67506F8B0BF11806FF9AED1",
+                    welcomMessage: "",
+                    xframeDisabled: "False",
+                    templateAddToCart: "redirect",
+                    protocolHttp: "https:",
+                    priceLayout: {},
+                    showRatingSession : "False",
+                    showRatingAgent: "False",
+                    forceRatingsAtEnd: "False" == "True" ? true : false,
+                    listDepts: [],
+                    inactivityAgentTime:"180",
+                    showCoviewer : "True",
+                    showSendSummary: "True",
+                    privacyPolicy:"",
+                    showAccessForm: "False" == "True" ? true : false,
+                    ssOnly: "False" == "True" ? true : false,
+                    allowTrackingProductsLite: "False" == "True" ? true : false,
+                    autoShowCoviewer: "True" == "True" ? true : false,
+                    allowPixelSale: true,
+                    allowUploads: "True" == "True" ? true : false,
+                    chatAlertsStyle: {
+                        type: "CALLOUTS",
+                        customStyles: "background:#ddd; color:lime; border-radius:30px; font-size:20px; border:5px dashed red"
+                    },
+                    catalogServer: "//oct8neeucatalogservice.azurewebsites.net/",
+                    botServer: "https://oct8neboteu.azurewebsites.net/",
+                    botServerHttp: "https://oct8neboteu.azurewebsites.net/",
+                    intervalPresence: 60000,
+                    chatStyle: 1
+                  };
+
+                $o.enterData = {
+                    idProduct: "",
+                    productsViewed: "",
+                    statusFromTrigger: "",
+                    cannedMessage: $("#canned-message").val(),
+                    searchTerm: "",
+                    vipAction: "",
+                    vipMessage: "",
+                    allowedDepartmentsId: "",
+                    initVideoCall: "undefined",
+                    triggerId: 0
+                };
+
+                $("#canned-message").remove();
+                $o.variablesVisitor.referenceTimeAFK = 21600000;
+                $o.variablesVisitor.status = 'Searching';
+                $o.variablesVisitor.tokenVisitor = '675484541-87C23B30EA485EB27C1E8B.2509';
+                $o.variablesVisitor.domain = '4067';
+                $o.variablesVisitor.connection = 'undefined';
+                $o.variablesVisitor.pendingMessages = '';
+                $o.variablesVisitor.currencyVisitor = '$';
+                $o.variablesVisitor.sessionSummaryId = '0';
+                $o.variablesVisitor.soundNotificationEnabled = 'True'; //Viene de BBDD
+
+
+                //MOSRAR BOLITA ROJA PENDING MESSAGES
+                if ($o.variablesVisitor.pendingMessages) {
+                    $("#warning-visitor").html($o.variablesVisitor.pendingMessages).show();
+                };
+
+                //FUNCION AUXILIAR "TO KNOW IE"
+                var isNotIE = function isIE () {
+                    var userAgent = window.navigator.userAgent.toLowerCase(),
+                        appName = window.navigator.appName;
+                    return !( appName === 'Microsoft Internet Explorer' || (appName === 'Netscape' && userAgent.indexOf('trident') > -1) );
+                };
+
+                //OPENTOK CON IE NECESITA DE UN PLUGIN PARA INSTALAR.
+                var checkProvider = $("#conference-provider").val();
+
+                if (checkProvider == 'opentok') {
+                    if (!window.OT) {
+                        $("#conference-provider").val(null);
+                        console.log("Opentok issue: Object OT not loaded.");
+                    } else if (!isNotIE() && !OT.checkSystemRequirements()) {
+                      $o.core.doPostMessageToApi("COVIEWERLOADED");
+                    };
+                };
+
+                $o.core.init();
+                $o.rewrite.init();
+            };
+
+            //CONTROL DE INACTIVIDAD AFK
+            $(".custom-body").not("#minimize-by-menu").on("click", function () { //Antes era "all-wrapper"
+                var clickNow = new Date();
+                if ((clickNow - $o.variablesVisitor.lastInteractionAFK) > $o.variablesVisitor.referenceTimeAFK) {
+                    $o.variablesVisitor.sendCookiesToApi($o.variablesVisitor.nameFunction.deleteCookies, [{ cookie: $o.cookies.tokenSession, value: "" }, { cookie: $o.cookies.lastInteractionAFK, value: "" },]); //Para asegurar que es un visitor nuevo. By Gerard!
+                    if ($.connection.hub.state != $.signalR.connectionState.disconnected) $.connection.hub.stop();
+                    if ($o.variablesVisitor.coviewerStatus !== "MINIMIZED") {
+                        $("#lay-AFK .afk-content-advice").text(culture.coviewer.AdviceAFK1);
+                       $o.visitorStart.showLayAFK();
+                        $("#chat-input").blur();
+                    } else {
+                        $("#lay-AFK").hide();
+                    }
+                }
+            });
+
+            
+                var maxPresenceRepetitions = 1800000 / $o.settings.intervalPresence; //7200000 milliseconds in 2h
+                var totalPresenceRepetitions = 1;
+
+            function pingPresence() {
+                    if (maxPresenceRepetitions <= totalPresenceRepetitions) {
+                        clearInterval(pingPresenceInterval);
+                        $o.storage.local.set("oct8ne-presence-ping", $o.core.localStorageActions.REMOVE)
+                        return;
+                    }
+
+                    if ($o.core.globalVariables.sessionFinalized === false) {
+                            $.post("https://oct8neeupresence.azurewebsites.net/presence/addPresence?interval=" +
+                                        $o.settings.intervalPresence +
+                                        "&domainId=" +
+                                        $o.core.globalVariables.domainId).fail(function(xhr, status, error) {
+                                        clearInterval(pingPresenceInterval);
+                                        $o.storage.local.set("oct8ne-presence-ping", $o.core.localStorageActions.REMOVE)
+                                    });
+                    }
+                    if ($o.core.globalVariables.sessionFinalized === true) {
+                        clearInterval(pingPresenceInterval);
+                       $o.storage.local.set("oct8ne-presence-ping", $o.core.localStorageActions.REMOVE)
+                    }
+                    totalPresenceRepetitions = totalPresenceRepetitions + 1;
+                };
+
+            if ($o.storage.local.get("oct8ne-presence-ping") == undefined) {
+                    pingPresence();
+                }
+
+                var pingPresenceInterval = setInterval(function() {
+                        var countPrenseceLoop = 1000;
+                    var actualLoop = $o.storage.local.get("oct8ne-presence-ping");
+
+                        if (actualLoop === "NaN") {
+                            pingPresence();
+                            actualLoop = countPrenseceLoop;
+                        }
+                        if (actualLoop != undefined) {
+                            countPrenseceLoop = parseInt(actualLoop) + 1000;
+                        }
+
+                        if (countPrenseceLoop >= $o.settings.intervalPresence) {
+                            if ($o.core.agentsConnected == false || !$o.variablesVisitor.visitorsOverflow) {
+                                clearInterval(pingPresenceInterval);
+                               $o.storage.local.set("oct8ne-presence-ping", $o.core.localStorageActions.REMOVE)
+                            } else {
+                                pingPresence();
+                                countPrenseceLoop = 0;
+                            }
+                        }
+                        $o.storage.local.set("oct8ne-presence-ping", countPrenseceLoop);
+                    },
+                    1000);
+            
+
+        });
+    </script>
+
+</body></html>

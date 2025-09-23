@@ -1,0 +1,151 @@
+/*THEME DEFINITIONS*/
+.CVTxt1 {
+  color: #890000 !important;
+}
+.CVTxt2 {
+  color: #ffffff !important;
+}
+.CVTxt3 {
+  color: #890000 !important;
+}
+.CVTxt4 {
+  color: #890000 !important;
+}
+.CVTxt5 {
+  color: #f6f6f6 !important;
+}
+.CVBkg1 {
+  background-color: #890000 !important;
+}
+.CVBkg2 {
+  background-color: #ffffff !important;
+}
+.CVBkg3 {
+  background-color: #890000 !important;
+}
+.CVBkg4 {
+  background-color: #890000 !important;
+}
+.CVBkg5 {
+  background-color: #f6f6f6 !important;
+}
+.CVBorder1 {
+  border-color: #890000 !important;
+}
+.CVBorder2 {
+  border-color: #ffffff !important;
+}
+.CVBorder3 {
+  border-color: #890000 !important;
+}
+.CVBorder4 {
+  border-color: #890000 !important;
+}
+.CVBorder5 {
+  border-color: #f6f6f6 !important;
+}
+.CHTxt1 {
+  color: #c6101b !important;
+}
+.CHTxt2 {
+  color: #f6f6f6 !important;
+}
+.CHTxt3 {
+  color: #890000 !important;
+}
+.CHTxt4 {
+  color: #890000 !important;
+}
+.CHTxt5 {
+  color: #ffffff !important;
+}
+.CHBkg1 {
+  background-color: #c6101b !important;
+}
+.CHBkg2 {
+  background-color: #f6f6f6 !important;
+}
+.CHBkg3 {
+  background-color: #890000 !important;
+}
+.CHBkg4 {
+  background-color: #890000 !important;
+}
+.CHBkg5 {
+  background-color: #ffffff !important;
+}
+.CHBorder1 {
+  border-color: #c6101b !important;
+}
+.CHBorder2 {
+  border-color: #f6f6f6 !important;
+}
+.CHBorder3 {
+  border-color: #890000 !important;
+}
+.CHBorder4 {
+  border-color: #890000 !important;
+}
+.CHBorder5 {
+  border-color: #ffffff !important;
+}
+.HTxt1 {
+  color: #890000 !important;
+}
+.HTxt2 {
+  color: #f6f6f6 !important;
+}
+.HBkg1 {
+  background-color: #890000 !important;
+}
+.HBkg2 {
+  background-color: #f6f6f6 !important;
+}
+.HBorder1 {
+  border-color: #890000 !important;
+}
+.HBorder2 {
+  border-color: #f6f6f6 !important;
+}
+.CVBorderLeft2 {
+  border-left-color: #f6f6f6 !important;
+}
+.CVBorderRight2 {
+  border-right-color: #f6f6f6 !important;
+}
+/******TEMPLATE MAIL******/
+.mailHeaderBkg {
+  background: #c6101b !important;
+}
+.mailTextColor {
+  color: #ffffff !important;
+}
+/******END TEMPLATE MAIL******/
+.chat-input-emoji:focus {
+  box-shadow: 0 0 2px 1px #c6101b !important;
+}
+#oct8ne-conference-toolbar button:disabled {
+  color: #cdcdcd !important;
+}
+.chat-menu-options::before {
+  color: #f6f6f6 !important;
+}
+.mCSB_buttonLeft,
+.mCSB_buttonRight {
+  color: #c6101b !important;
+  background-color: #f6f6f6 !important;
+}
+.trigger-message a {
+  color: #890000 !important;
+  background: none !important;
+}
+.mobile-menu div a {
+  color: #560000 !important;
+}
+.mobile-menu div a.current {
+  color: #fff !important;
+}
+.viewport-mobile .oct8ne-chat-room .holder .message a,
+.viewport-mobile .oct8ne-chat-room .holder .message a:visited {
+  color: initial !important;
+}

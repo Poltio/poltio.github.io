@@ -1,0 +1,230 @@
+/*DESKTOP VARIABLES*/
+/*Colors*/
+@font-face {
+  font-family: 'Lato';
+  src: url('/api/fonts/Lato-Regular.eot?1202') format('embedded-opentype'), url('/api/fonts/Lato-Regular.ttf?1202') format('truetype'), url('/api/fonts/Lato-Regular.woff?1202') format('woff'), url('/api/fonts/Lato-Regular.woff2?1202') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('/api/fonts/Lato-Bold.eot?1202') format('embedded-opentype'), url('/api/fonts/Lato-Bold.ttf?1202') format('truetype'), url('/api/fonts/Lato-Bold.woff?1202') format('woff'), url('/api/fonts/Lato-Bold.woff2?1202') format('woff2');
+  font-weight: 700;
+}
+/* MIXINS */
+/*************************ADDITIONAL CSS FOR LEFT HANDED VISOR *****************************/
+.chat-wrapper {
+  left: 0;
+}
+.email-us-form {
+  left: 0;
+}
+.summary-form {
+  left: 0;
+}
+.coviewer-wrapper {
+  float: right;
+  border-radius: 0px 5px 5px 0 !important;
+}
+.custom-chat-wrapper-full #chat-tool-box {
+  border-radius: 0px 0px 0 5px !important;
+}
+.lay-AFK,
+.error-bot-message {
+  right: auto;
+}
+.chat-header .show-coviewer {
+  float: right;
+  transform: scaleX(-1);
+}
+.chat-header .show-coviewer.js-reverse {
+  transform: none !important;
+  margin-right: 2px;
+  margin-left: -2px;
+}
+.chat-header .minimize-icon-wrapper {
+  float: right;
+}
+.chat-header .agent-info {
+  float: right;
+  width: 215px;
+}
+.chat-header .rating-area {
+  right: 47px;
+}
+.chat-header .pending-products {
+  left: 270px !important;
+}
+.form-header .chat-menu {
+  float: left;
+}
+.form-header .show-coviewer {
+  float: right;
+  transform: scaleX(-1);
+}
+.form-header .show-coviewer.js-reverse {
+  transform: none !important;
+}
+.form-header .minimize-icon-wrapper {
+  left: 45px;
+}
+.chat-menu-options {
+  left: 9px;
+}
+.chat-menu-options::before {
+  left: 5px;
+}
+.bottom-menu ul li {
+  float: left;
+}
+.bottom-menu .tool-tip.close-advice {
+  left: 70px;
+  text-align: center;
+}
+.bottom-menu .tool-tip.close-advice::before {
+  font-family: "icons-common";
+  content: "\e603";
+  left: -5px;
+  color: #fff;
+  position: absolute;
+  top: 10px;
+}
+.bottom-menu .tool-tip.close-advice::after {
+  content: "";
+}
+#oct8ne-conference-toolbar .tool-tip {
+  top: 9px;
+}
+#oct8ne-conference-toolbar .tool-tip.start-audio-advice {
+  left: -115px;
+  text-align: center;
+  width: 110px;
+}
+#oct8ne-conference-toolbar .tool-tip.start-audio-advice::before {
+  content: "";
+}
+#oct8ne-conference-toolbar .tool-tip.start-audio-advice::after {
+  font-family: "icons-common";
+  color: #fff;
+  content: "\e606";
+  position: absolute;
+  right: -6px;
+}
+#oct8ne-conference-toolbar .tool-tip.start-video-advice {
+  left: -45px;
+  text-align: center;
+  width: 110px;
+}
+#oct8ne-conference-toolbar .tool-tip.start-video-advice::before {
+  content: "";
+}
+#oct8ne-conference-toolbar .tool-tip.start-video-advice::after {
+  font-family: "icons-common";
+  color: #fff;
+  content: "\e606";
+  position: absolute;
+  right: -6px;
+}
+#oct8ne-conference-toolbar .tool-tip.end-call-advice {
+  left: -105px;
+  width: 100px;
+  top: 18px;
+  text-align: center;
+}
+#oct8ne-conference-toolbar .tool-tip.end-call-advice::before {
+  content: "";
+}
+#oct8ne-conference-toolbar .tool-tip.end-call-advice::after {
+  font-family: "icons-common";
+  color: #fff;
+  content: "\e606";
+  position: absolute;
+  right: -6px;
+  top: 10px;
+}
+#oct8ne-conference-toolbar .tool-tip.cam-end-advice {
+  left: -35px;
+  width: 100px;
+  top: 18px;
+  text-align: center;
+}
+#oct8ne-conference-toolbar .tool-tip.cam-end-advice::before {
+  content: "";
+}
+#oct8ne-conference-toolbar .tool-tip.cam-end-advice::after {
+  font-family: "icons-common";
+  color: #fff;
+  content: "\e606";
+  position: absolute;
+  right: -6px;
+  top: 10px;
+}
+#oct8ne-conference-toolbar .tool-tip.cam-start-advice {
+  left: -35px;
+  width: 100px;
+  top: 18px;
+  text-align: center;
+}
+#oct8ne-conference-toolbar .tool-tip.cam-start-advice::before {
+  content: "";
+}
+#oct8ne-conference-toolbar .tool-tip.cam-start-advice::after {
+  font-family: "icons-common";
+  color: #fff;
+  content: "\e606";
+  position: absolute;
+  right: -6px;
+  top: 10px;
+}
+.tutorial-coviewer {
+  left: 0;
+}
+.instructions-coviewer {
+  float: right;
+  border-left: 2px dashed #f6f6f6;
+  border-right: none;
+}
+.instructions-coviewer .down-tutorial span {
+  float: left;
+  margin: 18px 0 0 10px;
+  transform: rotate(180deg);
+}
+.instructions-coviewer .down-tutorial span.bottom {
+  margin: 65px 0 0 10px;
+}
+.instructions-upload {
+  left: 15px;
+}
+.up-tutorial .icon-common-open-visor {
+  float: right;
+  margin: 8px 10px 0 0;
+  transform: none;
+}
+.up-tutorial .icon-common-arrow-tut-left {
+  float: right;
+  transform: scaleX(-1);
+  margin: 20px 10px 0px 0px;
+}
+.up-tutorial p {
+  left: 112px;
+}
+.block-modal {
+  left: 0;
+}
+.lay-AFK {
+  left: 0;
+}
+.bottom-menu {
+  left: 0;
+}
+#oct8ne-conference-body.zoom1 {
+  left: 302px;
+}
+#oct8ne-conference-body #oct8ne-local-video.zoom1 {
+  left: 8px;
+}
+#oct8ne-conference-info.zoom1 div {
+  left: 435px;
+}
+#oct8ne-conference-toolbar {
+  right: 0;
+}
