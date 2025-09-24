@@ -1,0 +1,1 @@
+"use strict";var homeSlider,sliderCount=document.getElementById("slider").children.length;1<sliderCount&&(homeSlider=tns({container:"#slider",items:1,slideBy:"page",autoplay:!0,autoplayButtonOutput:!1,nav:!1,speed:1500,autoplayTimeout:5e3}));
