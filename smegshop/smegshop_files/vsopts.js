@@ -1,0 +1,1 @@
+window._vsq = window._vsq || []; window._vsq.push(['vsOpts', {site: 'smeguk', vip: 'vsvipln01.rightnowtech.com', poolId: '22570:1', vsEnabled: true, cacheDomain: 'smeguk.widget.custhelp.com'}]);
