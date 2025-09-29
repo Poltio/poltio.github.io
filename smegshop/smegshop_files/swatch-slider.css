@@ -1,0 +1,192 @@
+
+/* swipper */
+.avpoptions-container__v2 .avp-option .avis-swiper-container {
+   position: relative;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper:has(.avis-swiper-btn-position-slides) {
+   overflow: hidden;
+   width: 85%;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper:has(.avis-swiper-btn-position-under),
+.avpoptions-container__v2 .avp-option .avis-swiper:has(.avis-swiper-btn-position-above){
+   overflow: hidden;
+   width: 100%;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper span.avis-swiper-wrapper.ap-swatch__multi fieldset,
+.avpoptions-container__v2 .avp-option .avis-swiper span.avis-swiper-wrapper.ap-button__multi fieldset,
+.avpoptions-container__v2 .avp-option .avis-swiper span.avis-swiper-wrapper.ap-button__single,
+.avpoptions-container__v2 div.avp-option .avis-swiper span.avis-swiper-wrapper.ap-swatch__single.ap-options__swatch{
+   width: 100%;
+   display: flex !important;
+   align-items: center;
+   justify-content: start;
+   flex-wrap: nowrap;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper span.avis-swiper-wrapper.ap-swatch__multi fieldset,
+.avpoptions-container__v2 div.avp-option .avis-swiper span.avis-swiper-wrapper.ap-swatch__single.ap-options__swatch{
+  padding: 5px;
+  gap: 12px;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper span.avis-swiper-wrapper.ap-swatch__multi fieldset label,
+.avpoptions-container__v2 div.avp-option .avis-swiper span.avis-swiper-wrapper.ap-swatch__single.ap-options__swatch label{
+  margin: 0px !important;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper .avis-swiper-button {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   position: absolute;
+   z-index: 1;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper > span.avis-swiper-wrapper {
+   position: relative;
+   z-index: 10;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper .avis-swiper-button.avis-swiper-btn-position-slides {
+   justify-content: space-between;
+   top: 50%;
+   transform: translateY(-50%);
+   left: 0px;
+   right: 0px;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper-btn-position-under.avis-swiper-btn-algin-left {
+   justify-content: start;
+   bottom: -28px;
+   left: 5px;
+   gap: 10px;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper-btn-position-under.avis-swiper-btn-algin-right {
+   justify-content: end;
+   bottom: -28px;
+   right: 0px;
+   gap: 10px;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper-btn-position-under.avis-swiper-btn-algin-center {
+   justify-content: center;
+   bottom: -28px;
+   gap: 10px;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper-btn-position-above.avis-swiper-btn-algin-left {
+   justify-content: start;
+   top: -28px;
+   left: 5px;
+   gap: 10px;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper-btn-position-above.avis-swiper-btn-algin-right {
+   justify-content: end;
+   top: -28px;
+   right: 0px;
+   gap: 10px;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper-btn-position-above.avis-swiper-btn-algin-center {
+   justify-content: center;
+   top: -28px;
+   gap: 10px;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper .avis-swiper-button .avis-swiper-button-right,
+.avpoptions-container__v2 .avp-option .avis-swiper .avis-swiper-button .avis-swiper-button-left {
+   width: 26px;
+   height: 26px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.avpoptions-container__v2 .avp-option .avis-swiper .avis-swiper-pagination:not(.avis-tab-indicator-wrapper) {
+   display: flex;
+   align-items: center;
+   margin: 0px auto;
+   width: 100%;
+   gap: 8px;
+   padding-top: 10px;
+}
+
+.avpoptions-container__v2 .avis-swiper-pagination.avis-swiper-pagination-left {
+    justify-content: start;
+    padding-left: 5px;
+}
+
+.avpoptions-container__v2 .avis-swiper-pagination.avis-swiper-pagination-center {
+    justify-content: center;
+}
+
+.avpoptions-container__v2 .avis-swiper-pagination.avis-swiper-pagination-right {
+    justify-content: end;
+}
+
+.avpoptions-container__v2 .avis-swiper-pagination .avis-swiper-pagination-dot-active ,
+.avpoptions-container__v2 .avis-swiper-pagination .avis-swiper-pagination-dot {
+   width: 6px;
+   height: 6px;
+   border-radius: 50%;
+   opacity: 1;
+   cursor: pointer;
+   transition: opacity 0.3s ease;
+}
+
+.avpoptions-container__v2 .avis-swiper-pagination .avis-swiper-pagination-number-active ,
+.avpoptions-container__v2 .avis-swiper-pagination .avis-swiper-pagination-number {
+   cursor: pointer;
+}
+
+.avpoptions-container__v2 .avis-swiper-pagination .avis-swiper-pagination-number {
+  color: #dcdcdc;
+}
+
+.avpoptions-container__v2 .avis-swiper-pagination .avis-swiper-pagination-dot {
+   background-color: #dcdcdc;
+}
+
+.avpoptions-container__v2 .avis-swiper-pagination .avis-swiper-pagination-number-active {
+   color: #000;
+}
+.avpoptions-container__v2 .avis-swiper-pagination .avis-swiper-pagination-dot-active {
+   background-color: #000;
+}
+
+.avpoptions-container__v2 .avis-swiper-pagination.avis-tab-indicator-wrapper {
+  position: relative;
+  height: 4px;
+  background: transparent;
+  border-radius: 6px;
+  padding-inline: 5px;
+  margin-block: 5px;
+}
+
+.avpoptions-container__v2 .avis-swiper-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: #4db8ff #e6f2ff;
+}
+
+.avpoptions-container__v2 .avis-swiper-wrapper::-webkit-scrollbar {
+  height: 4px;
+}
+
+.avpoptions-container__v2 .avis-swiper-wrapper::-webkit-scrollbar-track {
+  background: #e6f2ff;
+  border-radius: 2px;
+}
+
+.avpoptions-container__v2 .avis-swiper-wrapper::-webkit-scrollbar-thumb {
+  background-color: #4db8ff;
+  border-radius: 2px;
+}
+
+.avpoptions-container__v2 .avis-swiper-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #33aaff;
+}

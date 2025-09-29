@@ -1,0 +1,31 @@
+/*!***************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/announcement-bar.scss ***!
+  \***************************************************************************************************************************/
+@media (min-width: 1024px) {
+  .topbar {
+    height: 40px;
+  }
+}
+.topbar::before {
+  display: none;
+}
+.topbar .announcement-bar p {
+  font-size: var(--fontSize-2xs);
+  font-weight: var(--font-weight-fontWeight-Medium);
+  text-align: center;
+}
+.topbar .announcement-bar a:hover {
+  text-decoration: underline;
+}
+.topbar .announcement-bar button svg {
+  stroke-width: 2;
+}
+.topbar .announcement-bar .announcement__slides.flickity {
+  max-width: 320px;
+}
+@media (min-width: 1280px) {
+  .topbar .announcement-bar .announcement__slides.flickity {
+    max-width: 448px;
+    min-width: 448px;
+  }
+}
