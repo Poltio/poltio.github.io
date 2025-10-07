@@ -11,12 +11,12 @@
       rel="stylesheet"
     />
     <script>
-      (function (t, e, p, i, s) {
+      (function (t, e, p, i, n) {
         if (!(t.poltio && t.poltio.push)) {
           t.poltio = {
             queue: [],
-            push: function (u, l, n) {
-              t.poltio.queue.push([u, l, n]);
+            push: function (s, u, c) {
+              t.poltio.queue.push([s, u, c]);
             },
           };
           var o = e.createElement('script');
@@ -27,11 +27,10 @@
               '/' +
               i +
               '?p=' +
-              s +
+              n +
               '&r=' +
               encodeURIComponent(t.location.href)),
-            t.poltio.set('puid', 'onurhan'),
-            t.poltio.set('custom_id', 'avci'),
+            t.poltio.config({ puid: 'onurhan', custom_id: 'avci' }),
             e.head.appendChild(o);
         }
       })(
