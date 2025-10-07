@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
     <script>
-      (function (t, e, p, i, n) {
+      (function (t, e, i, p, n) {
         if (!(t.poltio && t.poltio.push)) {
           t.poltio = {
             queue: [],
@@ -23,14 +23,14 @@
           (o.id = 'poltiosdk'),
             (o.async = !0),
             (o.src =
-              p +
-              '/' +
               i +
+              '/' +
+              p +
               '?p=' +
               n +
               '&r=' +
               encodeURIComponent(t.location.href)),
-            t.poltio.config({ puid: 'onurhan', custom_id: 'avci' }),
+            (t.poltio.config = { puid: 'onurhan', custom_id: 'avci' }),
             e.head.appendChild(o);
         }
       })(
