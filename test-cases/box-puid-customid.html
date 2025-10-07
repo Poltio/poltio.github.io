@@ -11,12 +11,12 @@
       rel="stylesheet"
     />
     <script>
-      (function (t, e, i, p, n) {
+      (function (t, e, i, p, s, n, r) {
         if (!(t.poltio && t.poltio.push)) {
           t.poltio = {
             queue: [],
-            push: function (s, u, c) {
-              t.poltio.queue.push([s, u, c]);
+            push: function (u, c, l) {
+              t.poltio.queue.push([u, c, l]);
             },
           };
           var o = e.createElement('script');
@@ -27,18 +27,23 @@
               '/' +
               p +
               '?p=' +
-              n +
+              s +
               '&r=' +
-              encodeURIComponent(t.location.href)),
-            e.head.appendChild(o),
-            (t.poltio.config = { puid: 'onurhan', custom_id: 'avci' });
+              encodeURIComponent(t.location.href) +
+              '&puid=' +
+              n +
+              '&customid=' +
+              r),
+            e.head.appendChild(o);
         }
       })(
         window,
         document,
         'https://sdk-stage.poltio.com',
         'poltio.js',
-        '5431023'
+        '41100',
+        '1234',
+        '5678'
       );
     </script>
   </head>
