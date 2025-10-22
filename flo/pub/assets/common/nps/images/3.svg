@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+    <defs>
+        <clipPath id="prefix__clip-path">
+            <path id="prefix__Path_1049" d="M3486.664 900.6a13.461 13.461 0 1 1-26.923 0z" data-name="Path 1049" transform="translate(-3459.741 -900.601)" style="fill:#f13019;clip-rule:evenodd"/>
+        </clipPath>
+    </defs>
+    <g id="prefix__Group_706" data-name="Group 706" transform="translate(-564 -502)">
+        <circle id="prefix__Ellipse_9" cx="40" cy="40" r="40" data-name="Ellipse 9" transform="translate(564 502)" style="fill:#e6e6e6"/>
+        <g id="prefix__Group_415" data-name="Group 415" transform="translate(590.45 555.489)">
+            <path id="prefix__Path_1047" d="M3486.664 900.6a13.461 13.461 0 1 1-26.923 0z" data-name="Path 1047" transform="translate(-3459.741 -900.601)" style="fill-rule:evenodd;fill:#b4b4b4"/>
+            <g id="prefix__Group_410" data-name="Group 410">
+                <path id="prefix__Path_1048" d="M3473.2 910.066c4.186 0 7.925.858 10.592 3.808.842.925-4.682 5.841-10.592 5.9-5.552.056-11.5-4.786-10.521-5.982 2.265-2.789 6.15-3.725 10.521-3.725" data-name="Path 1048" transform="translate(-3459.741 -906.085)" style="fill:#d3d3d3;fill-rule:evenodd"/>
+            </g>
+        </g>
+        <path id="prefix__Path_1059" d="M3525.312 846.37a3.251 3.251 0 0 1-2.281-.931 5.663 5.663 0 0 0-7.02 0 3.26 3.26 0 0 1-4.562-4.658 12.118 12.118 0 0 1 16.144 0 3.26 3.26 0 0 1-2.281 5.589z" data-name="Path 1059" transform="translate(-2898.683 -308.668)" style="fill:#c9c9c9"/>
+        <path id="prefix__Path_1058" d="M3452.51 841.447a6.688 6.688 0 1 0-6.687 6.688 6.688 6.688 0 0 0 6.687-6.688z" data-name="Path 1058" transform="translate(-2857.352 -306.964)" style="fill:#c9c9c9;fill-rule:evenodd"/>
+    </g>
+</svg>

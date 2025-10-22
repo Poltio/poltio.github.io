@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+    <defs>
+        <style>
+            .prefix__cls-2{fill:#813d14}
+        </style>
+    </defs>
+    <g id="prefix__Group_424" data-name="Group 424" transform="translate(-486 7542)">
+        <circle id="prefix__Ellipse_10" cx="40" cy="40" r="40" data-name="Ellipse 10" transform="translate(486 -7542)" style="fill:#ffd635"/>
+        <rect id="prefix__Rectangle_216" width="16.794" height="6.508" class="prefix__cls-2" data-name="Rectangle 216" rx="3.254" transform="translate(536.939 -7511.257)"/>
+        <rect id="prefix__Rectangle_217" width="16.794" height="6.508" class="prefix__cls-2" data-name="Rectangle 217" rx="3.254" transform="translate(500.267 -7511.257)"/>
+        <rect id="prefix__Rectangle_218" width="20.111" height="6.508" class="prefix__cls-2" data-name="Rectangle 218" rx="3.254" transform="rotate(-19.01 -22069.754 -5283.28)"/>
+    </g>
+</svg>
