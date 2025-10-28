@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 540.4625 354.3307" xmlns="http://www.w3.org/2000/svg">
+ <path transform="matrix(.5082 0 0 .49953 .98578 41.791)" d="m0-82.997h1063v708.66h-1063z" fill="#f31930" fill-rule="evenodd"/>
+ <path transform="matrix(.5082 0 0 .49953 .98578 41.791)" d="m667.74 222.01" fill="none" stroke="#000" stroke-width="1.25"/>
+ <path transform="matrix(.5082 0 0 .49953 .98578 41.791)" d="m-17.717-83.661h17.717v708.66h-17.717z" fill="#fff" fill-rule="evenodd"/>
+ <path transform="matrix(.49386 0 0 .48544 183 -38.999)" d="m178.37 445.64a182.31 182.31 0 1 0 -364.62 0 182.31 182.31 0 1 0 364.62 0z" fill="#fff" fill-rule="evenodd"/>
+ <path transform="matrix(.90029 0 0 .88493 289.76 38.316)" d="m-15.739 157.09a80.006 80.006 0 1 0 -160.01 0 80.006 80.006 0 1 0 160.01 0z" fill="#f31830" fill-rule="evenodd"/>
+ <path transform="matrix(.5082 0 0 .49953 .98578 41.791)" d="m565.98 188.58-1.43 65.492-60.059 16.588 59.201 21.449-1.43 60.058 38.609-46.902 58.342 20.591-33.747-50.335 41.183-50.048-63.204 17.731-37.465-54.624z" fill="#fff" fill-rule="evenodd"/>
+</svg>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <clipPath id="c">
+   <path d="m0 0h600v300h-600z"/>
+  </clipPath>
+  <clipPath id="d">
+   <path d="m0 0 300 150h-300zm300 0h300l-300 150zm0 150h300v150zv150h-300z"/>
+  </clipPath>
+  <g id="a">
+   <g id="b" transform="translate(0 -.32492)">
+    <path d="m0 0v0.5l1-0.5z"/>
+    <path transform="matrix(.80902 -.58779 .58779 .80902 .19098 .58779)" d="m0 0v-0.5l1 0.5z"/>
+   </g>
+   <use transform="scale(-1,1)" width="1200" height="600" xlink:href="#b"/>
+   <use transform="matrix(.30902 .95106 -.95106 .30902 0 0)" width="1200" height="600" xlink:href="#b"/>
+   <use transform="matrix(.30902 -.95106 .95106 .30902 0 0)" width="1200" height="600" xlink:href="#b"/>
+   <use transform="matrix(-.30902 .95106 .95106 .30902 0 0)" width="1200" height="600" xlink:href="#b"/>
+  </g>
+ </defs>
+ <rect width="900" height="600" fill="#00247d"/>
+ <g transform="scale(.75 1)">
+  <path d="m0 0 600 300m-600 0 600-300" clip-path="url(#c)" stroke="#fff" stroke-width="69.282"/>
+  <path d="m0 0 600 300m-600 0 600-300" clip-path="url(#d)" stroke="#cc142b" stroke-width="46.188"/>
+  <path d="m300 0v300m-300-150h600" clip-path="url(#c)" stroke="#fff" stroke-width="115.47"/>
+  <path d="m300 0v300m-300-150h600" clip-path="url(#c)" stroke="#cc142b" stroke-width="69.282"/>
+ </g>
+ <g transform="scale(.75 1)">
+  <use transform="matrix(40,0,0,40,900,120)" width="1200" height="600" fill="#ffffff" xlink:href="#a"/>
+  <use transform="matrix(30,0,0,30,900,120)" width="1200" height="600" fill="#cc142b" xlink:href="#a"/>
+  <g transform="matrix(.13917 .99027 -.99027 .13917 1012.4 -684.64)">
+   <use transform="matrix(4.8711 -34.659 34.659 4.8711 900 120)" width="1200" height="600" fill="#ffffff" xlink:href="#a"/>
+   <use transform="matrix(3.4793 -24.757 24.757 3.4793 900 120)" width="1200" height="600" fill="#cc142b" xlink:href="#a"/>
+   <use transform="matrix(5.5669 -39.611 39.611 5.5669 900 380)" width="1200" height="600" fill="#ffffff" xlink:href="#a"/>
+   <use transform="matrix(4.1752 -29.708 29.708 4.1752 900 380)" width="1200" height="600" fill="#cc142b" xlink:href="#a"/>
+  </g>
+  <use transform="matrix(45,0,0,45,900,480)" width="1200" height="600" fill="#ffffff" xlink:href="#a"/>
+  <use transform="matrix(35,0,0,35,900,480)" width="1200" height="600" fill="#cc142b" xlink:href="#a"/>
+ </g>
+</svg>

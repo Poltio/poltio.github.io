@@ -1,0 +1,17 @@
+User-agent: *
+
+
+# Blog
+Disallow: /*bloomreach
+Disallow: /*blog?page=%2Fblog%3Fpage%3D*
+Disallow: /*page%3D%2Fblog%*
+
+# flags
+Disallow: /icons/langs/*.svg
+
+
+
+Sitemap: https://sm.brompton.com/www-sm.xml
+Sitemap: https://sm.brompton.com/www-sm-cat.xml
+Sitemap: https://sm.brompton.com/www-sm-prd.xml
+Sitemap: https://sm.brompton.com/www-sm-cnt.xml
