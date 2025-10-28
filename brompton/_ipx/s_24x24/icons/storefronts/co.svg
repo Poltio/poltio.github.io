@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-101.6 -295.53)">
+  <path d="m101.6 295.53h600v200h-600z" fill="#fcd116"/>
+  <path d="m101.6 495.53h600v100h-600z" fill="#003893"/>
+  <path d="m101.6 595.53h600v100h-600z" fill="#ce1126"/>
+ </g>
+</svg>
