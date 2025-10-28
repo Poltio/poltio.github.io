@@ -1,0 +1,7 @@
+Mirror in progress since Tue, 28 Oct 2025 11:17:04 .. please wait!
+httrack https://www.brompton.com/ 
+To pause the engine: create an empty file named 'hts-stop.lock'
+PID=55618
+UID=501
+GID=501
+START=1761639424
