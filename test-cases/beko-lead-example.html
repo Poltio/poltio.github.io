@@ -11,25 +11,29 @@
       rel="stylesheet"
     />
     <script>
-      (function (t, e, p, i, n) {
+      (function (t, e, i, p, s, n, r) {
         if (!(t.poltio && t.poltio.push)) {
           t.poltio = {
             queue: [],
-            push: function (s, r, u) {
-              t.poltio.queue.push([s, r, u]);
+            push: function (u, c, l) {
+              t.poltio.queue.push([u, c, l]);
             },
           };
           var o = e.createElement('script');
           (o.id = 'poltiosdk'),
             (o.async = !0),
             (o.src =
-              p +
-              '/' +
               i +
+              '/' +
+              p +
               '?p=' +
-              n +
+              s +
               '&r=' +
-              encodeURIComponent(t.location.href)),
+              encodeURIComponent(t.location.href) +
+              '&puid=' +
+              n +
+              '&customid=' +
+              r),
             e.head.appendChild(o);
         }
       })(
@@ -37,7 +41,9 @@
         document,
         'https://sdk-stage.poltio.com',
         'poltio.js',
-        '5431023'
+        '5431023',
+        'poltiotest1',
+        'poltiocustomid'
       );
     </script>
   </head>
