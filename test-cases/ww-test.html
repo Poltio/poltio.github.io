@@ -64,13 +64,17 @@
                 <option value="tr">TR</option>
               </select>
             </div>
+            <button
+              id="goBtn"
+              class="h-[42px] px-5 rounded-lg bg-green-600 text-white hover:bg-green-700"
+            >
+              GO
+            </button>
           </div>
         </div>
       </div>
 
-      <div class="bg-white">
-        <div class="flex justify-between items-center"></div>
-
+      <div id="previewBlock" class="bg-white">
         <iframe id="previewFrame" class="w-full h-screen"> </iframe>
       </div>
     </div>
@@ -115,6 +119,12 @@
       customInput.addEventListener('input', updateIframe);
 
       updateIframe();
+      document.getElementById('goBtn').addEventListener('click', () => {
+        document.getElementById('previewBlock').scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
     </script>
   </body>
 </html>
