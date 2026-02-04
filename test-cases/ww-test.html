@@ -64,6 +64,14 @@
                 <option value="tr">TR</option>
               </select>
             </div>
+
+            <div class="flex flex-col min-w-[140px]">
+              <label class="text-sm font-medium mb-1"> Design </label>
+              <select id="designType" class="border rounded-lg px-3 py-2">
+                <option value="2026-01">2026-01</option>
+                <option value="2025-01">2025-01</option>
+              </select>
+            </div>
             <button
               id="goBtn"
               class="h-[37px] px-5 rounded-lg bg-[#019CE8] text-white hover:bg-[#019CE8]/90"
@@ -86,6 +94,7 @@
       const typeSelect = document.getElementById('typeSelect');
       const locSelect = document.getElementById('locSelect');
       const frame = document.getElementById('previewFrame');
+      const designType = document.getElementById('designType');
 
       function getContentValue() {
         return contentSelect.value === 'custom'
@@ -98,6 +107,7 @@
           'data-poltio-widget-content': getContentValue(),
           'data-poltio-floating-display-type': typeSelect.value,
           'data-poltio-widget-loc': locSelect.value,
+          'data-poltio-floating-design-type': designType.value,
         });
 
         return qs.toString();
@@ -117,6 +127,7 @@
       typeSelect.addEventListener('change', updateIframe);
       locSelect.addEventListener('change', updateIframe);
       customInput.addEventListener('input', updateIframe);
+      designType.addEventListener('change', updateIframe);
 
       updateIframe();
       document.getElementById('goBtn').addEventListener('click', () => {
