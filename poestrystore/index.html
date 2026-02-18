@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poltio - Poestry Store Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
+  </head>
+  <body class="bg-white min-h-screen">
+    <header class="w-full z-50">
+      <div class="block md:hidden sticky top-0">
+        <img src="./poetry-mobile.png" alt="Mobile Header" class="w-full" />
+      </div>
+
+      <div class="hidden md:block">
+        <img src="./poetry-desktop.png" alt="Desktop Header" class="w-full" />
+      </div>
+    </header>
+
+    <main
+      class="p-2 md:p-6 flex flex-col items-center justify-center text-white text-lg"
+    ></main>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Widget Preview Panel</title>
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 min-h-screen">
+    <div class="mx-auto">
+      <!-- PANEL -->
+      <div class="w-full bg-white">
+        <div
+          class="bg-white px-8 py-2 w-full max-w-7xl mx-auto max-h-60 overflow-y-auto"
+        >
+          <div class="flex flex-wrap gap-4 items-end">
+            <!-- Content -->
+            <div class="flex flex-col min-w-[220px]">
+              <label class="text-sm font-medium mb-1">Content</label>
+              <select
+                id="contentSelect"
+                class="border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="a6900f71-9a34-483b-81b7-bebfccf2beec">
+                  Teknosa Supurge
+                </option>
+                <option value="d526bf8a-6670-4675-a00c-0cd75515ebf9">
+                  Beko Dishwasher
+                </option>
+                <option value="6138030d-f78a-43bb-ae49-575398bbea5e">
+                  Arcelik
+                </option>
+                <option value="8f125f9d-73a4-45a8-a20c-5bdd32a9c748">
+                  Atasun
+                </option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+
+            <div id="customWrap" class="flex flex-col min-w-[260px] hidden">
+              <label class="text-sm font-medium mb-1">
+                Custom Content ID
+              </label>
+              <input
+                id="customInput"
+                class="border rounded-lg px-3 py-2"
+                placeholder="Content ID"
+              />
+            </div>
+
+            <div class="flex flex-col min-w-[180px]">
+              <label class="text-sm font-medium mb-1"> Display Type </label>
+              <select id="typeSelect" class="border rounded-lg px-3 py-2">
+                <option value="modal">Modal</option>
+                <option value="slideover">Slideover</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col min-w-[140px]">
+              <label class="text-sm font-medium mb-1"> Locale </label>
+              <select id="locSelect" class="border rounded-lg px-3 py-2">
+                <option value="en">EN</option>
+                <option value="tr">TR</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col min-w-[140px]">
+              <label class="text-sm font-medium mb-1"> Design </label>
+              <select id="designType" class="border rounded-lg px-3 py-2">
+                <option value="2026-01">2026-01</option>
+                <option value="2025-01">2025-01</option>
+              </select>
+            </div>
+            <button
+              id="goBtn"
+              class="h-[37px] px-5 rounded-lg bg-[#019CE8] text-white hover:bg-[#019CE8]/90"
+            >
+              GO
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="previewBlock" class="bg-white">
+        <iframe id="previewFrame" class="w-full h-screen"> </iframe>
+      </div>
+    </div>
+
+    <script>
+      const contentSelect = document.getElementById('contentSelect');
+      const customWrap = document.getElementById('customWrap');
+      const customInput = document.getElementById('customInput');
+      const typeSelect = document.getElementById('typeSelect');
+      const locSelect = document.getElementById('locSelect');
+      const frame = document.getElementById('previewFrame');
+      const designType = document.getElementById('designType');
+
+      function getContentValue() {
+        return contentSelect.value === 'custom'
+          ? customInput.value.trim()
+          : contentSelect.value;
+      }
+
+      function buildQS() {
+        const qs = new URLSearchParams({
+          'data-poltio-widget-content': getContentValue(),
+          'data-poltio-floating-display-type': typeSelect.value,
+          'data-poltio-widget-loc': locSelect.value,
+          'data-poltio-floating-design-type': designType.value,
+        });
+
+        return qs.toString();
+      }
+
+      function updateIframe() {
+        const qs = buildQS();
+        frame.src = '/test-cases/modal-test.html?' + qs;
+        console.log('iframe →', frame.src);
+      }
+
+      contentSelect.addEventListener('change', () => {
+        customWrap.classList.toggle('hidden', contentSelect.value !== 'custom');
+        updateIframe();
+      });
+
+      typeSelect.addEventListener('change', updateIframe);
+      locSelect.addEventListener('change', updateIframe);
+      customInput.addEventListener('input', updateIframe);
+      designType.addEventListener('change', updateIframe);
+
+      updateIframe();
+      document.getElementById('goBtn').addEventListener('click', () => {
+        document.getElementById('previewBlock').scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
+    </script>
+  </body>
+</html>
