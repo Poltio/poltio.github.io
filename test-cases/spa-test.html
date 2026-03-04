@@ -746,6 +746,7 @@
         </div>
       </footer>
     </div>
+    <div id="contentdiv"></div>
   </body>
 </html>
 
@@ -754,5 +755,6 @@
     const url = new URL(window.location.href);
     url.searchParams.set('spatest', 'true');
     window.history.pushState({}, '', url);
+    document.getElementById('contentdiv').innerHTML = 'something changed';
   });
 </script>
