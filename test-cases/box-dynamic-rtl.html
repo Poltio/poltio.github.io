@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html dir="rtl">
   <head>
     <title>Poltio SDK Ecommerce Demo Page</title>
     <meta charset="UTF-8" />
@@ -266,12 +266,11 @@
             options from our summer small-batch release while they're still in
             stock.
           </p>
-          <button
-            id="updateURL"
+          <a
+            href="#"
             class="mt-8 inline-block rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100"
+            >Shop New Arrivals</a
           >
-            Update URL
-          </button>
         </div>
       </div>
 
@@ -746,15 +745,5 @@
         </div>
       </footer>
     </div>
-    <div id="contentdiv"></div>
   </body>
 </html>
-
-<script>
-  document.getElementById('updateURL').addEventListener('click', () => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('spatest', 'true');
-    window.history.pushState({}, '', url);
-    document.getElementById('contentdiv').innerHTML = 'something changed';
-  });
-</script>
