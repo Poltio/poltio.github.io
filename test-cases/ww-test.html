@@ -9,13 +9,11 @@
 
   <body class="bg-gray-100 min-h-screen">
     <div class="mx-auto">
-      <!-- PANEL -->
       <div class="w-full bg-white">
         <div
           class="bg-white px-8 py-2 w-full max-w-7xl mx-auto max-h-60 overflow-y-auto"
         >
           <div class="flex flex-wrap gap-4 items-end">
-            <!-- Content -->
             <div class="flex flex-col min-w-[220px]">
               <label class="text-sm font-medium mb-1">Content</label>
               <select
@@ -72,9 +70,40 @@
                 <option value="2025-01">2025-01</option>
               </select>
             </div>
+
+            <div class="flex flex-col min-w-[100px]">
+              <label class="text-sm font-medium mb-1"> Resize </label>
+              <select id="resizeSelect" class="border rounded-lg px-3 py-2">
+                <option value="0.1">%10</option>
+                <option value="0.2">%20</option>
+                <option value="0.3">%30</option>
+                <option value="0.4">%40</option>
+                <option value="0.5">%50</option>
+                <option value="0.6">%60</option>
+                <option value="0.7">%70</option>
+                <option value="0.8">%80</option>
+                <option value="0.9">%90</option>
+                <option value="1.0" selected>%100</option>
+              </select>
+            </div>
+
+            <div class="flex items-center h-[38px] mb-1 min-w-[80px]">
+              <label
+                class="flex items-center space-x-2 text-sm font-medium cursor-pointer"
+              >
+                <input
+                  type="checkbox"
+                  id="hideCheck"
+                  class="w-4 h-4 text-blue-600 rounded"
+                  checked
+                />
+                <span>Hide</span>
+              </label>
+            </div>
+
             <button
               id="goBtn"
-              class="h-[37px] px-5 rounded-lg bg-[#019CE8] text-white hover:bg-[#019CE8]/90"
+              class="h-[38px] px-5 rounded-lg bg-[#019CE8] text-white hover:bg-[#019CE8]/90 mb-0.5"
             >
               GO
             </button>
@@ -93,8 +122,12 @@
       const customInput = document.getElementById('customInput');
       const typeSelect = document.getElementById('typeSelect');
       const locSelect = document.getElementById('locSelect');
-      const frame = document.getElementById('previewFrame');
       const designType = document.getElementById('designType');
+      const frame = document.getElementById('previewFrame');
+
+      // YENİ DOM Elementleri
+      const hideCheck = document.getElementById('hideCheck');
+      const resizeSelect = document.getElementById('resizeSelect');
 
       function getContentValue() {
         return contentSelect.value === 'custom'
@@ -108,6 +141,8 @@
           'data-poltio-floating-display-type': typeSelect.value,
           'data-poltio-widget-loc': locSelect.value,
           'data-poltio-floating-design-type': designType.value,
+          'data-poltio-floating-hide-button': hideCheck.checked.toString(),
+          'data-poltio-floating-box-resize': resizeSelect.value,
         });
 
         return qs.toString();
@@ -129,7 +164,11 @@
       customInput.addEventListener('input', updateIframe);
       designType.addEventListener('change', updateIframe);
 
+      hideCheck.addEventListener('change', updateIframe);
+      resizeSelect.addEventListener('change', updateIframe);
+
       updateIframe();
+
       document.getElementById('goBtn').addEventListener('click', () => {
         document.getElementById('previewBlock').scrollIntoView({
           behavior: 'smooth',
