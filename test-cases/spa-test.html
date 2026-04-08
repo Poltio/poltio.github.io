@@ -751,10 +751,13 @@
 </html>
 
 <script>
+  let counter = 0;
   document.getElementById('updateURL').addEventListener('click', () => {
     const url = new URL(window.location.href);
-    url.searchParams.set('spatest', 'true');
+    url.searchParams.set('spatest', counter);
     window.history.pushState({}, '', url);
-    document.getElementById('contentdiv').innerHTML = 'something changed';
+    document.getElementById('contentdiv').innerHTML =
+      'something changed ' + counter;
+    counter = counter + 1;
   });
 </script>
