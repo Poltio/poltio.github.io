@@ -751,10 +751,16 @@
 </html>
 
 <script>
+  const url = new URL(window.location.href);
+  let counter = url.searchParams.get('spatest')
+    ? parseInt(url.searchParams.get('spatest'), 10)
+    : 0;
+
   document.getElementById('updateURL').addEventListener('click', () => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('spatest', 'true');
+    counter = counter + 1;
+    url.searchParams.set('spatest', counter);
     window.history.pushState({}, '', url);
-    document.getElementById('contentdiv').innerHTML = 'something changed';
+    document.getElementById('contentdiv').innerHTML =
+      'something changed ' + counter;
   });
 </script>
