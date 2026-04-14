@@ -272,6 +272,13 @@
           >
             Update URL
           </button>
+
+          <button
+            id="updatePageParam"
+            class="mt-8 inline-block rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100"
+          >
+            Update Page Parameter
+          </button>
         </div>
       </div>
 
@@ -755,6 +762,9 @@
   let counter = url.searchParams.get('spatest')
     ? parseInt(url.searchParams.get('spatest'), 10)
     : 0;
+  let pageCounter = url.searchParams.get('page')
+    ? parseInt(url.searchParams.get('page'), 10)
+    : 0;
 
   document.getElementById('updateURL').addEventListener('click', () => {
     counter = counter + 1;
@@ -762,5 +772,13 @@
     window.history.pushState({}, '', url);
     document.getElementById('contentdiv').innerHTML =
       'something changed ' + counter;
+  });
+
+  document.getElementById('updatePageParam').addEventListener('click', () => {
+    pageCounter = pageCounter + 1;
+    url.searchParams.set('page', pageCounter);
+    window.history.pushState({}, '', url);
+    document.getElementById('contentdiv').innerHTML =
+      'page param changed ' + pageCounter;
   });
 </script>
