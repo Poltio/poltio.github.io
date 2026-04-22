@@ -1,0 +1,1547 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5"
+    />
+    <title>Poltio Web SDK, Widget Page Example</title>
+    <link rel="shortcut icon" href="https://poltio.app/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      (function (t, e, i, n, p, r = '', s = '') {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (u, c, l) {
+              t.poltio.queue.push([u, c, l]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            o.toggleAttribute('data-ot-ignore', !0),
+            (o.src =
+              i +
+              '/' +
+              n +
+              '?p=' +
+              p +
+              '&r=' +
+              encodeURIComponent(t.location.href) +
+              '&puid=' +
+              r +
+              '&customid=' +
+              s),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023',
+        '1234',
+        '5678'
+      );
+    </script>
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Montserrat', sans-serif;
+        background: #f5f5f5;
+        color: #1a1a1a;
+      }
+
+      /* ── Header ── */
+      .site-header {
+        background: #fff;
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 24px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .logo {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #1a1a1a;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .logo span {
+        color: #e63946;
+      }
+      .main-nav {
+        display: flex;
+        gap: 24px;
+        list-style: none;
+        flex: 1;
+      }
+      .main-nav a {
+        font-size: 13px;
+        font-weight: 500;
+        color: #444;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .main-nav a:hover {
+        color: #e63946;
+      }
+      .header-actions {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      .header-actions a {
+        text-decoration: none;
+        color: #444;
+        font-size: 13px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .header-actions a:hover {
+        color: #e63946;
+      }
+      .cart-badge {
+        background: #e63946;
+        color: #fff;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ── Breadcrumb ── */
+      .breadcrumb {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 14px 24px;
+        font-size: 12px;
+        color: #888;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .breadcrumb a {
+        color: #888;
+        text-decoration: none;
+      }
+      .breadcrumb a:hover {
+        color: #1a1a1a;
+      }
+      .breadcrumb span {
+        color: #bbb;
+      }
+
+      /* ── Category Banner ── */
+      .category-banner {
+        background: linear-gradient(
+          135deg,
+          #1a1a2e 0%,
+          #16213e 60%,
+          #e63946 100%
+        );
+        color: #fff;
+        padding: 48px 24px;
+        text-align: center;
+      }
+      .category-banner h1 {
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 8px;
+      }
+      .category-banner p {
+        font-size: 14px;
+        opacity: 0.75;
+        font-weight: 400;
+      }
+
+      /* ── Main layout ── */
+      .plp-layout {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 24px;
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      /* ── Sidebar ── */
+      .sidebar {
+        background: #fff;
+        border-radius: 12px;
+        border: 1px solid #e8e8e8;
+        padding: 20px;
+        position: sticky;
+        top: 88px;
+      }
+      .filter-section {
+        margin-bottom: 24px;
+      }
+      .filter-section:last-child {
+        margin-bottom: 0;
+      }
+      .filter-title {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .filter-options {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .filter-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: #444;
+        cursor: pointer;
+        user-select: none;
+      }
+      .filter-option input[type='checkbox'] {
+        width: 15px;
+        height: 15px;
+        accent-color: #e63946;
+        cursor: pointer;
+      }
+      .filter-option:hover {
+        color: #e63946;
+      }
+      .filter-count {
+        margin-left: auto;
+        font-size: 11px;
+        color: #aaa;
+      }
+      .price-range {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .price-inputs {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .price-inputs input {
+        width: 80px;
+        padding: 6px 8px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 12px;
+        font-family: 'Montserrat', sans-serif;
+        color: #1a1a1a;
+      }
+      .price-inputs span {
+        font-size: 12px;
+        color: #aaa;
+      }
+      .apply-btn {
+        padding: 7px 16px;
+        background: #1a1a1a;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 4px;
+      }
+      .apply-btn:hover {
+        background: #e63946;
+      }
+      .color-swatches {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .color-swatch {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: border-color 0.15s;
+      }
+      .color-swatch:hover,
+      .color-swatch.active {
+        border-color: #e63946;
+      }
+      .size-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .size-btn {
+        padding: 5px 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 12px;
+        font-family: 'Montserrat', sans-serif;
+        cursor: pointer;
+        background: #fff;
+        color: #444;
+        font-weight: 500;
+        transition: all 0.15s;
+      }
+      .size-btn:hover,
+      .size-btn.active {
+        background: #1a1a1a;
+        color: #fff;
+        border-color: #1a1a1a;
+      }
+      .clear-filters {
+        width: 100%;
+        padding: 9px;
+        background: transparent;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        color: #888;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+      .clear-filters:hover {
+        border-color: #e63946;
+        color: #e63946;
+      }
+
+      /* ── Product area ── */
+      .product-area {
+        min-width: 0;
+      }
+      .toolbar {
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid #e8e8e8;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .result-count {
+        font-size: 13px;
+        color: #888;
+        font-weight: 500;
+      }
+      .result-count strong {
+        color: #1a1a1a;
+      }
+      .toolbar-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .sort-select {
+        padding: 7px 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 13px;
+        font-family: 'Montserrat', sans-serif;
+        color: #1a1a1a;
+        background: #fff;
+        cursor: pointer;
+        outline: none;
+      }
+      .sort-select:focus {
+        border-color: #e63946;
+      }
+      .view-toggles {
+        display: flex;
+        gap: 4px;
+      }
+      .view-btn {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        cursor: pointer;
+        background: #fff;
+        color: #888;
+        transition: all 0.15s;
+      }
+      .view-btn.active,
+      .view-btn:hover {
+        background: #1a1a1a;
+        color: #fff;
+        border-color: #1a1a1a;
+      }
+      .view-btn svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* ── Product Grid ── */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .product-card {
+        background: #fff;
+        border-radius: 12px;
+        border: 1px solid #e8e8e8;
+        overflow: hidden;
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s;
+        cursor: pointer;
+        position: relative;
+      }
+      .product-card:hover {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+      .product-img-wrap {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 3/4;
+        background: #f0f0f0;
+      }
+      .product-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+        display: block;
+      }
+      .product-card:hover .product-img-wrap img {
+        transform: scale(1.05);
+      }
+      .badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .badge-new {
+        background: #1a1a1a;
+        color: #fff;
+      }
+      .badge-sale {
+        background: #e63946;
+        color: #fff;
+      }
+      .badge-hot {
+        background: #ff9f1c;
+        color: #fff;
+      }
+      .wishlist-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s;
+        color: #888;
+        font-size: 15px;
+      }
+      .product-card:hover .wishlist-btn {
+        opacity: 1;
+      }
+      .wishlist-btn:hover {
+        color: #e63946;
+        background: #fff;
+      }
+      .quick-add {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(26, 26, 26, 0.9);
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        transform: translateY(100%);
+        transition: transform 0.25s;
+        cursor: pointer;
+      }
+      .product-card:hover .quick-add {
+        transform: translateY(0);
+      }
+      .quick-add:hover {
+        background: #e63946;
+      }
+      .product-info {
+        padding: 14px 14px 16px;
+      }
+      .product-brand {
+        font-size: 10px;
+        font-weight: 700;
+        color: #aaa;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+      }
+      .product-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 6px;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .product-rating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 8px;
+      }
+      .stars {
+        color: #f4c430;
+        font-size: 11px;
+        letter-spacing: 1px;
+      }
+      .rating-count {
+        font-size: 11px;
+        color: #aaa;
+      }
+      .product-price {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+      .price-current {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a1a;
+      }
+      .price-original {
+        font-size: 13px;
+        color: #bbb;
+        text-decoration: line-through;
+        font-weight: 400;
+      }
+      .price-discount {
+        font-size: 11px;
+        font-weight: 700;
+        color: #e63946;
+        background: #fff0f1;
+        padding: 1px 5px;
+        border-radius: 3px;
+      }
+      .color-dots {
+        display: flex;
+        gap: 5px;
+        margin-top: 10px;
+      }
+      .color-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 1.5px solid #ddd;
+      }
+
+      /* ── Pagination ── */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        margin-top: 36px;
+        padding-bottom: 60px;
+      }
+      .page-btn {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        cursor: pointer;
+        background: #fff;
+        color: #444;
+        transition: all 0.15s;
+        text-decoration: none;
+      }
+      .page-btn:hover {
+        border-color: #1a1a1a;
+        color: #1a1a1a;
+      }
+      .page-btn.active {
+        background: #1a1a1a;
+        color: #fff;
+        border-color: #1a1a1a;
+      }
+      .page-btn.disabled {
+        opacity: 0.4;
+        pointer-events: none;
+      }
+      .page-btn.arrow {
+        font-size: 16px;
+      }
+
+      /* ── Footer ── */
+      .site-footer {
+        background: #1a1a1a;
+        color: #aaa;
+        padding: 40px 24px;
+        margin-top: 40px;
+      }
+      .footer-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        margin-bottom: 32px;
+      }
+      .footer-col h4 {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #fff;
+        margin-bottom: 14px;
+      }
+      .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .footer-col ul a {
+        font-size: 13px;
+        color: #888;
+        text-decoration: none;
+      }
+      .footer-col ul a:hover {
+        color: #fff;
+      }
+      .footer-bottom {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding-top: 24px;
+        border-top: 1px solid #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+      }
+
+      /* ── Iframe target ── */
+      .poltio-iframe-target {
+        max-width: 1280px;
+        margin: 24px auto;
+        padding: 0 24px;
+        height: 720px;
+      }
+      .poltio-iframe-target iframe {
+        display: block;
+        border: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* ── Tablet (≤1024px) ── */
+      @media (max-width: 1024px) {
+        .header-inner {
+          gap: 16px;
+          padding: 0 16px;
+        }
+        .main-nav {
+          gap: 16px;
+        }
+        .category-banner {
+          padding: 36px 16px;
+        }
+        .category-banner h1 {
+          font-size: 28px;
+        }
+        .plp-layout {
+          grid-template-columns: 1fr;
+          padding: 16px;
+          gap: 16px;
+        }
+        .sidebar {
+          position: static;
+          top: auto;
+        }
+        .product-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .footer-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .poltio-iframe-target {
+          margin: 16px auto;
+          padding: 0 16px;
+          height: 560px;
+        }
+      }
+
+      /* ── Mobile (≤640px) ── */
+      @media (max-width: 640px) {
+        .header-inner {
+          height: 56px;
+          gap: 12px;
+          padding: 0 12px;
+        }
+        .logo {
+          font-size: 18px;
+        }
+        .main-nav {
+          display: none;
+        }
+        .header-actions {
+          gap: 12px;
+          margin-left: auto;
+        }
+        .header-actions a {
+          font-size: 12px;
+          gap: 4px;
+        }
+        .breadcrumb {
+          padding: 10px 12px;
+          flex-wrap: wrap;
+        }
+        .category-banner {
+          padding: 28px 12px;
+        }
+        .category-banner h1 {
+          font-size: 22px;
+        }
+        .category-banner p {
+          font-size: 12px;
+        }
+        .plp-layout {
+          padding: 12px;
+          gap: 12px;
+        }
+        .sidebar {
+          padding: 16px;
+        }
+        .toolbar {
+          padding: 10px 12px;
+          gap: 10px;
+        }
+        .toolbar-right {
+          width: 100%;
+          justify-content: space-between;
+          gap: 8px;
+        }
+        .sort-select {
+          flex: 1;
+          min-width: 0;
+        }
+        .product-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .product-info {
+          padding: 10px 10px 12px;
+        }
+        .product-name {
+          font-size: 12px;
+        }
+        .price-current {
+          font-size: 14px;
+        }
+        .price-original {
+          font-size: 11px;
+        }
+        .pagination {
+          margin-top: 24px;
+          padding-bottom: 32px;
+          flex-wrap: wrap;
+          gap: 4px;
+        }
+        .page-btn {
+          width: 34px;
+          height: 34px;
+          font-size: 12px;
+        }
+        .site-footer {
+          padding: 28px 16px;
+        }
+        .footer-inner {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 8px;
+          text-align: center;
+          padding-top: 16px;
+        }
+        .poltio-iframe-target {
+          margin: 12px auto;
+          padding: 0 12px;
+          height: 480px;
+        }
+      }
+
+      /* ── Small mobile (≤380px) ── */
+      @media (max-width: 380px) {
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="#">NOVA<span>.</span></a>
+        <nav>
+          <ul class="main-nav">
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Kids</a></li>
+            <li><a href="#" style="color: #e63946">Sale</a></li>
+            <li><a href="#">New Arrivals</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a href="#">Search</a>
+          <a href="#">Account</a>
+          <a href="#">
+            Cart
+            <span class="cart-badge">3</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="#">Home</a>
+      <span>›</span>
+      <a href="#">Women</a>
+      <span>›</span>
+      Jackets &amp; Coats
+    </div>
+
+    <div class="poltio-iframe-target"></div>
+
+    <!-- Category Banner -->
+    <div class="category-banner">
+      <h1>Jackets &amp; Coats</h1>
+      <p>248 products &nbsp;·&nbsp; Free shipping on orders over $75</p>
+    </div>
+
+    <!-- Main PLP Layout -->
+    <div class="plp-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <button class="clear-filters">Clear all filters</button>
+
+        <div class="filter-section">
+          <div class="filter-title">Category</div>
+          <div class="filter-options">
+            <label class="filter-option">
+              <input type="checkbox" checked /> Jackets
+              <span class="filter-count">124</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" checked /> Coats
+              <span class="filter-count">89</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" /> Vests
+              <span class="filter-count">35</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" /> Blazers
+              <span class="filter-count">52</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">Price Range</div>
+          <div class="price-range">
+            <div class="price-inputs">
+              <input type="number" placeholder="$0" value="0" min="0" />
+              <span>—</span>
+              <input type="number" placeholder="$500" value="500" min="0" />
+            </div>
+            <button class="apply-btn">Apply</button>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">Color</div>
+          <div class="color-swatches">
+            <div
+              class="color-swatch active"
+              style="background: #1a1a1a"
+              title="Black"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #fff; border-color: #ddd"
+              title="White"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #8b6914"
+              title="Camel"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #4a4a6a"
+              title="Navy"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #e63946"
+              title="Red"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #6a8a6a"
+              title="Olive"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #c4956a"
+              title="Tan"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #888"
+              title="Grey"
+            ></div>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">Size</div>
+          <div class="size-options">
+            <button class="size-btn">XS</button>
+            <button class="size-btn active">S</button>
+            <button class="size-btn active">M</button>
+            <button class="size-btn">L</button>
+            <button class="size-btn">XL</button>
+            <button class="size-btn">XXL</button>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">Material</div>
+          <div class="filter-options">
+            <label class="filter-option">
+              <input type="checkbox" /> Wool
+              <span class="filter-count">41</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" checked /> Cotton
+              <span class="filter-count">68</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" /> Leather
+              <span class="filter-count">22</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" /> Synthetic
+              <span class="filter-count">93</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" /> Down
+              <span class="filter-count">19</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">Brand</div>
+          <div class="filter-options">
+            <label class="filter-option">
+              <input type="checkbox" /> Arcova
+              <span class="filter-count">34</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" checked /> Lumére
+              <span class="filter-count">47</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" /> Vestara
+              <span class="filter-count">28</span>
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" /> Nordia
+              <span class="filter-count">56</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">Rating</div>
+          <div class="filter-options">
+            <label class="filter-option">
+              <input type="checkbox" />
+              <span style="color: #f4c430">★★★★★</span> &amp; up
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" checked />
+              <span style="color: #f4c430">★★★★</span> &amp; up
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" />
+              <span style="color: #f4c430">★★★</span> &amp; up
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Product area -->
+      <main class="product-area">
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <span class="result-count"
+            >Showing <strong>1–12</strong> of
+            <strong>248</strong> products</span
+          >
+          <div class="toolbar-right">
+            <select class="sort-select">
+              <option>Sort: Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Newest First</option>
+              <option>Best Rating</option>
+              <option>Most Reviews</option>
+            </select>
+            <div class="view-toggles">
+              <button class="view-btn active" title="Grid view">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                  <rect x="1" y="1" width="6" height="6" rx="1" />
+                  <rect x="9" y="1" width="6" height="6" rx="1" />
+                  <rect x="1" y="9" width="6" height="6" rx="1" />
+                  <rect x="9" y="9" width="6" height="6" rx="1" />
+                </svg>
+              </button>
+              <button class="view-btn" title="List view">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                  <rect x="1" y="2" width="14" height="3" rx="1" />
+                  <rect x="1" y="7" width="14" height="3" rx="1" />
+                  <rect x="1" y="12" width="14" height="3" rx="1" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid">
+          <!-- Product 1 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=533&fit=crop"
+                alt="Classic Wool Overcoat"
+                loading="lazy"
+              />
+              <span class="badge badge-new">New</span>
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Lumére</div>
+              <div class="product-name">Classic Wool Blend Overcoat</div>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">(142)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$189.00</span>
+              </div>
+              <div class="color-dots">
+                <div class="color-dot" style="background: #1a1a1a"></div>
+                <div class="color-dot" style="background: #8b6914"></div>
+                <div class="color-dot" style="background: #888"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=533&fit=crop"
+                alt="Quilted Puffer Jacket"
+                loading="lazy"
+              />
+              <span class="badge badge-sale">-30%</span>
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Nordia</div>
+              <div class="product-name">Lightweight Quilted Puffer Jacket</div>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-count">(87)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$98.00</span>
+                <span class="price-original">$140.00</span>
+                <span class="price-discount">-30%</span>
+              </div>
+              <div class="color-dots">
+                <div class="color-dot" style="background: #1a1a1a"></div>
+                <div class="color-dot" style="background: #4a4a6a"></div>
+                <div class="color-dot" style="background: #e63946"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&h=533&fit=crop"
+                alt="Trench Coat"
+                loading="lazy"
+              />
+              <span class="badge badge-hot">Hot</span>
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Arcova</div>
+              <div class="product-name">Double-Breasted Trench Coat</div>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">(203)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$245.00</span>
+              </div>
+              <div class="color-dots">
+                <div class="color-dot" style="background: #8b6914"></div>
+                <div class="color-dot" style="background: #1a1a1a"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=533&fit=crop"
+                alt="Leather Biker Jacket"
+                loading="lazy"
+              />
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Vestara</div>
+              <div class="product-name">Genuine Leather Biker Jacket</div>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-count">(56)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$320.00</span>
+              </div>
+              <div class="color-dots">
+                <div class="color-dot" style="background: #1a1a1a"></div>
+                <div class="color-dot" style="background: #8b4513"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1542295669297-4d352b042bca?w=400&h=533&fit=crop"
+                alt="Sherpa Fleece Jacket"
+                loading="lazy"
+              />
+              <span class="badge badge-sale">-20%</span>
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Nordia</div>
+              <div class="product-name">Cozy Sherpa Fleece Lined Jacket</div>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">(311)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$79.00</span>
+                <span class="price-original">$99.00</span>
+                <span class="price-discount">-20%</span>
+              </div>
+              <div class="color-dots">
+                <div class="color-dot" style="background: #c4956a"></div>
+                <div class="color-dot" style="background: #888"></div>
+                <div class="color-dot" style="background: #1a1a1a"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=533&fit=crop"
+                alt="Cropped Denim Jacket"
+                loading="lazy"
+              />
+              <span class="badge badge-new">New</span>
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Lumére</div>
+              <div class="product-name">Oversized Cropped Denim Jacket</div>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-count">(74)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$89.00</span>
+              </div>
+              <div class="color-dots">
+                <div class="color-dot" style="background: #4a4a6a"></div>
+                <div class="color-dot" style="background: #a8b5c8"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 7 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=533&fit=crop"
+                alt="Faux Fur Coat"
+                loading="lazy"
+              />
+              <span class="badge badge-hot">Hot</span>
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Arcova</div>
+              <div class="product-name">Luxe Faux Fur Statement Coat</div>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">(98)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$159.00</span>
+              </div>
+              <div class="color-dots">
+                <div
+                  class="color-dot"
+                  style="background: #f5f5f5; border-color: #ccc"
+                ></div>
+                <div class="color-dot" style="background: #1a1a1a"></div>
+                <div class="color-dot" style="background: #c4956a"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 8 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=400&h=533&fit=crop"
+                alt="Raincoat"
+                loading="lazy"
+              />
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Nordia</div>
+              <div class="product-name">Waterproof Hooded Raincoat</div>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-count">(45)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$115.00</span>
+              </div>
+              <div class="color-dots">
+                <div class="color-dot" style="background: #e63946"></div>
+                <div class="color-dot" style="background: #4a4a6a"></div>
+                <div class="color-dot" style="background: #6a8a6a"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 9 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&h=533&fit=crop"
+                alt="Camel Coat"
+                loading="lazy"
+              />
+              <span class="badge badge-sale">-15%</span>
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Lumére</div>
+              <div class="product-name">Structured Camel Hair Blend Coat</div>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">(167)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$212.00</span>
+                <span class="price-original">$249.00</span>
+                <span class="price-discount">-15%</span>
+              </div>
+              <div class="color-dots">
+                <div class="color-dot" style="background: #8b6914"></div>
+                <div class="color-dot" style="background: #1a1a1a"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 10 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1544923246-77307dd654cb?w=400&h=533&fit=crop"
+                alt="Varsity Jacket"
+                loading="lazy"
+              />
+              <span class="badge badge-new">New</span>
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Vestara</div>
+              <div class="product-name">Retro Varsity Bomber Jacket</div>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-count">(29)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$135.00</span>
+              </div>
+              <div class="color-dots">
+                <div class="color-dot" style="background: #1a1a1a"></div>
+                <div class="color-dot" style="background: #e63946"></div>
+                <div class="color-dot" style="background: #4a4a6a"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 11 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=400&h=533&fit=crop"
+                alt="Down Parka"
+                loading="lazy"
+              />
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Nordia</div>
+              <div class="product-name">Insulated Down Fill Parka</div>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">(224)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$275.00</span>
+              </div>
+              <div class="color-dots">
+                <div class="color-dot" style="background: #1a1a1a"></div>
+                <div class="color-dot" style="background: #4a4a6a"></div>
+                <div class="color-dot" style="background: #6a8a6a"></div>
+                <div class="color-dot" style="background: #888"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 12 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=400&h=533&fit=crop"
+                alt="Blazer"
+                loading="lazy"
+              />
+              <span class="badge badge-sale">-25%</span>
+              <button class="wishlist-btn">♡</button>
+              <div class="quick-add">+ Quick Add</div>
+            </div>
+            <div class="product-info">
+              <div class="product-brand">Arcova</div>
+              <div class="product-name">Tailored Linen Blend Blazer</div>
+              <div class="product-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-count">(61)</span>
+              </div>
+              <div class="product-price">
+                <span class="price-current">$119.00</span>
+                <span class="price-original">$159.00</span>
+                <span class="price-discount">-25%</span>
+              </div>
+              <div class="color-dots">
+                <div
+                  class="color-dot"
+                  style="background: #f5f5f5; border-color: #ccc"
+                ></div>
+                <div class="color-dot" style="background: #1a1a1a"></div>
+                <div class="color-dot" style="background: #8b6914"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.product-grid -->
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <a class="page-btn arrow disabled" href="#">‹</a>
+          <a class="page-btn active" href="#">1</a>
+          <a class="page-btn" href="#">2</a>
+          <a class="page-btn" href="#">3</a>
+          <a class="page-btn" href="#">4</a>
+          <span style="font-size: 13px; color: #bbb; padding: 0 4px">…</span>
+          <a class="page-btn" href="#">21</a>
+          <a class="page-btn arrow" href="#">›</a>
+        </div>
+      </main>
+    </div>
+    <!-- /.plp-layout -->
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Kids</a></li>
+            <li><a href="#">Sale</a></li>
+            <li><a href="#">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">Shipping &amp; Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Track Order</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Affiliates</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#">Pinterest</a></li>
+            <li><a href="#">Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 NOVA. All rights reserved.</span>
+        <span>Privacy Policy · Terms of Service</span>
+      </div>
+    </footer>
+
+    <!-- Iframe injection target -->
+    <div
+      class="poltio-iframe-target"
+      style="
+        max-width: 1280px;
+        margin: 24px auto;
+        height: 720px;
+        padding: 0 24px;
+      "
+    ></div>
+  </body>
+</html>
