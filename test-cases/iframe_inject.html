@@ -13,6 +13,44 @@
       rel="stylesheet"
     />
 
+    <script>
+      (function (t, e, i, n, p, r = '', s = '') {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (u, c, l) {
+              t.poltio.queue.push([u, c, l]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            o.toggleAttribute('data-ot-ignore', !0),
+            (o.src =
+              i +
+              '/' +
+              n +
+              '?p=' +
+              p +
+              '&r=' +
+              encodeURIComponent(t.location.href) +
+              '&puid=' +
+              r +
+              '&customid=' +
+              s),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023',
+        '1234',
+        '5678'
+      );
+    </script>
+
     <style>
       *,
       *::before,
@@ -653,6 +691,165 @@
         align-items: center;
         font-size: 12px;
       }
+
+      /* ── Iframe target ── */
+      .poltio-iframe-target {
+        max-width: 1280px;
+        margin: 24px auto;
+        padding: 0 24px;
+        height: 720px;
+      }
+      .poltio-iframe-target iframe {
+        display: block;
+        border: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* ── Tablet (≤1024px) ── */
+      @media (max-width: 1024px) {
+        .header-inner {
+          gap: 16px;
+          padding: 0 16px;
+        }
+        .main-nav {
+          gap: 16px;
+        }
+        .category-banner {
+          padding: 36px 16px;
+        }
+        .category-banner h1 {
+          font-size: 28px;
+        }
+        .plp-layout {
+          grid-template-columns: 1fr;
+          padding: 16px;
+          gap: 16px;
+        }
+        .sidebar {
+          position: static;
+          top: auto;
+        }
+        .product-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .footer-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .poltio-iframe-target {
+          margin: 16px auto;
+          padding: 0 16px;
+          height: 560px;
+        }
+      }
+
+      /* ── Mobile (≤640px) ── */
+      @media (max-width: 640px) {
+        .header-inner {
+          height: 56px;
+          gap: 12px;
+          padding: 0 12px;
+        }
+        .logo {
+          font-size: 18px;
+        }
+        .main-nav {
+          display: none;
+        }
+        .header-actions {
+          gap: 12px;
+          margin-left: auto;
+        }
+        .header-actions a {
+          font-size: 12px;
+          gap: 4px;
+        }
+        .breadcrumb {
+          padding: 10px 12px;
+          flex-wrap: wrap;
+        }
+        .category-banner {
+          padding: 28px 12px;
+        }
+        .category-banner h1 {
+          font-size: 22px;
+        }
+        .category-banner p {
+          font-size: 12px;
+        }
+        .plp-layout {
+          padding: 12px;
+          gap: 12px;
+        }
+        .sidebar {
+          padding: 16px;
+        }
+        .toolbar {
+          padding: 10px 12px;
+          gap: 10px;
+        }
+        .toolbar-right {
+          width: 100%;
+          justify-content: space-between;
+          gap: 8px;
+        }
+        .sort-select {
+          flex: 1;
+          min-width: 0;
+        }
+        .product-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .product-info {
+          padding: 10px 10px 12px;
+        }
+        .product-name {
+          font-size: 12px;
+        }
+        .price-current {
+          font-size: 14px;
+        }
+        .price-original {
+          font-size: 11px;
+        }
+        .pagination {
+          margin-top: 24px;
+          padding-bottom: 32px;
+          flex-wrap: wrap;
+          gap: 4px;
+        }
+        .page-btn {
+          width: 34px;
+          height: 34px;
+          font-size: 12px;
+        }
+        .site-footer {
+          padding: 28px 16px;
+        }
+        .footer-inner {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 8px;
+          text-align: center;
+          padding-top: 16px;
+        }
+        .poltio-iframe-target {
+          margin: 12px auto;
+          padding: 0 12px;
+          height: 480px;
+        }
+      }
+
+      /* ── Small mobile (≤380px) ── */
+      @media (max-width: 380px) {
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
 
@@ -689,6 +886,8 @@
       <span>›</span>
       Jackets &amp; Coats
     </div>
+
+    <div class="poltio-iframe-target"></div>
 
     <!-- Category Banner -->
     <div class="category-banner">
@@ -1334,17 +1533,15 @@
       </div>
     </footer>
 
-    <iframe
-      src="https://feature-chatbot-layo---poltio-widget-remix-734jdjokhq-ew.a.run.app/widget/a6900f71-9a34-483b-81b7-bebfccf2beec?design=chatbot"
+    <!-- Iframe injection target -->
+    <div
+      class="poltio-iframe-target"
       style="
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 80vw;
-        height: 60vh;
-        border: none;
+        max-width: 1280px;
+        margin: 24px auto;
+        height: 720px;
+        padding: 0 24px;
       "
-      allowtransparency="true"
-    />
+    ></div>
   </body>
 </html>
