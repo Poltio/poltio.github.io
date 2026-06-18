@@ -692,6 +692,34 @@
         font-size: 12px;
       }
     </style>
+
+    <script>
+      const url = new URL(window.location.href);
+
+      document.addEventListener('change', (e) => {
+        if (e.target.matches('.sidebar input[type="checkbox"]')) {
+          const groupName = e.target.name;
+
+          const checkedInputs = document.querySelectorAll(
+            `.sidebar input[name="${groupName}"]:checked`
+          );
+          const checkedValues = Array.from(checkedInputs).map(
+            (input) => input.value
+          );
+
+          if (checkedValues.length > 0) {
+            url.searchParams.set(groupName, checkedValues.join(','));
+          } else {
+            url.searchParams.delete(groupName);
+          }
+
+          window.history.pushState({}, '', url);
+
+          document.getElementById('contentdiv').innerHTML =
+            'something changed ' + 1;
+        }
+      });
+    </script>
   </head>
 
   <body>
@@ -718,7 +746,7 @@
         </div>
       </div>
     </header>
-
+    <div id="contentdiv"></div>
     <!-- Breadcrumb -->
     <div class="breadcrumb">
       <a href="#">Home</a>
@@ -744,19 +772,21 @@
           <div class="filter-title">Category</div>
           <div class="filter-options">
             <label class="filter-option">
-              <input type="checkbox" checked /> Jackets
+              <input type="checkbox" name="category" value="jackets" />
+              Jackets
               <span class="filter-count">124</span>
             </label>
             <label class="filter-option">
-              <input type="checkbox" checked /> Coats
+              <input type="checkbox" name="category" value="coats" />
+              Coats
               <span class="filter-count">89</span>
             </label>
             <label class="filter-option">
-              <input type="checkbox" /> Vests
+              <input type="checkbox" name="category" value="vests" /> Vests
               <span class="filter-count">35</span>
             </label>
             <label class="filter-option">
-              <input type="checkbox" /> Blazers
+              <input type="checkbox" name="category" value="blazers" /> Blazers
               <span class="filter-count">52</span>
             </label>
           </div>
@@ -836,23 +866,25 @@
           <div class="filter-title">Material</div>
           <div class="filter-options">
             <label class="filter-option">
-              <input type="checkbox" /> Wool
+              <input type="checkbox" name="material" value="wool" /> Wool
               <span class="filter-count">41</span>
             </label>
             <label class="filter-option">
-              <input type="checkbox" checked /> Cotton
+              <input type="checkbox" name="material" value="cotton" />
+              Cotton
               <span class="filter-count">68</span>
             </label>
             <label class="filter-option">
-              <input type="checkbox" /> Leather
+              <input type="checkbox" name="material" value="leather" /> Leather
               <span class="filter-count">22</span>
             </label>
             <label class="filter-option">
-              <input type="checkbox" /> Synthetic
+              <input type="checkbox" name="material" value="synthetic" />
+              Synthetic
               <span class="filter-count">93</span>
             </label>
             <label class="filter-option">
-              <input type="checkbox" /> Down
+              <input type="checkbox" name="material" value="down" /> Down
               <span class="filter-count">19</span>
             </label>
           </div>
