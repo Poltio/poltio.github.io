@@ -11,19 +11,35 @@
       rel="stylesheet"
     />
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const params = new URLSearchParams(window.location.search);
-        const div = document.getElementById('poltio');
-
-        params.forEach((value, key) => {
-          div.setAttribute(key, value);
-        });
-      });
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
     </script>
-    <script
-      id="poltiosdk"
-      src="https://sdk-stage.poltio.com/poltio_pill.js?p=5431023"
-    ></script>
   </head>
   <body>
     <div
@@ -44,18 +60,19 @@
         Pill Close Button
       </h1>
       <p class="mt-4 text-base text-gray-600">
-        This page tests the pill trigger close button
-        (<code class="rounded bg-gray-100 px-1"
+        This page tests the pill trigger close button (<code
+          class="rounded bg-gray-100 px-1"
           >data-poltio-floating-pill-show-close-button</code
         >). A small X badge floats just above the top right of the pill.
       </p>
 
-      <h2 class="mt-10 text-xl font-semibold text-gray-900">Expected behavior</h2>
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
       <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
         <li>
           Clicking the X removes the pill immediately and keeps it hidden for
-          the remember duration
-          (<code class="rounded bg-gray-100 px-1"
+          the remember duration (<code class="rounded bg-gray-100 px-1"
             >data-poltio-floating-pill-close-remember-duration</code
           >, set to 1 hour on this page; default is 48 hours).
         </li>
@@ -67,7 +84,9 @@
           >
           key from localStorage.
         </li>
-        <li>Hovering the X keeps the pill expanded, same as hovering the pill.</li>
+        <li>
+          Hovering the X keeps the pill expanded, same as hovering the pill.
+        </li>
         <li>
           Clicking the pill opens the widget; the X disappears while the widget
           is open and comes back when it is closed.
