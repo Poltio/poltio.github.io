@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="18px" viewBox="0 0 10 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>SymbolInstance</title>
+    <defs>
+        <path d="M8.2701352,0.102178956 L0.0516691228,8.23599204 C-0.0172230409,8.37161696 -0.0172230409,8.49987763 0.0516691228,8.56554218 L8.2701352,16.7005826 C8.33779714,16.8331391 8.47127571,16.8331391 8.53586211,16.7005826 L9.6,15.7100911 L2.50472224,8.56554218 C2.43644518,8.49987763 2.43644518,8.37161696 2.50472224,8.23599204 L9.6,1.15588026 L8.53586211,0.102178956 C8.47127571,-0.0340596519 8.33779714,-0.0340596519 8.2701352,0.102178956" id="path-1"></path>
+    </defs>
+    <g id="Menu" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Menu-mobile---4" transform="translate(-109.000000, -62.000000)">
+            <g id="Group-4" transform="translate(105.000000, 60.000000)">
+                <g id="Group" transform="translate(0.000000, 1.000000)">
+                    <g id="Rectangle" transform="translate(4.000000, 1.600000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="ShapePath" fill="#1A1919" xlink:href="#path-1"></use>
+                        <rect id="ShapePath" fill="#585858" mask="url(#mask-2)" x="-4" y="-1.6" width="20" height="20.8"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
