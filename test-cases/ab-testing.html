@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK A/B Testing Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Poltio Tag -->
+    <script>
+      (function (t, o, r, p, s, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (u, l, c) {
+              t.poltio.queue.push([u, l, c]);
+            },
+          };
+          var e = o.createElement('script');
+          ((e.id = 'poltiosdk'),
+            (e.async = !0),
+            e.toggleAttribute('data-ot-ignore', !0),
+            (e.src =
+              r +
+              '/' +
+              p +
+              '?p=' +
+              s +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            o.head.appendChild(e));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
+    <!-- End Poltio Tag -->
+  </head>
+  <body>
+    <div class="mx-auto max-w-3xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+        A/B Testing
+      </h1>
+      <p class="mt-4 text-base text-gray-600">
+        This page tests dynamic-content A/B tests. The snippet is the same as
+        any other page &mdash; the server swaps in the
+        <code class="rounded bg-gray-100 px-1">_ab</code> bundle when the
+        publisher's dynamic content has a test enabled, so nothing on this page
+        opts in.
+      </p>
+      <p class="mt-4 rounded border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+        Publisher <code class="rounded bg-amber-100 px-1">5431023</code> has no
+        A/B test configured on stage. Swap the id in the snippet for one that
+        does, otherwise the panel below stays empty.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>
+          The assignment is written to
+          <code class="rounded bg-gray-100 px-1">poltio_ab_&lt;parent id&gt;</code>
+          in localStorage as the chosen arm's widget id, or
+          <code class="rounded bg-gray-100 px-1">off</code> for the holdout.
+        </li>
+        <li>
+          Storage outranks the server's assignment, so a visitor stays on the
+          same arm across pages and reloads. Use <em>Reset</em> to re-roll.
+        </li>
+        <li>
+          Case <code class="rounded bg-gray-100 px-1">variants</code>: the
+          chosen arm's options are applied to
+          <code class="rounded bg-gray-100 px-1">.poltio-widget-flying</code>
+          as <code class="rounded bg-gray-100 px-1">data-poltio-*</code>
+          attributes, plus
+          <code class="rounded bg-gray-100 px-1">data-poltio-ab-widget-id</code>.
+          Arms can differ in trigger type, so the pill/card/box can change too.
+        </li>
+        <li>
+          Case <code class="rounded bg-gray-100 px-1">off</code>: only the
+          localStorage key exists &mdash; there is no
+          <code class="rounded bg-gray-100 px-1">data-poltio-ab-widget-id</code>
+          on this path.
+        </li>
+        <li>
+          No widget plus <code class="rounded bg-gray-100 px-1">= off</code> is
+          the holdout working, not a failure: that share renders nothing and
+          reports no impression. Page-load and purchase tracking still fire.
+        </li>
+      </ul>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">A/B state</h2>
+      <div class="mt-4 flex gap-3">
+        <button
+          id="ab-refresh"
+          class="rounded bg-gray-900 px-3 py-1.5 text-sm font-medium text-white"
+        >
+          Refresh
+        </button>
+        <button
+          id="ab-reset"
+          class="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900"
+        >
+          Reset &amp; reload
+        </button>
+      </div>
+      <pre
+        id="ab-state"
+        class="mt-4 overflow-x-auto rounded bg-gray-100 p-4 text-sm text-gray-800"
+      ></pre>
+
+      <script>
+        const AB_PREFIX = 'poltio_ab_';
+
+        const abKeys = () =>
+          Object.keys(localStorage).filter((k) => k.startsWith(AB_PREFIX));
+
+        function render() {
+          const keys = abKeys();
+          const div = document.querySelector('.poltio-widget-flying');
+          const lines = [
+            'localStorage:',
+            ...(keys.length
+              ? keys.map((k) => `  ${k} = ${localStorage.getItem(k)}`)
+              : ['  (none)']),
+            '',
+            `.poltio-widget-flying: ${div ? 'present' : 'absent'}`,
+          ];
+          if (div) {
+            const data = Object.entries(div.dataset);
+            lines.push(
+              ...(data.length
+                ? data.map(([k, v]) => `  ${k} = ${v}`)
+                : ['  (no data attributes)'])
+            );
+          }
+          lines.push(
+            '',
+            `trigger mounted (#poltio-floating-container): ${
+              document.getElementById('poltio-floating-container') ? 'yes' : 'no'
+            }`
+          );
+          document.getElementById('ab-state').textContent = lines.join('\n');
+        }
+
+        document.getElementById('ab-refresh').onclick = render;
+        document.getElementById('ab-reset').onclick = () => {
+          abKeys().forEach((k) => localStorage.removeItem(k));
+          location.reload();
+        };
+
+        render();
+        // The arm is applied in docReady and the trigger mounts after the SDK
+        // loads, so the first paint can be too early. Refresh re-reads.
+        window.addEventListener('load', () => setTimeout(render, 1000));
+      </script>
+    </div>
+
+    <div class="h-[2000px]"></div>
+  </body>
+</html>
