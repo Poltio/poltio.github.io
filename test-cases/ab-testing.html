@@ -51,17 +51,12 @@
       </h1>
       <p class="mt-4 text-base text-gray-600">
         This page tests dynamic-content A/B tests. The snippet is the same as
-        any other page &mdash; the server swaps in the
-        <code class="rounded bg-gray-100 px-1">_ab</code> bundle when the
-        publisher's dynamic content has a test enabled, so nothing on this page
-        opts in.
+        any other page &mdash; the server swaps in the union
+        <code class="rounded bg-gray-100 px-1">poltio_ab.js</code> bundle under
+        case <code class="rounded bg-gray-100 px-1">variants</code>, and the
+        parent's own bundle under <code class="rounded bg-gray-100 px-1">off</code>,
+        so nothing on this page opts in.
       </p>
-      <p class="mt-4 rounded border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
-        Publisher <code class="rounded bg-amber-100 px-1">5431023</code> has no
-        A/B test configured on stage. Swap the id in the snippet for one that
-        does, otherwise the panel below stays empty.
-      </p>
-
       <h2 class="mt-10 text-xl font-semibold text-gray-900">
         Expected behavior
       </h2>
@@ -74,7 +69,9 @@
         </li>
         <li>
           Storage outranks the server's assignment, so a visitor stays on the
-          same arm across pages and reloads. Use <em>Reset</em> to re-roll.
+          same arm across pages, <code class="rounded bg-gray-100 px-1">utm_</code>
+          params and reloads. The browser only rolls for itself when the
+          rotation could not answer. Use <em>Reset</em> to re-roll.
         </li>
         <li>
           Case <code class="rounded bg-gray-100 px-1">variants</code>: the
@@ -86,8 +83,11 @@
           Arms can differ in trigger type, so the pill/card/box can change too.
         </li>
         <li>
-          Case <code class="rounded bg-gray-100 px-1">off</code>: only the
-          localStorage key exists &mdash; there is no
+          Case <code class="rounded bg-gray-100 px-1">off</code>: decided by
+          the same rotation as
+          <code class="rounded bg-gray-100 px-1">variants</code> and baked into
+          the bundle &mdash; held out or shown, not a percentage to roll
+          against. Only the localStorage key shows it; there is no
           <code class="rounded bg-gray-100 px-1">data-poltio-ab-widget-id</code>
           on this path.
         </li>
