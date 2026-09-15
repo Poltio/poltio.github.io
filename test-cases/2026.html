@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>2026 Test Cases</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <h1 class="text-base/7 font-semibold text-[#009EEC]">2026 Test Cases</h1>
+      <h2
+        class="mt-2 text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl"
+      >
+        Every feature we shipped in 2026
+      </h2>
+      <p class="mt-4 max-w-2xl text-gray-600">
+        All pages below load the staging SDK
+        (<code class="text-sm text-gray-900">sdk-stage.poltio.com</code>), not
+        production.
+      </p>
+
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- card template: title / date / description / file -->
+        <a
+          href="./ab-testing.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-09-07</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">A/B Testing</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Widget rotation between two content ids. Verifies the split is
+            decided by the rotation config, including the off case.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">ab-testing.html</span>
+        </a>
+
+        <a
+          href="./plp-pill.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-08-27</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">Pill in Product Card</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Product listing grid where each card carries its own pill widget,
+            testing per-card triggers and placement.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">plp-pill.html</span>
+        </a>
+
+        <a
+          href="./pill-close-button.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-07-07</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">Pill Close Button</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Dismissable pill: checks the close button renders, hides the pill
+            and keeps it hidden.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">pill-close-button.html</span>
+        </a>
+
+        <a
+          href="./beko-where-to-buy.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-06-12</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">Beko Where to Buy</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Customer scenario: dealer / where-to-buy flow driven by the widget
+            on a Beko-style product page.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">beko-where-to-buy.html</span>
+        </a>
+
+        <a
+          href="./auto-toggle.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-06-04</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">Auto Toggle</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Widget that opens and collapses itself automatically after the
+            configured delay.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">auto-toggle.html</span>
+        </a>
+
+        <a
+          href="./box-dynamic-square.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-05-20</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">Box Dynamic — Square</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Floating box in square aspect, styled through the dynamic
+            data-poltio-floating-box-* attributes.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">box-dynamic-square.html</span>
+        </a>
+
+        <a
+          href="./iframe_inject.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-04-22</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">Iframe Inject</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Widget injected into an iframe on the page — checks the SDK reaches
+            across the frame boundary.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">iframe_inject.html</span>
+        </a>
+
+        <a
+          href="./plp.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-04-17</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">Product Listing Page</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Full PLP layout with the widget embedded among the product grid.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">plp.html</span>
+        </a>
+
+        <a
+          href="./embed-iframe.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-03-11</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">Embed Iframe</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Widget embedded as a plain iframe instead of the SDK container.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">embed-iframe.html</span>
+        </a>
+
+        <a
+          href="./box-dynamic-rtl.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-03-09</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">Box Dynamic — RTL</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Floating box on a right-to-left page: mirrored placement, text
+            alignment and animation direction.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">box-dynamic-rtl.html</span>
+        </a>
+
+        <a
+          href="./spa-test.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-03-04</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">SPA Navigation</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Single page app routing: the widget must survive client-side
+            navigation without a reload or a double load.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">spa-test.html</span>
+        </a>
+
+        <a
+          href="./modal-test.html"
+          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
+        >
+          <span class="text-xs font-medium text-gray-400">2026-02-01</span>
+          <span class="mt-1 text-lg font-semibold text-gray-950">Wide Widget Modal / Slideover</span>
+          <span class="mt-2 grow text-sm text-gray-600"
+            >Wide widget display test. Content id and display type (modal or
+            slideover) come from the query string.</span
+          >
+          <span class="mt-4 font-mono text-xs text-gray-400">modal-test.html</span>
+        </a>
+      </div>
+
+      <p class="mt-12 text-sm text-gray-500">
+        <a href="./index.html" class="text-[#009EEC] hover:underline"
+          >← All test cases</a
+        >
+      </p>
+    </div>
+  </body>
+</html>
