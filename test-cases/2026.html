@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>2026 Test Cases</title>
+    <title>Staging Test Cases</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/public/favicon.ico" />
@@ -9,179 +9,340 @@
   </head>
   <body class="bg-gray-50">
     <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-      <h1 class="text-base/7 font-semibold text-[#009EEC]">2026 Test Cases</h1>
-      <h2
-        class="mt-2 text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl"
-      >
-        Every feature we shipped in 2026
+      <h1 class="text-base/7 font-semibold text-[#009EEC]">Staging Test Cases</h1>
+      <h2 class="mt-2 text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">
+        Poltio SDK feature matrix
       </h2>
-      <p class="mt-4 max-w-2xl text-gray-600">
-        All pages below load the staging SDK
-        (<code class="text-sm text-gray-900">sdk-stage.poltio.com</code>), not
-        production.
+      <p class="mt-4 max-w-3xl text-gray-600">
+        Every page here loads the staging SDK
+        (<code class="rounded bg-gray-100 px-1 text-sm text-gray-900">sdk-stage.poltio.com</code>),
+        never production, and every one was verified to actually render its
+        widget on <code class="rounded bg-gray-100 px-1 text-sm text-gray-900">poltio.github.io</code>.
+        Grouped by what they exercise rather than when they were written.
       </p>
 
-      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- card template: title / date / description / file -->
-        <a
-          href="./ab-testing.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-09-07</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">A/B Testing</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Widget rotation between two content ids. Verifies the split is
-            decided by the rotation config, including the off case.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">ab-testing.html</span>
+      <h3 class="mt-14 text-xl font-semibold text-gray-950">Integration Methods</h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">The same widget wired up through every supported loading path. Start here when a customer asks &ldquo;how do I embed this?&rdquo;</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="./sdk-div.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">SDK &mdash; Inline Div</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Bare <code>poltio.js</code> with the content uuid declared on the element. No panel URL rule needed.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">sdk-div.html</span>
         </a>
-
-        <a
-          href="./plp-pill.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-08-27</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">Pill in Product Card</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Product listing grid where each card carries its own pill widget,
-            testing per-card triggers and placement.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">plp-pill.html</span>
+        <a href="./sdk-cta-open.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">SDK &mdash; CTA Open</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Widget opened from a call-to-action button rather than on page load.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">sdk-cta-open.html</span>
         </a>
-
-        <a
-          href="./pill-close-button.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-07-07</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">Pill Close Button</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Dismissable pill: checks the close button renders, hides the pill
-            and keeps it hidden.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">pill-close-button.html</span>
+        <a href="./sdk-iframe.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">SDK &mdash; Iframe</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Widget rendered inside an iframe container.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">sdk-iframe.html</span>
         </a>
-
-        <a
-          href="./beko-where-to-buy.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-06-12</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">Beko Where to Buy</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Customer scenario: dealer / where-to-buy flow driven by the widget
-            on a Beko-style product page.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">beko-where-to-buy.html</span>
+        <a href="./sdk-manuel-trigger.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">SDK &mdash; Manual Trigger</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Widget opened programmatically from your own JS, on your own event.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">sdk-manuel-trigger.html</span>
         </a>
-
-        <a
-          href="./auto-toggle.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-06-04</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">Auto Toggle</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Widget that opens and collapses itself automatically after the
-            configured delay.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">auto-toggle.html</span>
+        <a href="./sdk-xp.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">SDK &mdash; Experience</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Full-page experience mode instead of an embedded widget.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">sdk-xp.html</span>
         </a>
-
-        <a
-          href="./box-dynamic-square.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-05-20</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">Box Dynamic — Square</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Floating box in square aspect, styled through the dynamic
-            data-poltio-floating-box-* attributes.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">box-dynamic-square.html</span>
+        <a href="./double-sdk-load.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">SDK &mdash; Double Load</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Loads the SDK twice on purpose. Guards against double init and duplicate widgets.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">double-sdk-load.html</span>
         </a>
-
-        <a
-          href="./iframe_inject.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-04-22</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">Iframe Inject</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Widget injected into an iframe on the page — checks the SDK reaches
-            across the frame boundary.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">iframe_inject.html</span>
+        <a href="./snippet-div.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Snippet &mdash; Inline Div</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Async snippet loader resolving the widget by publisher + page URL.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">snippet-div.html</span>
         </a>
-
-        <a
-          href="./plp.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-04-17</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">Product Listing Page</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Full PLP layout with the widget embedded among the product grid.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">plp.html</span>
+        <a href="./snippet-cta-open.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Snippet &mdash; CTA Open</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Snippet integration opened from a CTA button.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">snippet-cta-open.html</span>
         </a>
-
-        <a
-          href="./embed-iframe.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-03-11</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">Embed Iframe</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Widget embedded as a plain iframe instead of the SDK container.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">embed-iframe.html</span>
+        <a href="./snippet-iframe.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Snippet &mdash; Iframe</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Snippet integration rendering into an iframe.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">snippet-iframe.html</span>
         </a>
-
-        <a
-          href="./box-dynamic-rtl.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-03-09</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">Box Dynamic — RTL</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Floating box on a right-to-left page: mirrored placement, text
-            alignment and animation direction.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">box-dynamic-rtl.html</span>
+        <a href="./snippet-manuel-trigger.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Snippet &mdash; Manual Trigger</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Snippet integration opened programmatically.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">snippet-manuel-trigger.html</span>
         </a>
-
-        <a
-          href="./spa-test.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-03-04</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">SPA Navigation</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Single page app routing: the widget must survive client-side
-            navigation without a reload or a double load.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">spa-test.html</span>
-        </a>
-
-        <a
-          href="./modal-test.html"
-          class="flex flex-col rounded-xl bg-white p-6 shadow ring-1 ring-gray-200 transition hover:shadow-lg hover:ring-[#009EEC]"
-        >
-          <span class="text-xs font-medium text-gray-400">2026-02-01</span>
-          <span class="mt-1 text-lg font-semibold text-gray-950">Wide Widget Modal / Slideover</span>
-          <span class="mt-2 grow text-sm text-gray-600"
-            >Wide widget display test. Content id and display type (modal or
-            slideover) come from the query string.</span
-          >
-          <span class="mt-4 font-mono text-xs text-gray-400">modal-test.html</span>
+        <a href="./snippet-xp.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Snippet &mdash; Experience</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Snippet integration in full-page experience mode.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">snippet-xp.html</span>
         </a>
       </div>
 
-      <p class="mt-12 text-sm text-gray-500">
-        <a href="./index.html" class="text-[#009EEC] hover:underline"
-          >← All test cases</a
-        >
+      <h3 class="mt-14 text-xl font-semibold text-gray-950">Pill</h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">The floating pill: placement, animation, open state and dismissal.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="./pill-dynamic.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Pill &mdash; Dynamic</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Baseline pill configured entirely from the panel.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">pill-dynamic.html</span>
+        </a>
+        <a href="./pill-dynamic-pulsate-color.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Pill &mdash; Pulsate Color</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Custom pulsate ring color on the attract animation.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">pill-dynamic-pulsate-color.html</span>
+        </a>
+        <a href="./pill-start-mode-open.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Pill &mdash; Start Open</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Pill that renders already expanded instead of collapsed.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">pill-start-mode-open.html</span>
+        </a>
+        <a href="./pill-hide-pulsate.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Pill &mdash; Pulsate Off</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Attract animation disabled; pill sits still.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">pill-hide-pulsate.html</span>
+        </a>
+        <a href="./pill-close-button.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Pill &mdash; Close Button</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Dismissable pill: the close button renders, hides the pill, and it stays hidden.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">pill-close-button.html</span>
+        </a>
+        <a href="./plp-pill.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Pill in Product Card</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Product grid where each card carries its own pill, testing per-card triggers and placement.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">plp-pill.html</span>
+        </a>
+      </div>
+
+      <h3 class="mt-14 text-xl font-semibold text-gray-950">Box</h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">The floating box: aspect ratios, writing direction and identity parameters.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="./box-dynamic.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Box &mdash; Dynamic</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Baseline floating box driven by panel config.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">box-dynamic.html</span>
+        </a>
+        <a href="./box-dynamic-rtl.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Box &mdash; RTL</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Right-to-left page: mirrored placement, text alignment and animation direction.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">box-dynamic-rtl.html</span>
+        </a>
+        <a href="./box-dynamic-square.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Box &mdash; Square</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Square aspect variant of the floating box.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">box-dynamic-square.html</span>
+        </a>
+        <a href="./box-puid-customid-empty1.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Box &mdash; Empty puid/customid #1</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Identity params present but blank. Must not break tracking or rendering.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">box-puid-customid-empty1.html</span>
+        </a>
+        <a href="./box-puid-customid-empty2.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Box &mdash; Empty puid/customid #2</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Second empty-identity permutation.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">box-puid-customid-empty2.html</span>
+        </a>
+      </div>
+
+      <h3 class="mt-14 text-xl font-semibold text-gray-950">Bar &amp; Card</h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">The remaining widget shapes.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="./bar-dynamic.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Bar &mdash; Dynamic</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Baseline sticky bar widget.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">bar-dynamic.html</span>
+        </a>
+        <a href="./card-dynamic.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Card &mdash; Dynamic</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Baseline inline card widget.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">card-dynamic.html</span>
+        </a>
+        <a href="./card-custom-icon.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Card &mdash; Custom Icon</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Card with a publisher-supplied icon instead of the default.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">card-custom-icon.html</span>
+        </a>
+      </div>
+
+      <h3 class="mt-14 text-xl font-semibold text-gray-950">Display Modes</h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">How the widget presents itself once opened.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="./display-modal.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Display &mdash; Modal</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Widget opens in a centered modal overlay.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">display-modal.html</span>
+        </a>
+        <a href="./display-slideover.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Display &mdash; Slideover</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Widget slides in from the edge of the viewport.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">display-slideover.html</span>
+        </a>
+        <a href="./display-modal-leads.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Display &mdash; Modal with Leads</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Modal carrying a lead-capture form at the end of the flow.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">display-modal-leads.html</span>
+        </a>
+      </div>
+
+      <h3 class="mt-14 text-xl font-semibold text-gray-950">Page Integration &amp; Scenarios</h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">Harder host-page situations: real layouts, frames, client-side routing and server-side rotation.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="./plp.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Product Listing Page</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Full PLP layout with the widget embedded among the product grid.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">plp.html</span>
+        </a>
+        <a href="./iframe_inject.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Iframe Inject</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Widget injected into an iframe on the page. Checks the SDK reaches across the frame boundary.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">iframe_inject.html</span>
+        </a>
+        <a href="./embed-iframe.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Embed Iframe</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Widget embedded as a plain iframe instead of the SDK container.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">embed-iframe.html</span>
+        </a>
+        <a href="./spa-test.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">SPA Navigation</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Client-side routing: the widget must survive navigation without a reload or a double load.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">spa-test.html</span>
+        </a>
+        <a href="./ab-testing.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">A/B Testing</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Server-side rotation between variants. The <code>variants</code> case swaps in the union bundle; <code>off</code> serves the parent&rsquo;s own.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">ab-testing.html</span>
+        </a>
+        <a href="./trigger-text.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2025</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Trigger Text</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Widget opened by clicking a text trigger in page copy.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">trigger-text.html</span>
+        </a>
+      </div>
+
+      <h3 class="mt-16 text-xl font-semibold text-gray-950">
+        Not linked &mdash; no widget configured
+      </h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">
+        These pages load the staging SDK correctly, but the panel has no dynamic
+        widget bound to their URL, so nothing renders. They need a panel rule
+        before they are worth linking.
+      </p>
+      <ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-1 text-sm text-gray-600 sm:grid-cols-2">
+        <li><span class="font-mono text-xs text-gray-400">2026</span> &middot; <span class="font-medium text-gray-800">Auto Toggle</span> &mdash; widget that opens and collapses itself after a delay</li>
+        <li><span class="font-mono text-xs text-gray-400">2026</span> &middot; <span class="font-medium text-gray-800">Beko Where to Buy</span> &mdash; dealer / where-to-buy flow</li>
+        <li><span class="font-mono text-xs text-gray-400">2025</span> &middot; <span class="font-medium text-gray-800">Box &mdash; Custom</span> &mdash; custom-styled floating box</li>
+        <li><span class="font-mono text-xs text-gray-400">2025</span> &middot; <span class="font-medium text-gray-800">Bar &mdash; Custom</span> &mdash; custom-styled sticky bar</li>
+        <li><span class="font-mono text-xs text-gray-400">2025</span> &middot; <span class="font-medium text-gray-800">Display &mdash; Modal Default Theme</span> &mdash; modal using the default theme</li>
+        <li><span class="font-mono text-xs text-gray-400">2025</span> &middot; <span class="font-medium text-gray-800">Beko Lead Example</span> &mdash; lead-capture customer scenario</li>
+        <li><span class="font-mono text-xs text-gray-400">2025</span> &middot; <span class="font-medium text-gray-800">Yves Rocher Add to Cart</span> &mdash; add-to-cart result action</li>
+      </ul>
+
+      <p class="mt-14 text-sm text-gray-500">
+        <a href="./index.html" class="text-[#009EEC] hover:underline">&larr; All test cases</a>
       </p>
     </div>
   </body>
