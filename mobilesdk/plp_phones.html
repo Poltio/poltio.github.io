@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
+    />
+    <title>Poltio Mobile SDK - Phones PLP</title>
+    <link rel="shortcut icon" href="https://poltio.app/favicon.ico" />
+
+    <!-- signals for native trigger matching -->
+    <meta name="poltio-screen" content="plp_phones" />
+    <meta name="poltio-page-type" content="plp" />
+
+    <script>
+      window.poltioPageInfo = {
+        screen: 'plp_phones',
+        pageType: 'plp',
+        extra: { app: 'nova-mobile', locale: 'en', category: 'phones' },
+      };
+    </script>
+
+    <!-- Poltio Web SDK (stage, publisher id 1) -->
+    <script>
+      (function (t, e, i, n, p, r = '', s = '') {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (u, c, l) {
+              t.poltio.queue.push([u, c, l]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            o.toggleAttribute('data-ot-ignore', !0),
+            (o.src =
+              i +
+              '/' +
+              n +
+              '?p=' +
+              p +
+              '&r=' +
+              encodeURIComponent(t.location.href) +
+              '&puid=' +
+              r +
+              '&customid=' +
+              s),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '1',
+        '',
+        ''
+      );
+    </script>
+
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <a class="logo" href="home.html">NOVA<span>.</span></a>
+        <div class="page-title">Phones</div>
+        <span class="header-badge">screen: plp_phones</span>
+      </header>
+
+      <div class="searchbar">
+        <input type="search" placeholder="Search in phones..." />
+      </div>
+
+      <!-- target div for div-based triggers -->
+      <div id="contentdiv"></div>
+
+      <div class="chips">
+        <a class="chip active" href="plp_phones.html">All phones</a>
+        <a class="chip" href="#">5G</a>
+        <a class="chip" href="#">Under $700</a>
+        <a class="chip" href="#">Best camera</a>
+        <a class="chip" href="#">Big battery</a>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Phones</h2>
+          <a href="#">Sort: Popular</a>
+        </div>
+        <div class="grid">
+          <article class="card" data-product-id="p-101" data-category="phones">
+            <div class="thumb">📱</div>
+            <div class="body">
+              <span class="brand">Nova</span>
+              <span class="name">Nova X7 Pro 256GB</span>
+              <span class="tag">-15%</span>
+              <span class="price">$899 <s>$1.059</s></span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-102" data-category="phones">
+            <div class="thumb">📱</div>
+            <div class="body">
+              <span class="brand">Nova</span>
+              <span class="name">Nova X7 128GB</span>
+              <span class="price">$699</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-103" data-category="phones">
+            <div class="thumb">📱</div>
+            <div class="body">
+              <span class="brand">Lyra</span>
+              <span class="name">Lyra Note 12 512GB</span>
+              <span class="tag">New</span>
+              <span class="price">$1.049</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-104" data-category="phones">
+            <div class="thumb">📱</div>
+            <div class="body">
+              <span class="brand">Lyra</span>
+              <span class="name">Lyra Lite 5G</span>
+              <span class="price">$379</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-105" data-category="phones">
+            <div class="thumb">📱</div>
+            <div class="body">
+              <span class="brand">Orbit</span>
+              <span class="name">Orbit A54 128GB</span>
+              <span class="tag">-10%</span>
+              <span class="price">$449 <s>$499</s></span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-106" data-category="phones">
+            <div class="thumb">📱</div>
+            <div class="body">
+              <span class="brand">Orbit</span>
+              <span class="name">Orbit Fold 3</span>
+              <span class="price">$1.799</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-107" data-category="phones">
+            <div class="thumb">📱</div>
+            <div class="body">
+              <span class="brand">Nova</span>
+              <span class="name">Nova Mini 5G 128GB</span>
+              <span class="price">$529</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-108" data-category="phones">
+            <div class="thumb">📱</div>
+            <div class="body">
+              <span class="brand">Vela</span>
+              <span class="name">Vela Max Ultra 1TB</span>
+              <span class="price">$1.399</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>Trigger test helpers</h2></div>
+        <div class="card" style="padding: 14px; gap: 10px">
+          <button
+            type="button"
+            class="chip"
+            onclick="PoltioMobile.send('filter_change', { filter: '5g' })"
+          >
+            Send filter_change to native
+          </button>
+          <button
+            type="button"
+            class="chip"
+            onclick="PoltioMobile.send('product_click', { productId: 'p-101' })"
+          >
+            Send product_click to native
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <nav class="tabbar">
+      <a href="home.html"><span class="ico">🏠</span>Home</a>
+      <a class="active" href="plp_phones.html"
+        ><span class="ico">📱</span>Phones</a
+      >
+      <a href="plp_tvs.html"><span class="ico">📺</span>TVs</a>
+      <a href="#"><span class="ico">🛒</span>Cart</a>
+    </nav>
+
+    <script src="bridge.js"></script>
+  </body>
+</html>

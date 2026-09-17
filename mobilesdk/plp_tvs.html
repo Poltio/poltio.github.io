@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
+    />
+    <title>Poltio Mobile SDK - TVs PLP</title>
+    <link rel="shortcut icon" href="https://poltio.app/favicon.ico" />
+
+    <!-- signals for native trigger matching -->
+    <meta name="poltio-screen" content="plp_tvs" />
+    <meta name="poltio-page-type" content="plp" />
+
+    <script>
+      window.poltioPageInfo = {
+        screen: 'plp_tvs',
+        pageType: 'plp',
+        extra: { app: 'nova-mobile', locale: 'en', category: 'tvs' },
+      };
+    </script>
+
+    <!-- Poltio Web SDK (stage, publisher id 1) -->
+    <script>
+      (function (t, e, i, n, p, r = '', s = '') {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (u, c, l) {
+              t.poltio.queue.push([u, c, l]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            o.toggleAttribute('data-ot-ignore', !0),
+            (o.src =
+              i +
+              '/' +
+              n +
+              '?p=' +
+              p +
+              '&r=' +
+              encodeURIComponent(t.location.href) +
+              '&puid=' +
+              r +
+              '&customid=' +
+              s),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '1',
+        '',
+        ''
+      );
+    </script>
+
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <a class="logo" href="home.html">NOVA<span>.</span></a>
+        <div class="page-title">TVs</div>
+        <span class="header-badge">screen: plp_tvs</span>
+      </header>
+
+      <div class="searchbar">
+        <input type="search" placeholder="Search in TVs..." />
+      </div>
+
+      <!-- target div for div-based triggers -->
+      <div id="contentdiv"></div>
+
+      <div class="chips">
+        <a class="chip active" href="plp_tvs.html">All TVs</a>
+        <a class="chip" href="#">OLED</a>
+        <a class="chip" href="#">65" and above</a>
+        <a class="chip" href="#">Gaming 120Hz</a>
+        <a class="chip" href="#">Under $800</a>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>TVs</h2>
+          <a href="#">Sort: Popular</a>
+        </div>
+        <div class="grid">
+          <article class="card" data-product-id="p-201" data-category="tvs">
+            <div class="thumb">📺</div>
+            <div class="body">
+              <span class="brand">Nova</span>
+              <span class="name">Nova Vision 55" 4K OLED</span>
+              <span class="tag">New</span>
+              <span class="price">$1.199</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-202" data-category="tvs">
+            <div class="thumb">📺</div>
+            <div class="body">
+              <span class="brand">Nova</span>
+              <span class="name">Nova Vision 65" 4K OLED</span>
+              <span class="tag">-12%</span>
+              <span class="price">$1.599 <s>$1.819</s></span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-203" data-category="tvs">
+            <div class="thumb">📺</div>
+            <div class="body">
+              <span class="brand">Lyra</span>
+              <span class="name">Lyra QLED 50" Smart</span>
+              <span class="price">$749</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-204" data-category="tvs">
+            <div class="thumb">📺</div>
+            <div class="body">
+              <span class="brand">Lyra</span>
+              <span class="name">Lyra QLED 75" 120Hz</span>
+              <span class="price">$2.099</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-205" data-category="tvs">
+            <div class="thumb">📺</div>
+            <div class="body">
+              <span class="brand">Orbit</span>
+              <span class="name">Orbit LED 43" Full HD</span>
+              <span class="price">$329</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-206" data-category="tvs">
+            <div class="thumb">📺</div>
+            <div class="body">
+              <span class="brand">Orbit</span>
+              <span class="name">Orbit Mini LED 55" Gaming</span>
+              <span class="tag">-8%</span>
+              <span class="price">$899 <s>$979</s></span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-207" data-category="tvs">
+            <div class="thumb">📺</div>
+            <div class="body">
+              <span class="brand">Vela</span>
+              <span class="name">Vela Cinema 85" 8K</span>
+              <span class="price">$3.499</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-208" data-category="tvs">
+            <div class="thumb">📺</div>
+            <div class="body">
+              <span class="brand">Vela</span>
+              <span class="name">Vela Frame 55" Art Mode</span>
+              <span class="price">$1.049</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>Trigger test helpers</h2></div>
+        <div class="card" style="padding: 14px; gap: 10px">
+          <button
+            type="button"
+            class="chip"
+            onclick="PoltioMobile.send('filter_change', { filter: 'oled' })"
+          >
+            Send filter_change to native
+          </button>
+          <button
+            type="button"
+            class="chip"
+            onclick="PoltioMobile.send('product_click', { productId: 'p-202' })"
+          >
+            Send product_click to native
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <nav class="tabbar">
+      <a href="home.html"><span class="ico">🏠</span>Home</a>
+      <a href="plp_phones.html"><span class="ico">📱</span>Phones</a>
+      <a class="active" href="plp_tvs.html"><span class="ico">📺</span>TVs</a>
+      <a href="#"><span class="ico">🛒</span>Cart</a>
+    </nav>
+
+    <script src="bridge.js"></script>
+  </body>
+</html>

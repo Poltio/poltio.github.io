@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
+    />
+    <title>Poltio Mobile SDK - Home</title>
+    <link rel="shortcut icon" href="https://poltio.app/favicon.ico" />
+
+    <!-- signals for native trigger matching -->
+    <meta name="poltio-screen" content="home" />
+    <meta name="poltio-page-type" content="home" />
+
+    <script>
+      window.poltioPageInfo = {
+        screen: 'home',
+        pageType: 'home',
+        extra: { app: 'nova-mobile', locale: 'en' },
+      };
+    </script>
+
+    <!-- Poltio Web SDK (stage, publisher id 1) -->
+    <script>
+      (function (t, e, i, n, p, r = '', s = '') {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (u, c, l) {
+              t.poltio.queue.push([u, c, l]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            o.toggleAttribute('data-ot-ignore', !0),
+            (o.src =
+              i +
+              '/' +
+              n +
+              '?p=' +
+              p +
+              '&r=' +
+              encodeURIComponent(t.location.href) +
+              '&puid=' +
+              r +
+              '&customid=' +
+              s),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '1',
+        '',
+        ''
+      );
+    </script>
+
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <a class="logo" href="home.html">NOVA<span>.</span></a>
+        <div class="page-title">Home</div>
+        <span class="header-badge">screen: home</span>
+      </header>
+
+      <div class="searchbar">
+        <input type="search" placeholder="Search phones, TVs, audio..." />
+      </div>
+
+      <!-- target div for div-based triggers -->
+      <div id="contentdiv"></div>
+
+      <section class="hero">
+        <h1>Not sure which one fits you?</h1>
+        <p>Answer a few questions and let us pick the right device for you.</p>
+        <a class="btn" href="plp_phones.html">Start shopping</a>
+      </section>
+
+      <div class="section">
+        <div class="section-head"><h2>Categories</h2></div>
+      </div>
+      <div class="chips">
+        <a class="chip" href="plp_phones.html">Phones</a>
+        <a class="chip" href="plp_tvs.html">TVs</a>
+        <a class="chip" href="#">Laptops</a>
+        <a class="chip" href="#">Audio</a>
+        <a class="chip" href="#">Wearables</a>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Featured</h2>
+          <a href="plp_phones.html">See all</a>
+        </div>
+        <div class="grid">
+          <article class="card" data-product-id="p-101" data-category="phones">
+            <div class="thumb">📱</div>
+            <div class="body">
+              <span class="brand">Nova</span>
+              <span class="name">Nova X7 Pro 256GB</span>
+              <span class="tag">-15%</span>
+              <span class="price">$899 <s>$1.059</s></span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-201" data-category="tvs">
+            <div class="thumb">📺</div>
+            <div class="body">
+              <span class="brand">Nova</span>
+              <span class="name">Nova Vision 55" 4K OLED</span>
+              <span class="tag">New</span>
+              <span class="price">$1.199</span>
+            </div>
+          </article>
+          <article class="card" data-product-id="p-301" data-category="audio">
+            <div class="thumb">🎧</div>
+            <div class="body">
+              <span class="brand">Nova</span>
+              <span class="name">Nova Buds ANC</span>
+              <span class="price">$149</span>
+            </div>
+          </article>
+          <article
+            class="card"
+            data-product-id="p-401"
+            data-category="wearables"
+          >
+            <div class="thumb">⌚</div>
+            <div class="body">
+              <span class="brand">Nova</span>
+              <span class="name">Nova Watch Fit 2</span>
+              <span class="price">$199</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>Trigger test helpers</h2></div>
+        <div class="card" style="padding: 14px; gap: 10px">
+          <button
+            type="button"
+            class="chip"
+            onclick="PoltioMobile.send('cta_click', { cta: 'home_hero' })"
+          >
+            Send cta_click to native
+          </button>
+          <button
+            type="button"
+            class="chip"
+            onclick="
+              PoltioMobile.send('add_to_cart', {
+                productId: 'p-101',
+                price: 899,
+              })
+            "
+          >
+            Send add_to_cart to native
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <nav class="tabbar">
+      <a class="active" href="home.html"><span class="ico">🏠</span>Home</a>
+      <a href="plp_phones.html"><span class="ico">📱</span>Phones</a>
+      <a href="plp_tvs.html"><span class="ico">📺</span>TVs</a>
+      <a href="#"><span class="ico">🛒</span>Cart</a>
+    </nav>
+
+    <script src="bridge.js"></script>
+  </body>
+</html>
