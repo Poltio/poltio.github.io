@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Box with Product Card Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
+    <script src="https://sdk-stage.poltio.com/poltio_box.js" defer></script>
+  </head>
+  <body>
+    <div
+      class="poltio-widget-flying"
+      data-poltio-widget-content="b1a9044e-983b-4afc-afa3-5ccde8979198"
+      data-poltio-widget-loc="en"
+      data-poltio-widget-disclaimer="off"
+      data-poltio-floating-position="bottom-right"
+      data-poltio-floating-initial-position="active"
+      data-poltio-floating-img="https://storage.googleapis.com/poltio/widget/fiat.png"
+      data-poltio-floating-box-text-first="Not sure which one?"
+      data-poltio-floating-box-text-second="Let's choose together"
+      data-poltio-floating-box-show-close-button="true"
+      data-poltio-floating-box-close-remember-duration="1"
+      data-poltio-floating-product-card-enabled="true"
+      data-poltio-floating-product-child-number="2"
+      data-poltio-floating-product-fit-row="true"
+      data-poltio-floating-product-image="https://storage.googleapis.com/poltio/widget/fiat.png"
+    ></div>
+
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+        Box with Product Card
+      </h1>
+      <p class="mt-4 text-base text-gray-600">
+        A dismissable box plus a product card in the grid below, both opening
+        the same widget. Configured on the element, so no panel rule is needed.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>
+          One product card appears as the second tile; clicking it opens the
+          widget panel and locks page scroll.
+        </li>
+        <li>
+          Dismiss the box with its X (fold it first if it is expanded), then
+          reload: the box stays hidden, but the product card is still there
+          and still opens the panel.
+        </li>
+        <li>
+          Closing that panel does not bring the dismissed box back.
+        </li>
+        <li>
+          To reset, remove
+          <code class="rounded bg-gray-100 px-1"
+            >poltio-content-b1a9044e-983b-4afc-afa3-5ccde8979198-closed</code
+          >
+          from localStorage.
+        </li>
+      </ul>
+
+      <div class="product-grid mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3">
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Wool Coat</p>
+          <p class="text-sm text-gray-500">$189</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Puffer Jacket</p>
+          <p class="text-sm text-gray-500">$98</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Trench Coat</p>
+          <p class="text-sm text-gray-500">$245</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Biker Jacket</p>
+          <p class="text-sm text-gray-500">$320</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Sherpa Jacket</p>
+          <p class="text-sm text-gray-500">$79</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-[1500px]"></div>
+  </body>
+</html>

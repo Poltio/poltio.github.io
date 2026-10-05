@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK SPA Expanded Delay Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">SPA Navigation during an Expanded Delay</h1>
+      <p class="mt-4 text-base text-gray-600">
+        A widget that starts expanded after a delay. Changing route before the delay ends tears it down mid-wait.
+      </p>
+      <p class="mt-2 text-sm text-gray-500">
+        Panel rule for this URL: <code class="rounded bg-gray-100 px-1">floating-initial-position</code> <code class="rounded bg-gray-100 px-1">expanded</code> with <code class="rounded bg-gray-100 px-1">floating-expanded-delay</code> 5000.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>
+          With no route change the panel slides in about 5 seconds after load and locks page scroll.
+        </li>
+        <li>
+          Click Change route within those 5 seconds: the old delay veil is gone, and the panel opens once, about 5 seconds after the new load, never twice.
+        </li>
+        <li>
+          Closing the panel unlocks page scroll, and the status box shows one container and no delay veil.
+        </li>
+      </ul>
+
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <button
+          id="route"
+          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white"
+        >
+          Change route
+        </button>
+        <span id="contentdiv" class="text-sm text-gray-500">route 0</span>
+      </div>
+      <pre
+        id="status"
+        class="mt-4 rounded-lg bg-gray-100 p-4 text-xs text-gray-700"
+      ></pre>
+    </div>
+
+    <div class="h-[1500px]"></div>
+
+    <script>
+      const url = new URL(window.location.href);
+      let counter = parseInt(url.searchParams.get('spatest') || '0', 10);
+
+      // A new query value plus a DOM change is what makes the SDK reload.
+      document.getElementById('route').addEventListener('click', () => {
+        counter = counter + 1;
+        url.searchParams.set('spatest', counter);
+        window.history.pushState({}, '', url);
+        document.getElementById('contentdiv').textContent = 'route ' + counter;
+      });
+
+      const count = (sel) => document.querySelectorAll(sel).length;
+      setInterval(() => {
+        document.getElementById('status').textContent = [
+          'containers:     ' + count('[id^="poltio-floating-container"]'),
+          'product cards:  ' + count('[id^="poltio-product-card"]'),
+          'delay veils:    ' + count('[id^="poltio-expand-delay"]'),
+          'ids ending -2:  ' + count('[id^="poltio"][id$="-2"]'),
+          'body overflow:  ' + (document.body.style.overflow || '(unset)'),
+        ].join('\n');
+      }, 500);
+    </script>
+  </body>
+</html>
