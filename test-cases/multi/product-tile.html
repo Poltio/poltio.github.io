@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Multi-Widget Product Tile Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Multi-Widget &mdash; One Grid Tile</h1>
+      <p class="mt-4 text-base text-gray-600">
+        A pill can place its own product card in the grid. When it aims at the same tile as a product card widget, only one card may land there.
+      </p>
+      <p class="mt-2 text-sm text-gray-500">
+        Panel rules: a pill at <code class="rounded bg-gray-100 px-1">bottom-left</code> with <code class="rounded bg-gray-100 px-1">floating-product-card-enabled</code> on tile 2, and a product card widget on tile 2, both on this exact URL (the pill is newer, so it ranks first); the box at <code class="rounded bg-gray-100 px-1">bottom-right</code> on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/multi/*</code>.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>The pill, its product card on tile 2 and the box render: two widget divs.</li>
+        <li>The standalone product card widget is dropped on position, so tile 2 holds exactly one card.</li>
+      </ul>
+
+      <pre
+        id="status"
+        class="mt-8 rounded-lg bg-gray-100 p-4 text-xs text-gray-700"
+      ></pre>
+      <div class="product-grid mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3">
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Wool Coat</p>
+          <p class="text-sm text-gray-500">$189</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Puffer Jacket</p>
+          <p class="text-sm text-gray-500">$98</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Trench Coat</p>
+          <p class="text-sm text-gray-500">$245</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Biker Jacket</p>
+          <p class="text-sm text-gray-500">$320</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Sherpa Jacket</p>
+          <p class="text-sm text-gray-500">$79</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-[1500px]"></div>
+
+    <script>
+      const count = (sel) => document.querySelectorAll(sel).length;
+      // 2s, not 500ms: the SDK reloads only after 500ms with no DOM changes.
+      setInterval(() => {
+        document.getElementById('status').textContent = [
+          'widget divs:      ' + count('.poltio-widget-flying'),
+          'containers:       ' + [...document.querySelectorAll('[id^="poltio-floating-container"]')].map((c) => c.getAttribute('data-poltio-trigger')).join(', ') || '(none)',
+          'ids ending -2:    ' + count('[id^="poltio"][id$="-2"]'),
+          'product cards:    ' + count('[id^="poltio-product-card"]'),
+          'cards on tile 2:  ' + (document.querySelector('.product-grid')?.children?.[1]?.id || '(none)'),
+        ].join('\n');
+      }, 2000);
+    </script>
+  </body>
+</html>
