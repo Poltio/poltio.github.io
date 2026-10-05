@@ -122,6 +122,7 @@
       });
 
       const count = (sel) => document.querySelectorAll(sel).length;
+      // 2s, not 500ms: the SDK reloads only after 500ms with no DOM changes.
       setInterval(() => {
         document.getElementById('status').textContent = [
           'containers:     ' + count('[id^="poltio-floating-container"]'),
@@ -130,7 +131,7 @@
           'ids ending -2:  ' + count('[id^="poltio"][id$="-2"]'),
           'body overflow:  ' + (document.body.style.overflow || '(unset)'),
         ].join('\n');
-      }, 500);
+      }, 2000);
     </script>
   </body>
 </html>
