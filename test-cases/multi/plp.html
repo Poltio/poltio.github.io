@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
   <head>
-    <title>Poltio SDK SPA Product Card Test Page</title>
+    <title>Poltio SDK Multi-Widget PLP Test Page</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/public/favicon.ico" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       (function (t, e, p, i, n) {
         if (!(t.poltio && t.poltio.push)) {
@@ -39,42 +39,31 @@
   </head>
   <body>
     <div class="mx-auto max-w-5xl px-6 py-16">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">SPA Navigation with Product Card</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Multi-Widget &mdash; Product Listing</h1>
       <p class="mt-4 text-base text-gray-600">
-        Client-side route changes on a page whose widget places a product card in the grid below. On each route change the SDK tears the widget down and loads it again.
+        A product listing page with all three placement kinds at once: a quiz embedded inline above the grid, a product card inside the grid, and a floating box.
       </p>
       <p class="mt-2 text-sm text-gray-500">
-        Panel rule for this URL: any trigger with <code class="rounded bg-gray-100 px-1">floating-product-card-enabled</code> on and <code class="rounded bg-gray-100 px-1">floating-product-child-number</code> 2.
+        Panel rules: an iframe trigger (<code class="rounded bg-gray-100 px-1">floating-parent-id</code> <code class="rounded bg-gray-100 px-1">poltio-inline</code>) and a product card (<code class="rounded bg-gray-100 px-1">floating-product-child-number</code> 3) on this exact URL; the box at <code class="rounded bg-gray-100 px-1">bottom-right</code> on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/multi/*</code>.
       </p>
 
       <h2 class="mt-10 text-xl font-semibold text-gray-900">
         Expected behavior
       </h2>
       <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
-        <li>
-          Before and after every route change there is exactly one container and one product card (see the status box).
-        </li>
-        <li>
-          After a route change, clicking the product card opens the panel and locks page scroll; closing it unlocks scroll.
-        </li>
-        <li>
-          No element ids end in <code class="rounded bg-gray-100 px-1">-2</code>.
-        </li>
+        <li>The quiz renders inline in the bordered area below, the product card sits third in the grid, and the box floats bottom-right.</li>
+        <li>Inline widgets claim no corner, so nothing is dropped: one <code class="rounded bg-gray-100 px-1">poltio_multi.js</code> request, three cta-views.</li>
+        <li>Opening the product card hides the box until it closes; the inline quiz stays where it is.</li>
       </ul>
 
-      <div class="mt-8 flex flex-wrap items-center gap-4">
-        <button
-          id="route"
-          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white"
-        >
-          Change route
-        </button>
-        <span id="contentdiv" class="text-sm text-gray-500">route 0</span>
-      </div>
       <pre
         id="status"
-        class="mt-4 rounded-lg bg-gray-100 p-4 text-xs text-gray-700"
+        class="mt-8 rounded-lg bg-gray-100 p-4 text-xs text-gray-700"
       ></pre>
+      <div
+        id="poltio-inline"
+        class="mt-10 min-h-[200px] rounded-xl border-2 border-dashed border-gray-300"
+      ></div>
       <div class="product-grid mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3">
         <div class="rounded-xl bg-gray-100 p-4">
           <div class="h-40 rounded-lg bg-gray-300"></div>
@@ -107,29 +96,15 @@
     <div class="h-[1500px]"></div>
 
     <script>
-      let counter = parseInt(
-        new URL(window.location.href).searchParams.get('spatest') || '0',
-        10
-      );
-
-      // A new query value plus a DOM change is what makes the SDK reload.
-      document.getElementById('route').addEventListener('click', () => {
-        const url = new URL(window.location.href);
-        counter = counter + 1;
-        url.searchParams.set('spatest', counter);
-        window.history.pushState({}, '', url.href);
-        document.getElementById('contentdiv').textContent = 'route ' + counter;
-      });
-
       const count = (sel) => document.querySelectorAll(sel).length;
       // 2s, not 500ms: the SDK reloads only after 500ms with no DOM changes.
       setInterval(() => {
         document.getElementById('status').textContent = [
-          'containers:     ' + count('[id^="poltio-floating-container"]'),
-          'product cards:  ' + count('[id^="poltio-product-card"]'),
-          'delay veils:    ' + count('[id^="poltio-expand-delay"]'),
-          'ids ending -2:  ' + count('[id^="poltio"][id$="-2"]'),
-          'body overflow:  ' + (document.body.style.overflow || '(unset)'),
+          'widget divs:      ' + count('.poltio-widget-flying'),
+          'containers:       ' + [...document.querySelectorAll('[id^="poltio-floating-container"]')].map((c) => c.getAttribute('data-poltio-trigger')).join(', '),
+          'inline iframes:   ' + count('#poltio-inline iframe'),
+          'product cards:    ' + count('[id^="poltio-product-card"]'),
+          'multi-open style: ' + (document.getElementById('poltio-multi-open') ? 'present' : 'absent'),
         ].join('\n');
       }, 2000);
     </script>

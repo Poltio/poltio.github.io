@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Poltio SDK Multi-Widget Conflict Test Page</title>
+    <title>Poltio SDK Multi-Widget Chatbot Test Page</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/public/favicon.ico" />
@@ -39,21 +39,21 @@
   </head>
   <body>
     <div class="mx-auto max-w-5xl px-6 py-16">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Multi-Widget &mdash; Position Conflict</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Multi-Widget &mdash; Chatbot and Pill</h1>
       <p class="mt-4 text-base text-gray-600">
-        Two widgets match this page in the same corner. The more specific one keeps it; the other is not served here.
+        A chatbot docks along the whole bottom edge on phones, so it claims every bottom slot. Widgets anchored at the top can still share the page with it.
       </p>
       <p class="mt-2 text-sm text-gray-500">
-        Panel rules: a card at <code class="rounded bg-gray-100 px-1">bottom-right</code> on this exact URL; the box at <code class="rounded bg-gray-100 px-1">bottom-right</code> on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/multi/*</code>.
+        Panel rules: a chatbot and a pill at <code class="rounded bg-gray-100 px-1">top-right</code> on this exact URL; the box at <code class="rounded bg-gray-100 px-1">bottom-right</code> on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/multi/*</code>; the Smeg chatbot on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/*</code>.
       </p>
 
       <h2 class="mt-10 text-xl font-semibold text-gray-900">
         Expected behavior
       </h2>
       <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
-        <li>Only the card renders: one widget div, one container, no ids ending <code class="rounded bg-gray-100 px-1">-2</code>.</li>
-        <li>The script response is the single card bundle, exactly as if the box did not exist; the SDK request log shows <code class="rounded bg-gray-100 px-1">dropped=[&lt;box id&gt;:position]</code>.</li>
-        <li>Moving the box to <code class="rounded bg-gray-100 px-1">bottom-left</code> in the panel brings both back here.</li>
+        <li>The chatbot and the top-right pill render; nothing else does.</li>
+        <li>The box (bottom-right) and the Smeg chatbot are dropped on position, because this page's chatbot is more specific and holds the bottom edge.</li>
+        <li>Opening the chatbot fullscreen hides the pill until it closes.</li>
       </ul>
 
       <pre
@@ -70,9 +70,10 @@
       setInterval(() => {
         document.getElementById('status').textContent = [
           'widget divs:      ' + count('.poltio-widget-flying'),
-          'containers:       ' + count('[id^="poltio-floating-container"]'),
-          'ids ending -2:    ' + count('[id^="poltio"][id$="-2"]'),
+          'containers:       ' + [...document.querySelectorAll('[id^="poltio-floating-container"]')].map((c) => c.getAttribute('data-poltio-trigger')).join(', '),
+          'expanded:         ' + count('[id^="poltio-floating-container"].third'),
           'multi-open style: ' + (document.getElementById('poltio-multi-open') ? 'present' : 'absent'),
+          'body overflow:    ' + (document.body.style.overflow || '(unset)'),
         ].join('\n');
       }, 2000);
     </script>
