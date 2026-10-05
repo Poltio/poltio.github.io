@@ -55,6 +55,7 @@
         <li>Each trigger opens its own panel. While one is open the others are hidden (<code class="rounded bg-gray-100 px-1">multi-open style</code> is present) and page scroll is locked; closing it brings them back.</li>
         <li>At phone width the open panel fills the screen and nothing paints over it.</li>
         <li>Each widget reports its own cta-view with its own <code class="rounded bg-gray-100 px-1">widget_id</code>.</li>
+        <li>On a phone (DevTools device mode with a phone user agent) only one bottom widget is served: the bottom-left pill keeps the bottom edge, so the box is dropped and two widgets mount.</li>
       </ul>
 
       <pre
