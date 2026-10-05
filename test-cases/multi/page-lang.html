@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Poltio SDK Multi-Widget Page Language Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Multi-Widget &mdash; Page Language</h1>
+      <p class="mt-4 text-base text-gray-600">
+        The server does not know the page language, so it serves every match; each widget then checks its own language list in the browser. A widget limited to another language skips itself without affecting the others.
+      </p>
+      <p class="mt-2 text-sm text-gray-500">
+        Panel rules: a pill at <code class="rounded bg-gray-100 px-1">bottom-left</code> limited to <code class="rounded bg-gray-100 px-1">trigger-page-langs</code> <code class="rounded bg-gray-100 px-1">tr</code> and a card at <code class="rounded bg-gray-100 px-1">top-right</code>, both on this exact URL; the box at <code class="rounded bg-gray-100 px-1">bottom-right</code> on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/multi/*</code>. This page is <code class="rounded bg-gray-100 px-1">&lt;html lang=&quot;en&quot;&gt;</code>.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>The script carries three widgets, but only the card and the box mount: three widget divs, two containers.</li>
+        <li>Two cta-view requests, none for the Turkish pill.</li>
+      </ul>
+
+      <pre
+        id="status"
+        class="mt-8 rounded-lg bg-gray-100 p-4 text-xs text-gray-700"
+      ></pre>
+    </div>
+
+    <div class="h-[1500px]"></div>
+
+    <script>
+      const count = (sel) => document.querySelectorAll(sel).length;
+      // 2s, not 500ms: the SDK reloads only after 500ms with no DOM changes.
+      setInterval(() => {
+        document.getElementById('status').textContent = [
+          'widget divs:      ' + count('.poltio-widget-flying'),
+          'containers:       ' + [...document.querySelectorAll('[id^="poltio-floating-container"]')].map((c) => c.getAttribute('data-poltio-trigger')).join(', '),
+          'ids ending -2:    ' + count('[id^="poltio"][id$="-2"]'),
+        ].join('\n');
+      }, 2000);
+    </script>
+  </body>
+</html>
