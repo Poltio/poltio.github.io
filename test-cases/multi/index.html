@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Multi-Widget Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Multi-Widget &mdash; Three Triggers</h1>
+      <p class="mt-4 text-base text-gray-600">
+        Three widgets match this page, so the SDK serves <code class="rounded bg-gray-100 px-1">poltio_multi.js</code> and mounts each one under its own instance.
+      </p>
+      <p class="mt-2 text-sm text-gray-500">
+        Panel rules: a pill at <code class="rounded bg-gray-100 px-1">bottom-left</code> and a product card (<code class="rounded bg-gray-100 px-1">floating-product-child-number</code> 2) on this exact URL; a box at <code class="rounded bg-gray-100 px-1">bottom-right</code> on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/multi/*</code>. Each with its own content.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>The script request returns the multi bundle: three containers, ids suffixed <code class="rounded bg-gray-100 px-1">-2</code> and <code class="rounded bg-gray-100 px-1">-3</code> for the second and third.</li>
+        <li>Each trigger opens its own panel. While one is open the others are hidden (<code class="rounded bg-gray-100 px-1">multi-open style</code> is present) and page scroll is locked; closing it brings them back.</li>
+        <li>At phone width the open panel fills the screen and nothing paints over it.</li>
+        <li>Each widget reports its own cta-view with its own <code class="rounded bg-gray-100 px-1">widget_id</code>.</li>
+      </ul>
+
+      <pre
+        id="status"
+        class="mt-8 rounded-lg bg-gray-100 p-4 text-xs text-gray-700"
+      ></pre>
+      <div class="product-grid mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3">
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Wool Coat</p>
+          <p class="text-sm text-gray-500">$189</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Puffer Jacket</p>
+          <p class="text-sm text-gray-500">$98</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Trench Coat</p>
+          <p class="text-sm text-gray-500">$245</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Biker Jacket</p>
+          <p class="text-sm text-gray-500">$320</p>
+        </div>
+        <div class="rounded-xl bg-gray-100 p-4">
+          <div class="h-40 rounded-lg bg-gray-300"></div>
+          <p class="mt-3 text-sm font-medium text-gray-900">Sherpa Jacket</p>
+          <p class="text-sm text-gray-500">$79</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-[1500px]"></div>
+
+    <script>
+      const count = (sel) => document.querySelectorAll(sel).length;
+      setInterval(() => {
+        document.getElementById('status').textContent = [
+          'widget divs:      ' + count('.poltio-widget-flying'),
+          'containers:       ' + count('[id^="poltio-floating-container"]'),
+          'product cards:    ' + count('[id^="poltio-product-card"]'),
+          'ids ending -2:    ' + count('[id^="poltio"][id$="-2"]'),
+          'ids ending -3:    ' + count('[id^="poltio"][id$="-3"]'),
+          'multi-open style: ' + (document.getElementById('poltio-multi-open') ? 'present' : 'absent'),
+          'body overflow:    ' + (document.body.style.overflow || '(unset)'),
+        ].join('\n');
+      }, 500);
+    </script>
+  </body>
+</html>
