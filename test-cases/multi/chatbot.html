@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Multi-Widget Chatbot Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Multi-Widget &mdash; Chatbot and Pill</h1>
+      <p class="mt-4 text-base text-gray-600">
+        A chatbot docks along the whole bottom edge on phones, so it claims every bottom slot. Widgets anchored at the top can still share the page with it.
+      </p>
+      <p class="mt-2 text-sm text-gray-500">
+        Panel rules: a chatbot and a pill at <code class="rounded bg-gray-100 px-1">top-right</code> on this exact URL; the box at <code class="rounded bg-gray-100 px-1">bottom-right</code> on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/multi/*</code>; the Smeg chatbot on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/*</code>.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>The chatbot and the top-right pill render; nothing else does.</li>
+        <li>The box (bottom-right) and the Smeg chatbot are dropped on position, because this page's chatbot is more specific and holds the bottom edge.</li>
+        <li>Opening the chatbot fullscreen hides the pill until it closes.</li>
+      </ul>
+
+      <pre
+        id="status"
+        class="mt-8 rounded-lg bg-gray-100 p-4 text-xs text-gray-700"
+      ></pre>
+    </div>
+
+    <div class="h-[1500px]"></div>
+
+    <script>
+      const count = (sel) => document.querySelectorAll(sel).length;
+      // 2s, not 500ms: the SDK reloads only after 500ms with no DOM changes.
+      setInterval(() => {
+        document.getElementById('status').textContent = [
+          'widget divs:      ' + count('.poltio-widget-flying'),
+          'containers:       ' + [...document.querySelectorAll('[id^="poltio-floating-container"]')].map((c) => c.getAttribute('data-poltio-trigger')).join(', '),
+          'expanded:         ' + count('[id^="poltio-floating-container"].third'),
+          'multi-open style: ' + (document.getElementById('poltio-multi-open') ? 'present' : 'absent'),
+          'body overflow:    ' + (document.body.style.overflow || '(unset)'),
+        ].join('\n');
+      }, 2000);
+    </script>
+  </body>
+</html>
