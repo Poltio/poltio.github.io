@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Box Close Button Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
+    <script src="https://sdk-stage.poltio.com/poltio_box.js" defer></script>
+  </head>
+  <body>
+    <div
+      class="poltio-widget-flying"
+      data-poltio-widget-content="b1a9044e-983b-4afc-afa3-5ccde8979198"
+      data-poltio-widget-loc="en"
+      data-poltio-widget-disclaimer="off"
+      data-poltio-floating-position="bottom-right"
+      data-poltio-floating-initial-position="active"
+      data-poltio-floating-img="https://storage.googleapis.com/poltio/widget/fiat.png"
+      data-poltio-floating-box-text-first="Not sure which one?"
+      data-poltio-floating-box-text-second="Let's choose together"
+      data-poltio-floating-box-show-close-button="true"
+      data-poltio-floating-box-close-remember-duration="1"
+    ></div>
+
+    <div class="mx-auto max-w-3xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+        Box Close Button
+      </h1>
+      <p class="mt-4 text-base text-gray-600">
+        This page tests the box trigger close button (<code
+          class="rounded bg-gray-100 px-1"
+          >data-poltio-floating-box-show-close-button</code
+        >). Configured on the element, so no panel rule is needed.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>
+          On an expanded box the X only folds it back. On a folded box the X
+          hides it and keeps it hidden for the remember duration (<code
+            class="rounded bg-gray-100 px-1"
+            >data-poltio-floating-box-close-remember-duration</code
+          >, set to 1 hour on this page; default is 48 hours).
+        </li>
+        <li>
+          Hiding writes
+          <code class="rounded bg-gray-100 px-1"
+            >poltio-content-b1a9044e-983b-4afc-afa3-5ccde8979198-closed</code
+          >
+          to localStorage, with no <code class="rounded bg-gray-100 px-1">-2</code>
+          suffix. Reloading must not show the box until it expires; remove the
+          key to reset.
+        </li>
+        <li>
+          Clicking the box opens the widget panel and locks page scroll; its
+          close button collapses it and unlocks scroll.
+        </li>
+      </ul>
+    </div>
+
+    <div class="h-[2000px]"></div>
+  </body>
+</html>
