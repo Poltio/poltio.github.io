@@ -41,7 +41,7 @@
     <div class="mx-auto max-w-5xl px-6 py-16">
       <h1 class="text-3xl font-bold tracking-tight text-gray-900">Multi-Widget &mdash; Four Corners</h1>
       <p class="mt-4 text-base text-gray-600">
-        One widget in every corner. On desktop all four fit; on a phone two bottom teasers would overlap, so only the more specific bottom widget is served there.
+        One widget in every corner. On desktop all four fit; on a phone two teasers in one row would overlap, so only one widget per row (top, center, bottom) is served there.
       </p>
       <p class="mt-2 text-sm text-gray-500">
         Panel rules: a pill at <code class="rounded bg-gray-100 px-1">top-left</code>, a card at <code class="rounded bg-gray-100 px-1">top-right</code> and a pill at <code class="rounded bg-gray-100 px-1">bottom-left</code> on this exact URL; the box at <code class="rounded bg-gray-100 px-1">bottom-right</code> on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/multi/*</code>.
@@ -52,7 +52,7 @@
       </h2>
       <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
         <li>Desktop: four widget divs, one per corner.</li>
-        <li>Phone (DevTools device mode with a phone user agent): three widget divs; the box is dropped because the bottom-left pill holds the bottom edge.</li>
+        <li>Phone (DevTools device mode with a phone user agent): two widget divs: the bottom-left pill and the top-right card. The top-left pill loses the top row to the newer card, and the box loses the bottom row to the pill.</li>
         <li>Opening any widget hides the other three until it closes.</li>
       </ul>
 
