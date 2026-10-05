@@ -99,7 +99,7 @@
           'containers:       ' + [...document.querySelectorAll('[id^="poltio-floating-container"]')].map((c) => c.getAttribute('data-poltio-trigger')).join(', ') || '(none)',
           'ids ending -2:    ' + count('[id^="poltio"][id$="-2"]'),
           'product cards:    ' + count('[id^="poltio-product-card"]'),
-          'cards on tile 2:  ' + document.querySelector('.product-grid').children[1].id,
+          'cards on tile 2:  ' + (document.querySelector('.product-grid')?.children?.[1]?.id || '(none)'),
         ].join('\n');
       }, 2000);
     </script>
