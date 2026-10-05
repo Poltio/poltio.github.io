@@ -80,14 +80,17 @@
     <div class="h-[1500px]"></div>
 
     <script>
-      const url = new URL(window.location.href);
-      let counter = parseInt(url.searchParams.get('spatest') || '0', 10);
+      let counter = parseInt(
+        new URL(window.location.href).searchParams.get('spatest') || '0',
+        10
+      );
 
       // A new query value plus a DOM change is what makes the SDK reload.
       document.getElementById('route').addEventListener('click', () => {
+        const url = new URL(window.location.href);
         counter = counter + 1;
         url.searchParams.set('spatest', counter);
-        window.history.pushState({}, '', url);
+        window.history.pushState({}, '', url.href);
         document.getElementById('contentdiv').textContent = 'route ' + counter;
       });
 
