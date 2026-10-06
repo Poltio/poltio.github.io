@@ -56,6 +56,7 @@
         <li>After "Go to other.html": one widget div, the box only, and no ids ending <code class="rounded bg-gray-100 px-1">-2</code> left behind.</li>
         <li>After "Back to spa.html": both widgets again, each still opens its own panel.</li>
         <li>Open a panel, then change route: scroll unlocks and no <code class="rounded bg-gray-100 px-1">multi-open style</code> is left.</li>
+        <li>"Next page" only bumps <code class="rounded bg-gray-100 px-1">?page=N</code>, which the SDK ignores: no reload, so <code class="rounded bg-gray-100 px-1">sdk loads</code> and <code class="rounded bg-gray-100 px-1">widget mounts</code> stay the same, and an open panel stays open. A route change bumps both.</li>
       </ul>
 
       <div class="mt-8 flex flex-wrap items-center gap-4">
@@ -70,6 +71,12 @@
           class="rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white"
         >
           Back to spa.html
+        </button>
+        <button
+          id="next-page"
+          class="rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white"
+        >
+          Next page
         </button>
         <span id="route" class="text-sm text-gray-500"></span>
       </div>
@@ -86,13 +93,25 @@
       const go = (page) => {
         const url = new URL(page, window.location.href);
         window.history.pushState({}, '', url.href);
-        document.getElementById('route').textContent = url.pathname;
+        document.getElementById('route').textContent = url.pathname + url.search;
       };
       document.getElementById('other').addEventListener('click', () => go('other.html'));
       document.getElementById('back').addEventListener('click', () => go('spa.html'));
-      document.getElementById('route').textContent = window.location.pathname;
+      // Pagination: the SDK strips `page` before comparing URLs, so this must not reload it.
+      document.getElementById('next-page').addEventListener('click', () => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('page', (parseInt(url.searchParams.get('page') || '1', 10) + 1).toString());
+        go(url.href);
+      });
+      document.getElementById('route').textContent = window.location.pathname + window.location.search;
 
       const count = (sel) => document.querySelectorAll(sel).length;
+      // A reload fetches the SDK again and replaces every widget node.
+      const sdkLoads = () => performance.getEntriesByType('resource').filter((e) => /sdk-stage\.poltio\.com\/poltio/.test(e.name)).length;
+      let mounts = 0;
+      new MutationObserver((records) => {
+        for (const r of records) for (const n of r.addedNodes) if (n.classList?.contains('poltio-widget-flying')) mounts++;
+      }).observe(document.body, { childList: true, subtree: true });
       // 2s, not 500ms: the SDK reloads only after 500ms with no DOM changes.
       setInterval(() => {
         document.getElementById('status').textContent = [
@@ -101,6 +120,8 @@
           'ids ending -2:    ' + count('[id^="poltio"][id$="-2"]'),
           'multi-open style: ' + (document.getElementById('poltio-multi-open') ? 'present' : 'absent'),
           'body overflow:    ' + (document.body.style.overflow || '(unset)'),
+          'sdk loads:        ' + sdkLoads(),
+          'widget mounts:    ' + mounts,
         ].join('\n');
       }, 2000);
     </script>
