@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Poltio SDK Multi-Widget Duplicate Content Test Page</title>
+    <title>Poltio SDK Multi-Widget Shared Content Test Page</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/public/favicon.ico" />
@@ -39,22 +39,30 @@
   </head>
   <body>
     <div class="mx-auto max-w-5xl px-6 py-16">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Multi-Widget &mdash; Same Content Twice</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Multi-Widget &mdash; Three Widgets, One Quiz</h1>
       <p class="mt-4 text-base text-gray-600">
-        Two widgets on this page show the same quiz in different corners. Sharing a content is not a conflict: both are served, and each iframe's messages reach the iframe that sent them.
+        Two pills and a box all show the same quiz. Sharing a content is not a conflict, even for two widgets of the same trigger, and each widget remembers its own close.
       </p>
       <p class="mt-2 text-sm text-gray-500">
-        Panel rules: a pill at <code class="rounded bg-gray-100 px-1">bottom-left</code> on this exact URL with the same content as the box; the box at <code class="rounded bg-gray-100 px-1">bottom-right</code> on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/multi/*</code>.
+        Panel rules: a pill at <code class="rounded bg-gray-100 px-1">top-left</code> (473) and a pill at <code class="rounded bg-gray-100 px-1">bottom-left</code> (472) on this exact URL, both with the close button and a 1 hour remember duration; the box at <code class="rounded bg-gray-100 px-1">bottom-right</code> (449) on <code class="rounded bg-gray-100 px-1">https://poltio.github.io/test-cases/multi/*</code>. All three show the same content.
       </p>
 
       <h2 class="mt-10 text-xl font-semibold text-gray-900">
         Expected behavior
       </h2>
       <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
-        <li>Both render from <code class="rounded bg-gray-100 px-1">poltio_multi.js</code>: the pill (bottom-left) as the first instance, the box (bottom-right) with -2 ids.</li>
-        <li>Opening either one loads the quiz in its own panel, sized to its own content; opening one never resizes or retitles the other's iframe.</li>
-        <li>The SDK request log drops nothing.</li>
+        <li>All three render: widget ids 473, 472, 449 (both pills share this URL, newest first; the box is less specific).</li>
+        <li>Opening any one loads the quiz in its own panel, sized to its own content; the other two iframes are untouched.</li>
+        <li>Closing the top-left pill with its X hides only that pill and stores <code class="rounded bg-gray-100 px-1">poltio-widget-473-closed</code>. After a reload it stays hidden while the bottom-left pill and the box still show.</li>
+        <li>To reset, use the button below or remove the <code class="rounded bg-gray-100 px-1">poltio-widget-*-closed</code> keys from localStorage.</li>
       </ul>
+
+      <button
+        id="reset"
+        class="mt-6 rounded-md bg-gray-900 px-3 py-1.5 text-sm font-medium text-white"
+      >
+        Clear remembered closes and reload
+      </button>
 
       <pre
         id="status"
@@ -66,15 +74,19 @@
 
     <script>
       const count = (sel) => document.querySelectorAll(sel).length;
+      const closedKeys = () => Object.keys(localStorage).filter((k) => /^poltio-(widget|content)-.*-closed$/.test(k));
+      document.getElementById('reset').addEventListener('click', () => {
+        closedKeys().forEach((k) => localStorage.removeItem(k));
+        location.reload();
+      });
       // 2s, not 500ms: the SDK reloads only after 500ms with no DOM changes.
       setInterval(() => {
         document.getElementById('status').textContent = [
           'widget divs:      ' + count('.poltio-widget-flying'),
           'widget ids:       ' + [...document.querySelectorAll('.poltio-widget-flying')].map((d) => d.getAttribute('data-poltio-ab-widget-id')).join(', '),
           'containers:       ' + [...document.querySelectorAll('[id^="poltio-floating-container"]')].map((c) => c.getAttribute('data-poltio-trigger')).join(', '),
-          'expanded:         ' + count('[id^="poltio-floating-container"].third'),
-          'multi-open style: ' + (document.getElementById('poltio-multi-open') ? 'present' : 'absent'),
-          'body overflow:    ' + (document.body.style.overflow || '(unset)'),
+          'iframes:          ' + count('iframe.poltio-embed'),
+          'closed keys:      ' + (closedKeys().join(', ') || '(none)'),
         ].join('\n');
       }, 2000);
     </script>
