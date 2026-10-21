@@ -75,16 +75,6 @@
     onResult(draw);
   };
 
-  // Live list of relayed events for the developer panel.
-  const logTo = (el) =>
-    onRelay((d) => {
-      const time = new Date().toLocaleTimeString('tr-TR');
-      const what = [d.action, kindOf(d.content_id), d.result_title].filter(Boolean);
-      if (el.dataset.empty !== 'false') el.textContent = '';
-      el.dataset.empty = 'false';
-      el.textContent = `${time}  ${what.join('  ·  ')}\n` + el.textContent;
-    });
-
   const toast = (html) => {
     let box = document.getElementById('ff-toast');
     if (!box) {
@@ -143,7 +133,6 @@
     profile,
     forget,
     showProfile,
-    logTo,
     toast,
     garment,
   };

@@ -67,33 +67,6 @@
           </div>
         </aside>
       </div>
-
-      <section class="mt-20 rounded-3xl bg-gray-950 p-6 text-gray-300 sm:p-10">
-        <p class="text-xs font-semibold tracking-widest text-[#009EEC]">GELİŞTİRİCİ NOTU</p>
-        <h2 class="mt-2 text-xl font-semibold text-white">Bu sayfa nasıl çalışıyor?</h2>
-        <ol class="mt-4 max-w-3xl list-decimal space-y-2 pl-5 text-sm">
-          <li>Bu sayfada SDK yok. Üç içerik, sağdan açılan çekmecede düz <code class="text-white">&lt;iframe src="https://www.poltio.com/widget/…"&gt;</code> olarak açılıyor. Her iframe ilk açılışta oluşturuluyor ve saklanıyor; parçalar arasında geçince yarım kalan test kaybolmuyor.</li>
-          <li>Widget sonuç mesajını SDK olmadan da gönderiyor (<code class="text-white">window.parent.postMessage</code>). Sayfa <code class="text-white">content_id</code> ile hangi parçanın bittiğini anlayıp bedeni seçiyor ve sıradaki eksik parçayı öneriyor.</li>
-          <li>Çekmece 768 px'ten dar olduğu için test telefon düzeninde açılıyor; bu tasarımın beklenen davranışı.</li>
-        </ol>
-        <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <pre class="overflow-x-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-gray-200">&lt;iframe
-  src="https://www.poltio.com/widget/1109e7d0-c2b0-4ce8-b8a3-824c813c8411?loc=tr&amp;design=2026-01&amp;disclaimer=off"
-  allow="clipboard-write"&gt;&lt;/iframe&gt;
-
-window.addEventListener('message', (e) =&gt; {
-  if (e.origin !== 'https://www.poltio.com') return;
-  const d = e.data &amp;&amp; e.data.gtmData;
-  if (d &amp;&amp; d.action === 'result_view') {
-    setSize(d.content_id, d.result_title);
-  }
-});</pre>
-          <div>
-            <p class="text-xs font-semibold tracking-widest text-gray-500">GELEN OLAYLAR</p>
-            <pre id="log" class="mt-2 h-48 overflow-y-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-emerald-300">Henüz olay yok. &ldquo;Bedenlerimi bul&rdquo; ile başla.</pre>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500">&copy; 2026 NOVA. Demo mağaza &mdash; beden asistanı <a href="https://www.poltio.com" class="underline">Poltio</a> ile.</footer>
@@ -245,7 +218,6 @@ window.addEventListener('message', (e) =&gt; {
       });
 
       FitFinder.showProfile($('ff-profile'));
-      FitFinder.logTo($('log'));
       render();
     </script>
   </body>

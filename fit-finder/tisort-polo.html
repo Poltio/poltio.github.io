@@ -117,36 +117,6 @@
           </div>
         </div>
       </div>
-
-      <section class="mt-20 rounded-3xl bg-gray-950 p-6 text-gray-300 sm:p-10">
-        <p class="text-xs font-semibold uppercase tracking-widest text-[#009EEC]">Geliştirici notu</p>
-        <h2 class="mt-2 text-xl font-semibold text-white">Bu sayfa nasıl çalışıyor?</h2>
-        <ol class="mt-4 max-w-3xl list-decimal space-y-2 pl-5 text-sm">
-          <li>Sayfada tek bir <code class="text-white">.poltio-widget-flying</code> var. Tetikleyicisi gizli (<code class="text-white">data-poltio-floating-hide-button</code>) ve modal olarak açılıyor (<code class="text-white">data-poltio-floating-display-type="modal"</code>). Panelde kural gerekmiyor.</li>
-          <li>&ldquo;Bedenimi bul&rdquo; düğmeleri <code class="text-white">window.poltio.toggleFlyingWidget()</code> çağırıyor.</li>
-          <li>Sonuç ekranı açılınca widget sayfaya <code class="text-white">result_view</code> mesajı gönderiyor. Sayfa <code class="text-white">result_title</code> içinden bedeni okuyor, seçiyor ve tarayıcıda saklıyor; diğer sayfalar da aynı bedeni hatırlıyor.</li>
-        </ol>
-        <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <pre class="overflow-x-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-gray-200">&lt;div class="poltio-widget-flying"
-  data-poltio-widget-content="6f242720-bd30-4116-858f-5a13cdb6336b"
-  data-poltio-widget-loc="tr"
-  data-poltio-floating-design-type="2026-01"
-  data-poltio-floating-display-type="modal"
-  data-poltio-floating-hide-button="true"&gt;&lt;/div&gt;
-
-window.addEventListener('message', (e) =&gt; {
-  const d = e.data &amp;&amp; e.data.gtmData;
-  if (d &amp;&amp; d.action === 'result_view') {
-    // "Önerilen bedenin: M" → "M"
-    selectSize(d.result_title.split(':').pop().trim());
-  }
-});</pre>
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Gelen olaylar</p>
-            <pre id="log" class="mt-2 h-48 overflow-y-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-emerald-300">Henüz olay yok. &ldquo;Bedenimi bul&rdquo; ile testi başlat.</pre>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500">&copy; 2026 NOVA. Demo mağaza &mdash; beden asistanı <a href="https://www.poltio.com" class="underline">Poltio</a> ile.</footer>
@@ -270,7 +240,6 @@ window.addEventListener('message', (e) =&gt; {
       });
 
       FitFinder.showProfile($('ff-profile'));
-      FitFinder.logTo($('log'));
       render();
     </script>
   </body>

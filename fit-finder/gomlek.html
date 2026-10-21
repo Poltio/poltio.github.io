@@ -124,33 +124,6 @@
           </div>
         </div>
       </section>
-
-      <section class="mt-20 rounded-3xl bg-gray-950 p-6 text-gray-300 sm:p-10">
-        <p class="text-xs font-semibold tracking-widest text-[#009EEC]">GELİŞTİRİCİ NOTU</p>
-        <h2 class="mt-2 text-xl font-semibold text-white">Bu sayfa nasıl çalışıyor?</h2>
-        <ol class="mt-4 max-w-3xl list-decimal space-y-2 pl-5 text-sm">
-          <li>Flying widget yok; içerik ürünün altına gömülü bir <code class="text-white">.poltio-widget</code>. SDK onu yüklemede iframe'e çeviriyor ve yüksekliğini her soruda ayarlıyor.</li>
-          <li>Kutu kapalı başlıyor, &ldquo;Bedenimi bul&rdquo; açıp oraya kaydırıyor. Tam genişlikte olması bilinçli: 2026 tasarımı 768 px'ten dar bir iframe'de &ldquo;Başla&rdquo;ya basılınca tam ekrana geçiyor. Telefonda istenen davranış bu, masaüstünde ise test sayfanın içinde kalıyor.</li>
-          <li>Müşteri aşağıda cevap verirken alttaki yapışkan çubuk seçili bedeni gösteriyor; sonuç gelince beden oraya ve yukarıdaki seçiciye aynı anda yazılıyor.</li>
-          <li>Gömlek sonucu bedenle birlikte yakayı da taşıyor: <code class="text-white">"Önerilen bedenin: M · Yaka 40-41"</code>. Sayfa ikisini de ayırıp gösteriyor.</li>
-        </ol>
-        <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <pre class="overflow-x-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-gray-200">&lt;script src="https://sdk.poltio.com/poltio.js" defer&gt;&lt;/script&gt;
-
-&lt;div class="poltio-widget"
-  data-poltio-widget-content="64b377c3-8afb-435c-9f94-5bc8af1c4c47"
-  data-poltio-widget-lang="tr"
-  data-poltio-widget-height="600"&gt;&lt;/div&gt;
-
-// "Önerilen bedenin: M · Yaka 40-41"
-const [size, collar] = d.result_title
-  .split(':').pop().split('·').map((s) =&gt; s.trim());</pre>
-          <div>
-            <p class="text-xs font-semibold tracking-widest text-gray-500">GELEN OLAYLAR</p>
-            <pre id="log" class="mt-2 h-48 overflow-y-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-emerald-300">Henüz olay yok. &ldquo;Bedenimi bul&rdquo; ile testi başlat.</pre>
-          </div>
-        </div>
-      </section>
     </main>
 
     <!-- Sticky buy bar, shown once the main button scrolls away (e.g. while answering below). -->
@@ -302,7 +275,6 @@ const [size, collar] = d.result_title
       });
 
       FitFinder.showProfile($('ff-profile'));
-      FitFinder.logTo($('log'));
       render();
     </script>
   </body>

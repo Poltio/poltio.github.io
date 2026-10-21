@@ -107,31 +107,6 @@
           <div class="poltio-widget" data-poltio-widget-content="64b377c3-8afb-435c-9f94-5bc8af1c4c47" data-poltio-widget-lang="tr" data-poltio-widget-disclaimer="off" data-poltio-widget-height="640"></div>
         </div>
       </section>
-
-      <section class="mt-20 rounded-3xl bg-gray-950 p-6 text-gray-300 sm:p-10">
-        <p class="text-xs font-semibold tracking-widest text-[#009EEC]">GELİŞTİRİCİ NOTU</p>
-        <h2 class="mt-2 text-xl font-semibold text-white">Bu sayfa nasıl çalışıyor?</h2>
-        <ol class="mt-4 max-w-3xl list-decimal space-y-2 pl-5 text-sm">
-          <li>Üç içerik, üç ayrı <code class="text-white">.poltio-widget</code> olarak aynı sayfada. SDK hepsini tek seferde iframe'e çeviriyor; iframe'ler <code class="text-white">loading="lazy"</code> olduğu için gizli sekmedeki test, sekme açılana kadar yüklenmiyor.</li>
-          <li>Sonuç mesajındaki <code class="text-white">content_id</code> hangi testin bittiğini söylüyor; sayfa ilgili tablodaki satırı ve üstteki özeti güncelliyor.</li>
-          <li>Ürün sayfalarındaki &ldquo;Tüm beden rehberi&rdquo; bağlantıları doğrudan ilgili sekmeye açılıyor (<code class="text-white">#pantolon</code>, <code class="text-white">#gomlek</code>).</li>
-        </ol>
-        <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <pre class="overflow-x-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-gray-200">&lt;div class="poltio-widget"
-  data-poltio-widget-content="6f242720-bd30-4116-858f-5a13cdb6336b"
-  data-poltio-widget-lang="tr"&gt;&lt;/div&gt;
-&lt;div class="poltio-widget"
-  data-poltio-widget-content="1109e7d0-c2b0-4ce8-b8a3-824c813c8411"
-  data-poltio-widget-lang="tr"&gt;&lt;/div&gt;
-&lt;div class="poltio-widget"
-  data-poltio-widget-content="64b377c3-8afb-435c-9f94-5bc8af1c4c47"
-  data-poltio-widget-lang="tr"&gt;&lt;/div&gt;</pre>
-          <div>
-            <p class="text-xs font-semibold tracking-widest text-gray-500">GELEN OLAYLAR</p>
-            <pre id="log" class="mt-2 h-48 overflow-y-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-emerald-300">Henüz olay yok. Bir sekmedeki testi başlat.</pre>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500">&copy; 2026 NOVA. Demo mağaza &mdash; beden asistanı <a href="https://www.poltio.com" class="underline">Poltio</a> ile.</footer>
@@ -213,7 +188,6 @@
 
       window.addEventListener('hashchange', showTab);
       FitFinder.showProfile(document.getElementById('ff-profile'));
-      FitFinder.logTo(document.getElementById('log'));
       showTab();
       render();
     </script>
