@@ -34,7 +34,6 @@
         <a href="#pdp" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Ürün sayfası</a>
         <a href="#liste" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Liste &amp; rehber</a>
         <a href="#kombin" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Kombin</a>
-        <a href="#entegrasyon" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Entegrasyon</a>
       </nav>
 
       <h3 id="icerikler" class="mt-14 scroll-mt-6 text-xl font-semibold text-gray-950"><a href="#icerikler" class="group">İçerikler<span class="ml-2 text-gray-300 opacity-0 group-hover:opacity-100">#</span></a></h3>
@@ -151,41 +150,6 @@
           <span class="mt-1.5 grow text-sm/6 text-gray-600">Polo, chino ve gömlek; her biri kendi testiyle tek bir çekmecede. Her sonuçtan sonra sıradaki eksik parçaya geçilir, üç beden bulununca kombin sepete eklenir.</span>
           <span class="mt-3 font-mono text-[11px] text-gray-400">kombin.html</span>
         </a>
-      </div>
-
-      <h3 id="entegrasyon" class="mt-14 scroll-mt-6 text-xl font-semibold text-gray-950"><a href="#entegrasyon" class="group">Entegrasyon<span class="ml-2 text-gray-300 opacity-0 group-hover:opacity-100">#</span></a></h3>
-      <p class="mt-1 max-w-3xl text-sm text-gray-500">Bütün örneklerin dayandığı üç parça. Ortak kod <span class="font-mono text-xs">fit-finder.js</span> içinde.</p>
-      <div class="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <div class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200">
-          <span class="text-base font-semibold text-gray-950">1 &middot; İçeriği yerleştir</span>
-          <pre class="mt-3 overflow-x-auto rounded-lg bg-gray-950 p-4 text-[11px] leading-relaxed text-gray-200">&lt;script src="https://sdk.poltio.com/poltio.js" defer&gt;&lt;/script&gt;
-
-&lt;div class="poltio-widget-flying"
-  data-poltio-widget-content="6f242720-…"
-  data-poltio-widget-loc="tr"
-  data-poltio-floating-design-type="2026-01"
-  data-poltio-floating-display-type="modal"
-  data-poltio-floating-hide-button="true"&gt;&lt;/div&gt;</pre>
-          <p class="mt-3 text-sm/6 text-gray-600">Sayfada içeriğe ayrılmış yer varsa <code class="text-xs">.poltio-widget</code> kullan. Sayfa başına bir flying widget işleniyor.</p>
-        </div>
-        <div class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200">
-          <span class="text-base font-semibold text-gray-950">2 &middot; Kendi düğmenle aç</span>
-          <pre class="mt-3 overflow-x-auto rounded-lg bg-gray-950 p-4 text-[11px] leading-relaxed text-gray-200">&lt;button onclick="window.poltio.toggleFlyingWidget()"&gt;
-  Bedenimi bul
-&lt;/button&gt;</pre>
-          <p class="mt-3 text-sm/6 text-gray-600">2026 tasarımı 768 px'ten dar bir iframe'de &ldquo;Başla&rdquo;ya basılınca tam ekrana geçiyor. Masaüstünde sayfa içinde kalması isteniyorsa inline kutu en az 768 px genişlikte olmalı.</p>
-        </div>
-        <div class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200">
-          <span class="text-base font-semibold text-gray-950">3 &middot; Sonucu oku</span>
-          <pre class="mt-3 overflow-x-auto rounded-lg bg-gray-950 p-4 text-[11px] leading-relaxed text-gray-200">window.addEventListener('message', (e) =&gt; {
-  if (e.origin !== 'https://www.poltio.com') return;
-  const d = e.data &amp;&amp; e.data.gtmData;
-  if (d &amp;&amp; d.action === 'result_view') {
-    // d.content_id, d.result_title
-  }
-});</pre>
-          <p class="mt-3 text-sm/6 text-gray-600">Bedenin kaynağı <code class="text-xs">result_title</code>. Sonuçlardaki <code class="text-xs">&amp;size=</code>, <code class="text-xs">&amp;jean=</code>, <code class="text-xs">&amp;collar=</code> değerleri mesajda gelmiyor; sonuç başlığı değişirse sayfadaki ayrıştırma da değişmeli.</p>
-        </div>
       </div>
 
       <p class="mt-14 text-sm text-gray-500">
