@@ -30,6 +30,7 @@
         <a href="#page-integration" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Page Integration</a>
         <a href="#chatbot" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Chatbot</a>
         <a href="#multi-widget" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Multi-Widget</a>
+        <a href="#double-load" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Double Load</a>
         <a href="#not-linked" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Not linked</a>
       </nav>
 
@@ -558,6 +559,75 @@
           <span class="mt-2 text-base font-semibold text-gray-950">Multi-Widget &mdash; Mobile Trigger Override</span>
           <span class="mt-1.5 grow text-sm/6 text-gray-600">A pill on desktop becomes a product card on phones, freeing the bottom row for the box.</span>
           <span class="mt-3 font-mono text-[11px] text-gray-400">multi/mobile-override.html</span>
+        </a>
+      </div>
+
+      <h3 id="double-load" class="mt-14 scroll-mt-6 text-xl font-semibold text-gray-950"><a href="#double-load" class="group">Double Load<span class="ml-2 text-gray-300 opacity-0 group-hover:opacity-100">#</span></a></h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">Every trigger with the snippet and a bare <code>poltio.js</code> tag on one page. The snippet's copy must win in either load order: reload each with DevTools&rsquo; <em>Disable cache</em> on.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a target="_blank" rel="noopener" href="./double-load/chatbot.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Double Load &mdash; Chatbot</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Troy's setup: the snippet plus a bare <code>poltio.js</code> in the body. The chat must reach its full height on every reload.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">double-load/chatbot.html</span>
+        </a>
+        <a target="_blank" rel="noopener" href="./double-load/chatbot-late-tag.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Double Load &mdash; Late Tagged Script</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">A bare tag first, the tagged URL injected a second later: the tagged copy still mounts and owns the toggle.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">double-load/chatbot-late-tag.html</span>
+        </a>
+        <a target="_blank" rel="noopener" href="./double-load/pill.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Double Load &mdash; Pill</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">A pill under the duplicate tag: one container, one page-load hit.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">double-load/pill.html</span>
+        </a>
+        <a target="_blank" rel="noopener" href="./double-load/box.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Double Load &mdash; Box</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">A box under the duplicate tag: one container, one page-load hit.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">double-load/box.html</span>
+        </a>
+        <a target="_blank" rel="noopener" href="./double-load/card.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Double Load &mdash; Card</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">A card under the duplicate tag: one container, one page-load hit.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">double-load/card.html</span>
+        </a>
+        <a target="_blank" rel="noopener" href="./double-load/product-card.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Double Load &mdash; Product Card</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">A product card under the duplicate tag: exactly one tile in the grid.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">double-load/product-card.html</span>
+        </a>
+        <a target="_blank" rel="noopener" href="./double-load/iframe.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Double Load &mdash; Iframe, Late Parent</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">The iframe's parent appears after both copies ran; the retry must still fill it.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">double-load/iframe.html</span>
+        </a>
+        <a target="_blank" rel="noopener" href="./double-load/multi.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">2026</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Double Load &mdash; Multi-Widget</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">The snippet gets the multi bundle, the bare tag the static one: two widgets, no extras.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">double-load/multi.html</span>
         </a>
       </div>
 

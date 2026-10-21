@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Double Load &mdash; Iframe, Late Parent</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <a href="../2026.html#double-load" class="mb-4 inline-block text-sm text-[#009EEC] hover:underline">&larr; Staging Test Cases</a>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Double Load &mdash; Iframe, Late Parent</h1>
+      <p class="mt-4 text-base text-gray-600">
+        An iframe trigger whose parent <code class="rounded bg-gray-100 px-1">#poltio-inline</code> appears 1.5s after load, after both copies have run. Its retry used to be cancelled by the second copy replacing <code class="rounded bg-gray-100 px-1">window.poltio</code>.
+      </p>
+      <p class="mt-2 text-sm text-gray-500">
+        Panel rules: an iframe trigger (<code class="rounded bg-gray-100 px-1">floating-parent-id</code> <code class="rounded bg-gray-100 px-1">poltio-inline</code>) on this exact URL.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <p class="mt-2 text-sm text-gray-500">
+        Open DevTools, tick <em>Disable cache</em> on the Network tab, and reload five or more times: the two scripts arrive in a different order each time.
+      </p>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>The dashed box appears after 1.5s and the widget fills it at the 2s retry.</li>
+        <li>One inline iframe, one page-load hit.</li>
+      </ul>
+
+      <pre
+        id="status"
+        class="mt-8 rounded-lg bg-gray-100 p-4 text-xs text-gray-700"
+      ></pre>
+      <div id="slot"></div>
+    </div>
+
+    <div class="h-[1500px]"></div>
+
+    <script id="poltiosdk" src="https://sdk-stage.poltio.com/poltio.js"></script>
+    <script>
+      setTimeout(() => {
+        const d = document.createElement('div');
+        d.id = 'poltio-inline';
+        d.className = 'mt-10 min-h-[200px] rounded-xl border-2 border-dashed border-gray-300';
+        document.getElementById('slot').appendChild(d);
+      }, 1500);
+    </script>
+    <script>
+      const count = (sel) => document.querySelectorAll(sel).length;
+      const hits = (path) =>
+        performance.getEntriesByType('resource').filter((r) => r.name.includes(path)).length;
+      // 2s, not 500ms: the SDK reloads only after 500ms with no DOM changes.
+      const tick = () => {
+        const frame = document.querySelector('.poltio-chatbot-frame');
+        document.getElementById('status').textContent = [
+          'poltio.js tags:   ' + count('script[src*="sdk-stage.poltio.com/poltio"]'),
+          'containers:       ' + ([...document.querySelectorAll('[id^="poltio-floating-container"]')].map((c) => c.getAttribute('data-poltio-trigger')).join(', ') || '(none)'),
+          'chatbot height:   ' + (frame ? Math.round(frame.getBoundingClientRect().height) + 'px' : '-'),
+          'inline iframes:   ' + count('#poltio-inline iframe'),
+          'product cards:    ' + count('[id^="poltio-product-card"]'),
+          'page-load hits:   ' + hits('/sdk/page-load'),
+          'cta-view hits:    ' + hits('/sdk/cta-view'),
+        ].join('\n');
+      };
+      tick();
+      setInterval(tick, 2000);
+    </script>
+  </body>
+</html>
