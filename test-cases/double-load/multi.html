@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Double Load &mdash; Multi-Widget</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <a href="../2026.html#double-load" class="mb-4 inline-block text-sm text-[#009EEC] hover:underline">&larr; Staging Test Cases</a>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Double Load &mdash; Multi-Widget</h1>
+      <p class="mt-4 text-base text-gray-600">
+        Two widgets match this URL, so the snippet's request returns <code class="rounded bg-gray-100 px-1">poltio_multi.js</code>; the bare tag still gets the static single bundle.
+      </p>
+      <p class="mt-2 text-sm text-gray-500">
+        Panel rules: the pill (<code class="rounded bg-gray-100 px-1">bottom-left</code>) and the box (<code class="rounded bg-gray-100 px-1">bottom-right</code>) from the pages above, both on this exact URL too.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <p class="mt-2 text-sm text-gray-500">
+        Open DevTools, tick <em>Disable cache</em> on the Network tab, and reload five or more times: the two scripts arrive in a different order each time.
+      </p>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>Two containers, a pill and a box; ids of the second end in <code class="rounded bg-gray-100 px-1">-2</code>.</li>
+        <li>Opening one hides the other until it closes.</li>
+        <li>One page-load hit, two cta-view hits.</li>
+      </ul>
+
+      <pre
+        id="status"
+        class="mt-8 rounded-lg bg-gray-100 p-4 text-xs text-gray-700"
+      ></pre>
+      <div id="slot"></div>
+    </div>
+
+    <div class="h-[1500px]"></div>
+
+    <script id="poltiosdk" src="https://sdk-stage.poltio.com/poltio.js"></script>
+    <script>
+      const count = (sel) => document.querySelectorAll(sel).length;
+      const hits = (path) =>
+        performance.getEntriesByType('resource').filter((r) => r.name.includes(path)).length;
+      // 2s, not 500ms: the SDK reloads only after 500ms with no DOM changes.
+      const tick = () => {
+        const frame = document.querySelector('.poltio-chatbot-frame');
+        document.getElementById('status').textContent = [
+          'poltio.js tags:   ' + count('script[src*="sdk-stage.poltio.com/poltio"]'),
+          'containers:       ' + ([...document.querySelectorAll('[id^="poltio-floating-container"]')].map((c) => c.getAttribute('data-poltio-trigger')).join(', ') || '(none)'),
+          'chatbot height:   ' + (frame ? Math.round(frame.getBoundingClientRect().height) + 'px' : '-'),
+          'inline iframes:   ' + count('#poltio-inline iframe'),
+          'product cards:    ' + count('[id^="poltio-product-card"]'),
+          'page-load hits:   ' + hits('/sdk/page-load'),
+          'cta-view hits:    ' + hits('/sdk/cta-view'),
+        ].join('\n');
+      };
+      tick();
+      setInterval(tick, 2000);
+    </script>
+  </body>
+</html>
