@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <title>Regular Fit Oxford Gömlek — Fit Finder</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+      tailwind.config = { theme: { extend: { fontFamily: { sans: ['Montserrat', 'system-ui', 'sans-serif'] }, colors: { ink: '#0B1633', sand: '#F1F0ED', linen: '#E4DED6', bark: '#7A5C49' } } } };
+    </script>
+    <script src="https://sdk.poltio.com/poltio.js" defer></script>
+  </head>
+  <body class="bg-white font-sans text-ink antialiased">
+    <div style="padding:8px 16px;font:14px/1.4 system-ui,sans-serif;background:#f9fafb;border-bottom:1px solid #e5e7eb"><a href="index.html#pdp" style="color:#009EEC;text-decoration:none">&larr; Fit Finder</a></div>
+
+    <div class="bg-ink px-4 py-2 text-center text-xs font-medium tracking-wide text-white/90">1.500 TL üzeri ücretsiz kargo &middot; 30 gün içinde ücretsiz değişim</div>
+    <header class="border-b border-gray-200 bg-white">
+      <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+        <a href="index.html" class="text-xl font-bold tracking-tight">NOVA<span class="text-bark">.</span></a>
+        <nav class="hidden gap-6 text-sm font-medium text-gray-600 md:flex">
+          <a href="kategori.html" class="hover:text-ink">Tişört &amp; Polo</a>
+          <a href="gomlek.html" class="text-ink">Gömlek</a>
+          <a href="pantolon.html" class="hover:text-ink">Pantolon</a>
+          <a href="kombin.html" class="hover:text-ink">Kombinler</a>
+          <a href="beden-rehberi.html" class="hover:text-ink">Beden Rehberi</a>
+        </nav>
+        <div class="ml-auto flex items-center gap-4">
+          <div id="ff-profile" class="hidden items-center gap-1.5 text-xs text-gray-600 sm:flex"></div>
+          <span class="relative" aria-label="Sepet">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
+            <span id="bag-count" class="absolute -right-2 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-bark px-1 text-[10px] font-bold text-white">0</span>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
+      <nav class="text-xs text-gray-500">Erkek <span class="mx-1">/</span> Gömlek <span class="mx-1">/</span> <span class="text-gray-800">Regular Fit Oxford Gömlek</span></nav>
+
+      <div class="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-2">
+        <div class="lg:sticky lg:top-6 lg:self-start">
+          <div class="relative flex aspect-[4/5] items-center justify-center rounded-3xl bg-[#E9E7E3]">
+            <span class="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-semibold">Ütü gerektirmez</span>
+            <div id="hero" class="w-3/4"></div>
+          </div>
+          <div id="thumbs" class="mt-3 grid grid-cols-4 gap-3"></div>
+        </div>
+
+        <div class="lg:pt-4">
+          <p class="text-xs font-semibold tracking-widest text-bark">NOVA TAILORED</p>
+          <h1 class="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Regular Fit Oxford Gömlek</h1>
+          <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600">
+            <span class="text-bark">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4,7 &middot; 86 değerlendirme
+            <span class="rounded-full bg-sand px-2 py-0.5 text-xs">Kullanıcıların %88'i: yaka tam oturuyor</span>
+          </div>
+          <div class="mt-5 flex items-baseline gap-3">
+            <span class="text-2xl font-bold">1.499,99 TL</span>
+            <span class="text-sm text-gray-400 line-through">1.699,99 TL</span>
+          </div>
+
+          <div class="mt-8">
+            <p class="text-sm font-semibold">Renk: <span id="color-name" class="font-normal text-gray-600"></span></p>
+            <div id="colors" class="mt-3 flex gap-3"></div>
+          </div>
+
+          <div class="mt-8">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-semibold">Beden <span class="font-normal text-gray-500">&middot; yaka numarası</span></p>
+              <button type="button" data-open-fit class="flex items-center gap-1.5 text-sm font-semibold underline underline-offset-4">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2" /><path d="M6 7v4M10 7v3M14 7v4M18 7v3" /></svg>
+                Bedenimi bul
+              </button>
+            </div>
+            <div id="sizes" class="mt-3 grid grid-cols-4 gap-2 sm:grid-cols-7"></div>
+            <div id="fit" class="mt-4"></div>
+          </div>
+
+          <div class="mt-8 flex gap-3">
+            <button id="add" type="button" data-add class="h-14 flex-1 rounded-full bg-ink text-sm font-semibold text-white transition hover:bg-ink/90">Sepete ekle</button>
+            <button type="button" class="flex h-14 w-14 items-center justify-center rounded-full border border-gray-300" aria-label="Favorilere ekle">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+            </button>
+          </div>
+          <p class="mt-3 text-xs text-gray-500">Yarın kargoda &middot; Mağazadan ücretsiz teslim al</p>
+
+          <div class="mt-8 divide-y divide-gray-200 border-y border-gray-200 text-sm">
+            <details class="group py-4" open>
+              <summary class="flex cursor-pointer list-none items-center justify-between font-semibold">Beden tablosu <span class="text-gray-400 group-open:rotate-45">+</span></summary>
+              <table class="mt-4 w-full text-left">
+                <thead class="text-xs text-gray-500"><tr><th class="py-1.5 font-medium">Beden</th><th class="font-medium">Yaka</th><th class="font-medium">Göğüs &mdash; Regular</th><th class="font-medium">Göğüs &mdash; Slim</th></tr></thead>
+                <tbody id="chart"></tbody>
+              </table>
+              <a href="beden-rehberi.html#gomlek" class="mt-3 inline-block text-xs font-semibold underline">Tüm beden rehberi</a>
+            </details>
+            <details class="group py-4">
+              <summary class="flex cursor-pointer list-none items-center justify-between font-semibold">Ürün detayı <span class="text-gray-400 group-open:rotate-45">+</span></summary>
+              <p class="mt-3 text-gray-600">%100 pamuk oxford dokuma, düğmeli yaka. Regular Fit kalıp: göğüs ve belde rahat. Modelin boyu 1,86 m, kilosu 80 kg; üzerindeki ürün M beden (yaka 40-41).</p>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- The quiz lives here, collapsed until "Bedenimi bul". The SDK turns
+           .poltio-widget into an iframe on load and keeps its height in sync.
+           Full width on purpose: below 768px the 2026 design goes full screen. -->
+      <section id="fit-section" class="scroll-mt-4">
+        <div id="panel" class="grid transition-[grid-template-rows] duration-500" style="grid-template-rows: 0fr">
+          <div class="overflow-hidden">
+            <div class="mt-14 overflow-hidden rounded-3xl ring-1 ring-gray-200">
+              <div class="flex items-center justify-between gap-4 bg-sand px-5 py-3 sm:px-6">
+                <p class="text-sm font-semibold">Gömlek beden asistanı <span class="font-normal text-gray-500">&middot; 6 soru, yaklaşık 30 saniye</span></p>
+                <button type="button" data-close-fit class="shrink-0 text-xs font-semibold text-gray-500 hover:text-ink">Kapat &times;</button>
+              </div>
+              <div
+                class="poltio-widget"
+                data-poltio-widget-content="64b377c3-8afb-435c-9f94-5bc8af1c4c47"
+                data-poltio-widget-lang="tr"
+                data-poltio-widget-disclaimer="off"
+                data-poltio-widget-height="640"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-20 rounded-3xl bg-gray-950 p-6 text-gray-300 sm:p-10">
+        <p class="text-xs font-semibold tracking-widest text-[#009EEC]">GELİŞTİRİCİ NOTU</p>
+        <h2 class="mt-2 text-xl font-semibold text-white">Bu sayfa nasıl çalışıyor?</h2>
+        <ol class="mt-4 max-w-3xl list-decimal space-y-2 pl-5 text-sm">
+          <li>Flying widget yok; içerik ürünün altına gömülü bir <code class="text-white">.poltio-widget</code>. SDK onu yüklemede iframe'e çeviriyor ve yüksekliğini her soruda ayarlıyor.</li>
+          <li>Kutu kapalı başlıyor, &ldquo;Bedenimi bul&rdquo; açıp oraya kaydırıyor. Tam genişlikte olması bilinçli: 2026 tasarımı 768 px'ten dar bir iframe'de &ldquo;Başla&rdquo;ya basılınca tam ekrana geçiyor. Telefonda istenen davranış bu, masaüstünde ise test sayfanın içinde kalıyor.</li>
+          <li>Müşteri aşağıda cevap verirken alttaki yapışkan çubuk seçili bedeni gösteriyor; sonuç gelince beden oraya ve yukarıdaki seçiciye aynı anda yazılıyor.</li>
+          <li>Gömlek sonucu bedenle birlikte yakayı da taşıyor: <code class="text-white">"Önerilen bedenin: M · Yaka 40-41"</code>. Sayfa ikisini de ayırıp gösteriyor.</li>
+        </ol>
+        <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <pre class="overflow-x-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-gray-200">&lt;script src="https://sdk.poltio.com/poltio.js" defer&gt;&lt;/script&gt;
+
+&lt;div class="poltio-widget"
+  data-poltio-widget-content="64b377c3-8afb-435c-9f94-5bc8af1c4c47"
+  data-poltio-widget-lang="tr"
+  data-poltio-widget-height="600"&gt;&lt;/div&gt;
+
+// "Önerilen bedenin: M · Yaka 40-41"
+const [size, collar] = d.result_title
+  .split(':').pop().split('·').map((s) =&gt; s.trim());</pre>
+          <div>
+            <p class="text-xs font-semibold tracking-widest text-gray-500">GELEN OLAYLAR</p>
+            <pre id="log" class="mt-2 h-48 overflow-y-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-emerald-300">Henüz olay yok. &ldquo;Bedenimi bul&rdquo; ile testi başlat.</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Sticky buy bar, shown once the main button scrolls away (e.g. while answering below). -->
+    <div id="bar" class="fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-gray-200 bg-white/95 backdrop-blur transition duration-300">
+      <div class="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <div id="bar-img" class="hidden h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#E9E7E3] sm:flex"></div>
+        <div class="min-w-0 flex-1">
+          <p class="truncate text-sm font-semibold">Regular Fit Oxford Gömlek</p>
+          <p id="bar-size" class="truncate text-xs text-gray-600"></p>
+        </div>
+        <button type="button" data-add class="h-11 shrink-0 rounded-full bg-ink px-6 text-sm font-semibold text-white">Sepete ekle</button>
+      </div>
+    </div>
+
+    <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500">&copy; 2026 NOVA. Demo mağaza &mdash; beden asistanı <a href="https://www.poltio.com" class="underline">Poltio</a> ile.</footer>
+
+    <script src="fit-finder.js"></script>
+    <script>
+      const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL'];
+      // Collar and chest in cm for Regular and Slim Fit, from the content's results.
+      const CHART = {
+        XS: ['36-37', '103-105', '99-101'],
+        S: ['38-39', '107-109', '103-105'],
+        M: ['40-41', '111-113', '107-109'],
+        L: ['42-43', '115-117', '111-113'],
+        XL: ['44-45', '119-121', '115-117'],
+        XXL: ['46-47', '124-126', '120-122'],
+        '3XL': ['48-49', '129-131', '125-127'],
+      };
+      const COLORS = [
+        { name: 'Beyaz', hex: '#F7F6F2', light: true, out: [] },
+        { name: 'Açık mavi', hex: '#C9D8E8', light: true, out: ['XS'] },
+        { name: 'Lacivert', hex: '#1F2A4D', out: ['3XL'] },
+      ];
+
+      let color = COLORS[0];
+      let fit = FitFinder.profile().shirt || null;
+      let size = fit && fit.size;
+      let bag = 0;
+      let open = false;
+
+      const $ = (id) => document.getElementById(id);
+      const inStock = (s, c = color) => !c.out.includes(s);
+      const drawing = (c, cls) => FitFinder.garment('shirt', c.hex, `${cls} ${c.light ? 'ff-light' : ''}`);
+      const openPanel = (value) => {
+        open = value;
+        $('panel').style.gridTemplateRows = open ? '1fr' : '0fr';
+        if (open) setTimeout(() => $('fit-section').scrollIntoView({ behavior: 'smooth', block: 'start' }), 250);
+      };
+
+      const render = () => {
+        $('hero').innerHTML = drawing(color, 'w-full drop-shadow-xl');
+        $('color-name').textContent = color.name;
+        $('thumbs').innerHTML = COLORS.map(
+          (c, i) =>
+            `<button type="button" data-color="${i}" class="flex aspect-square items-center justify-center rounded-xl bg-[#E9E7E3] ring-2 ${c === color ? 'ring-ink' : 'ring-transparent'}">${drawing(c, 'w-3/4')}</button>`,
+        ).join('');
+        $('colors').innerHTML = COLORS.map(
+          (c, i) =>
+            `<button type="button" data-color="${i}" title="${c.name}" class="h-9 w-9 rounded-full ring-1 ring-black/10 ring-offset-2 ${c === color ? 'outline outline-2 outline-offset-4 outline-ink' : ''}" style="background:${c.hex}"></button>`,
+        ).join('');
+        $('sizes').innerHTML = SIZES.map((s) => {
+          const tag = fit && fit.size === s ? `<span class="absolute -top-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-emerald-600 px-1.5 text-[10px] font-semibold leading-4 text-white">Önerilen</span>` : '';
+          const label = `${s}<span class="block text-[10px] font-medium opacity-60">${CHART[s][0]}</span>`;
+          if (!inStock(s)) return `<button type="button" disabled class="relative h-14 cursor-not-allowed rounded-lg border border-gray-200 bg-gray-50 text-sm font-semibold leading-tight text-gray-300 line-through">${label}${tag}</button>`;
+          const on = s === size ? 'border-ink bg-ink text-white' : 'border-gray-300 bg-white hover:border-ink';
+          return `<button type="button" data-size="${s}" class="relative h-14 rounded-lg border text-sm font-semibold leading-tight transition ${on}">${label}${tag}</button>`;
+        }).join('');
+        $('chart').innerHTML = SIZES.map((s) => {
+          const mine = fit && fit.size === s;
+          return `<tr class="${mine ? 'bg-emerald-50 font-semibold' : ''} border-t border-gray-100"><td class="py-2 pl-2">${s}${mine ? ' <span class="ml-1 rounded bg-emerald-600 px-1 text-[10px] text-white">Senin bedenin</span>' : ''}</td><td>${CHART[s][0]}</td><td>${CHART[s][1]} cm</td><td>${CHART[s][2]} cm</td></tr>`;
+        }).join('');
+        $('bar-img').innerHTML = drawing(color, 'w-9');
+        $('bar-size').innerHTML = size
+          ? `${color.name} &middot; <b>${size}</b> &middot; yaka ${CHART[size][0]}${fit && fit.size === size ? ' &middot; <span class="text-emerald-700">önerilen beden</span>' : ''}`
+          : `${color.name} &middot; beden seçilmedi`;
+        renderFit();
+      };
+
+      const renderFit = () => {
+        if (!fit) {
+          $('fit').innerHTML = open ? '' : `
+            <div class="flex items-center gap-4 rounded-2xl bg-sand p-4">
+              <img src="https://cdn.poltio.com/160x160/content/gcp/1792481630.7315.webp" alt="" class="h-16 w-16 rounded-xl" />
+              <div class="flex-1">
+                <p class="text-sm font-semibold">Yaka numaranı bilmiyor musun?</p>
+                <p class="mt-0.5 text-xs text-gray-600">Altı kısa soruyla bedenini ve yakanı bulalım. Test burada, sayfadan çıkmadan açılır.</p>
+              </div>
+              <button type="button" data-open-fit class="shrink-0 rounded-full bg-ink px-4 py-2 text-xs font-semibold text-white">Bedenimi bul</button>
+            </div>`;
+          return;
+        }
+        const collar = fit.collar || CHART[fit.size][0];
+        if (!inStock(fit.size)) {
+          const others = COLORS.filter((c) => inStock(fit.size, c)).map((c) => c.name);
+          $('fit').innerHTML = `
+            <div class="rounded-2xl bg-amber-50 p-4 ring-1 ring-amber-200">
+              <p class="text-sm font-semibold">Önerilen bedenin ${fit.size} (yaka ${collar}), ama ${color.name} renkte tükendi.</p>
+              <p class="mt-0.5 text-xs text-gray-600">${others.length ? `${fit.size} beden ${others.join(', ')} renkte stokta.` : ''} Gelince haber verelim mi?</p>
+              <div class="mt-3 flex gap-3 text-xs font-semibold">
+                <button type="button" class="rounded-full bg-ink px-4 py-2 text-white" onclick="FitFinder.toast('Stok gelince e-posta göndereceğiz.')">Gelince haber ver</button>
+                <button type="button" data-open-fit class="underline">Tekrar hesapla</button>
+              </div>
+            </div>`;
+          return;
+        }
+        $('fit').innerHTML = `
+          <div class="flex items-center gap-4 rounded-2xl bg-emerald-50 p-4 ring-1 ring-emerald-200">
+            <span class="flex h-12 min-w-12 items-center justify-center rounded-full bg-emerald-600 px-2 text-base font-bold text-white">${fit.size}</span>
+            <div class="flex-1">
+              <p class="text-sm font-semibold">Sana önerilen beden: ${fit.size} <span class="ml-1 rounded-full bg-white px-2 py-0.5 text-xs ring-1 ring-emerald-200">Yaka ${collar}</span></p>
+              <p class="mt-0.5 text-xs text-gray-600">${size === fit.size ? 'Seçildi.' : 'Seçmek için bedene dokun.'} Bu kalıpta göğüs ${CHART[fit.size][1]} cm.</p>
+            </div>
+            <button type="button" data-open-fit class="shrink-0 text-xs font-semibold underline">Tekrar hesapla</button>
+          </div>`;
+      };
+
+      document.addEventListener('click', (e) => {
+        const t = e.target.closest('[data-open-fit],[data-close-fit],[data-color],[data-size]');
+        if (!t) return;
+        if (t.dataset.color) color = COLORS[t.dataset.color];
+        if (t.dataset.size) size = t.dataset.size;
+        if (t.hasAttribute('data-open-fit')) openPanel(true);
+        if (t.hasAttribute('data-close-fit')) openPanel(false);
+        if (size && !inStock(size)) size = null;
+        render();
+      });
+
+      document.querySelectorAll('[data-add]').forEach((b) => b.addEventListener('click', () => {
+        if (!size) {
+          $('sizes').classList.add('animate-pulse');
+          setTimeout(() => $('sizes').classList.remove('animate-pulse'), 900);
+          return FitFinder.toast('Önce bir beden seç ya da <b>Bedenimi bul</b> ile öğren.');
+        }
+        $('bag-count').textContent = ++bag;
+        FitFinder.toast(`Sepete eklendi: Oxford Gömlek &middot; ${color.name} &middot; <b>${size}</b>`);
+      }));
+
+      new IntersectionObserver(([e]) => {
+        $('bar').style.transform = e.isIntersecting || e.boundingClientRect.top > 0 ? '' : 'none';
+      }).observe($('add'));
+
+      FitFinder.onResult((result) => {
+        if (result.kind !== 'shirt') return;
+        fit = result;
+        size = inStock(result.size) ? result.size : null;
+        render();
+        FitFinder.toast(`Önerilen beden <b>${result.size}</b>, yaka <b>${result.collar || CHART[result.size][0]}</b> ${size ? 'seçildi' : '&mdash; bu renkte tükendi'}.`);
+      });
+
+      FitFinder.showProfile($('ff-profile'));
+      FitFinder.logTo($('log'));
+      render();
+    </script>
+  </body>
+</html>

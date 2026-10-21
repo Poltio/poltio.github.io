@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <title>Beden Rehberi — Fit Finder</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+      tailwind.config = { theme: { extend: { fontFamily: { sans: ['Montserrat', 'system-ui', 'sans-serif'] }, colors: { ink: '#0B1633', sand: '#F1F0ED', linen: '#E4DED6', bark: '#7A5C49' } } } };
+    </script>
+    <script src="https://sdk.poltio.com/poltio.js" defer></script>
+  </head>
+  <body class="bg-white font-sans text-ink antialiased">
+    <div style="padding:8px 16px;font:14px/1.4 system-ui,sans-serif;background:#f9fafb;border-bottom:1px solid #e5e7eb"><a href="index.html#liste" style="color:#009EEC;text-decoration:none">&larr; Fit Finder</a></div>
+
+    <div class="bg-ink px-4 py-2 text-center text-xs font-medium tracking-wide text-white/90">1.500 TL üzeri ücretsiz kargo &middot; 30 gün içinde ücretsiz değişim</div>
+    <header class="border-b border-gray-200 bg-white">
+      <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+        <a href="index.html" class="text-xl font-bold tracking-tight">NOVA<span class="text-bark">.</span></a>
+        <nav class="hidden gap-6 text-sm font-medium text-gray-600 md:flex">
+          <a href="kategori.html" class="hover:text-ink">Tişört &amp; Polo</a>
+          <a href="gomlek.html" class="hover:text-ink">Gömlek</a>
+          <a href="pantolon.html" class="hover:text-ink">Pantolon</a>
+          <a href="kombin.html" class="hover:text-ink">Kombinler</a>
+          <a href="beden-rehberi.html" class="text-ink">Beden Rehberi</a>
+        </nav>
+        <div class="ml-auto flex items-center gap-4">
+          <div id="ff-profile" class="hidden items-center gap-1.5 text-xs text-gray-600 sm:flex"></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 items-end gap-8 lg:grid-cols-[1fr_auto]">
+        <div>
+          <p class="text-xs font-semibold tracking-widest text-bark">BEDEN REHBERİ</p>
+          <h1 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Mezura olmadan doğru beden</h1>
+          <p class="mt-3 max-w-2xl text-gray-600">Tabloya bakmak yerine altı kısa soruyu cevapla: boy, kilo, yaş ve vücut yapını paylaş, sana uygun bedeni önerelim. Bulduğun beden bu tarayıcıda saklanır ve ürün sayfalarında hazır seçili gelir.</p>
+        </div>
+        <div id="summary" class="grid grid-cols-3 gap-2 text-center"></div>
+      </div>
+
+      <div class="mt-10 flex gap-2 overflow-x-auto border-b border-gray-200" role="tablist">
+        <a href="#tisort" data-tab="tisort" class="whitespace-nowrap border-b-2 px-4 pb-3 text-sm font-semibold">Tişört &amp; Polo</a>
+        <a href="#pantolon" data-tab="pantolon" class="whitespace-nowrap border-b-2 px-4 pb-3 text-sm font-semibold">Pantolon</a>
+        <a href="#gomlek" data-tab="gomlek" class="whitespace-nowrap border-b-2 px-4 pb-3 text-sm font-semibold">Gömlek</a>
+      </div>
+
+      <section data-panel="tisort" data-kind="tops" class="pt-8">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[320px_1fr]">
+          <div class="rounded-3xl bg-sand p-6">
+            <img src="https://cdn.poltio.com/600x600/content/gcp/1792451136.9535.webp" alt="" class="w-full rounded-2xl" />
+            <p class="mt-4 text-sm font-semibold">Ölçü almak istersen</p>
+            <p class="mt-1 text-xs leading-relaxed text-gray-600">Göğsünü kolların altından, en geniş yerinden ölç. Mezura yere paralel dursun, nefesini tutma.</p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="text-xs text-gray-500"><tr><th class="py-2 pl-3 font-medium">Beden</th><th class="font-medium">Göğüs &mdash; Slim Fit</th><th class="font-medium">Göğüs &mdash; Regular Fit</th></tr></thead>
+              <tbody data-chart></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="mt-8 overflow-hidden rounded-3xl ring-1 ring-gray-200">
+          <p class="bg-sand px-6 py-3 text-sm font-semibold">Tişört &amp; Polo beden asistanı <span class="font-normal text-gray-500">&middot; sonuç tabloda işaretlenir</span></p>
+          <div class="poltio-widget" data-poltio-widget-content="6f242720-bd30-4116-858f-5a13cdb6336b" data-poltio-widget-lang="tr" data-poltio-widget-disclaimer="off" data-poltio-widget-height="640"></div>
+        </div>
+      </section>
+
+      <section data-panel="pantolon" data-kind="pants" class="pt-8" hidden>
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[320px_1fr]">
+          <div class="rounded-3xl bg-sand p-6">
+            <img src="https://cdn.poltio.com/600x600/content/gcp/1792481004.0623.webp" alt="" class="w-full rounded-2xl" />
+            <p class="mt-4 text-sm font-semibold">Ölçü almak istersen</p>
+            <p class="mt-1 text-xs leading-relaxed text-gray-600">Beli göbek deliğinin hizasından, baseni kalçanın en geniş yerinden ölç. Jean kalıpları belde yaklaşık 2 cm daha dar.</p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="text-xs text-gray-500"><tr><th class="py-2 pl-3 font-medium">Beden</th><th class="font-medium">Harf</th><th class="font-medium">Bel</th><th class="font-medium">Basen</th><th class="font-medium">Jean bel</th></tr></thead>
+              <tbody data-chart></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="mt-8 overflow-hidden rounded-3xl ring-1 ring-gray-200">
+          <p class="bg-sand px-6 py-3 text-sm font-semibold">Pantolon beden asistanı <span class="font-normal text-gray-500">&middot; sonuç tabloda işaretlenir</span></p>
+          <div class="poltio-widget" data-poltio-widget-content="1109e7d0-c2b0-4ce8-b8a3-824c813c8411" data-poltio-widget-lang="tr" data-poltio-widget-disclaimer="off" data-poltio-widget-height="640"></div>
+        </div>
+      </section>
+
+      <section data-panel="gomlek" data-kind="shirt" class="pt-8" hidden>
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[320px_1fr]">
+          <div class="rounded-3xl bg-sand p-6">
+            <img src="https://cdn.poltio.com/600x600/content/gcp/1792481630.7315.webp" alt="" class="w-full rounded-2xl" />
+            <p class="mt-4 text-sm font-semibold">Ölçü almak istersen</p>
+            <p class="mt-1 text-xs leading-relaxed text-gray-600">Yakayı boynun alt kısmından, mezura ile boyun arasına bir parmak sığacak şekilde ölç.</p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="text-xs text-gray-500"><tr><th class="py-2 pl-3 font-medium">Beden</th><th class="font-medium">Yaka</th><th class="font-medium">Göğüs &mdash; Regular</th><th class="font-medium">Göğüs &mdash; Slim</th></tr></thead>
+              <tbody data-chart></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="mt-8 overflow-hidden rounded-3xl ring-1 ring-gray-200">
+          <p class="bg-sand px-6 py-3 text-sm font-semibold">Gömlek beden asistanı <span class="font-normal text-gray-500">&middot; sonuç tabloda işaretlenir</span></p>
+          <div class="poltio-widget" data-poltio-widget-content="64b377c3-8afb-435c-9f94-5bc8af1c4c47" data-poltio-widget-lang="tr" data-poltio-widget-disclaimer="off" data-poltio-widget-height="640"></div>
+        </div>
+      </section>
+
+      <section class="mt-20 rounded-3xl bg-gray-950 p-6 text-gray-300 sm:p-10">
+        <p class="text-xs font-semibold tracking-widest text-[#009EEC]">GELİŞTİRİCİ NOTU</p>
+        <h2 class="mt-2 text-xl font-semibold text-white">Bu sayfa nasıl çalışıyor?</h2>
+        <ol class="mt-4 max-w-3xl list-decimal space-y-2 pl-5 text-sm">
+          <li>Üç içerik, üç ayrı <code class="text-white">.poltio-widget</code> olarak aynı sayfada. SDK hepsini tek seferde iframe'e çeviriyor; iframe'ler <code class="text-white">loading="lazy"</code> olduğu için gizli sekmedeki test, sekme açılana kadar yüklenmiyor.</li>
+          <li>Sonuç mesajındaki <code class="text-white">content_id</code> hangi testin bittiğini söylüyor; sayfa ilgili tablodaki satırı ve üstteki özeti güncelliyor.</li>
+          <li>Ürün sayfalarındaki &ldquo;Tüm beden rehberi&rdquo; bağlantıları doğrudan ilgili sekmeye açılıyor (<code class="text-white">#pantolon</code>, <code class="text-white">#gomlek</code>).</li>
+        </ol>
+        <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <pre class="overflow-x-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-gray-200">&lt;div class="poltio-widget"
+  data-poltio-widget-content="6f242720-bd30-4116-858f-5a13cdb6336b"
+  data-poltio-widget-lang="tr"&gt;&lt;/div&gt;
+&lt;div class="poltio-widget"
+  data-poltio-widget-content="1109e7d0-c2b0-4ce8-b8a3-824c813c8411"
+  data-poltio-widget-lang="tr"&gt;&lt;/div&gt;
+&lt;div class="poltio-widget"
+  data-poltio-widget-content="64b377c3-8afb-435c-9f94-5bc8af1c4c47"
+  data-poltio-widget-lang="tr"&gt;&lt;/div&gt;</pre>
+          <div>
+            <p class="text-xs font-semibold tracking-widest text-gray-500">GELEN OLAYLAR</p>
+            <pre id="log" class="mt-2 h-48 overflow-y-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-emerald-300">Henüz olay yok. Bir sekmedeki testi başlat.</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500">&copy; 2026 NOVA. Demo mağaza &mdash; beden asistanı <a href="https://www.poltio.com" class="underline">Poltio</a> ile.</footer>
+
+    <script src="fit-finder.js"></script>
+    <script>
+      // Rows per content, from each content's results.
+      const CHARTS = {
+        tops: [
+          ['XS', '96-98 cm', '100-102 cm'],
+          ['S', '100-102 cm', '104-106 cm'],
+          ['M', '104-106 cm', '108-110 cm'],
+          ['L', '108-110 cm', '112-114 cm'],
+          ['XL', '112-114 cm', '114-116 cm'],
+          ['XXL', '116-118 cm', '118-120 cm'],
+          ['3XL', '120-122 cm', '122-124 cm'],
+        ],
+        pants: [
+          ['30', 'XS', '78-80 cm', '96-98 cm', '76-78 cm'],
+          ['31', 'S', '82-84 cm', '100-102 cm', '80-82 cm'],
+          ['32', 'M', '86-88 cm', '104-106 cm', '84-86 cm'],
+          ['33', 'L', '90-92 cm', '108-110 cm', '88-90 cm'],
+          ['34', 'XL', '94-96 cm', '112-114 cm', '92-94 cm'],
+          ['36', 'XXL', '98-100 cm', '116-118 cm', '96-99 cm'],
+          ['38', '3XL', '102-104 cm', '120-122 cm', '101-104 cm'],
+        ],
+        shirt: [
+          ['XS', '36-37', '103-105 cm', '99-101 cm'],
+          ['S', '38-39', '107-109 cm', '103-105 cm'],
+          ['M', '40-41', '111-113 cm', '107-109 cm'],
+          ['L', '42-43', '115-117 cm', '111-113 cm'],
+          ['XL', '44-45', '119-121 cm', '115-117 cm'],
+          ['XXL', '46-47', '124-126 cm', '120-122 cm'],
+          ['3XL', '48-49', '129-131 cm', '125-127 cm'],
+        ],
+      };
+      const TABS = { tisort: 'tops', pantolon: 'pants', gomlek: 'shirt' };
+
+      const render = () => {
+        const p = FitFinder.profile();
+        document.querySelectorAll('[data-panel]').forEach((panel) => {
+          const fit = p[panel.dataset.kind];
+          panel.querySelector('[data-chart]').innerHTML = CHARTS[panel.dataset.kind]
+            .map((row) => {
+              const mine = fit && fit.size === row[0];
+              return `<tr class="border-t border-gray-100 ${mine ? 'bg-emerald-50 font-semibold' : ''}">${row
+                .map((cell, i) => `<td class="py-2.5 ${i ? '' : 'pl-3'}">${cell}${!i && mine ? ' <span class="ml-1 rounded bg-emerald-600 px-1.5 py-0.5 text-[10px] text-white">Senin bedenin</span>' : ''}</td>`)
+                .join('')}</tr>`;
+            })
+            .join('');
+        });
+        document.getElementById('summary').innerHTML = Object.keys(TABS)
+          .map((tab) => {
+            const fit = p[TABS[tab]];
+            return `<a href="#${tab}" class="min-w-24 rounded-2xl px-3 py-3 ${fit ? 'bg-emerald-50 ring-1 ring-emerald-200' : 'bg-sand'}">
+              <span class="block text-[11px] text-gray-500">${FitFinder.LABELS[TABS[tab]]}</span>
+              <span class="mt-0.5 block text-lg font-bold">${fit ? fit.size : '&ndash;'}</span>
+              ${fit && fit.collar ? `<span class="block text-[11px] text-gray-500">yaka ${fit.collar}</span>` : ''}
+            </a>`;
+          })
+          .join('');
+      };
+
+      const showTab = () => {
+        const tab = TABS[location.hash.slice(1)] ? location.hash.slice(1) : 'tisort';
+        document.querySelectorAll('[data-panel]').forEach((p) => (p.hidden = p.dataset.panel !== tab));
+        document.querySelectorAll('[data-tab]').forEach((a) => {
+          const on = a.dataset.tab === tab;
+          a.classList.toggle('border-ink', on);
+          a.classList.toggle('border-transparent', !on);
+          a.classList.toggle('text-gray-500', !on);
+        });
+      };
+
+      FitFinder.onResult((result) => {
+        render();
+        FitFinder.toast(`${FitFinder.LABELS[result.kind]}: bedenin <b>${result.size}</b>${result.collar ? `, yaka <b>${result.collar}</b>` : ''}. Tabloda işaretledik.`);
+      });
+
+      window.addEventListener('hashchange', showTab);
+      FitFinder.showProfile(document.getElementById('ff-profile'));
+      FitFinder.logTo(document.getElementById('log'));
+      showTab();
+      render();
+    </script>
+  </body>
+</html>
