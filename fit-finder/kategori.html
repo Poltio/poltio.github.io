@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <title>Tişört &amp; Polo — Fit Finder</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+      tailwind.config = { theme: { extend: { fontFamily: { sans: ['Montserrat', 'system-ui', 'sans-serif'] }, colors: { ink: '#0B1633', sand: '#F1F0ED', linen: '#E4DED6', bark: '#7A5C49' } } } };
+    </script>
+    <script src="https://sdk.poltio.com/poltio.js" defer></script>
+    <style>
+      /* The SDK's product card is a bare image; the page dresses it like its own tiles. */
+      [id^='poltio-product-card'] {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        cursor: pointer;
+      }
+      [id^='poltio-product-card']::after {
+        content: 'Bedenini 30 saniyede bul \2192';
+        position: absolute;
+        inset: auto 12px 12px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: #0b1633;
+        color: #fff;
+        font: 600 13px/1.2 Montserrat, sans-serif;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="bg-white font-sans text-ink antialiased">
+    <div style="padding:8px 16px;font:14px/1.4 system-ui,sans-serif;background:#f9fafb;border-bottom:1px solid #e5e7eb"><a href="index.html#liste" style="color:#009EEC;text-decoration:none">&larr; Fit Finder</a></div>
+
+    <!-- Two entry points to one quiz: the floating card (bottom right) and a
+         product card placed as the 3rd tile of .product-grid. -->
+    <div
+      class="poltio-widget-flying"
+      data-poltio-widget-content="6f242720-bd30-4116-858f-5a13cdb6336b"
+      data-poltio-widget-loc="tr"
+      data-poltio-widget-disclaimer="off"
+      data-poltio-floating-design-type="2026-01"
+      data-poltio-floating-initial-position="active"
+      data-poltio-floating-bgcolor="#0B1633"
+      data-poltio-floating-title="Bedenini 30 saniyede bul"
+      data-poltio-floating-desc="Boyunu, kilonu ve vücut yapını paylaş; sana en uygun tişört ve polo bedenini önerelim."
+      data-poltio-floating-buttontext="Bedenimi bul"
+      data-poltio-floating-product-card-enabled="true"
+      data-poltio-floating-product-child-number="3"
+      data-poltio-floating-product-fit-row="true"
+      data-poltio-floating-product-image="https://cdn.poltio.com/600x800/content/gcp/1792451049.2616.webp"
+    ></div>
+
+    <div class="bg-ink px-4 py-2 text-center text-xs font-medium tracking-wide text-white/90">1.500 TL üzeri ücretsiz kargo &middot; 30 gün içinde ücretsiz değişim</div>
+    <header class="border-b border-gray-200 bg-white">
+      <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+        <a href="index.html" class="text-xl font-bold tracking-tight">NOVA<span class="text-bark">.</span></a>
+        <nav class="hidden gap-6 text-sm font-medium text-gray-600 md:flex">
+          <a href="kategori.html" class="text-ink">Tişört &amp; Polo</a>
+          <a href="gomlek.html" class="hover:text-ink">Gömlek</a>
+          <a href="pantolon.html" class="hover:text-ink">Pantolon</a>
+          <a href="kombin.html" class="hover:text-ink">Kombinler</a>
+          <a href="beden-rehberi.html" class="hover:text-ink">Beden Rehberi</a>
+        </nav>
+        <div class="ml-auto flex items-center gap-4">
+          <div id="ff-profile" class="hidden items-center gap-1.5 text-xs text-gray-600 sm:flex"></div>
+          <span class="relative" aria-label="Sepet">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
+            <span class="absolute -right-2 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-bark px-1 text-[10px] font-bold text-white">0</span>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
+      <nav class="text-xs text-gray-500">Erkek <span class="mx-1">/</span> <span class="text-gray-800">Tişört &amp; Polo</span></nav>
+      <div class="mt-4 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight">Tişört &amp; Polo</h1>
+          <p id="count" class="mt-1 text-sm text-gray-500"></p>
+        </div>
+        <select class="rounded-full border-gray-300 py-2 pl-4 pr-10 text-sm focus:border-ink focus:ring-ink">
+          <option>Önerilen sıralama</option>
+          <option>En yeniler</option>
+          <option>Fiyat: artan</option>
+          <option>Fiyat: azalan</option>
+        </select>
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center gap-2 border-y border-gray-200 py-4">
+        <span class="mr-1 text-sm font-semibold">Beden</span>
+        <div id="chips" class="flex flex-wrap gap-2"></div>
+        <button type="button" data-open-fit class="ml-auto flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-xs font-semibold text-white">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2" /><path d="M6 7v4M10 7v3M14 7v4M18 7v3" /></svg>
+          Bedenimi bul
+        </button>
+      </div>
+
+      <div id="banner" class="mt-4"></div>
+
+      <div id="grid" class="product-grid mt-6 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4"></div>
+
+      <section class="mt-20 rounded-3xl bg-gray-950 p-6 text-gray-300 sm:p-10">
+        <p class="text-xs font-semibold tracking-widest text-[#009EEC]">GELİŞTİRİCİ NOTU</p>
+        <h2 class="mt-2 text-xl font-semibold text-white">Bu sayfa nasıl çalışıyor?</h2>
+        <ol class="mt-4 max-w-3xl list-decimal space-y-2 pl-5 text-sm">
+          <li>Aynı içeriğe iki giriş var: sağ altta açık başlayan kart (<code class="text-white">data-poltio-floating-initial-position="active"</code>) ve listenin 3. sırasına yerleşen ürün kartı (<code class="text-white">data-poltio-floating-product-card-enabled</code>, <code class="text-white">-child-number="3"</code>). Ürün kartı varsayılan olarak <code class="text-white">.product-grid</code> sınıflı listeye giriyor; köşe ve üzerindeki çağrı metni sayfanın kendi CSS'i.</li>
+          <li>Sonuç gelince sayfa bedeni filtre olarak uyguluyor: o bedeni stokta olan ürünler işaretleniyor, olmayanlar soluklaşıyor. Liste yeniden çizilmiyor, sadece sınıflar değişiyor; böylece SDK'nın yerleştirdiği ürün kartı yerinde kalıyor.</li>
+          <li>Beden tarayıcıda saklandığı için ürün sayfasına geçildiğinde aynı beden orada da seçili geliyor.</li>
+        </ol>
+        <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <pre class="overflow-x-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-gray-200">&lt;div class="poltio-widget-flying"
+  data-poltio-widget-content="6f242720-bd30-4116-858f-5a13cdb6336b"
+  data-poltio-widget-loc="tr"
+  data-poltio-floating-design-type="2026-01"
+  data-poltio-floating-initial-position="active"
+  data-poltio-floating-title="Bedenini 30 saniyede bul"
+  data-poltio-floating-buttontext="Bedenimi bul"
+  data-poltio-floating-product-card-enabled="true"
+  data-poltio-floating-product-child-number="3"
+  data-poltio-floating-product-fit-row="true"
+  data-poltio-floating-product-image="…/1792451049.2616.webp"&gt;&lt;/div&gt;
+
+&lt;div class="product-grid"&gt; … ürünler … &lt;/div&gt;</pre>
+          <div>
+            <p class="text-xs font-semibold tracking-widest text-gray-500">GELEN OLAYLAR</p>
+            <pre id="log" class="mt-2 h-48 overflow-y-auto rounded-xl bg-black/40 p-4 text-xs leading-relaxed text-emerald-300">Henüz olay yok. Karttan ya da listedeki ürün kartından testi başlat.</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-500">&copy; 2026 NOVA. Demo mağaza &mdash; beden asistanı <a href="https://www.poltio.com" class="underline">Poltio</a> ile.</footer>
+
+    <script src="fit-finder.js"></script>
+    <script>
+      const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL'];
+      const PRODUCTS = [
+        { name: 'Slim Fit Polo Yaka Tişört', color: 'Lacivert', hex: '#1F2A4D', type: 'polo', price: '1.299,99', out: ['XXL'] },
+        { name: 'Basic Bisiklet Yaka Tişört', color: 'Beyaz', hex: '#F7F6F2', light: true, type: 'tshirt', price: '499,99', out: ['S'] },
+        { name: 'Pike Polo Yaka Tişört', color: 'Kahve', hex: '#7A5C49', type: 'polo', price: '1.199,99', out: ['XS', '3XL'] },
+        { name: 'Oversize Tişört', color: 'Antrasit', hex: '#3A3D44', type: 'tshirt', price: '699,99', out: ['L', 'XL'] },
+        { name: 'Regular Fit Polo', color: 'Taş', hex: '#D9D1C5', light: true, type: 'polo', price: '1.149,99', out: [] },
+        { name: 'Slim Fit Tişört', color: 'Haki', hex: '#5F6148', type: 'tshirt', price: '549,99', out: ['M'] },
+        { name: 'Merserize Polo', color: 'Bordo', hex: '#6B2E35', type: 'polo', price: '1.499,99', out: ['XS', 'S'] },
+        { name: 'Basic Bisiklet Yaka Tişört', color: 'Lacivert', hex: '#1F2A4D', type: 'tshirt', price: '499,99', out: ['3XL'] },
+        { name: 'Triko Polo', color: 'Bej', hex: '#CDBFA6', light: true, type: 'polo', price: '1.799,99', out: ['L'] },
+        { name: 'Pamuklu Tişört', color: 'Açık mavi', hex: '#C9D8E8', light: true, type: 'tshirt', price: '449,99', out: [] },
+        { name: 'Polo Yaka Tişört', color: 'Siyah', hex: '#16181D', type: 'polo', price: '1.099,99', out: ['XXL', '3XL'] },
+      ];
+
+      const saved = FitFinder.profile().tops;
+      let filter = saved ? saved.size : null;
+      let fromFit = !!saved;
+
+      const $ = (id) => document.getElementById(id);
+
+      // Rendered once; filtering only toggles classes so the SDK's product card stays put.
+      $('grid').innerHTML = PRODUCTS.map(
+        (p) => `
+          <a href="tisort-polo.html" class="group block transition" data-out="${p.out.join(',')}">
+            <div class="relative flex aspect-[4/5] items-center justify-center rounded-2xl bg-[#E9E7E3] transition group-hover:bg-[#E2E0DB]">
+              ${FitFinder.garment(p.type, p.hex, `w-3/4 drop-shadow-lg transition group-hover:scale-105 ${p.light ? 'ff-light' : ''}`)}
+              <span data-badge class="hidden"></span>
+            </div>
+            <p class="mt-3 text-sm font-medium">${p.name}</p>
+            <p class="text-xs text-gray-500">${p.color}</p>
+            <p class="mt-1 text-sm font-semibold">${p.price} TL</p>
+          </a>`,
+      ).join('');
+
+      const render = () => {
+        const items = [...$('grid').querySelectorAll('[data-out]')];
+        let available = 0;
+        items.forEach((el) => {
+          const has = !filter || !el.dataset.out.split(',').includes(filter);
+          if (has) available++;
+          el.classList.toggle('opacity-40', !has);
+          el.classList.toggle('grayscale', !has);
+          const badge = el.querySelector('[data-badge]');
+          badge.className = `absolute left-3 top-3 rounded-full px-2 py-0.5 text-[11px] font-semibold ${!filter ? 'hidden' : has ? 'bg-emerald-600 text-white' : 'bg-gray-200 text-gray-600'}`;
+          badge.textContent = has ? `${filter} stokta` : `${filter} tükendi`;
+        });
+        $('count').textContent = filter ? `${items.length} ürün · ${filter} bedeni stokta olan ${available} ürün` : `${items.length} ürün`;
+        $('chips').innerHTML = SIZES.map(
+          (s) =>
+            `<button type="button" data-chip="${s}" class="rounded-full border px-3 py-1.5 text-xs font-semibold transition ${s === filter ? 'border-ink bg-ink text-white' : 'border-gray-300 hover:border-ink'}">${s}</button>`,
+        ).join('');
+        $('banner').innerHTML =
+          filter && fromFit
+            ? `<div class="flex flex-wrap items-center gap-3 rounded-2xl bg-emerald-50 px-4 py-3 text-sm ring-1 ring-emerald-200">
+                <span class="flex h-9 min-w-9 items-center justify-center rounded-full bg-emerald-600 px-2 font-bold text-white">${filter}</span>
+                <p class="flex-1">Beden asistanına göre bedenin <b>${filter}</b>. Bu bedeni stokta olan <b>${available}</b> ürünü işaretledik.</p>
+                <button type="button" data-chip="${filter}" class="text-xs font-semibold underline">Filtreyi kaldır</button>
+              </div>`
+            : '';
+      };
+
+      document.addEventListener('click', (e) => {
+        const chip = e.target.closest('[data-chip]');
+        if (chip) {
+          filter = chip.dataset.chip === filter ? null : chip.dataset.chip;
+          fromFit = false;
+          render();
+        }
+        if (e.target.closest('[data-open-fit]') && window.poltio && window.poltio.toggleFlyingWidget) window.poltio.toggleFlyingWidget();
+      });
+
+      FitFinder.onResult((result) => {
+        if (result.kind !== 'tops') return;
+        filter = result.size;
+        fromFit = true;
+        render();
+        FitFinder.toast(`Bedenin <b>${result.size}</b>. Liste bu bedene göre süzüldü.`);
+      });
+
+      FitFinder.showProfile($('ff-profile'));
+      FitFinder.logTo($('log'));
+      render();
+    </script>
+  </body>
+</html>

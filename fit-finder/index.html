@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <title>Fit Finder Örnekleri</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: { colors: { ink: '#0B1633', sand: '#F1F0ED' } } } };
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <h1 class="text-base/7 font-semibold text-[#009EEC]">Fit Finder</h1>
+      <h2 class="mt-2 text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">Beden asistanı örnekleri</h2>
+      <p class="mt-4 max-w-3xl text-gray-600">
+        AVVA için hazırlanan üç beden asistanı (Fit Analytics uyumlu), NOVA adlı demo mağazanın farklı
+        sayfalarına farklı yöntemlerle yerleştirildi. Hepsi canlı SDK'yı
+        (<code class="rounded bg-gray-100 px-1 text-sm text-gray-900">sdk.poltio.com</code>) kullanıyor ve
+        panelde kural gerektirmiyor; ayarların tamamı sayfadaki öğede. Her sayfa sonucu okuyup bedeni kendi
+        arayüzünde seçiyor.
+      </p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-2 text-sm text-gray-600">
+        <span>Bu tarayıcıda kayıtlı bedenler:</span>
+        <span id="ff-profile" class="flex flex-wrap gap-1.5 text-xs"></span>
+        <span id="ff-empty" class="text-gray-400">henüz yok</span>
+        <button id="ff-reset" type="button" class="ml-1 text-xs font-medium text-[#009EEC] hover:underline">Sıfırla</button>
+      </div>
+
+      <nav class="mt-8 flex flex-wrap gap-2 text-sm">
+        <a href="#icerikler" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">İçerikler</a>
+        <a href="#pdp" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Ürün sayfası</a>
+        <a href="#liste" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Liste &amp; rehber</a>
+        <a href="#kombin" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Kombin</a>
+        <a href="#entegrasyon" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Entegrasyon</a>
+      </nav>
+
+      <h3 id="icerikler" class="mt-14 scroll-mt-6 text-xl font-semibold text-gray-950"><a href="#icerikler" class="group">İçerikler<span class="ml-2 text-gray-300 opacity-0 group-hover:opacity-100">#</span></a></h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">Üçü de aynı altı soruyu soruyor: boy, kilo, yaş ve üç görsel soru. Cevaplar bir formülle tek bir skora dönüşüyor, skor da bedene. Tek başına açmak için widget bağlantısını kullan.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200">
+          <img src="https://cdn.poltio.com/800x450/content/gcp/1792451049.2616.webp" alt="" class="aspect-video w-full bg-[#E5E4E2] object-cover" />
+          <div class="flex grow flex-col p-5">
+            <span class="text-[11px] font-medium text-gray-500">Erkek üst giyim</span>
+            <span class="mt-1 text-base font-semibold text-gray-950">Tişört &amp; Polo</span>
+            <ul class="mt-2 grow space-y-1 text-sm/6 text-gray-600">
+              <li>Görsel sorular: karın, göğüs-omuz, kalıp tercihi</li>
+              <li>Sonuç: XS &ndash; 3XL</li>
+              <li><code class="rounded bg-gray-100 px-1 text-xs">Önerilen bedenin: M</code></li>
+            </ul>
+            <a target="_blank" rel="noopener" href="https://www.poltio.com/widget/6f242720-bd30-4116-858f-5a13cdb6336b" class="mt-4 text-sm font-medium text-[#009EEC] hover:underline">Widget'ı aç &nearr;</a>
+            <span class="mt-2 font-mono text-[11px] text-gray-400">6f242720-bd30-4116-858f-5a13cdb6336b</span>
+          </div>
+        </div>
+        <div class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200">
+          <img src="https://cdn.poltio.com/800x450/content/gcp/1792481088.9371.webp" alt="" class="aspect-video w-full bg-[#E5E4E2] object-cover" />
+          <div class="flex grow flex-col p-5">
+            <span class="text-[11px] font-medium text-gray-500">Erkek pantolon</span>
+            <span class="mt-1 text-base font-semibold text-gray-950">Pantolon</span>
+            <ul class="mt-2 grow space-y-1 text-sm/6 text-gray-600">
+              <li>Görsel sorular: karın, basen, kalıp tercihi</li>
+              <li>Sonuç: 30 &ndash; 38 bel, harf karşılığıyla</li>
+              <li><code class="rounded bg-gray-100 px-1 text-xs">Önerilen bedenin: 32 / M</code></li>
+            </ul>
+            <a target="_blank" rel="noopener" href="https://www.poltio.com/widget/1109e7d0-c2b0-4ce8-b8a3-824c813c8411" class="mt-4 text-sm font-medium text-[#009EEC] hover:underline">Widget'ı aç &nearr;</a>
+            <span class="mt-2 font-mono text-[11px] text-gray-400">1109e7d0-c2b0-4ce8-b8a3-824c813c8411</span>
+          </div>
+        </div>
+        <div class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200">
+          <img src="https://cdn.poltio.com/800x450/content/gcp/1792481716.6037.webp" alt="" class="aspect-video w-full bg-[#E5E4E2] object-cover" />
+          <div class="flex grow flex-col p-5">
+            <span class="text-[11px] font-medium text-gray-500">Erkek gömlek</span>
+            <span class="mt-1 text-base font-semibold text-gray-950">Gömlek</span>
+            <ul class="mt-2 grow space-y-1 text-sm/6 text-gray-600">
+              <li>Görsel sorular: karın, göğüs-omuz, kalıp tercihi</li>
+              <li>Sonuç: XS &ndash; 3XL ve yaka numarası</li>
+              <li><code class="rounded bg-gray-100 px-1 text-xs">Önerilen bedenin: M &middot; Yaka 40-41</code></li>
+            </ul>
+            <a target="_blank" rel="noopener" href="https://www.poltio.com/widget/64b377c3-8afb-435c-9f94-5bc8af1c4c47" class="mt-4 text-sm font-medium text-[#009EEC] hover:underline">Widget'ı aç &nearr;</a>
+            <span class="mt-2 font-mono text-[11px] text-gray-400">64b377c3-8afb-435c-9f94-5bc8af1c4c47</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 id="pdp" class="mt-14 scroll-mt-6 text-xl font-semibold text-gray-950"><a href="#pdp" class="group">Ürün sayfası<span class="ml-2 text-gray-300 opacity-0 group-hover:opacity-100">#</span></a></h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">En sık istenen yer: beden seçicinin yanındaki &ldquo;Bedenimi bul&rdquo;. Aynı akış, üç farklı açılış biçimi.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a target="_blank" rel="noopener" href="./tisort-polo.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">Modal</span>
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">Tişört &amp; Polo</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Polo &mdash; Modal</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">&ldquo;Bedenimi bul&rdquo; testi modalda açar. Sonuçta beden seçilir ve tabloda işaretlenir; o renkte tükendiyse hangi renklerde stokta olduğu söylenir.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">tisort-polo.html</span>
+        </a>
+        <a target="_blank" rel="noopener" href="./pantolon.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">Slideover</span>
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">Pantolon</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Chino &mdash; Slideover</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Test sağdan kayarak açılır, ürün arkada görünür kalır. &ldquo;32 / M&rdquo; sonucu bel bedeni olarak seçilir, harf karşılığı yanında gösterilir.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">pantolon.html</span>
+        </a>
+        <a target="_blank" rel="noopener" href="./gomlek.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">Inline</span>
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">Gömlek</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Oxford Gömlek &mdash; Inline</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Test ürünün altında, sayfanın içinde açılır. Sonuç bedenle birlikte yakayı da seçer; yapışkan sepet çubuğu seçimi aşağıda da gösterir.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">gomlek.html</span>
+        </a>
+      </div>
+
+      <h3 id="liste" class="mt-14 scroll-mt-6 text-xl font-semibold text-gray-950"><a href="#liste" class="group">Liste &amp; rehber<span class="ml-2 text-gray-300 opacity-0 group-hover:opacity-100">#</span></a></h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">Ürün seçilmeden önce: kategori sayfasında ve beden rehberinde. Bulunan beden diğer sayfalara taşınır.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a target="_blank" rel="noopener" href="./kategori.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">Kart</span>
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">Ürün kartı</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Kategori &mdash; Tişört &amp; Polo</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Sağ altta açık bir kart ve listenin 3. sırasında bir ürün kartı aynı testi açar. Sonuç, listede o bedeni stokta olan ürünleri işaretler.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">kategori.html</span>
+        </a>
+        <a target="_blank" rel="noopener" href="./beden-rehberi.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">3 &times; inline</span>
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">Sekmeler</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Beden Rehberi</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Üç içerik, sekmelerde beden tablolarının altında. Sonuç ilgili tablodaki satırı ve üstteki beden özetini günceller.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">beden-rehberi.html</span>
+        </a>
+      </div>
+
+      <h3 id="kombin" class="mt-14 scroll-mt-6 text-xl font-semibold text-gray-950"><a href="#kombin" class="group">Kombin<span class="ml-2 text-gray-300 opacity-0 group-hover:opacity-100">#</span></a></h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">Üç içerik tek sayfada, art arda. SDK'sız, düz iframe ile.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a target="_blank" rel="noopener" href="./kombin.html" class="flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md hover:ring-[#009EEC]">
+          <span class="flex items-center gap-2">
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">Iframe</span>
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-500">3 içerik</span>
+          </span>
+          <span class="mt-2 text-base font-semibold text-gray-950">Kapsül Gardırop</span>
+          <span class="mt-1.5 grow text-sm/6 text-gray-600">Polo, chino ve gömlek; her biri kendi testiyle tek bir çekmecede. Her sonuçtan sonra sıradaki eksik parçaya geçilir, üç beden bulununca kombin sepete eklenir.</span>
+          <span class="mt-3 font-mono text-[11px] text-gray-400">kombin.html</span>
+        </a>
+      </div>
+
+      <h3 id="entegrasyon" class="mt-14 scroll-mt-6 text-xl font-semibold text-gray-950"><a href="#entegrasyon" class="group">Entegrasyon<span class="ml-2 text-gray-300 opacity-0 group-hover:opacity-100">#</span></a></h3>
+      <p class="mt-1 max-w-3xl text-sm text-gray-500">Bütün örneklerin dayandığı üç parça. Ortak kod <span class="font-mono text-xs">fit-finder.js</span> içinde.</p>
+      <div class="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <div class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200">
+          <span class="text-base font-semibold text-gray-950">1 &middot; İçeriği yerleştir</span>
+          <pre class="mt-3 overflow-x-auto rounded-lg bg-gray-950 p-4 text-[11px] leading-relaxed text-gray-200">&lt;script src="https://sdk.poltio.com/poltio.js" defer&gt;&lt;/script&gt;
+
+&lt;div class="poltio-widget-flying"
+  data-poltio-widget-content="6f242720-…"
+  data-poltio-widget-loc="tr"
+  data-poltio-floating-design-type="2026-01"
+  data-poltio-floating-display-type="modal"
+  data-poltio-floating-hide-button="true"&gt;&lt;/div&gt;</pre>
+          <p class="mt-3 text-sm/6 text-gray-600">Sayfada içeriğe ayrılmış yer varsa <code class="text-xs">.poltio-widget</code> kullan. Sayfa başına bir flying widget işleniyor.</p>
+        </div>
+        <div class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200">
+          <span class="text-base font-semibold text-gray-950">2 &middot; Kendi düğmenle aç</span>
+          <pre class="mt-3 overflow-x-auto rounded-lg bg-gray-950 p-4 text-[11px] leading-relaxed text-gray-200">&lt;button onclick="window.poltio.toggleFlyingWidget()"&gt;
+  Bedenimi bul
+&lt;/button&gt;</pre>
+          <p class="mt-3 text-sm/6 text-gray-600">2026 tasarımı 768 px'ten dar bir iframe'de &ldquo;Başla&rdquo;ya basılınca tam ekrana geçiyor. Masaüstünde sayfa içinde kalması isteniyorsa inline kutu en az 768 px genişlikte olmalı.</p>
+        </div>
+        <div class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-200">
+          <span class="text-base font-semibold text-gray-950">3 &middot; Sonucu oku</span>
+          <pre class="mt-3 overflow-x-auto rounded-lg bg-gray-950 p-4 text-[11px] leading-relaxed text-gray-200">window.addEventListener('message', (e) =&gt; {
+  if (e.origin !== 'https://www.poltio.com') return;
+  const d = e.data &amp;&amp; e.data.gtmData;
+  if (d &amp;&amp; d.action === 'result_view') {
+    // d.content_id, d.result_title
+  }
+});</pre>
+          <p class="mt-3 text-sm/6 text-gray-600">Bedenin kaynağı <code class="text-xs">result_title</code>. Sonuçlardaki <code class="text-xs">&amp;size=</code>, <code class="text-xs">&amp;jean=</code>, <code class="text-xs">&amp;collar=</code> değerleri mesajda gelmiyor; sonuç başlığı değişirse sayfadaki ayrıştırma da değişmeli.</p>
+        </div>
+      </div>
+
+      <p class="mt-14 text-sm text-gray-500">
+        <a href="../index.html" class="text-[#009EEC] hover:underline">&larr; Tüm demolar</a>
+      </p>
+    </div>
+
+    <script src="fit-finder.js"></script>
+    <script>
+      const profileEl = document.getElementById('ff-profile');
+      const syncEmpty = () => (document.getElementById('ff-empty').hidden = profileEl.children.length > 0);
+      FitFinder.showProfile(profileEl);
+      syncEmpty();
+      document.getElementById('ff-reset').addEventListener('click', () => {
+        FitFinder.forget();
+        profileEl.innerHTML = '';
+        syncEmpty();
+      });
+    </script>
+  </body>
+</html>
