@@ -755,6 +755,11 @@
       </footer>
     </div>
     <div id="contentdiv"></div>
+    <pre
+      id="status"
+      title="Expected after any number of route changes: one container, 1 push per relay"
+      style="position:fixed;top:48px;left:8px;z-index:2147483646;margin:0;padding:8px 10px;border-radius:6px;background:rgba(17,24,39,.85);color:#f9fafb;font:11px/1.5 ui-monospace,monospace;pointer-events:none"
+    ></pre>
   </body>
 </html>
 
@@ -782,4 +787,36 @@
     document.getElementById('contentdiv').innerHTML =
       'page param changed ' + pageCounter;
   });
+
+  // Relays a widget GTM message into a private dataLayer: every stacked SDK
+  // message listener pushes once more, so this must stay at 1.
+  window.poltioSpaProbe = [];
+  const pushesPerRelay = () => {
+    window.poltioSpaProbe.length = 0;
+    window.dispatchEvent(
+      new MessageEvent('message', {
+        origin: 'https://www.poltio.com',
+        data: { gtmRelay: true, gtmDl: 'poltioSpaProbe', gtmData: {} },
+      })
+    );
+    return window.poltioSpaProbe.length;
+  };
+  const tick = () => {
+    const reloads =
+      performance
+        .getEntriesByType('resource')
+        .filter((r) => r.name.includes('/poltio.js')).length - 1;
+    const containers = document.querySelectorAll(
+      '[id^="poltio-floating-container"]'
+    ).length;
+    // '-' while a reloaded bundle is still loading.
+    const pushes = window.poltio?.sdk_loaded ? pushesPerRelay() : '-';
+    document.getElementById('status').textContent = [
+      'sdk reloads:      ' + Math.max(0, reloads),
+      'containers:       ' + containers + (containers === 1 ? '' : '  <- expected 1'),
+      'pushes per relay: ' + pushes + (pushes === 1 || pushes === '-' ? '' : '  <- expected 1'),
+    ].join('\n');
+  };
+  tick();
+  setInterval(tick, 2000);
 </script>
