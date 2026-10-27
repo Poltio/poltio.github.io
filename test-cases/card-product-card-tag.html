@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Product Card Tag Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
+    <script src="https://sdk-stage.poltio.com/poltio.js" defer></script>
+    <style>
+      .category-row {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin: 0 -5px;
+        padding: 0 0 20px;
+        list-style: none;
+      }
+      .category-row li {
+        flex: 0 0 40vw;
+        padding: 0 5px;
+      }
+      @media (min-width: 1025px) {
+        .category-row li {
+          flex: 0 0 11.1111vw;
+          padding: 0 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div style="padding:8px 16px;font:14px/1.4 system-ui,sans-serif;background:#f9fafb;border-bottom:1px solid #e5e7eb"><a href="2026.html#bar-card" style="color:#009EEC;text-decoration:none">&larr; Staging Test Cases</a></div>
+    <div
+      class="poltio-widget-flying"
+      data-poltio-widget-content="b1a9044e-983b-4afc-afa3-5ccde8979198"
+      data-poltio-widget-loc="en"
+      data-poltio-widget-disclaimer="off"
+      data-poltio-floating-title="Let's choose together"
+      data-poltio-floating-desc="Answer a few questions and we will find the right product"
+      data-poltio-floating-buttontext="Start Now"
+      data-poltio-floating-product-card-enabled="true"
+      data-poltio-floating-product-parent="category-row"
+      data-poltio-floating-product-tag="li"
+      data-poltio-floating-product-child-number="1"
+      data-poltio-floating-product-fit-row="true"
+      data-poltio-floating-product-image-fit="contain"
+      data-poltio-floating-product-bg-color="#f6f6f6"
+      data-poltio-floating-product-image="https://storage.googleapis.com/poltio/widget/fiat.png"
+    ></div>
+
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+        Product Card Tag
+      </h1>
+      <p class="mt-4 text-base text-gray-600">
+        A sub-category row like arcelik.com.tr/buzdolabi: a
+        <code class="rounded bg-gray-100 px-1">ul</code> that scrolls
+        sideways with <code class="rounded bg-gray-100 px-1">flex-wrap: nowrap</code>,
+        where the page sizes only its
+        <code class="rounded bg-gray-100 px-1">li</code> tiles. The product
+        card is created as an
+        <code class="rounded bg-gray-100 px-1">li</code> via
+        <code class="rounded bg-gray-100 px-1"
+          >data-poltio-floating-product-tag</code
+        >, so it picks up the same rules. Configured on the element, so no
+        panel rule is needed.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>
+          One product card (<code class="rounded bg-gray-100 px-1"
+            >li#poltio-product-card</code
+          >) appears as the first tile of the row below.
+        </li>
+        <li>
+          It is as wide and as tall as the other tiles, on desktop and on a
+          phone, and the row still scrolls sideways on narrow screens.
+        </li>
+        <li>
+          Clicking it opens this page's widget panel; the floating card in the
+          corner opens the same panel.
+        </li>
+        <li>
+          Remove the tag attribute (or set it to
+          <code class="rounded bg-gray-100 px-1">div</code>) and the card
+          collapses to 0px wide on a phone: the bug this setting fixes.
+        </li>
+      </ul>
+
+      <ul class="category-row mt-12">
+        <li>
+          <a href="#" class="block rounded bg-[#f6f6f6] px-4 py-5 text-center">
+            <div class="mx-auto h-24 w-16 rounded bg-gray-300"></div>
+            <span class="mt-3 block text-sm text-gray-900">No Frost</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="block rounded bg-[#f6f6f6] px-4 py-5 text-center">
+            <div class="mx-auto h-24 w-16 rounded bg-gray-300"></div>
+            <span class="mt-3 block text-sm text-gray-900">Built-in</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="block rounded bg-[#f6f6f6] px-4 py-5 text-center">
+            <div class="mx-auto h-24 w-16 rounded bg-gray-300"></div>
+            <span class="mt-3 block text-sm text-gray-900">Bottom Freezer</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="block rounded bg-[#f6f6f6] px-4 py-5 text-center">
+            <div class="mx-auto h-24 w-16 rounded bg-gray-300"></div>
+            <span class="mt-3 block text-sm text-gray-900">Top Freezer</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="block rounded bg-[#f6f6f6] px-4 py-5 text-center">
+            <div class="mx-auto h-24 w-16 rounded bg-gray-300"></div>
+            <span class="mt-3 block text-sm text-gray-900">Side by Side</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="block rounded bg-[#f6f6f6] px-4 py-5 text-center">
+            <div class="mx-auto h-24 w-16 rounded bg-gray-300"></div>
+            <span class="mt-3 block text-sm text-gray-900">Static</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="block rounded bg-[#f6f6f6] px-4 py-5 text-center">
+            <div class="mx-auto h-24 w-16 rounded bg-gray-300"></div>
+            <span class="mt-3 block text-sm text-gray-900">Mini</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="h-[1500px]"></div>
+  </body>
+</html>
