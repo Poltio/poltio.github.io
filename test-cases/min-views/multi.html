@@ -81,7 +81,7 @@
       const views = () =>
         Object.keys(localStorage)
           .filter((k) => /^poltio-(widget|content)-.+-views$/.test(k))
-          .map((k) => k + ' = ' + JSON.parse(localStorage.getItem(k)).value);
+          .map((k) => k + ' = ' + (JSON.parse(localStorage.getItem(k))?.value ?? ''));
       const hits = (path) =>
         performance.getEntriesByType('resource').filter((r) => r.name.includes(path)).length;
       document.getElementById('reset').addEventListener('click', () => {
