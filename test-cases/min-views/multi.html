@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Min Views &mdash; Multi-Widget</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          ((o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o));
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <a href="../2026.html#min-views" class="mb-4 inline-block text-sm text-[#009EEC] hover:underline">&larr; Staging Test Cases</a>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Min Views &mdash; Multi-Widget</h1>
+      <p class="mt-4 text-base text-gray-600">
+        The same gated pill beside an ungated box, served together by <code>poltio_multi.js</code>.
+      </p>
+      <p class="mt-2 text-sm text-gray-500">
+        Panel rules: the pill from <em>index.html</em> (<code class="rounded bg-gray-100 px-1">min-views/*</code>, <code class="rounded bg-gray-100 px-1">trigger-min-views</code> <code class="rounded bg-gray-100 px-1">4</code>) plus a box at <code class="rounded bg-gray-100 px-1">bottom-right</code> on this exact URL with no gate.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <p class="mt-2 text-sm text-gray-500">
+        Press <em>Reset count</em> first, then open the product links below one by one (a reload counts too).
+      </p>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>Every load: the box shows and sends one cta-view hit.</li>
+        <li>Views 1&ndash;3: no pill; the box mounts as the first instance (no <code>-2</code> suffix).</li>
+        <li>View 4 onwards: the pill shows too, two cta-view hits per load.</li>
+      </ul>
+
+      <nav class="mt-8 flex flex-wrap gap-2 text-sm">
+        <a href="./index.html?sku=101" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Product 101</a>
+        <a href="./index.html?sku=102" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Product 102</a>
+        <a href="./index.html?sku=103" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Product 103</a>
+        <a href="./multi.html?sku=104" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Product 104 (multi)</a>
+        <a href="./multi.html?sku=105" class="rounded-full bg-white px-3 py-1 text-gray-700 ring-1 ring-gray-200 hover:ring-[#009EEC]">Product 105 (multi)</a>
+        <button id="reset" class="rounded-full bg-[#009EEC] px-3 py-1 text-white">Reset count</button>
+      </nav>
+
+      <pre
+        id="status"
+        class="mt-8 rounded-lg bg-gray-100 p-4 text-xs text-gray-700"
+      ></pre>
+    </div>
+
+    <div class="h-[1500px]"></div>
+
+    <script>
+      const views = () =>
+        Object.keys(localStorage)
+          .filter((k) => /^poltio-(widget|content)-.+-views$/.test(k))
+          .map((k) => k + ' = ' + JSON.parse(localStorage.getItem(k)).value);
+      const hits = (path) =>
+        performance.getEntriesByType('resource').filter((r) => r.name.includes(path)).length;
+      document.getElementById('reset').addEventListener('click', () => {
+        Object.keys(localStorage)
+          .filter((k) => /^poltio-(widget|content)-.+-views$/.test(k))
+          .forEach((k) => localStorage.removeItem(k));
+        tick();
+      });
+      const tick = () => {
+        document.getElementById('status').textContent = [
+          'view counts:      ' + (views().join(', ') || '(none)'),
+          'containers:       ' + ([...document.querySelectorAll('[id^="poltio-floating-container"]')].map((c) => c.getAttribute('data-poltio-trigger')).join(', ') || '(none)'),
+          'cta-view hits:    ' + hits('/sdk/cta-view'),
+        ].join('\n');
+      };
+      tick();
+      setInterval(tick, 2000);
+    </script>
+  </body>
+</html>
