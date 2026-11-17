@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Multi Trigger Compact Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
+    <script src="https://sdk-stage.poltio.com/poltio_stack.js" defer></script>
+  </head>
+  <body class="bg-[#e9dccd]">
+    <div style="padding:8px 16px;font:14px/1.4 system-ui,sans-serif;background:#f9fafb;border-bottom:1px solid #e5e7eb"><a href="2026.html#multi-trigger" style="color:#009EEC;text-decoration:none">&larr; Staging Test Cases</a></div>
+    <div
+      class="poltio-widget-flying"
+      data-poltio-widget-content="b1a9044e-983b-4afc-afa3-5ccde8979198"
+      data-poltio-widget-loc="en"
+      data-poltio-widget-disclaimer="off"
+      data-poltio-floating-position="bottom-left"
+      data-poltio-floating-initial-position="collapsed"
+      data-poltio-floating-display-type="slideover"
+      data-poltio-floating-stack-format="compact"
+      data-poltio-floating-stack-cards='[
+        {"content":"b1a9044e-983b-4afc-afa3-5ccde8979198","title":"Skincare","desc":"Let’s guide you to your glow","image":"https://storage.googleapis.com/poltio/widget/cosmetics.png","bg":"#ee9a86","opacity":"85"},
+        {"content":"d627477e-2dda-40ed-90e5-5259803d5c96","title":"Sun Care","desc":"Find the right SPF","bg":"#f39a2b","opacity":"85"},
+        {"content":"ce51a22e-76c6-47d0-b9b0-8cda41149603","title":"Hair Care","desc":"A routine for your hair type","image":"https://storage.googleapis.com/poltio/widget/cosmetics.png","bg":"#3fa79a","opacity":"85"}
+      ]'
+    ></div>
+
+    <div class="h-72 bg-gradient-to-br from-[#c99a74] via-[#8d6447] to-[#d8b796]"></div>
+
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+        Multi Trigger &mdash; Compact
+      </h1>
+      <p class="mt-4 text-base text-gray-600">
+        The same three cards as pills (<code class="rounded bg-white/60 px-1"
+          >floating-stack-format: compact</code
+        >) at bottom-left, opening in a slideover. Starts
+        <code class="rounded bg-white/60 px-1">collapsed</code>, so it shows
+        the pill first. Configured on the element, so no panel rule is needed.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>
+          On load only the Skincare pill shows. Scroll down about 300px and the
+          three pills cascade in, stacked upward with Skincare at the bottom.
+          Clicking the pill opens them at once.
+        </li>
+        <li>
+          One click on any pill opens that card's own content in a slideover
+          from the left. Closing it brings the pills back.
+        </li>
+        <li>
+          The &times; sits beside the front pill, on the side facing the page,
+          and folds the pills back into the single pill; scrolling does not
+          reopen them after that.
+        </li>
+        <li>
+          Long titles end with an ellipsis rather than wrapping.
+        </li>
+      </ul>
+    </div>
+
+    <div class="h-[1500px]"></div>
+  </body>
+</html>
