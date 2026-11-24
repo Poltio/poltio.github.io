@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Poltio SDK Multi Trigger Five Cards Test Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
+    <script src="https://sdk-stage.poltio.com/poltio_stack.js" defer></script>
+  </head>
+  <body class="bg-[#e9dccd]">
+    <div style="padding:8px 16px;font:14px/1.4 system-ui,sans-serif;background:#f9fafb;border-bottom:1px solid #e5e7eb"><a href="2026.html#multi-trigger" style="color:#009EEC;text-decoration:none">&larr; Staging Test Cases</a></div>
+    <div
+      class="poltio-widget-flying"
+      data-poltio-widget-content="d627477e-2dda-40ed-90e5-5259803d5c96"
+      data-poltio-widget-loc="en"
+      data-poltio-widget-disclaimer="off"
+      data-poltio-floating-design-type="2026-01"
+      data-poltio-floating-position="bottom-left"
+      data-poltio-floating-initial-position="active"
+      data-poltio-floating-display-type="modal"
+      data-poltio-floating-stack-format="expanded"
+      data-poltio-floating-stack-cards='[
+        {"content":"d627477e-2dda-40ed-90e5-5259803d5c96","title":"Sun Care","desc":"Find the right SPF for your skin","button":"Start","image":"https://cdn.poltio.com/460x460/content/gcp/1687429171.0482.jpeg","bg":"#f39a2b","button_bg":"#b35c00","opacity":"70"},
+        {"content":"ce51a22e-76c6-47d0-b9b0-8cda41149603","title":"Sofa Finder","desc":"Discover your dream sofa","button":"Discover","image":"https://cdn.poltio.com/460x460/content/gcp/1740574252.8857.jpeg","bg":"#3fa79a","button_bg":"#1f6f66","opacity":"70"},
+        {"content":"ef184cfc-fa74-4e88-8a3d-a2010a22da65","title":"Dishwasher","desc":"Pick the model for your kitchen","button":"Explore","image":"https://cdn.poltio.com/460x460/content/gcp/1748847170.6806.png","bg":"#5b8def","button_bg":"#2c55b8","opacity":"70"},
+        {"content":"a6900f71-9a34-483b-81b7-bebfccf2beec","title":"Vacuum","desc":"Robot, cordless or corded?","button":"Find","image":"https://cdn.poltio.com/460x460/content/gcp/1767722328.3142.png","bg":"#9b7be0","button_bg":"#5b3fb0","opacity":"70"},
+        {"content":"b1a9044e-983b-4afc-afa3-5ccde8979198","title":"Speakers","desc":"Sound that fits your room","button":"Listen","image":"https://cdn.poltio.com/460x460/content/gcp/1732182868.0436.jpeg","bg":"#ee9a86","button_bg":"#b8324a","opacity":"70"}
+      ]'
+    ></div>
+
+    <div class="h-72 bg-gradient-to-br from-[#c99a74] via-[#8d6447] to-[#d8b796]"></div>
+
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+        Multi Trigger &mdash; Five Cards
+      </h1>
+      <p class="mt-4 text-base text-gray-600">
+        One stack trigger (<code class="rounded bg-white/60 px-1"
+          >poltio_stack.js</code
+        >) holding the most cards it takes, five, each with its own color,
+        image and content, opening in a modal. Starts
+        <code class="rounded bg-white/60 px-1">active</code> at bottom-left.
+        Configured on the element, so no panel rule is needed.
+      </p>
+
+      <h2 class="mt-10 text-xl font-semibold text-gray-900">
+        Expected behavior
+      </h2>
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
+        <li>
+          On load the cards cascade in: Sun Care in front, then the other four
+          behind it, alternating between peeking above and peeking toward the
+          middle of the screen (to the right here). Each back card shows its
+          own title and round image.
+        </li>
+        <li>
+          One click on any of the five cards opens that card's own content.
+          Closing it brings the cards back; opening another card loads that
+          card's content instead.
+        </li>
+        <li>
+          The contents: Sun Care, Sofa Finder, Dishwasher, Vacuum (opens in
+          Turkish) and Speakers (a draft content).
+        </li>
+        <li>
+          The &times; folds the cards into a pill showing Sun Care. The pill
+          opens the cards again. After a reload the trigger still starts as the
+          pill (remembered 48 hours; clear site data to reset).
+        </li>
+        <li>
+          Network: one <code class="rounded bg-white/60 px-1">cta-view</code>
+          per card content on load, five in all.
+        </li>
+        <li>
+          On a phone the cards scale down and all five stay on screen; with
+          reduced motion turned on nothing animates.
+        </li>
+      </ul>
+    </div>
+
+    <div class="h-[1500px]"></div>
+  </body>
+</html>
