@@ -6,27 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/public/favicon.ico" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,aspect-ratio"></script>
-    <script src="https://sdk-stage.poltio.com/poltio_stack.js" defer></script>
+    <script>
+      (function (t, e, p, i, n) {
+        if (!(t.poltio && t.poltio.push)) {
+          t.poltio = {
+            queue: [],
+            push: function (s, r, u) {
+              t.poltio.queue.push([s, r, u]);
+            },
+          };
+          var o = e.createElement('script');
+          (o.id = 'poltiosdk'),
+            (o.async = !0),
+            (o.src =
+              p +
+              '/' +
+              i +
+              '?p=' +
+              n +
+              '&r=' +
+              encodeURIComponent(t.location.href)),
+            e.head.appendChild(o);
+        }
+      })(
+        window,
+        document,
+        'https://sdk-stage.poltio.com',
+        'poltio.js',
+        '5431023'
+      );
+    </script>
   </head>
   <body class="bg-[#e9dccd]">
     <div style="padding:8px 16px;font:14px/1.4 system-ui,sans-serif;background:#f9fafb;border-bottom:1px solid #e5e7eb"><a href="2026.html#multi-trigger" style="color:#009EEC;text-decoration:none">&larr; Staging Test Cases</a></div>
-    <div
-      class="poltio-widget-flying"
-      data-poltio-widget-content="b1a9044e-983b-4afc-afa3-5ccde8979198"
-      data-poltio-widget-loc="en"
-      data-poltio-widget-disclaimer="off"
-      data-poltio-floating-design-type="2026-01"
-      data-poltio-floating-position="bottom-right"
-      data-poltio-floating-initial-position="active"
-      data-poltio-floating-display-type="modal"
-      data-poltio-floating-stack-format="expanded"
-      data-poltio-floating-stack-cards='[
-        {"content":"b1a9044e-983b-4afc-afa3-5ccde8979198","title":"Skincare","desc":"Let’s guide you to your glow","button":"Start","image":"https://storage.googleapis.com/poltio/widget/cosmetics.png","bg":"#ee9a86","button_bg":"#b8324a","opacity":"85"},
-        {"content":"d627477e-2dda-40ed-90e5-5259803d5c96","title":"Sun Care","desc":"Find the right SPF for your skin","button":"Explore","bg":"#f39a2b","button_bg":"#b35c00","opacity":"85"},
-        {"content":"ce51a22e-76c6-47d0-b9b0-8cda41149603","title":"Hair Care","desc":"A routine for your hair type","button":"Discover","image":"https://storage.googleapis.com/poltio/widget/cosmetics.png","bg":"#3fa79a","button_bg":"#1f6f66","opacity":"85"}
-      ]'
-    ></div>
-
     <div class="h-72 bg-gradient-to-br from-[#c99a74] via-[#8d6447] to-[#d8b796]"></div>
 
     <div class="mx-auto max-w-5xl px-6 py-16">
@@ -37,8 +49,12 @@
         One stack trigger (<code class="rounded bg-white/60 px-1"
           >poltio_stack.js</code
         >) holding three glass cards, each opening its own content in a modal.
-        Starts <code class="rounded bg-white/60 px-1">active</code> at
-        bottom-right. Configured on the element, so no panel rule is needed.
+        Configured by the dynamic widget "multi trigger - expanded (stack)"
+        on this URL (publisher 5431023): format <b>Expanded</b>, position
+        <b>bottom-right</b>, starting state <b>active</b>, display
+        <b>modal</b>, and three cards on the Lunea Lab mock-up contents
+        &mdash; Shopping Assistant (Skincare), Sun Care and Hair Care &mdash;
+        each with a product photo uploaded as its card image.
       </p>
 
       <h2 class="mt-10 text-xl font-semibold text-gray-900">
@@ -46,10 +62,11 @@
       </h2>
       <ul class="mt-4 list-disc space-y-2 pl-6 text-base text-gray-600">
         <li>
-          On load the cards cascade in: Skincare in front, Sun Care peeking
-          above it with its title, Hair Care peeking on the left with its title
-          running up the edge. A soft glow crosses the cards three times, then
-          stops.
+          On load the glass cards cascade in: Shopping Assistant in front,
+          Sun Care peeking above it with its label and its photo on the corner,
+          Hair Care peeking on the left with its label running up the edge and
+          its photo on the edge. A light sweeps across the glass three times,
+          then stops.
         </li>
         <li>
           One click on any card, front or back, opens that card's own content.
@@ -57,11 +74,11 @@
           card's content instead.
         </li>
         <li>
-          Sun Care has no image: its round area shows the card color. On
-          desktop a card lifts slightly on hover.
+          On desktop a card lifts slightly on hover.
         </li>
         <li>
-          The &times; folds the cards into a pill showing Skincare. The pill
+          The &times; folds the cards into a pill showing Shopping Assistant.
+          The pill
           opens the cards again. After a reload the trigger still starts as the
           pill (remembered 48 hours; clear site data to reset).
         </li>
@@ -70,7 +87,7 @@
           per card content on load.
         </li>
         <li>
-          On a phone the cards scale down and keep the same fan; with reduced
+          On a phone the cards scale down and keep the same layout; with reduced
           motion turned on nothing animates.
         </li>
       </ul>
