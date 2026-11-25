@@ -10,7 +10,7 @@
   --good: #1f7a4d;
   --bad: #b3261e;
   --radius: 4px;
-  --font: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --font: "Montserrat", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   --gutter: 16px;
   --max: 1280px;
   color-scheme: light;
@@ -20,6 +20,9 @@ html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; font-family: var(--font); color: var(--ink); background: var(--paper); font-size: 15px; line-height: 1.45; overflow-x: hidden; }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; }
+::selection { background: var(--accent); color: #fff; }
+input, textarea { caret-color: var(--accent); }
+a { text-underline-offset: 3px; }
 button { font: inherit; color: inherit; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }

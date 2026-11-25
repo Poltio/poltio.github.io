@@ -7,7 +7,7 @@
     coverage: t => t + ' coverage',
     depth: t => t + ' shades',
     undertone: t => t + ' undertone',
-    concern: t => 'For ' + t.toLowerCase(),
+    concern: t => ({ Shine: 'Shine control', Dryness: 'Deep hydration', Dullness: 'Adds glow', Blemishes: 'Clears blemishes', Sensitivity: 'Gentle on sensitive skin' }[t] || t),
     lipFinish: t => t + ' finish',
     shadeFamily: t => t + ' shades',
     step: t => t,
