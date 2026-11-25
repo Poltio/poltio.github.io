@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="tr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>AI Search mapper check</title>
+<style>body{font:15px/1.5 ui-monospace,monospace;margin:24px;background:#fff;color:#17293a}.ok{color:#11743a}.fail{color:#b8391f;font-weight:700}#app{display:none}</style></head>
+<body data-mode="overlay">
+<h1>Intent mapper self-check</h1>
+<pre id="out"></pre>
+<script src="assets/catalog.js"></script>
+<script src="assets/app.js"></script>
+<script>
+  // The store renders too; hide it and report only the mapper results.
+  document.querySelectorAll('.demo-bar,.st-head,.st-cats,.st-main').forEach((e) => (e.style.display = 'none'));
+  const m = window.__ps.mapText;
+  const cases = [
+    ['Kedim var, 15 bin altı süpürge', (r) => r.flow === 'supurge' && r.a.pet === true && r.a.budget === 15000 && r.p.petWord === 'kedi'],
+    ['3+1 ev için sessiz robot süpürge', (r) => r.a.type === 'robot' && r.p.quiet && r.p.big === true && r.a.budget === undefined],
+    ['15.000 TL altı', (r) => r.a.budget === 15000],
+    ['1,5 bin', (r) => r.a.budget === 1500],
+    ['halı ve parke', (r) => r.a.floor === 'karisik'],
+    ['halıda', (r) => r.a.floor === 'hali'],
+    ['evde hayvan yok', (r) => r.a.pet === false],
+    ['parke ve halı var, köpeğim çok tüy döküyor', (r) => r.flow === 'supurge' && r.p.petWord === 'köpek' && r.a.floor === 'karisik'],
+    ['Robot mu, dikey mi?', (r) => r.intents.includes('explain') && !r.a.type],
+    ['Koşu için kablosuz kulaklık', (r) => r.flow === 'kulaklik' && r.feats.includes('spor')],
+    ['Aurix R20', (r) => r.exact && r.exact.id === 'r20'],
+    ["1 ve 2'yi karşılaştır", (r) => r.intents.includes('compare') && r.a.budget === undefined],
+    ['2+1 daire', (r) => r.p.big === false],
+    ['Daha ucuz göster', (r) => r.intents.includes('cheaper')],
+  ];
+  let fails = 0;
+  document.getElementById('out').innerHTML = cases.map(([t, f]) => {
+    const r = m(t), ok = f(r);
+    if (!ok) fails++;
+    return `<span class="${ok ? 'ok' : 'fail'}">${ok ? 'ok  ' : 'FAIL'}</span> ${t}${ok ? '' : '  ' + JSON.stringify(r)}`;
+  }).join('\n') + `\n\n${cases.length - fails}/${cases.length} passed`;
+</script>
+</body>
+</html>

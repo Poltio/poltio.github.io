@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poltio AI Search</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/poltio-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue: #039fee; --blue-d: #0279b8; --blue-l: #e5f5fe; --purple: #d46fde; --coral: #ff6a4e; --yellow: #ffc000; --navy: #17293a; --mut: #56656f; --line: #e2e7ec; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Nunito", system-ui, sans-serif; color: var(--navy); background: #f5f6f8; line-height: 1.5; font-size: 16px; }
+    header { background: var(--blue-d); color: #fff; padding: 48px 16px 56px; }
+    .w { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+    header img { height: 44px; display: block; margin-bottom: 28px; }
+    h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin: 0 0 12px; }
+    header p { font-size: 18px; max-width: 640px; margin: 0; opacity: .95; }
+    main { margin-top: -28px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .card { background: #fff; border-radius: 18px; padding: 24px; box-shadow: 0 6px 24px rgba(23, 41, 58, .08); display: flex; flex-direction: column; gap: 10px; }
+    .card .tag { font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .card:nth-child(1) .tag { color: #8d2f99; } .card:nth-child(2) .tag { color: #b8391f; }
+    .card h2 { margin: 0; font-size: 24px; }
+    .card p { margin: 0; color: var(--mut); }
+    .go { align-self: flex-start; background: var(--blue-d); color: #fff; text-decoration: none; font-weight: 800; border-radius: 24px; padding: 10px 20px; margin-top: 4px; }
+    .tries { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tries a { font-size: 13px; font-weight: 800; color: var(--navy); text-decoration: none; border: 1.5px solid var(--line); border-radius: 16px; padding: 4px 11px; }
+    .tries a:hover { border-color: var(--blue); color: var(--blue-d); }
+    h3 { font-size: 22px; margin: 48px 0 16px; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .step { background: #fff; border-radius: 14px; padding: 18px; border-top: 4px solid var(--c); }
+    .step b { display: block; font-size: 17px; margin-bottom: 4px; }
+    .step p { margin: 0; color: var(--mut); font-size: 15px; }
+    .note { background: #fff9e5; border: 1px solid #ffe596; border-radius: 12px; padding: 14px 18px; margin: 40px 0 64px; color: #5a4500; font-size: 15px; }
+    code { background: var(--blue-l); color: #035b8a; padding: 1px 6px; border-radius: 6px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header><div class="w">
+    <img src="assets/poltio-logo.webp" alt="Poltio">
+    <h1>AI Search, powered by guided selling</h1>
+    <p>Most shoppers skip the widget trigger and go straight to the search box. This prototype puts Poltio there: the shopper types in their own words, the AI fills in the answers it can infer, asks only what's missing, and explains each recommendation.</p>
+  </div></header>
+
+  <main class="w">
+    <div class="cards">
+      <section class="card">
+        <span class="tag">Option A</span>
+        <h2>Full overlay</h2>
+        <p>Searching in AI mode opens a large Poltio overlay. After the first query it becomes a chat with the input at the bottom. Poltio controls the whole thing, and it works with our current embed.</p>
+        <a class="go" href="overlay/">Open the overlay demo →</a>
+        <div class="tries">
+          <a href="overlay/?q=Kedim%20var%2C%2015%20bin%20alt%C4%B1%20s%C3%BCp%C3%BCrge%20ar%C4%B1yorum">Kedim var, 15 bin altı süpürge</a>
+          <a href="overlay/?q=3%2B1%20ev%20i%C3%A7in%20sessiz%20robot%20s%C3%BCp%C3%BCrge">3+1 ev, sessiz robot</a>
+          <a href="overlay/?q=Ko%C5%9Fu%20i%C3%A7in%20kablosuz%20kulakl%C4%B1k">Koşu için kulaklık</a>
+          <a href="overlay/?q=Aurix%20R20">Aurix R20</a>
+        </div>
+      </section>
+      <section class="card">
+        <span class="tag">Option B</span>
+        <h2>Smart dropdown</h2>
+        <p>The same chat opens in a panel under the search box, so it still feels like search. "⤢" expands it into the overlay. On mobile both options go full screen.</p>
+        <a class="go" href="dropdown/">Open the dropdown demo →</a>
+        <div class="tries">
+          <a href="dropdown/?q=Parke%20ve%20hal%C4%B1%20var%2C%20k%C3%B6pe%C4%9Fim%20%C3%A7ok%20t%C3%BCy%20d%C3%B6k%C3%BCyor">Parke ve halı, köpek tüyü</a>
+          <a href="dropdown/?q=Ucuz%20%C5%9Farjl%C4%B1%20s%C3%BCp%C3%BCrge">Ucuz şarjlı süpürge</a>
+          <a href="dropdown/?q=U%C3%A7akta%20kullanmak%20i%C3%A7in%20g%C3%BCr%C3%BClt%C3%BC%20engelleyen%20kulakl%C4%B1k">Uçak için ANC kulaklık</a>
+        </div>
+      </section>
+    </div>
+
+    <h3>How it works</h3>
+    <div class="steps">
+      <div class="step" style="--c: var(--purple)"><b>1 · Understand</b><p>Free text is mapped onto the answers of an existing Poltio flow. "Kedim var" fills the pet question and "15 bin altı" fills the budget. The "Anladığım" chips are the only state, and removing one re-asks that question.</p></div>
+      <div class="step" style="--c: var(--coral)"><b>2 · Ask only what's missing</b><p>The remaining questions use the widget's question cards. The shopper can click an answer or type one; either way it maps to a real answer value.</p></div>
+      <div class="step" style="--c: var(--yellow)"><b>3 · Recommend + explain</b><p>Products come from our recommendation algorithm, not the LLM. The LLM writes only the "✦" explanations, in the shopper's own words ("kedi tüyü için…").</p></div>
+      <div class="step" style="--c: var(--blue)"><b>No flow? Hybrid search</b><p>Categories without a flow (headphones here) go to hybrid Typesense search over the whole catalog. Exact product queries ("Aurix R20") are answered directly, and "Klasik aramaya dön" falls back to the client's own search.</p></div>
+    </div>
+
+    <p class="note"><b>Prototype note:</b> this runs entirely in the browser. Simple keyword rules stand in for the LLM intent-mapping layer, and a small scoring function stands in for the api1 algorithm. "Voltaj" and every product and price here are fictional. Try things like <code>sessiz olsun</code>, <code>daha ucuz göster</code>, <code>robot mu dikey mi?</code> or <code>1 ve 2'yi karşılaştır</code> in the chat.</p>
+  </main>
+</body>
+</html>
