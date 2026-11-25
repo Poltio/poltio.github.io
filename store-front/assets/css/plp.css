@@ -35,3 +35,10 @@
 .rail-q__opts i { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,.1); }
 .rail-q__note { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
 .rail-q__note b { color: var(--accent); }
+
+.showall { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; background: var(--tile); border-radius: 10px; padding: 10px 14px; margin: 6px 0 4px; font-size: 13px; }
+.showall b { color: var(--accent); }
+.showall .btn { min-height: 36px; padding: 0 14px; }
+.hidden-cat { grid-column: 1 / -1; text-align: center; padding: 40px 16px; border: 1px dashed var(--line); border-radius: 12px; display: grid; gap: 10px; justify-items: center; }
+.hidden-cat h2 { font-size: 20px; }
+.hidden-cat p { margin: 0; color: var(--muted); max-width: 40ch; }

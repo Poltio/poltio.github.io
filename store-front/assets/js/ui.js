@@ -21,6 +21,28 @@
   function packshot(p, shade) {
     const hex = (shade && shade.hex) || (p.shades[Math.floor(p.shades.length / 2)] || {}).hex || '#e8c09c';
     const label = '<text x="50" y="__Y__" text-anchor="middle" font-family="Helvetica Neue, Arial" font-weight="800" font-size="9" letter-spacing="1.6" fill="#111">KIKO</text>';
+    const kind = p.kind || p.category;
+    const nm = esc(p.name);
+    if (kind === 'lipstick') {
+      return `<svg viewBox="0 0 100 140" role="img" aria-label="${nm}${shade ? ', shade ' + esc(shade.name) : ''}"><ellipse cx="50" cy="133" rx="20" ry="4" fill="rgba(0,0,0,.08)"/>
+        <path d="M40 34 L40 18 Q40 8 50 6 Q60 10 60 22 L60 34 Z" fill="${hex}"/><rect x="38" y="34" width="24" height="16" rx="1" fill="#c9a24a"/>
+        <rect x="35" y="50" width="30" height="80" rx="3" fill="#111"/><rect x="38" y="52" width="4" height="74" rx="2" fill="rgba(255,255,255,.15)"/>${label.replace('__Y__', '95').replace('fill="#111"', 'fill="#fff"')}</svg>`;
+    }
+    if (kind === 'dropper') {
+      return `<svg viewBox="0 0 100 140" role="img" aria-label="${nm}"><ellipse cx="50" cy="133" rx="24" ry="4" fill="rgba(0,0,0,.08)"/>
+        <rect x="44" y="6" width="12" height="22" rx="6" fill="#111"/><rect x="40" y="28" width="20" height="10" rx="2" fill="#222"/>
+        <rect x="27" y="38" width="46" height="92" rx="10" fill="#f3d9c4" stroke="#e2c0a6"/><rect x="31" y="44" width="6" height="78" rx="3" fill="rgba(255,255,255,.45)"/>${label.replace('__Y__', '88')}</svg>`;
+    }
+    if (kind === 'jar') {
+      return `<svg viewBox="0 0 100 100" role="img" aria-label="${nm}"><ellipse cx="50" cy="90" rx="34" ry="5" fill="rgba(0,0,0,.08)"/>
+        <rect x="16" y="22" width="68" height="18" rx="4" fill="#111"/><rect x="18" y="40" width="64" height="48" rx="8" fill="#fbeef2" stroke="#efd3dd"/>${label.replace('__Y__', '68')}</svg>`;
+    }
+    if (kind === 'mtube') {
+      return `<svg viewBox="0 0 100 140" role="img" aria-label="${nm}"><ellipse cx="50" cy="132" rx="22" ry="4" fill="rgba(0,0,0,.08)"/><rect x="38" y="104" width="24" height="26" rx="3" fill="#6b6b6b"/><path d="M30 12h40l-4 92H34z" fill="#222"/><rect x="30" y="8" width="40" height="6" rx="1" fill="#6b6b6b"/>${label.replace('__Y__', '58').replace('fill="#111"', 'fill="#fff"')}<text x="50" y="70" text-anchor="middle" font-family="Helvetica Neue, Arial" font-size="6" letter-spacing="1.4" fill="#aaa">MEN</text></svg>`;
+    }
+    if (kind === 'tube' && p.category !== 'primer') {
+      return `<svg viewBox="0 0 100 140" role="img" aria-label="${nm}"><ellipse cx="50" cy="132" rx="22" ry="4" fill="rgba(0,0,0,.08)"/><rect x="38" y="104" width="24" height="26" rx="3" fill="#111"/><path d="M30 12h40l-4 92H34z" fill="#eef5f3" stroke="#d6e4e0"/><rect x="30" y="8" width="40" height="6" rx="1" fill="#7cc4b0"/>${label.replace('__Y__', '62')}</svg>`;
+    }
     if (p.category === 'powder') {
       return `<svg viewBox="0 0 100 100" role="img" aria-label="${esc(p.name)}"><ellipse cx="50" cy="82" rx="34" ry="5" fill="rgba(0,0,0,.08)"/><circle cx="50" cy="52" r="32" fill="#111"/><circle cx="50" cy="52" r="25" fill="${hex}"/><circle cx="42" cy="44" r="8" fill="rgba(255,255,255,.35)"/>${label.replace('__Y__', '91')}</svg>`;
     }

@@ -3,11 +3,15 @@
   const p = id && CATALOG.products.find(x => x.id === id);
   if (!p) { location.replace('plp.html'); return; }
 
-  Shell.mount({ page: 'pdp' });
+  const cat = CATALOG.categories.find(c => c.key === p.category);
+  Shell.mount({ page: 'pdp', cat: cat ? cat.key : 'foundation' });
+  State.logEvent({ type: 'visit', cat: p.category, id: p.id });
   const $ = s => document.querySelector(s);
   const { esc } = Ui;
   const Q = CATALOG.questions;
   const isFoundation = p.category === 'foundation';
+  const isLips = p.category === 'lips';
+  const hasEcho = Match.keysFor(p.category).length > 0;
   let picked = null; // shade the shopper chose by hand; otherwise follow the suggestion
 
   document.title = p.name + ' · KIKO Milano Austria';
@@ -17,17 +21,20 @@
   $('[data-price]').textContent = Ui.price(p.price);
   $('[data-buy-price]').textContent = Ui.price(p.price);
   $('[data-blurb]').textContent = p.blurb;
-  if (!isFoundation) {
-    const kind = p.category === 'primer' ? 'Primer' : p.category === 'powder' ? 'Setting powder' : 'Setting spray';
-    $('.pdp__info .eyebrow').textContent = kind;
-    $('.crumbs a[href="plp.html"]').textContent = 'Face';
+  const crumb = $('.crumbs a[href="plp.html"]');
+  if (cat) {
+    $('.pdp__info .eyebrow').textContent = cat.title;
+    crumb.textContent = cat.plural; crumb.href = 'plp.html?cat=' + cat.key;
+  } else { // primer / powder / spray
+    $('.pdp__info .eyebrow').textContent = p.category === 'primer' ? 'Primer' : p.category === 'powder' ? 'Setting powder' : 'Setting spray';
+    crumb.textContent = 'Face';
   }
 
   const title = (k, v) => (Q.find(q => q.key === k).answers.find(x => x.key === v) || {}).title;
 
   function currentShade(a) {
     if (picked) return p.shades.find(s => s.code === picked);
-    return Match.suggestShade(p, a) || p.shades[Math.floor(p.shades.length / 2)];
+    return Match.suggestShade(p, a) || (isLips ? p.shades.find(s => s.family === a.shadeFamily) || p.shades[0] : p.shades[Math.floor(p.shades.length / 2)]);
   }
 
   function renderShades(a) {
@@ -43,13 +50,13 @@
       Question.render(depthSlot, Q.find(q => q.key === 'depth'), null, v => State.setAnswer('depth', v, 'pdp'),
         { variant: 'inline', sub: "Tell us your skin tone and we'll pick the shade for you." });
     } else depthSlot.innerHTML = '';
-    if (!isFoundation) { document.querySelector('.shades').hidden = true; return; }
+    if (!isFoundation && !isLips) { document.querySelector('.shades').hidden = true; return; }
     $('[data-shades]').innerHTML = p.shades.map(s =>
       `<button type="button" role="radio" aria-checked="${s.code === shade.code}" class="sw${sugg && s.code === sugg.code ? ' is-sugg' : ''}" data-shade="${s.code}" style="--c:${s.hex}" title="${esc(s.code + ' ' + s.name)}"><span class="visually-hidden">${esc(s.code + ' ' + s.name)}</span></button>`).join('');
   }
 
   function renderEcho(a) {
-    if (!isFoundation) { $('[data-echo]').innerHTML = ''; return; }
+    if (!hasEcho) { $('[data-echo]').innerHTML = ''; return; }
     Echo.render($('[data-echo]'), p, a, { shade: currentShade(a) });
   }
 
@@ -59,6 +66,7 @@
   }
 
   function renderPairs(a) {
+    if (!isFoundation) { $('[data-pairs-wrap]').hidden = true; return; }
     const st = a.skinType || 'normal';
     const ids = (CATALOG.pairsWith[st] || []).filter(x => x !== p.id);
     $('[data-pairs-wrap]').hidden = !ids.length;
@@ -67,6 +75,7 @@
   }
 
   function renderHowTo(a) {
+    if (!p.howTo) { $('[data-howto]').innerHTML = ''; return; }
     const st = a.skinType || 'normal';
     $('[data-howto]').innerHTML = `<div class="howto__card"><p class="eyebrow">How to apply</p>
       <h2>${a.skinType ? `For ${esc(title('skinType', st).toLowerCase())} skin` : 'Our advisors suggest'}</h2><p>${esc(p.howTo[st])}</p></div>`;

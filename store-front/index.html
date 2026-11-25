@@ -4,42 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>KIKO Milano Austria · Find your foundation</title>
+  <title>KIKO Milano Austria</title>
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body>
   <div id="shell-top"></div>
   <main>
-    <section class="hero" aria-label="Find your foundation">
-      <div class="wrap hero__inner">
-        <div class="hero__copy">
-          <p class="eyebrow hero__eyebrow">Foundation finder</p>
-          <h1 class="hero__title">Let's find your foundation.</h1>
-          <p class="hero__lede">Five quick taps and the whole store rearranges around your skin.</p>
-        </div>
-        <div class="hero__card">
-          <div class="hero__progress" data-dots></div>
-          <div data-hero-q></div>
-          <div class="hero__cta" data-hero-cta hidden></div>
-        </div>
-      </div>
+    <section class="hero" aria-label="Your store">
+      <div class="wrap hero__inner" data-hero></div>
     </section>
 
-    <section class="wrap section">
-      <div class="section__head">
-        <div><h2 data-rail-title>Bestsellers</h2><p class="section__sub" data-rail-sub></p></div>
-        <a class="link-btn" href="plp.html">See all</a>
-      </div>
-      <div class="rail" data-rail></div>
-    </section>
+    <div class="wrap"><div class="showall" data-home-showall hidden></div></div>
+    <div data-rails></div>
 
     <section class="wrap section">
-      <div class="section__head"><h2>Shop by finish</h2></div>
-      <div class="finish-tiles" data-finish></div>
+      <div class="section__head"><h2>Shop by category</h2></div>
+      <div class="cat-tiles" data-cats></div>
     </section>
 
-    <section class="wrap section">
+    <section class="wrap section" data-editorial-wrap>
       <a class="editorial" data-editorial href="plp.html">
         <div class="editorial__art" data-editorial-art></div>
         <div class="editorial__copy">
@@ -55,6 +39,7 @@
 
   <script src="data/catalog.js"></script>
   <script src="assets/js/match.js"></script>
+  <script src="assets/js/profile.js"></script>
   <script src="assets/js/state.js"></script>
   <script src="assets/js/ui.js"></script>
   <script src="assets/js/question.js"></script>

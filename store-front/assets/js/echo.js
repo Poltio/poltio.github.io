@@ -29,6 +29,8 @@
       if (r.key === 'coverage') value = list(t.coverage.map(x => title('coverage', x))) + ' coverage';
       if (r.key === 'depth') value = r.ok ? `${p.shades.filter(s => s.depth === a.depth).length} shades for ${lc(title('depth', a.depth))} skin` : `Closest shade: ${shade ? shade.code + ' ' + shade.name : '—'}`;
       if (r.key === 'undertone') value = a.undertone === 'not_sure' ? 'Shown with every undertone' : r.ok ? `${title('undertone', a.undertone)} shades available` : `No ${lc(title('undertone', a.undertone))} shades`;
+      if (r.key === 'concern') value = 'Targets ' + list((t.concern || []).map(x => lc(title('concern', x))));
+      if (value === undefined) value = list((t[r.key] || []).map(x => title(r.key, x))); // lipFinish, shadeFamily, step, routine
       return [r.ok ? 'ok' : 'bad', root.CATALOG.questions.find(q => q.key === r.key).short, value];
     });
   }
@@ -39,10 +41,13 @@
     if (key === 'finish') return `it gives a ${lc(list(t.finish.map(x => title('finish', x))))} finish rather than the ${lc(title('finish', a.finish))} look you asked for`;
     if (key === 'coverage') return `its coverage is ${lc(list(t.coverage.map(x => title('coverage', x))))}, not the ${lc(title('coverage', a.coverage))} coverage you wanted`;
     if (key === 'depth') return `the shade range doesn't include ${lc(title('depth', a.depth))} shades`;
-    return `there are no ${lc(title('undertone', a.undertone))}-undertone shades`;
+    if (key === 'undertone') return `there are no ${lc(title('undertone', a.undertone))}-undertone shades`;
+    if (key === 'concern') return `it targets ${lc(list((t.concern || []).map(x => title('concern', x))))} rather than ${lc(title('concern', a.concern))}`;
+    const q = root.CATALOG.questions.find(x => x.key === key);
+    return `it's ${lc(list((t[key] || []).map(x => title(key, x))))} rather than the ${lc(title(key, a[key]))} ${lc(q.short)} you asked for`;
   }
 
-  function message(p, a, tier, shade) {
+  function message(p, a, tier, shade, alt) {
     const rs = root.Match.reasons(p, a);
     const ok = rs.filter(r => r.ok).map(r => lc(r.label));
     const bad = rs.filter(r => !r.ok);
@@ -53,7 +58,7 @@
     if (tier === 'good') {
       return `<strong>It fits, with one trade-off.</strong> You get ${esc(list(ok))}, but ${esc(why(p, a, bad[0].key))}.${shadeLine}`;
     }
-    return `<strong>This one probably isn't for you.</strong> ${esc(why(p, a, bad[0].key)[0].toUpperCase() + why(p, a, bad[0].key).slice(1))}${bad[1] ? `, and ${esc(why(p, a, bad[1].key))}` : ''}. Our pick below is a closer match.`;
+    return `<strong>This one probably isn't for you.</strong> ${esc(why(p, a, bad[0].key)[0].toUpperCase() + why(p, a, bad[0].key).slice(1))}${bad[1] ? `, and ${esc(why(p, a, bad[1].key))}` : ''}.${alt ? ' Our pick below is a closer match.' : ''}`;
   }
 
   let timer;
@@ -80,18 +85,19 @@
       el.querySelector('button').addEventListener('click', () => { setHidden(false); render(el, p, a, opts); });
       return;
     }
-    const answered = Object.keys(a).length > 0;
+    const keys = root.Match.keysFor(p.category);
+    const answered = keys.some(k => a[k]);
     if (!answered) {
       el.innerHTML = `<div class="echo echo--invite"><div class="echo__hd">${MARK}</div>
-        <div class="echo__bd"><p class="echo__msg">Is this the right foundation for you? Answer one question and Echo will tell you.</p><div data-echo-q></div></div></div>`;
-      const q = root.CATALOG.questions[0];
+        <div class="echo__bd"><p class="echo__msg">Is this ${p.category === 'foundation' ? 'the right foundation' : 'right'} for you? Answer one question and Echo will tell you.</p><div data-echo-q></div></div></div>`;
+      const q = root.CATALOG.questions.find(x => x.key === keys[0]);
       root.Question.render(el.querySelector('[data-echo-q]'), q, null, v => root.State.setAnswer(q.key, v, 'pdp'), { variant: 'inline' });
       return;
     }
     const tier = root.Match.tier(p, a);
     const [cls, label] = VERDICT[tier];
     const shade = opts.shade || root.Match.suggestShade(p, a);
-    const top = root.Match.rank(root.CATALOG.products, a)[0];
+    const top = root.Profile.bestVisible(a, p.category, root.State.getShowAll()); // never suggest a hidden product
     const alt = top && top.id !== p.id && root.Match.score(top, a) > root.Match.score(p, a) ? top : null;
     const icon = { ok: '✓', bad: '✕' };
     el.innerHTML = `<div class="echo">
@@ -103,7 +109,7 @@
       </div>
       <div class="echo__ft"><button class="link-btn" type="button" data-open="profile">Edit my answers</button><button class="link-btn muted" type="button" data-hide>Hide for this visit</button></div>
     </div>`;
-    stream(el.querySelector('[data-msg]'), message(p, a, tier, shade));
+    stream(el.querySelector('[data-msg]'), message(p, a, tier, shade, alt));
     el.querySelector('[data-hide]').addEventListener('click', () => { setHidden(true); render(el, p, a, opts); });
   }
 

@@ -8,10 +8,31 @@
     ['glowy foundation for dry skin', 'skinType=dry&finish=radiant'],
     ['light coverage, natural finish', 'coverage=light&finish=natural'],
     ['full coverage for deep skin tones', 'coverage=full&depth=deep'],
+    ['nude matte lipstick', 'cat=lips&lipFinish=matte&shadeFamily=nude'],
+    ['serum for shine', 'cat=skincare&step=serum&concern=shine'],
+    ['simple routine for men', 'cat=men&routine=basics&shopFor=men'],
   ];
-  const NAV = ['Make-up', 'Face', 'Eyes', 'Lips', 'Skincare', 'New in', 'Offers'];
+  const WHERE = { onboarding: 'from onboarding', home: 'from the home page', search: 'from search', pdp: 'from a product page', profile: 'from your profile' };
+  let currentCat = null, lastCount = null;
 
   function answeredCount() { return Object.keys(State.getAnswers()).length; }
+  const catOf = k => C().categories.find(c => c.key === k);
+
+  /* "from Lips filters", "from onboarding", ... — the latest place this answer was learned. */
+  function source(key) {
+    const e = State.getLog().filter(x => x.type === 'answer' && x.key === key).pop();
+    if (!e) return '';
+    const [where, cat] = String(e.where).split(':');
+    if (where === 'plp') return `from ${catOf(cat || 'foundation') ? catOf(cat || 'foundation').plural : ''} filters`;
+    return WHERE[where] || '';
+  }
+
+  function navLinks(cls) {
+    const a = State.getAnswers();
+    const show = State.getShowAll();
+    const d = State.isOnboarded() ? Profile.discover(a, State.getLog(), show) : null;
+    return Profile.navCategories(a, show).map(c => `<a href="plp.html?cat=${c.key}"${c.key === currentCat ? ' aria-current="page"' : ''}${cls ? ` class="${cls}"` : ''}>${esc(c.plural)}${d && d.cat === c.key ? ' <span class="for-you">For you</span>' : ''}</a>`).join('');
+  }
 
   function header(page) {
     return `<div class="promo">Free shipping in Austria over €25</div>
@@ -30,10 +51,10 @@
         </div>
       </div>
       <div class="incog-bar" data-incog-bar hidden><span>${ICON.mask} Incognito · new shopper view</span><button class="link-btn" data-incog="off">Turn off</button></div>
-      <nav class="nav" aria-label="Main">${NAV.map(n => `<a href="plp.html"${n === 'Face' && page === 'plp' ? ' aria-current="page"' : ''}>${n}</a>`).join('')}</nav>
+      <nav class="nav" aria-label="Main" data-nav></nav>
     </header>
     <dialog class="sheet" id="dlg-profile" aria-labelledby="dlg-profile-t">
-      <div class="sheet__head"><h2 id="dlg-profile-t">Your foundation profile</h2><button class="icon-btn" data-close aria-label="Close">${ICON.close}</button></div>
+      <div class="sheet__head"><h2 id="dlg-profile-t">Your profile</h2><button class="icon-btn" data-close aria-label="Close">${ICON.close}</button></div>
       <div class="sheet__body" data-profile-body></div>
     </dialog>
     <dialog class="sheet" id="dlg-search" aria-labelledby="dlg-search-t">
@@ -48,13 +69,13 @@
     </dialog>
     <dialog class="sheet sheet--left" id="dlg-menu" aria-label="Menu">
       <div class="sheet__head"><h2>Menu</h2><button class="icon-btn" data-close aria-label="Close">${ICON.close}</button></div>
-      <div class="sheet__body"><ul class="menu-list">${['Foundations', ...NAV].map(n => `<li><a href="plp.html">${n}<span>›</span></a></li>`).join('')}</ul></div>
+      <div class="sheet__body"><div class="menu-list" data-menu></div></div>
     </dialog>`;
   }
 
   function footer() {
     return `<footer class="site-footer"><div class="wrap">
-      <div><h3>Shop</h3><ul><li><a href="plp.html">Foundations</a></li><li><a href="plp.html">Face</a></li><li><a href="plp.html">New in</a></li></ul></div>
+      <div><h3>Shop</h3><ul>${C().categories.map(c => `<li><a href="plp.html?cat=${c.key}">${esc(c.plural)}</a></li>`).join('')}</ul></div>
       <div><h3>Help</h3><ul><li>Shipping to Austria</li><li>Returns</li><li>Contact</li></ul></div>
       <div><h3>KIKO Rewards</h3><ul><li>Join and get 10% off</li><li>Birthday gift</li></ul></div>
       <div><h3>Stores</h3><ul><li>Wien · Graz · Linz</li><li>Salzburg · Innsbruck</li></ul></div>
@@ -70,16 +91,17 @@
         <span><b>${ICON.mask} Incognito</b><small>${inc ? 'On. This is a throwaway profile. Turn it off to get yours back.' : 'See the store as a brand-new shopper. Your profile is kept.'}</small></span>
         <input type="checkbox" role="switch" data-incog-switch ${inc ? 'checked' : ''}>
       </label>
-      <p class="q__sub" style="margin:0 0 6px">Your answers shape every page of the store. Change anything, any time.</p>` +
-      C().questions.map(q => {
+      <p class="q__sub" style="margin:0 0 6px">Every question, filter and search adds to your profile, and the whole store adapts. Change anything, any time.</p>` +
+      groups(a).map(([title, qs]) => `<h3 class="profile-group">${esc(title)}</h3>` + qs.map(q => {
         const ans = q.answers.find(x => x.key === a[q.key]);
+        const src = ans ? source(q.key) : '';
         return `<div class="profile-row" data-row="${q.key}">
           <div class="profile-row__top">
-            <div><div class="eyebrow">${esc(q.short)}</div><div class="profile-row__value${ans ? '' : ' is-empty'}">${ans ? esc(ans.title) : 'Not answered'}</div></div>
+            <div><div class="eyebrow">${esc(q.short)}</div><div class="profile-row__value${ans ? '' : ' is-empty'}">${ans ? esc(ans.title) : 'Not answered'}${src ? ` <small class="profile-row__src">${esc(src)}</small>` : ''}</div></div>
             <div class="profile-row__actions"><button class="link-btn" data-edit="${q.key}">${ans ? 'Change' : 'Answer'}</button>${ans ? `<button class="link-btn" data-clear="${q.key}">Clear</button>` : ''}</div>
           </div><div data-edit-slot></div></div>`;
-      }).join('') +
-      `<div style="margin-top:20px;display:grid;gap:10px"><a class="btn btn--accent btn--block" href="plp.html">See my matches</a><button class="btn btn--ghost btn--block" data-reset>Start over</button></div>`;
+      }).join('')).join('') +
+      `<div style="margin-top:20px;display:grid;gap:10px"><a class="btn btn--accent btn--block" href="index.html">See my store</a><button class="btn btn--ghost btn--block" data-reset>Start over</button></div>`;
     body.querySelectorAll('[data-edit]').forEach(b => b.addEventListener('click', () => {
       const q = C().questions.find(x => x.key === b.dataset.edit);
       const slot = b.closest('.profile-row').querySelector('[data-edit-slot]');
@@ -90,6 +112,16 @@
     body.querySelector('[data-incog-switch]').addEventListener('change', e => setIncognito(e.target.checked));
   }
 
+  /* "About you" (store-wide) then one group per visible category. */
+  function groups(a) {
+    const byKey = k => C().questions.find(q => q.key === k);
+    // Show every group the pill counts: visible categories plus any hidden category or question that holds an answer.
+    const about = C().questions.filter(q => q.scope === 'store' && (Profile.onboardingQuestions(a).includes(q) || a[q.key]));
+    const nav = Profile.navCategories(a, State.getShowAll());
+    const cats = C().categories.filter(c => nav.includes(c) || c.questions.some(k => a[k]));
+    return [['About you', about], ...cats.map(c => [c.plural, c.questions.map(byKey)])];
+  }
+
   function setIncognito(on) {
     State.setIncognito(on);
     Ui.toast(on ? 'Incognito on · you’re a new shopper' : 'Welcome back · your profile is restored');
@@ -97,7 +129,14 @@
 
   function update() {
     const inc = State.isIncognito();
-    document.querySelectorAll('[data-pill-count]').forEach(el => { el.textContent = answeredCount() + '/5'; });
+    const n0 = answeredCount();
+    document.querySelectorAll('[data-pill-count]').forEach(el => { el.textContent = n0; });
+    if (lastCount !== null && n0 > lastCount) document.querySelectorAll('.profile-pill').forEach(el => {
+      el.classList.remove('pulse'); void el.offsetWidth; el.classList.add('pulse');
+    });
+    lastCount = n0;
+    document.querySelectorAll('[data-nav]').forEach(el => { el.innerHTML = navLinks(); });
+    document.querySelectorAll('[data-menu]').forEach(el => { el.innerHTML = navLinks() .replace(/<a /g, '<a class="menu-link" '); });
     document.querySelectorAll('.profile-pill').forEach(el => el.classList.toggle('is-incog', inc));
     document.querySelectorAll('[data-incog-bar]').forEach(el => { el.hidden = !inc; });
     const n = State.getCart().reduce((s, x) => s + x.qty, 0);
@@ -105,8 +144,15 @@
     if (document.getElementById('dlg-profile').open) renderProfile();
   }
 
-  function mount({ page }) {
+  function mount({ page, cat }) {
+    currentCat = cat || null;
     State.init({ questions: C().questions, productIds: C().products.map(p => p.id) });
+    const params = new URLSearchParams(location.search);
+    if (params.has('onboarding')) { // presenter reset: fresh profile, onboarding again
+      State.resetAll();
+      params.delete('onboarding');
+      history.replaceState(null, '', location.pathname + (params.toString() ? '?' + params : ''));
+    }
     State.applyUrlPreset(location.search);
     document.getElementById('shell-top').innerHTML = header(page);
     document.getElementById('shell-bottom').innerHTML = footer();

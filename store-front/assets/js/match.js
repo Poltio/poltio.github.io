@@ -1,6 +1,5 @@
-/* Match scoring: how well a product fits the shopper's answers. */
+/* Match scoring: how well a product fits the shopper's answers, per category. */
 (function (root) {
-  const KEYS = ['skinType', 'finish', 'coverage', 'depth', 'undertone'];
   const DEPTH_ORDER = ['fair', 'light', 'medium', 'tan', 'deep'];
   const LABEL = {
     skinType: t => t + ' skin',
@@ -8,9 +7,20 @@
     coverage: t => t + ' coverage',
     depth: t => t + ' shades',
     undertone: t => t + ' undertone',
+    concern: t => 'For ' + t.toLowerCase(),
+    lipFinish: t => t + ' finish',
+    shadeFamily: t => t + ' shades',
+    step: t => t,
+    routine: t => t + ' routine',
   };
+  const cat = () => root.CATALOG || {};
 
-  const answered = a => KEYS.filter(k => a && a[k]);
+  /* Filter/score keys for a category: store-wide keys it applies, then its own. */
+  function keysFor(catKey) {
+    const c = (cat().categories || []).find(x => x.key === catKey);
+    return c ? [...c.applies, ...c.questions] : [];
+  }
+  const answered = (p, a) => keysFor(p.category).filter(k => a && a[k]);
 
   function fits(p, key, value) {
     if (key === 'undertone') {
@@ -18,15 +28,15 @@
       return p.shades.some(s => s.undertone === value);
     }
     if (key === 'depth') return p.shades.some(s => s.depth === value);
-    return (p.tags[key] || []).includes(value);
+    return ((p.tags || {})[key] || []).includes(value);
   }
 
   function score(p, a) {
-    return answered(a).filter(k => fits(p, k, a[k])).length;
+    return answered(p, a).filter(k => fits(p, k, a[k])).length;
   }
 
   function tier(p, a) {
-    const n = answered(a).length;
+    const n = answered(p, a).length;
     if (!n) return 'other';
     const s = score(p, a);
     if (s === n) return 'great';
@@ -34,24 +44,28 @@
     return 'other';
   }
 
-  function rank(products, a) {
+  const styleBoost = (p, a) => (a && a.style && (p.tags.style || []).includes(a.style) ? 1 : 0);
+
+  function rank(products, a, catKey = 'foundation') {
     return products
-      .filter(p => p.category === 'foundation')
-      .map(p => ({ p, s: score(p, a) }))
-      .sort((x, y) => y.s - x.s || y.p.rating - x.p.rating)
+      .filter(p => p.category === catKey)
+      .map(p => ({ p, s: score(p, a), b: styleBoost(p, a) }))
+      .sort((x, y) => y.s - x.s || y.b - x.b || y.p.rating - x.p.rating)
       .map(x => x.p);
   }
 
-  function summary(products, a) {
-    const ranked = rank(products, a);
-    const any = answered(a).length > 0;
+  function summary(products, a, catKey = 'foundation') {
+    const c = (cat().categories || []).find(x => x.key === catKey);
+    const title = c ? c.plural : 'Foundations';
+    const ranked = rank(products, a, catKey);
+    const any = keysFor(catKey).some(k => a && a[k]);
     const matched = any ? ranked.filter(p => tier(p, a) !== 'other') : [];
     const others = ranked.filter(p => !matched.includes(p));
     // Count only great matches so the number shrinks with every answer; good ones are still listed.
     const count = any ? matched.filter(p => tier(p, a) === 'great').length : 0;
-    let headline = 'Foundations';
+    let headline = title;
     if (any) headline = count ? 'Your matches' : 'Closest matches for you';
-    return { matched, others, headline, count, total: ranked.length };
+    return { matched, others, headline, count, total: ranked.length, title };
   }
 
   function suggestShade(p, a) {
@@ -67,17 +81,17 @@
   }
 
   function reasons(p, a, questions) {
-    questions = questions || (root.CATALOG && root.CATALOG.questions) || [];
-    return answered(a).map(k => {
+    questions = questions || cat().questions || [];
+    return answered(p, a).map(k => {
       const q = questions.find(x => x.key === k);
       const ans = q && q.answers.find(x => x.key === a[k]);
       const title = ans ? ans.title : a[k];
-      const label = k === 'undertone' && a[k] === 'not_sure' ? 'Every undertone' : LABEL[k](title);
+      const label = k === 'undertone' && a[k] === 'not_sure' ? 'Every undertone' : (LABEL[k] || (t => t))(title);
       return { key: k, label, ok: fits(p, k, a[k]) };
     });
   }
 
-  const Match = { KEYS, fits, score, tier, rank, summary, suggestShade, reasons };
+  const Match = { keysFor, fits, score, tier, rank, summary, suggestShade, reasons };
   if (typeof module !== 'undefined' && module.exports) module.exports = Match;
   else root.Match = Match;
 })(typeof window !== 'undefined' ? window : globalThis);
