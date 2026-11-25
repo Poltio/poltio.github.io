@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Reverse Fit Finder · Designs</title>
+<link rel="stylesheet" href="https://platform.poltio.com/fonts/averta/averta">
+<style>
+:root{--blue:#009EEC;--blue-text:#0071A8;--dark:#1E3D54;--grey:#627787;--light:#EDF4F7}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.5 'Averta','Arial',sans-serif;color:var(--dark);background:var(--light)}
+main{max-width:880px;margin:0 auto;padding:48px 16px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue-text)}
+.eyebrow i{width:32px;height:4px;border-radius:99px;background:var(--blue)}
+h1{font-size:36px;line-height:1.15;margin:10px 0 8px}
+.lead{color:var(--grey);max-width:620px;margin:0 0 36px}
+h2{font-size:18px;margin:36px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+a.card{display:block;background:#fff;border-radius:16px;padding:20px;text-decoration:none;color:inherit;box-shadow:0 2px 12px rgba(20,36,51,.08);transition:transform .15s,box-shadow .15s}
+a.card:hover,a.card:focus-visible{transform:translateY(-2px);box-shadow:0 6px 24px rgba(20,36,51,.14)}
+.sw{display:flex;gap:6px;margin-bottom:14px}
+.sw span{width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(30,61,84,.12)}
+.card h3{margin:0 0 4px;font-size:18px}
+.card p{margin:0;color:var(--grey);font-size:14px}
+.go{display:inline-block;margin-top:14px;background:color-mix(in srgb,var(--blue) 10%,#fff);color:var(--blue-text);font-weight:700;font-size:14px;padding:7px 14px;border-radius:8px}
+footer{margin-top:48px;color:var(--grey);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+  <span class="eyebrow"><i></i>Poltio · concept</span>
+  <h1>Reverse Fit Finder</h1>
+  <p class="lead">After a purchase, buyers answer a short fit survey. Their answers show up on the product page so the next shopper can see how it fits people like them. These are clickable mockups of that product-page widget, with made-up data.</p>
+
+  <h2>PDP widget · v1 · Nov 2026</h2>
+  <div class="grid">
+    <a class="card" href="pdp-widget.html?theme=simple">
+      <div class="sw"><span style="background:#1d3b5a"></span><span style="background:#eef2f6"></span><span style="background:#fff"></span></div>
+      <h3>Simple theme</h3>
+      <p>Plain, neutral layout that sits quietly on any product page.</p>
+      <span class="go">Open →</span>
+    </a>
+    <a class="card" href="pdp-widget.html?theme=poltio">
+      <div class="sw"><span style="background:#009EEC"></span><span style="background:#1E3D54"></span><span style="background:#EDF4F7"></span><span style="background:#37D7AF"></span></div>
+      <h3>Poltio theme</h3>
+      <p>Built from the Poltio widget design system: match bar, answer tags, checklist.</p>
+      <span class="go">Open →</span>
+    </a>
+    <a class="card" href="pdp-widget.html?theme=client">
+      <div class="sw"><span style="background:#e62638"></span><span style="background:#253238"></span><span style="background:#F6F2F2"></span></div>
+      <h3>Client theme (example)</h3>
+      <p>Same components, styled only from a client's existing Poltio theme fields.</p>
+      <span class="go">Open →</span>
+    </a>
+  </div>
+  <!-- New designs: add another <h2> + .grid block above this line. -->
+
+  <footer>Inside each mockup, the top bar switches states (people like me, too few matches, under 10 reviews, mobile) and themes.</footer>
+</main>
+</body>
+</html>

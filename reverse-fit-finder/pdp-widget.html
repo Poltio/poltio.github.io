@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reverse Fit Widget</title>
+<link rel="stylesheet" href="https://platform.poltio.com/fonts/averta/averta">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+<style>
+:root{
+  --ink:#1d2b3a; --muted:#6b7684; --line:#e5e7ea; --page:#f4f4f2; --card:#fff;
+  --accent:#1d3b5a; --soft:#eef2f6; --good:#2f7d5b; --lean:#b4621a;
+}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--page)}
+button,select{font:inherit;color:inherit}
+
+/* mockup chrome */
+.bar{position:sticky;top:0;z-index:5;background:#111;color:#fff;padding:10px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px}
+.bar b{margin-right:8px}
+.bar button{background:#333;border:0;color:#fff;padding:6px 10px;border-radius:6px;cursor:pointer}
+.bar button[aria-pressed=true]{background:#fff;color:#111}
+.frame{margin:24px auto;max-width:1100px;padding:0 16px}
+.frame.mobile{max-width:375px}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0}
+
+/* fake PDP top */
+.pdp{display:grid;grid-template-columns:1fr 1fr;gap:32px;background:var(--card);padding:24px;border-radius:4px}
+.mobile .pdp{grid-template-columns:1fr;padding:16px;gap:16px}
+.mobile .ph{aspect-ratio:16/9}
+.ph{aspect-ratio:3/4;background:linear-gradient(160deg,#dfe3e8,#c9d1da);border-radius:2px}
+.pdp h1{font-size:24px;margin:0 0 4px}
+.price{font-weight:600;margin-bottom:16px}
+.sizes{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.sizes span{border:1px solid var(--line);padding:6px 10px;min-width:44px;text-align:center}
+.fitlink{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--accent);text-decoration:underline;cursor:pointer;background:none;border:0;padding:0}
+
+/* ===== the widget ===== */
+.rf{background:var(--card);margin-top:24px;padding:28px;border-radius:4px}
+.mobile .rf{padding:18px}
+.rf h2{font-size:22px;margin:0}
+.rf .sub{color:var(--muted);font-size:14px;margin:2px 0 20px}
+.verified{display:inline-flex;align-items:center;gap:4px}
+.top{display:grid;grid-template-columns:1.1fr 1fr;gap:32px}
+.mobile .top{grid-template-columns:1fr;gap:22px}
+.headline{font-size:20px;font-weight:650;margin:0 0 4px}
+.headline .tag{font-size:13px;font-weight:600;padding:2px 8px;border-radius:99px;vertical-align:middle;margin-left:6px}
+.tag.good{background:#e3f1ea;color:var(--good)} .tag.lean{background:#f8ebdd;color:var(--lean)}
+.why{color:var(--muted);font-size:14px;margin:0 0 14px}
+
+.headline .tag{display:inline-block;margin:6px 0 0}
+.scale{margin:18px 0 6px}
+.track{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;height:56px;align-items:end;border-bottom:1px solid var(--line)}
+.track i{height:100%;display:flex;align-items:flex-end}
+.track i b{display:block;width:100%;background:#b9c4d0;border-radius:3px 3px 0 0}
+.track i.peak b{background:var(--accent)}
+.dist{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;font-size:12px;text-align:center;color:var(--muted);margin-top:2px}
+.dist b{display:block;color:var(--ink);font-size:13px}
+
+.areas{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.areas span{background:var(--soft);padding:3px 10px;border-radius:99px;font-size:13px}
+
+.sizebox h3,.list h3{font-size:15px;margin:0 0 10px}
+.srow{display:grid;grid-template-columns:44px 1fr 92px;gap:10px;align-items:center;font-size:13px;margin:6px 0}
+.srow .b{height:8px;background:var(--soft);border-radius:4px;overflow:hidden}
+.srow .b i{display:block;height:100%;background:var(--accent)}
+.srow small{color:var(--muted);text-align:right}
+.srow.best{font-weight:650}
+.srow.best small{color:var(--good)}
+
+.filters{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:26px 0 0;padding:14px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.filters strong{font-size:14px;margin-right:4px}
+.filters select{border:1px solid var(--line);background:#fff;padding:7px 10px;border-radius:6px;font-size:14px}
+.filters .clear{background:none;border:0;color:var(--accent);text-decoration:underline;cursor:pointer;font-size:14px}
+.mobile .filters select{flex:1 1 45%}
+
+.empty{background:var(--soft);padding:18px;border-radius:6px;margin-top:18px;font-size:14px}
+.list{margin-top:22px}
+.rev{border-bottom:1px solid var(--line);padding:16px 0}
+.rev .r1{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.stars{letter-spacing:2px}
+.date{color:var(--muted);font-size:13px}
+.facts{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;margin:6px 0}
+.facts .fit{font-weight:650}
+.rev p{margin:6px 0}
+.who{color:var(--muted);font-size:13px}
+.more{margin-top:14px;background:#fff;border:1px solid var(--ink);padding:9px 16px;cursor:pointer}
+.foot{margin-top:16px;font-size:12px;color:var(--muted)}
+/* ===== Poltio DS themes — components from Figma "Poltio - Widget / Design System", tokens from Poltio theme fields ===== */
+.gauge,.match,.ck{display:none}
+.rf.shiny{font-family:var(--font);color:var(--ink);border-radius:var(--r-card);box-shadow:var(--shadow);padding:32px}
+.mobile .rf.shiny{padding:20px}
+.rf.shiny h2{font-size:26px;font-weight:700}
+.rf.shiny .sub{color:var(--muted);margin:4px 0 22px}
+.rf.shiny .top{background:var(--soft);border-radius:var(--r-card);padding:24px}
+.mobile .rf.shiny .top{padding:16px}
+.rf.shiny .headline{font-size:24px;font-weight:700;margin-bottom:6px}
+.rf.shiny .headline .tag{display:none}
+/* DS: Match bar — short accent bar + uppercase label */
+.rf.shiny .match{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+.match i{display:block;width:32px;height:4px;border-radius:99px;background:color-mix(in srgb,var(--accent) 20%,#fff);overflow:hidden}
+.match i b{display:block;height:100%;background:var(--accent);border-radius:99px}
+.rf.shiny .why{margin-top:8px}
+.rf.shiny .scale{display:none}
+.rf.shiny .gauge{display:block;position:relative;margin:36px 0 6px}
+.gtrack{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--bad),color-mix(in srgb,var(--bad) 30%,var(--good)) 30%,var(--good) 50%,color-mix(in srgb,var(--bad) 30%,var(--good)) 70%,var(--bad))}
+.gdot{position:absolute;top:-6px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#fff;border:4px solid var(--accent);box-shadow:0 2px 8px rgba(20,36,51,.2);animation:slide .8s cubic-bezier(.2,.8,.2,1) both}
+.gdot span{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;white-space:nowrap;background:var(--accent);color:#fff;padding:2px 8px;border-radius:6px}
+.glabels{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:8px}
+@keyframes slide{from{left:50%!important;opacity:0}}
+/* DS: Answer button — default white, peak = answered (filled accent) */
+.rf.shiny .dist{margin-top:14px;gap:6px}
+.rf.shiny .dist div{background:#fff;border-radius:var(--r);padding:8px 2px;color:var(--muted)}
+.rf.shiny .dist b{font-size:15px}
+.rf.shiny .dist div.peak{background:var(--accent);color:rgba(255,255,255,.85)}
+.rf.shiny .dist div.peak b{color:#fff}
+/* DS: Answer tag (default) */
+.rf.shiny .areas span{background:#fff;color:var(--ink);font-weight:600;border-radius:var(--r);padding:6px 12px}
+/* DS: Result card */
+.rf.shiny .sizebox{background:#fff;border-radius:var(--r-card);padding:18px;box-shadow:var(--shadow)}
+.rf.shiny .sizebox h3{font-weight:700}
+.rf.shiny .srow{grid-template-columns:40px 1fr auto}
+.rf.shiny .srow .b{height:4px;border-radius:99px;background:color-mix(in srgb,var(--accent) 15%,#fff)}
+.rf.shiny .srow .b i{border-radius:99px;background:var(--accent);animation:grow .7s ease-out both}
+.rf.shiny .srow small{font-weight:600}
+.rf.shiny .srow.best{color:var(--accent)}
+.rf.shiny .srow.best small{color:var(--accent)}
+@keyframes grow{from{width:0}}
+/* DS: Checklist (result card) — accent check circle / grey cross */
+.rf.shiny .ck{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;margin-right:6px;vertical-align:-2px}
+.rf.shiny .ck.x{background:none;color:var(--muted);font-size:13px;font-weight:400}
+/* DS: Answer tag as filter — default soft, selected = white + accent border */
+.rf.shiny .filters{border:0;padding:18px 0 4px;margin-top:8px}
+.rf.shiny .filters strong{font-weight:700;width:100%}
+.rf.shiny .filters select{appearance:none;-webkit-appearance:none;background:var(--soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 2v8M2 6h8' stroke='%231E3D54' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 12px center;border:1px solid transparent;border-radius:var(--r);padding:8px 34px 8px 14px;font-weight:600;color:var(--ink);cursor:pointer}
+.rf.shiny .filters select:not([data-empty]){background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 3l6 6M9 3l-6 6' stroke='%23009EEC' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 12px center;border-color:var(--accent);color:var(--accent)}
+/* DS: Result list item */
+.rf.shiny .list h3{font-weight:700}
+.rf.shiny .rev{border:0;background:#fff;border-radius:var(--r-card);padding:16px 18px;margin-bottom:10px;box-shadow:0 0 0 1px var(--soft)}
+.rf.shiny .rev:hover{background:var(--soft)}
+.rf.shiny .facts{gap:6px 16px;font-weight:600}
+.rf.shiny .facts .fit{font-weight:600}
+.rf.shiny .facts .fit.ok{color:var(--accent)}
+.rf.shiny .stars{color:var(--accent);letter-spacing:1px}
+.rf.shiny .who{color:var(--muted)}
+/* DS: Subtle button (Undo / Start over pill) */
+.rf.shiny .more,.rf.shiny .clear{background:color-mix(in srgb,var(--accent) 10%,#fff);color:var(--accent);border:0;border-radius:var(--r);font-weight:700;padding:9px 16px;text-decoration:none}
+.rf.shiny .clear{padding:7px 12px;font-size:13px}
+.rf.shiny .empty{background:var(--soft);border-radius:var(--r-card);margin-top:14px}
+.rf.shiny .foot{display:flex;align-items:center;gap:6px}
+@media (prefers-reduced-motion:reduce){.gdot,.rf.shiny .srow .b i{animation:none}}
+
+.hidden-state{border:2px dashed #c9ced4;color:var(--muted);padding:28px;text-align:center;margin-top:24px;border-radius:4px;background:#fafafa}
+</style>
+</head>
+<body>
+
+<div class="bar" role="toolbar" aria-label="Mockup states">
+  <a href="./" style="color:#fff;margin-right:4px">← All designs</a>
+  <b>Reverse Fit · mockup</b>
+  <button data-state="default" aria-pressed="true">Product page</button>
+  <button data-state="me">"People like me" filter</button>
+  <button data-state="narrow">Too few like me</button>
+  <button data-state="under10">Under 10 reviews</button>
+  <button data-view="mobile" aria-pressed="false">Mobile 375px</button>
+  <span style="opacity:.5;margin:0 4px">|</span>
+  <button data-theme="simple" aria-pressed="false">Simple</button>
+  <button data-theme="poltio" aria-pressed="true">Poltio theme</button>
+  <button data-theme="client" aria-pressed="false">Client theme (example)</button>
+</div>
+
+<div class="frame" id="frame">
+  <!-- Fake product page top: only context for where the widget sits -->
+  <div class="pdp">
+    <div class="ph" aria-hidden="true"></div>
+    <div>
+      <h1>High-Rise Straight Jean</h1>
+      <div class="price">899.99 TL</div>
+      <div>Size</div>
+      <div class="sizes"><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>32</span></div>
+      <button class="fitlink" id="jump">📏 <span id="jumpText">Runs slightly small · see how it fits 128 buyers</span></button>
+      <p class="note">↑ Optional teaser near the size picker, links down to the widget.</p>
+    </div>
+  </div>
+
+  <section class="rf" id="rf" aria-labelledby="rf-title"></section>
+</div>
+
+<script>
+// ---------- fake data (deterministic) ----------
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const pick = (arr, w) => { let t = w.reduce((a,b)=>a+b), r = rnd()*t; for (let i=0;i<arr.length;i++){ if((r-=w[i])<0) return arr[i]; } return arr.at(-1); };
+
+const FIT = ["Very small","Slightly small","True to size","Slightly large","Very large"];
+const AREAS = {waist:"Waist", hips:"Hips", length:"Length", chest:"Chest", shoulders:"Shoulders", sleeves:"Sleeves"};
+const GENDER = {woman:"Woman", man:"Man"};
+const AGE = ["18–24","25–34","35–44","45–54","55+"];
+const H = ["Under 155","155–159","160–164","165–169","170–174","175–179","180–184","185+"];
+const W = ["Under 50","50–54","55–59","60–64","65–69","70–74","75–79","80+"];
+const SIZES = ["26","27","28","29","30","31","32"];
+const COMMENTS = {
+  0:["Had to return, couldn't close it at the waist.","Way too tight, size up at least one."],
+  1:["Lovely cut but snug at the waist, I'd size up next time.","A bit tight on the waist at first, it loosened after a few wears.","Length perfect, waist slightly small."],
+  2:["Fits exactly like my usual size.","Perfect fit, the straight leg is very flattering.","True to size, comfortable all day.","Bought my normal size and it's spot on.",""],
+  3:["Slightly loose on the waist, a belt fixes it.","A little long for me, I had them hemmed."],
+  4:["Much bigger than expected, returned it."],
+};
+const reviews = Array.from({length:128}, (_, i) => {
+  const gender = pick(["woman","man"],[88,12]);
+  const w = pick([0,1,2,3,4,5,6,7],[4,14,24,22,16,10,6,4]);
+  const h = Math.max(0, Math.min(7, w + pick([-2,-1,0,1],[1,3,4,2])));
+  const fit = pick([0,1,2,3,4],[4,26,56,12,2]);
+  const natural = Math.min(6, Math.max(0, Math.round(w*0.85)));
+  const size = Math.min(6, Math.max(0, natural + (fit<2 ? -1 : fit>2 ? 1 : 0) * (rnd()<.6?1:0)));
+  const areas = fit===2 ? [] : fit<2 ? [pick(["waist","hips","length"],[70,20,10])] : [pick(["waist","length"],[50,50])];
+  let pool = COMMENTS[fit];
+  if (fit === 3) pool = areas[0] === "length" ? [pool[1]] : [pool[0]]; // keep comment consistent with the area picked
+  const comment = pool[Math.floor(rnd()*pool.length)];
+  return { gender, age: pick([0,1,2,3,4],[18,38,24,13,7]), h, w, size, fit, areas,
+    rating: fit===2 ? pick([5,4],[7,3]) : fit===0||fit===4 ? pick([2,3],[1,1]) : pick([4,3,5],[5,3,2]),
+    comment, verified: rnd() < .8, days: Math.floor(rnd()*240) };
+}).sort((a,b)=>a.days-b.days);
+
+// ---------- themes: same field names as a Poltio theme (list_themes) ----------
+const THEMES = {
+  poltio: { // Poltio Default Theme, values from the Figma design system tokens
+    primary_color_selected:"#009EEC", main_text_color:"#1E3D54", result_desc_color:"#8392A6",
+    positive_color:"rgb(55, 215, 175)", negative_color:"rgb(253, 103, 76)", secondary_background_color:"#EDF4F7",
+    font_family:"'Averta', 'Arial', sans-serif", card_border_radius:"1rem", answer_border_radius:"0.5rem",
+    card_shadow:"0 0 1rem rgba(20,36,51,.1)" },
+  client: { // example: a client theme (based on the YKV theme in the account)
+    primary_color_selected:"#e62638", main_text_color:"#253238", result_desc_color:"#5f6b72",
+    positive_color:"rgb(55, 215, 175)", negative_color:"#e62638", secondary_background_color:"#F6F2F2",
+    font_family:"'Poppins', sans-serif", card_border_radius:"1.5rem", answer_border_radius:"0.8rem",
+    card_shadow:"0 0 3rem rgba(20,36,51,.1)" },
+};
+let theme = new URLSearchParams(location.search).get("theme");
+if (!(theme in THEMES) && theme !== "simple") theme = "poltio";
+document.querySelectorAll("[data-theme]").forEach(b => b.setAttribute("aria-pressed", b.dataset.theme === theme));
+function applyTheme(el){
+  el.classList.toggle("shiny", theme !== "simple");
+  const t = THEMES[theme]; if (!t) { el.removeAttribute("style"); return; }
+  Object.entries({"--accent":t.primary_color_selected, "--ink":t.main_text_color, "--muted":t.result_desc_color,
+    "--good":t.positive_color, "--bad":t.negative_color, "--soft":t.secondary_background_color, "--font":t.font_family,
+    "--r-card":t.card_border_radius, "--r":t.answer_border_radius, "--shadow":t.card_shadow})
+    .forEach(([k,v]) => el.style.setProperty(k, v));
+}
+
+// ---------- state ----------
+const MIN_GROUP = 5;
+let filters = {gender:"", age:"", h:"", w:""};
+let shown = 4, mobile = false, state = "default";
+
+// ---------- helpers ----------
+const pct = (n,d) => d ? Math.round(100*n/d) : 0;
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const match = r => (!filters.gender || r.gender===filters.gender) && (filters.age==="" || r.age==+filters.age)
+  // Height/weight match the picked range ±1 neighbour, so groups don't fragment.
+  && (filters.h==="" || Math.abs(r.h - +filters.h) <= 1) && (filters.w==="" || Math.abs(r.w - +filters.w) <= 1);
+const anyFilter = () => Object.values(filters).some(v => v!=="");
+const ago = d => d<1 ? "today" : d<30 ? `${d} days ago` : `${Math.round(d/30)} mo ago`;
+
+function summary(rs, personal){
+  const n = rs.length, counts = [0,0,0,0,0];
+  rs.forEach(r => counts[r.fit]++);
+  const lean = rs.reduce((a,r)=>a+r.fit-2,0)/n;  // -2..+2
+  const tts = pct(counts[2], n);
+  const verdict = Math.abs(lean) < .15 ? ["True to size","good"] : lean < 0 ? ["Runs slightly small","lean"] : ["Runs slightly large","lean"];
+  const off = rs.filter(r=>r.fit!==2), areaCount = {};
+  off.forEach(r => r.areas.forEach(a => areaCount[a]=(areaCount[a]||0)+1));
+  const areas = Object.entries(areaCount).sort((a,b)=>b[1]-a[1]).slice(0,3);
+  const sizes = SIZES.map((s,i) => { const inS = rs.filter(r=>r.size===i); return {s, n:inS.length, tts:pct(inS.filter(r=>r.fit===2).length, inS.length)}; }).filter(x=>x.n);
+  // "Best size" only means something once the group is people like you.
+  const best = personal ? sizes.reduce((a,b)=> (b.n>=3 && b.n*b.tts > a.n*a.tts) ? b : a, sizes[0]) : null;
+  return {n, counts, lean, tts, verdict, areas, offN: off.length, sizes, best};
+}
+
+function opts(list, val, any){ return `<option value="">${any}</option>` + list.map((l,i)=>`<option value="${i}" ${val===String(i)?"selected":""}>${l}</option>`).join(""); }
+
+// ---------- render ----------
+function render(){
+  const rf = document.getElementById("rf");
+  if (state === "under10"){
+    rf.outerHTML = `<section class="rf" id="rf"><div class="hidden-state"><b>Nothing renders here.</b><br>This product has 7 approved reviews. The widget stays hidden until it has 10, so shoppers never see an empty or misleading box.</div></section>`;
+    document.getElementById("jump").style.display = "none";
+    return;
+  }
+  document.getElementById("jump").style.display = "";
+  applyTheme(rf);
+  const all = reviews, filtered = all.filter(match);
+  const tooFew = anyFilter() && filtered.length < MIN_GROUP;
+  const base = (anyFilter() && !tooFew) ? filtered : all;
+  const s = summary(base, base !== all);
+  const forWho = anyFilter() && !tooFew ? `${s.n} buyers like you` : `${s.n} verified buyers`;
+
+  rf.innerHTML = `
+    <h2 id="rf-title">How it fits</h2>
+    <p class="sub">Based on <span class="verified">✓ ${forWho}</span> who told us after their purchase</p>
+
+    <div class="top">
+      <div>
+        <span class="match"><i><b style="width:${s.tts}%"></b></i>${s.tts}% say true to size</span>
+        <p class="headline">${s.verdict[0]} <span class="tag ${s.verdict[1]}">${s.tts}% say true to size</span></p>
+        <p class="why">${s.areas.length ? `Of those who found it off, most mentioned the <b>${AREAS[s.areas[0][0]].toLowerCase()}</b>.` : "Almost everyone found it true to size."}</p>
+        <div class="scale" aria-hidden="true">
+          <div class="track">${s.counts.map(c=>`<i class="${c===Math.max(...s.counts)?"peak":""}"><b style="height:${Math.max(4,pct(c,Math.max(...s.counts)))}%"></b></i>`).join("")}</div>
+        </div>
+        <div class="gauge" aria-hidden="true">
+          <div class="gtrack"></div>
+          <div class="gdot" style="left:${Math.max(3, Math.min(97, 50 + s.lean*25))}%"><span>Average fit</span></div>
+          <div class="glabels"><span>Runs small</span><span>True to size</span><span>Runs large</span></div>
+        </div>
+        <div class="dist">${FIT.map((f,i)=>`<div class="${s.counts[i]===Math.max(...s.counts)?"peak":""}"><b>${pct(s.counts[i],s.n)}%</b>${f}</div>`).join("")}</div>
+        ${s.areas.length ? `<div class="areas" aria-label="Where it was off">${s.areas.map(([a,c])=>`<span>${AREAS[a]} · ${pct(c,s.offN)}%</span>`).join("")}</div>` : ""}
+      </div>
+
+      <div class="sizebox">
+        <h3>${anyFilter() && !tooFew ? "Sizes people like you bought" : "Sizes people bought"}</h3>
+        ${s.sizes.map(z=>`<div class="srow ${z===s.best?"best":""}"><span>${z.s}</span><div class="b"><i style="width:${pct(z.n,s.n)}%"></i></div><small>${z===s.best?'<span class="ck">✓</span>':""}${z.tts}% fit well</small></div>`).join("")}
+        <p class="note">Bar = share of buyers · "fit well" = said true to size in that size.</p>
+      </div>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter reviews by people like you">
+      <strong>People like me</strong>
+      <select data-f="gender" aria-label="Gender" ${filters.gender?"":"data-empty"}><option value="">Any gender</option>${Object.entries(GENDER).map(([k,v])=>`<option value="${k}" ${filters.gender===k?"selected":""}>${v}</option>`).join("")}</select>
+      <select data-f="age" aria-label="Age" ${filters.age?"":"data-empty"}>${opts(AGE, filters.age, "Any age")}</select>
+      <select data-f="h" aria-label="Height" ${filters.h?"":"data-empty"}>${opts(H.map(x=>x+" cm"), filters.h, "Any height")}</select>
+      <select data-f="w" aria-label="Weight" ${filters.w?"":"data-empty"}>${opts(W.map(x=>x+" kg"), filters.w, "Any weight")}</select>
+      ${anyFilter() ? `<button class="clear" data-clear>Clear</button>` : ""}
+    </div>
+
+    ${tooFew ? `<div class="empty"><b>Not enough reviews from people like you yet.</b> ${filtered.length ? `Only ${filtered.length} buyer${filtered.length===1?"":"s"} match` : "No buyers match yet"} —we show groups of ${MIN_GROUP} or more to keep reviews anonymous. Try widening height or weight. The summary above shows all buyers.</div>` : `
+    <div class="list">
+      <h3>${anyFilter() ? `${filtered.length} reviews from people like you` : `${all.length} reviews`}</h3>
+      ${base.slice(0, shown).map(r => `
+        <article class="rev">
+          <div class="r1"><span class="stars" aria-label="${r.rating} of 5 stars">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</span><span class="date">${ago(r.days)}</span></div>
+          <div class="facts"><span class="fit ${r.fit===2?"ok":""}"><span class="ck ${r.fit===2?"":"x"}">${r.fit===2?"✓":"✕"}</span>${FIT[r.fit]}${r.areas.length?` · ${r.areas.map(a=>AREAS[a].toLowerCase()).join(", ")}`:""}</span><span>Bought <b>${SIZES[r.size]}</b></span></div>
+          ${r.comment ? `<p>${esc(r.comment)}</p>` : ""}
+          <div class="who">${GENDER[r.gender]} · ${AGE[r.age]} · ${H[r.h]} cm · ${W[r.w]} kg ${r.verified ? "· ✓ Verified purchase" : ""}</div>
+        </article>`).join("")}
+      ${base.length > shown ? `<button class="more" data-more>Show more reviews</button>` : ""}
+    </div>`}
+    <p class="foot">Reviews are collected after purchase and moderated. Body details are shown as ranges only. Powered by Poltio.</p>`;
+}
+
+// ---------- events ----------
+document.addEventListener("change", e => { const f = e.target.dataset.f; if (f){ filters[f] = e.target.value; shown = 4; render(); } });
+document.addEventListener("click", e => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.more !== undefined){ shown += 6; render(); }
+  if (t.dataset.clear !== undefined){ filters = {gender:"",age:"",h:"",w:""}; render(); }
+  if (t.id === "jump" || t.closest("#jump")) document.getElementById("rf").scrollIntoView({behavior:"smooth"});
+  if (t.dataset.theme){
+    theme = t.dataset.theme;
+    document.querySelectorAll("[data-theme]").forEach(b => b.setAttribute("aria-pressed", b===t));
+    history.replaceState(null, "", "?theme=" + theme);
+    render();
+  }
+  if (t.dataset.view){ mobile = !mobile; t.setAttribute("aria-pressed", mobile); document.getElementById("frame").classList.toggle("mobile", mobile); }
+  if (t.dataset.state){
+    state = t.dataset.state; shown = 4;
+    document.querySelectorAll("[data-state]").forEach(b => b.setAttribute("aria-pressed", b===t));
+    filters = state==="me" ? {gender:"woman",age:"1",h:"3",w:"3"} : state==="narrow" ? {gender:"woman",age:"4",h:"0",w:"7"} : {gender:"",age:"",h:"",w:""};
+    render();
+  }
+});
+render();
+</script>
+</body>
+</html>
