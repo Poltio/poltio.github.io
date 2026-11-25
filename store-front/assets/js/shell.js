@@ -29,6 +29,7 @@
           <a class="icon-btn" href="cart.html" aria-label="Bag">${ICON.bag}<span class="badge-count" data-bag-count hidden></span></a>
         </div>
       </div>
+      <div class="incog-bar" data-incog-bar hidden><span>${ICON.mask} Incognito · new shopper view</span><button class="link-btn" data-incog="off">Turn off</button></div>
       <nav class="nav" aria-label="Main">${NAV.map(n => `<a href="plp.html"${n === 'Face' && page === 'plp' ? ' aria-current="page"' : ''}>${n}</a>`).join('')}</nav>
     </header>
     <dialog class="sheet" id="dlg-profile" aria-labelledby="dlg-profile-t">
@@ -64,7 +65,12 @@
   function renderProfile() {
     const body = document.querySelector('[data-profile-body]');
     const a = State.getAnswers();
-    body.innerHTML = `<p class="q__sub" style="margin:0 0 6px">Your answers shape every page of the store. Change anything, any time.</p>` +
+    const inc = State.isIncognito();
+    body.innerHTML = `<label class="incog-toggle">
+        <span><b>${ICON.mask} Incognito</b><small>${inc ? 'On. This is a throwaway profile. Turn it off to get yours back.' : 'See the store as a brand-new shopper. Your profile is kept.'}</small></span>
+        <input type="checkbox" role="switch" data-incog-switch ${inc ? 'checked' : ''}>
+      </label>
+      <p class="q__sub" style="margin:0 0 6px">Your answers shape every page of the store. Change anything, any time.</p>` +
       C().questions.map(q => {
         const ans = q.answers.find(x => x.key === a[q.key]);
         return `<div class="profile-row" data-row="${q.key}">
@@ -81,10 +87,19 @@
     }));
     body.querySelectorAll('[data-clear]').forEach(b => b.addEventListener('click', () => State.clearAnswer(b.dataset.clear)));
     body.querySelector('[data-reset]').addEventListener('click', () => { State.resetAll(); location.href = 'index.html'; });
+    body.querySelector('[data-incog-switch]').addEventListener('change', e => setIncognito(e.target.checked));
+  }
+
+  function setIncognito(on) {
+    State.setIncognito(on);
+    Ui.toast(on ? 'Incognito on · you’re a new shopper' : 'Welcome back · your profile is restored');
   }
 
   function update() {
+    const inc = State.isIncognito();
     document.querySelectorAll('[data-pill-count]').forEach(el => { el.textContent = answeredCount() + '/5'; });
+    document.querySelectorAll('.profile-pill').forEach(el => el.classList.toggle('is-incog', inc));
+    document.querySelectorAll('[data-incog-bar]').forEach(el => { el.hidden = !inc; });
     const n = State.getCart().reduce((s, x) => s + x.qty, 0);
     document.querySelectorAll('[data-bag-count]').forEach(el => { el.textContent = n; el.hidden = !n; });
     if (document.getElementById('dlg-profile').open) renderProfile();
@@ -104,6 +119,7 @@
         if (open.dataset.open === 'search') d.querySelector('input').focus();
       }
       if (e.target.closest('[data-close]')) e.target.closest('dialog').close();
+      if (e.target.closest('[data-incog="off"]')) setIncognito(false);
       if (e.target.tagName === 'DIALOG') e.target.close(); // backdrop click
     });
     State.onChange(update);

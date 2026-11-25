@@ -1,7 +1,13 @@
 /* Shopper state shared across pages: answers, bag, and a small journey log. */
 (function (root) {
-  const K = { answers: 'kikoDemo.answers', cart: 'kikoDemo.cart', log: 'kikoDemo.log' };
-  let store, valid = {}, answers = {}, cart = [], log = [], subs = [];
+  // Incognito keeps a separate, throwaway profile under its own keys; the real one is untouched.
+  const MODE = 'kikoDemo.incognito';
+  const keys = inc => {
+    const p = inc ? 'kikoDemo.incog.' : 'kikoDemo.';
+    return { answers: p + 'answers', cart: p + 'cart', log: p + 'log' };
+  };
+  let K = keys(false);
+  let store, valid = {}, known = null, incognito = false, answers = {}, cart = [], log = [], subs = [];
 
   function safeStorage(s) {
     const mem = {};
@@ -12,6 +18,18 @@
   }
   function read(k, fallback) {
     try { const v = JSON.parse(store.get(k)); return v == null ? fallback : v; } catch (e) { return fallback; }
+  }
+  function load() {
+    const raw = read(K.answers, {});
+    answers = {};
+    if (raw && typeof raw === 'object') for (const k in raw) if (isValid(k, raw[k])) answers[k] = raw[k];
+    const c = read(K.cart, []);
+    // Drop lines from older builds (unknown product) and coerce qty, so the bag page never breaks.
+    cart = (Array.isArray(c) ? c : [])
+      .map(x => x && { id: x.id, shade: x.shade, qty: Math.floor(Number(x.qty)) })
+      .filter(x => x && x.id && x.qty > 0 && (!known || known.has(x.id)));
+    const l = read(K.log, []);
+    log = Array.isArray(l) ? l : [];
   }
   const isValid = (k, v) => !!(valid[k] && valid[k].includes(v));
   function save() {
@@ -27,18 +45,23 @@
       if (s === undefined) { try { s = root.localStorage; } catch (e) { s = null; } }
       store = safeStorage(s);
       valid = Object.fromEntries((questions || []).map(q => [q.key, q.answers.map(a => a.key)]));
-      const raw = read(K.answers, {});
-      answers = {};
-      if (raw && typeof raw === 'object') for (const k in raw) if (isValid(k, raw[k])) answers[k] = raw[k];
-      const c = read(K.cart, []);
-      // Drop lines from older builds (unknown product) and coerce qty, so the bag page never breaks.
-      const known = productIds ? new Set(productIds) : null;
-      cart = (Array.isArray(c) ? c : [])
-        .map(x => x && { id: x.id, shade: x.shade, qty: Math.floor(Number(x.qty)) })
-        .filter(x => x && x.id && x.qty > 0 && (!known || known.has(x.id)));
-      const l = read(K.log, []);
-      log = Array.isArray(l) ? l : [];
+      known = productIds ? new Set(productIds) : null;
+      incognito = store.get(MODE) === '1';
+      K = keys(incognito);
+      load();
       subs = [];
+    },
+    isIncognito: () => incognito,
+    setIncognito(on) {
+      on = !!on;
+      if (on === incognito) return;
+      const inc = keys(true);
+      [inc.answers, inc.cart, inc.log].forEach(k => store.set(k, 'null')); // every incognito session starts fresh
+      incognito = on;
+      store.set(MODE, on ? '1' : '0');
+      K = keys(on);
+      load();
+      subs.forEach(fn => { try { fn(); } catch (e) { console.error(e); } });
     },
     getAnswers: () => ({ ...answers }),
     setAnswer(k, v, where) {

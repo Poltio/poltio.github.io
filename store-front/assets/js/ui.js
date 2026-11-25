@@ -13,6 +13,7 @@
     user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>',
     x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg>',
+    mask: '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" style="display:inline-block;vertical-align:-3px"><path d="M3 10c0-1.7 1.3-3 3-3h12c1.7 0 3 1.3 3 3v1.5c0 2.5-2 4.5-4.5 4.5-1.6 0-2.9-.9-3.6-2.2L12 12.5l-.9 1.3c-.7 1.3-2 2.2-3.6 2.2C5 16 3 14 3 11.5V10Zm4.5 1.2a1.6 1.6 0 1 0 0 .1Zm9 0a1.6 1.6 0 1 0 0 .1Z"/></svg>',
     spark: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>',
   };
 

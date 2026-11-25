@@ -80,6 +80,7 @@
       if (idx >= Q.length) idx = firstOpen(0);
       advanceFrom = null;
     }
+    if (!Object.keys(State.getAnswers()).length) idx = 0; // e.g. incognito on: start the questions over
     renderAll();
   });
   renderAll();
