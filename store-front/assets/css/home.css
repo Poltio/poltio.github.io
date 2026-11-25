@@ -1,0 +1,60 @@
+.hero {
+  background:
+    radial-gradient(120% 80% at 100% 0%, #ff5fb0 0%, transparent 55%),
+    radial-gradient(90% 70% at 0% 100%, #7b2cbf 0%, transparent 60%),
+    linear-gradient(135deg, #e6007e 0%, #b5179e 55%, #5a189a 100%);
+  color: #fff;
+  padding: 28px 0 32px;
+  overflow: hidden;
+}
+.hero__inner { display: grid; gap: 20px; align-items: center; }
+.hero__eyebrow { color: rgba(255,255,255,.8); }
+.hero__title { font-size: 34px; line-height: 1.05; margin-top: 8px; font-weight: 700; letter-spacing: -0.02em; }
+.hero__lede { margin: 10px 0 0; font-size: 15px; color: rgba(255,255,255,.88); max-width: 34ch; }
+.hero__card { background: var(--paper); color: var(--ink); border-radius: 12px; padding: 18px; box-shadow: 0 20px 50px rgba(40, 0, 60, .35); min-width: 0; }
+.hero__progress { display: flex; gap: 6px; margin-bottom: 14px; }
+.hero__progress button { flex: 1; height: 4px; border: 0; padding: 0; border-radius: 2px; background: var(--line); position: relative; }
+.hero__progress button::after { content: ""; position: absolute; inset: -12px 0; }
+.hero__progress button.is-done { background: var(--accent); }
+.hero__progress button.is-current { background: var(--ink); }
+.hero__cta { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.hero__cta .count { font-size: 13px; color: var(--muted); }
+.hero__cta .count b { color: var(--ink); font-size: 15px; }
+.hero__done h3 { font-size: 20px; }
+.hero__chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 16px; }
+.chip { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 15px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; }
+.count-pop { animation: pop .35s ease; display: inline-block; }
+@keyframes pop { 0% { transform: scale(1.35); color: var(--accent); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .count-pop { animation: none; } }
+@media (min-width: 1024px) {
+  .hero { padding: 64px 0; }
+  .hero__inner { grid-template-columns: 1fr 1.25fr; gap: 56px; }
+  .hero__title { font-size: 56px; }
+  .hero__lede { font-size: 17px; }
+  .hero__card { padding: 28px; }
+}
+
+.section { margin-top: 40px; }
+.section__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin-bottom: 16px; }
+.section__head h2 { font-size: 22px; }
+.section__sub { margin: 4px 0 0; font-size: 13px; color: var(--accent); }
+.rail { display: grid; grid-auto-flow: column; grid-auto-columns: 46%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin-right: calc(var(--gutter) * -1); padding-right: var(--gutter); }
+.rail > * { scroll-snap-align: start; }
+@media (min-width: 768px) { .rail { grid-auto-columns: 30%; } }
+@media (min-width: 1024px) { .rail { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow: visible; margin-right: 0; padding-right: 0; } }
+
+.finish-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.finish-tile { border: 0; padding: 0; background: none; text-align: left; display: grid; gap: 8px; align-content: start; }
+.finish-tile span:first-child { aspect-ratio: 1; border-radius: 8px; }
+.finish-tile b { font-size: 14px; }
+.finish-tile small { display: block; font-size: 12px; color: var(--muted); }
+.finish-tile[aria-pressed="true"] span:first-child { box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--accent); }
+
+.editorial { display: grid; text-decoration: none; background: var(--ink); color: #fff; border-radius: 12px; overflow: hidden; }
+.editorial__art { background: linear-gradient(135deg, #2a0a1e, #6a0d45); display: grid; place-items: center; padding: 24px; }
+.editorial__art svg { width: 110px; }
+.editorial__copy { padding: 22px; display: grid; gap: 10px; justify-items: start; }
+.editorial__copy .eyebrow { color: #f9a8d4; }
+.editorial__copy h2 { font-size: 24px; }
+.editorial__copy p { margin: 0; color: #ccc; }
+@media (min-width: 768px) { .editorial { grid-template-columns: 1fr 1.3fr; } .editorial__copy { padding: 40px; align-content: center; } .editorial__art svg { width: 160px; } }

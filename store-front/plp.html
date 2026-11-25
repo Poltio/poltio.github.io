@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Foundations · KIKO Milano Austria</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/plp.css">
+</head>
+<body>
+  <div id="shell-top"></div>
+  <main class="wrap plp">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="plp.html">Face</a> / Foundations</nav>
+    <div class="plp__head">
+      <div>
+        <h1 data-headline>Foundations</h1>
+        <p class="plp__count" data-count></p>
+      </div>
+      <label class="sort"><span class="visually-hidden">Sort by</span>
+        <select data-sort>
+          <option value="best">Sort: Best match</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+          <option value="rating">Top rated</option>
+        </select>
+      </label>
+    </div>
+    <div class="chips-row hide-desktop" data-chips aria-label="Your answers, used as filters"></div>
+    <div class="plp__layout">
+      <aside class="rail-q hide-mobile" data-rail aria-label="Filter by your answers"></aside>
+      <div class="grid" data-grid></div>
+    </div>
+  </main>
+  <dialog class="sheet" id="dlg-q" aria-label="Question">
+    <div class="sheet__head"><h2>Narrow it down</h2><button class="icon-btn" data-close aria-label="Close">×</button></div>
+    <div class="sheet__body" data-q-slot></div>
+  </dialog>
+  <div id="shell-bottom"></div>
+
+  <script src="data/catalog.js"></script>
+  <script src="assets/js/match.js"></script>
+  <script src="assets/js/state.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/question.js"></script>
+  <script src="assets/js/shell.js"></script>
+  <script src="assets/js/plp.js"></script>
+</body>
+</html>
